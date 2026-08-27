@@ -17,12 +17,13 @@ button{cursor:pointer}
 .topbar{height:66px;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:20;backdrop-filter:blur(18px)}
 .brand{display:flex;align-items:center;gap:11px;font-size:21px;font-weight:750;letter-spacing:-.6px}
 .logo{width:31px;height:31px;border:2px solid #172033;border-radius:9px;display:grid;place-items:center;font-size:13px}
-.metrics{display:flex;align-items:center;gap:10px}
-.metric{height:39px;padding:0 15px;border-radius:999px;background:#f4f5f7;display:flex;align-items:center;gap:8px;font-size:14px;white-space:nowrap}
+.metrics{display:flex;align-items:center;justify-content:space-between;gap:45px;margin-left:auto}
+.stats-group{display:flex;align-items:center;gap:12px}
+.actions-group{display:flex;align-items:center;gap:14px}
+.metric{height:39px;padding:0 15px;border-radius:999px;background:#f4f5f7;display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;white-space:nowrap}
 .metric strong{font-weight:750}
 .metric-value{color:#4d5562}
 .dot{width:8px;height:8px;border-radius:50%;background:#20bf61}
-.dataset{font-weight:650;color:#343b49;margin-left:12px}
 
 .app{display:grid;grid-template-columns:302px minmax(0,1fr);min-height:calc(100vh - 66px)}
 .sidebar{background:#fff;border-right:1px solid var(--line);padding:43px 20px;position:sticky;top:66px;height:calc(100vh - 66px);overflow:auto}
@@ -36,7 +37,7 @@ button{cursor:pointer}
 .level-btn.active .num{background:var(--blueSoft);color:var(--blue)}
 .arrow{font-size:22px;color:#758095}
 .progress-card{margin-top:42px;border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff;box-shadow:var(--shadow)}
-.progress-card .big{font-size:42px;font-weight:760;color:var(--blue);letter-spacing:-1px}
+.progress-card .big{font-size:42px;font-weight:760;color:#111827;letter-spacing:-1px}
 .progress-card strong{display:block;margin-top:2px;font-size:15px}
 .progress-card p{margin:8px 0 0;color:var(--muted);font-size:13px}
 
@@ -83,33 +84,63 @@ textarea::placeholder{color:#7b9b83}
 
 @media(max-width:1050px){.app{grid-template-columns:230px 1fr}.challenge-grid{grid-template-columns:1fr}}
 @media(max-width:760px){
- .topbar{padding:0 14px}.dataset{display:none}.metrics{gap:6px}.metric{padding:0 10px;font-size:12px}
+ .topbar{padding:0 14px}.metrics{width:auto;gap:10px}.stats-group{gap:6px}.actions-group{gap:8px}.refresh-page-btn,.apply-now-btn{display:none}.metric{padding:0 10px;font-size:12px}
  .app{display:block}.sidebar{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:22px 15px}
  .sidebar h2{font-size:24px;margin-bottom:18px}.levels{display:grid;grid-template-columns:repeat(2,1fr)}.progress-card{display:none}
  main{padding:17px 14px 50px}.welcome{min-height:170px;padding:25px 15px}.welcome h1{font-size:42px}.welcome p{font-size:17px}
  .challenge{padding:17px}.challenge-head{flex-direction:column}.question-count{align-self:flex-start}
 }
 @media(max-width:470px){.levels{grid-template-columns:1fr}.actions{flex-direction:column}.run,.submit{width:100%}.welcome h1{font-size:34px}}
+
+.attempts-status{margin-top:10px;font-weight:600}
+.attempts-error{color:#E74C3C;font-weight:600}
+.correct-solution-box{margin-top:16px;background:#E8F4F8;border:1px solid #0052CC;border-radius:8px;padding:16px}
+.correct-solution-header{font-weight:700;margin-bottom:12px}
+.correct-solution-box pre{margin:0;white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:14px;line-height:1.55}
+.continue-question-btn{margin-top:14px;border:0;border-radius:10px;padding:11px 16px;background:#0052CC;color:#fff;font-weight:700;cursor:pointer}
+
 </style>
 
 <style id="apply-now-styles">
+.refresh-page-btn{
+  width:39px;
+  height:39px;
+  border:1px solid var(--line);
+  background:#f4f5f7;
+  color:#111827;
+  border-radius:50%;
+  display:inline-grid;
+  place-items:center;
+  font-size:22px;
+  line-height:1;
+  cursor:pointer;
+  transition:transform .18s ease, background .18s ease, box-shadow .18s ease;
+  padding:0;
+}
+.refresh-page-btn:hover{
+  background:#fff;
+  transform:rotate(90deg);
+  box-shadow:var(--shadow);
+}
+.refresh-page-btn:active{transform:rotate(90deg) scale(.96);}
+
 .apply-now-btn{
   appearance:none;
   border:0;
-  background:#e53935;
+  background:#D32F2F;
   color:#fff;
   font:600 14px/1 -apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,Arial,sans-serif;
   padding:12px 20px;
   border-radius:999px;
   cursor:pointer;
-  box-shadow:0 6px 18px rgba(229,57,53,.20);
+  box-shadow:0 6px 18px rgba(211,47,47,.20);
   transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
   white-space:nowrap;
 }
 .apply-now-btn:hover{
-  background:#d62828;
+  background:#D32F2F;
   transform:translateY(-1px);
-  box-shadow:0 10px 24px rgba(229,57,53,.28);
+  box-shadow:0 10px 24px rgba(211,47,47,.28);
 }
 .apply-now-btn:active{transform:translateY(0);}
 
@@ -194,17 +225,6 @@ textarea::placeholder{color:#7b9b83}
   border-color:#94a3b8;
   box-shadow:0 0 0 3px rgba(148,163,184,.15);
 }
-.apply-search-btn{
-  border:0;
-  background:#111827;
-  color:#fff;
-  border-radius:12px;
-  padding:12px 18px;
-  font-weight:700;
-  cursor:pointer;
-  margin-bottom:22px;
-}
-.apply-search-btn:hover{background:#000;}
 .apply-platforms{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -313,7 +333,7 @@ textarea::placeholder{color:#7b9b83}
 .xp-number{
   font-size:28px;
   line-height:1;
-  font-weight:800;
+  font-weight:600;
   letter-spacing:-1px;
   margin:2px 0 8px;
   color:#1677ff;
@@ -541,24 +561,182 @@ textarea::placeholder{color:#7b9b83}
   .interview-breakdown{grid-template-columns:1fr}
 }
 
-/* Concept Interview Mode */
-.interview-concept-modal{width:min(820px,96vw)}
-.concept-question-card{padding:30px 28px;min-height:150px;display:flex;flex-direction:column;justify-content:center}
-.concept-question-card h3{font-size:28px;line-height:1.3;letter-spacing:-.6px;max-width:720px}
-.concept-actions{justify-content:flex-start;margin-top:18px}
-.concept-answer{display:none;margin-top:18px;border:1px solid #dfe6ef;border-radius:18px;padding:22px;background:#f8fafc}
-.concept-answer.show{display:block}
-.concept-answer p{margin:9px 0 18px;color:#1f2937;font-size:16px;line-height:1.65}
-.concept-box{display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap;padding:13px 15px;border-radius:12px;background:#fff;border:1px solid #e5e7eb;color:#334155}
-.concept-box strong{color:#111827}
-.concept-box span{color:#64748b}
-.next-actions{justify-content:flex-end;margin-top:16px}
-#interviewAnswer{min-width:120px}
+/* Modern Interactive Interview Mode */
+.interview-concept-modal{
+  width:min(940px,96vw);
+  padding:0;
+  overflow:hidden;
+  background:#f8fafc;
+}
+.interview-shell{
+  position:relative;
+}
+.interview-modern-head{
+  padding:26px 30px 20px;
+  background:#fff;
+  border-bottom:1px solid #e7ebf0;
+}
+.interview-head-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.interview-level-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:#111827;
+  color:#fff;
+  font-size:11px;
+  font-weight:850;
+  letter-spacing:.3px;
+}
+.interview-level-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 0 4px rgba(255,255,255,.12);
+}
+.interview-close-modern{
+  border:1px solid #e5e7eb;
+  background:#fff;
+  color:#111827;
+  width:38px;height:38px;border-radius:12px;
+  font-size:20px;cursor:pointer;
+  transition:.2s;
+}
+.interview-close-modern:hover{transform:translateY(-1px);background:#f8fafc}
+.interview-modern-title{
+  margin:15px 0 4px;
+  color:#111827;
+  font-size:28px;
+  letter-spacing:-.8px;
+}
+.interview-modern-subtitle{margin:0;color:#64748b;font-size:13px}
+.interview-meta-row{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:18px;
+}
+.interview-meta-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  color:#64748b;font-size:12px;font-weight:750;
+}
+.interview-meta-pill strong{color:#111827}
+.interview-timer{
+  min-width:64px;text-align:center;
+  padding:8px 11px;border-radius:10px;
+  background:#f1f5f9;color:#111827;font-weight:850;font-size:12px;
+}
+.interview-timer.warning{background:#fff1f2;color:#e11d48}
+.interview-modern-progress{
+  height:6px;background:#eef2f7;overflow:hidden;
+}
+.interview-modern-progress span{
+  display:block;height:100%;width:0;
+  background:#111827;border-radius:0 99px 99px 0;
+  transition:width .35s ease;
+}
+.interview-modern-body{padding:24px 30px 30px}
+.interview-question-card-modern{
+  position:relative;
+  min-height:220px;
+  padding:28px;
+  border:1px solid #e3e8ef;
+  border-radius:22px;
+  background:#fff;
+  box-shadow:0 10px 35px rgba(15,23,42,.06);
+  overflow:hidden;
+}
+.interview-question-card-modern:before{
+  content:"";
+  position:absolute;left:0;top:0;bottom:0;width:4px;background:#111827;
+}
+.interview-label-modern{
+  display:flex;align-items:center;gap:8px;
+  color:#94a3b8;font-size:10px;font-weight:850;
+  text-transform:uppercase;letter-spacing:1px;
+}
+.interview-label-modern span{
+  color:#111827;background:#f1f5f9;padding:5px 8px;border-radius:8px;
+  letter-spacing:.3px;
+}
+.interview-question-card-modern h3{
+  margin:20px 0 0;
+  color:#111827;font-size:30px;line-height:1.28;
+  letter-spacing:-.9px;max-width:790px;
+}
+.interview-thinking{
+  margin-top:18px;color:#94a3b8;font-size:12px;
+}
+.interview-thinking kbd{
+  padding:3px 6px;border:1px solid #dbe2ea;border-bottom-width:2px;border-radius:5px;
+  background:#fff;color:#475569;font-family:inherit;font-weight:750;
+}
+.interview-modern-actions{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:16px;
+}
+.interview-answer-btn{
+  flex:1;
+  border:0;border-radius:14px;padding:14px 18px;
+  background:#111827;color:#fff;font-weight:850;cursor:pointer;
+  box-shadow:0 8px 20px rgba(17,24,39,.16);
+  transition:.2s;
+}
+.interview-answer-btn:hover{transform:translateY(-1px);box-shadow:0 12px 25px rgba(17,24,39,.2)}
+.interview-answer-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.interview-skip-btn{
+  border:1px solid #dfe5ec;background:#fff;color:#475569;
+  border-radius:14px;padding:14px 17px;font-weight:800;cursor:pointer;
+}
+.interview-answer-modern{
+  display:none;margin-top:16px;padding:20px;
+  border:1px solid #dce4ee;border-radius:18px;background:#f8fafc;
+  animation:answerIn .25s ease;
+}
+.interview-answer-modern.show{display:block}
+@keyframes answerIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.interview-answer-heading{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.interview-answer-heading strong{font-size:13px;color:#111827}
+.interview-answer-check{font-size:11px;font-weight:850;color:#16a34a}
+.interview-answer-modern p{
+  margin:11px 0 16px;color:#334155;font-size:15px;line-height:1.65;
+}
+.interview-concept-tags{display:flex;flex-wrap:wrap;gap:7px}
+.interview-tag{
+  padding:7px 10px;border-radius:999px;background:#fff;
+  border:1px solid #e2e8f0;color:#64748b;font-size:10px;font-weight:750;
+}
+.interview-selfcheck{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  margin-top:18px;padding-top:16px;border-top:1px solid #e2e8f0;
+}
+.interview-selfcheck span{font-size:12px;font-weight:800;color:#475569}
+.interview-confidence{display:flex;gap:7px}
+.confidence-btn{
+  border:1px solid #dfe5ec;background:#fff;color:#475569;
+  border-radius:10px;padding:8px 10px;font-size:11px;font-weight:800;cursor:pointer;
+}
+.confidence-btn:hover,.confidence-btn.active{background:#111827;color:#fff;border-color:#111827}
+.interview-next-row{display:flex;justify-content:flex-end;margin-top:14px}
+#interviewNext{min-width:150px}
 #interviewNext:disabled{opacity:.45;cursor:not-allowed}
 #interviewNext:not(:disabled){background:#111827;color:#fff}
+.interview-footer-tip{
+  text-align:center;margin-top:14px;color:#94a3b8;font-size:10px;
+}
 @media(max-width:600px){
-  .concept-question-card h3{font-size:22px}
-  .concept-question-card{padding:23px 20px}
+  .interview-modern-head,.interview-modern-body{padding-left:18px;padding-right:18px}
+  .interview-question-card-modern{padding:23px;min-height:200px}
+  .interview-question-card-modern h3{font-size:23px}
+  .interview-modern-actions{flex-direction:column}
+  .interview-answer-btn,.interview-skip-btn{width:100%}
+  .interview-selfcheck{align-items:flex-start;flex-direction:column}
+  .confidence-btn{flex:1}
 }
 </style>
 
@@ -644,16 +822,263 @@ input:focus,select:focus,textarea:focus{outline:none!important;border-color:rgba
 @media(max-width:700px){.card,.feature-card,.challenge-card,.stat-card,.level-card,.hero-card{border-radius:18px!important}.level-btn:hover{transform:none}}
 </style>
 
+
+<style id="blue-xp-accent-final">
+/* SQL Score accent line — matching the new #0084FF level interaction color */
+.feature-card:first-child:before{
+  background:#0084FF!important;
+}
+</style>
+
+<style id="blue-level-interaction-final">
+/* FINAL LEVEL INTERACTION COLOR: #0084FF */
+.level-btn {
+  border-color: #dfe8f3;
+}
+.level-btn:hover {
+  border-color: #0084FF !important;
+  background: rgba(0,132,255,.055) !important;
+  box-shadow: 0 10px 25px rgba(0,132,255,.14) !important;
+}
+.level-btn:hover:before {
+  background: #0084FF !important;
+  transform: scaleY(.72);
+}
+.level-btn.active {
+  border-color: #0084FF !important;
+  background: linear-gradient(90deg,rgba(0,132,255,.10),rgba(0,132,255,.025)),#fff !important;
+  box-shadow: 0 10px 26px rgba(0,132,255,.14), inset 0 0 0 1px rgba(0,132,255,.07) !important;
+}
+.level-btn.active:before {
+  background: #0084FF !important;
+  transform: scaleY(1);
+}
+.level-btn:hover .level-left,
+.level-btn.active .level-left {
+  color: #0084FF !important;
+}
+.level-btn:hover .num {
+  background: rgba(0,132,255,.12) !important;
+  color: #0084FF !important;
+  transform: scale(1.05);
+}
+.level-btn.active .num {
+  background: rgba(0,132,255,.12) !important;
+  color: #0084FF !important;
+}
+.level-btn:hover .arrow,
+.level-btn.active .arrow {
+  color: #0084FF !important;
+  transform: translateX(3px);
+}
+/* SQL Score line */
+.xp-progress span {
+  background: #0084FF !important;
+}
+</style>
+<style id="learn-more-styles">
+.learn-more-entry{margin-top:18px}
+.learn-more-btn{width:100%;min-height:58px;display:flex;align-items:center;gap:12px;padding:10px 13px;border:1px solid #e4e8ef;border-radius:15px;background:linear-gradient(180deg,#fff,#fafbfc);color:#111827;text-align:left;cursor:pointer;transition:.2s}
+.learn-more-btn:hover{transform:translateY(-2px);border-color:#cfcaff;background:#fbfaff;box-shadow:0 12px 26px rgba(29,39,68,.10)}
+.learn-book{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:10px;background:#eeeaff;color:#5d52d8;font-size:17px}
+.learn-more-copy{display:flex;flex-direction:column;gap:2px;min-width:0}.learn-more-copy strong{font-size:14px}.learn-more-copy span{font-size:11px;color:#7b8494}
+.learn-more-arrow{margin-left:auto;color:#9aa3b2;font-size:21px}.learn-more-btn:hover .learn-more-arrow{color:#5d52d8;transform:translateX(3px)}
+.learn-backdrop{position:fixed;inset:0;z-index:11000;display:none;background:rgba(15,23,42,.46);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.learn-backdrop.open{display:block}
+.learn-panel{position:absolute;inset:0;max-width:none;width:100%;height:100%;margin:0;background:#f8f9fc;border:0;border-radius:0;box-shadow:none;display:grid;grid-template-columns:300px minmax(0,1fr);overflow:hidden;animation:learnPanelIn .25s ease-out}
+@keyframes learnPanelIn{from{opacity:0;transform:translateY(10px) scale(.99)}to{opacity:1;transform:none}}
+.learn-index{background:#fff;border-right:1px solid #e5e9ef;display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden}
+.learn-index-top{padding:22px 18px 14px;border-bottom:1px solid #edf0f4}
+.learn-index-top h2{margin:0 0 6px;font-size:22px;letter-spacing:-.45px}.learn-index-top p{margin:0;color:#667085;font-size:12.5px;line-height:1.5}
+.learn-search{margin-top:14px;width:100%;height:42px;border:1px solid #dfe4ec;border-radius:11px;padding:0 12px;outline:none;font-size:12.5px;background:#fafbfc}.learn-search:focus{border-color:#9e96ff;box-shadow:0 0 0 3px rgba(108,99,255,.09)}
+.learn-count{display:flex;justify-content:space-between;align-items:center;margin:13px 2px 0;color:#748094;font-size:11px;font-weight:750}.learn-count strong{color:#4f46c5;font-size:11.5px}
+.learn-list{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;padding:9px 8px 18px;scrollbar-width:thin}
+.learn-list::-webkit-scrollbar,.learn-main::-webkit-scrollbar{width:9px}.learn-list::-webkit-scrollbar-thumb,.learn-main::-webkit-scrollbar-thumb{background:#cbd2df;border-radius:99px;border:2px solid #fff}
+.learn-item{width:100%;display:flex;align-items:center;gap:10px;border:1px solid transparent;background:#fff;border-radius:10px;padding:11px 10px;text-align:left;color:#263449;cursor:pointer;transition:.16s}
+.learn-item:hover{background:#f7f7ff}.learn-item.active{background:#f0eeff;border-color:#dfdbff;color:#564bd0;box-shadow:inset 3px 0 #6c63ff}
+.learn-item-num{width:26px;height:26px;flex:0 0 26px;border-radius:8px;background:#f1f3f6;display:grid;place-items:center;font-size:9px;font-weight:850;color:#718096}.learn-item.active .learn-item-num{background:#e1ddff;color:#5a50d2}
+.learn-item-label{font-size:12.5px;font-weight:650;line-height:1.3;letter-spacing:-.05px}.learn-item.active .learn-item-label{font-weight:800}
+.learn-main{overflow-y:auto;overflow-x:hidden;min-width:0;min-height:0;background:#f8f9fc;position:relative}
+
+.learn-main-top::after{content:"";position:absolute;inset:0;z-index:-1;background:#f8f9fc}
+.learn-main-title{display:flex;align-items:center;gap:10px}.learn-main-title .book{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:#e9f1ff;color:#1677ff;font-size:19px}.learn-main-title strong{font-size:19px;letter-spacing:-.25px}.learn-main-title span{display:block;font-size:11.5px;color:#6f7b8f;margin-top:3px}
+.learn-close{width:36px;height:36px;border:1px solid #e1e6ed;border-radius:10px;background:#fff;font-size:20px;color:#111827;cursor:pointer}.learn-close:hover{background:#f1f3f6}
+.learn-content{max-width:1030px;margin:0 auto;padding:28px 30px 50px}
+.learn-hero{border:1px solid #e1e6ed;border-radius:19px;background:#fff;padding:24px;box-shadow:0 8px 25px rgba(15,23,42,.035)}
+.learn-kicker{display:inline-flex;align-items:center;gap:7px;background:#e9f9ef;color:#18864a;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:850}.learn-kicker i{width:6px;height:6px;border-radius:50%;background:#1eaa60}
+.learn-hero h1{margin:12px 0 9px;font-size:34px;letter-spacing:-.9px}.learn-hero p{margin:0;color:#59677b;font-size:14px;line-height:1.7}
+.learn-tabs{display:flex;gap:4px;margin-top:18px;border-bottom:1px solid #e7ebf0}.learn-tab{border:0;background:transparent;padding:10px 12px;color:#687386;font-size:10px;font-weight:750;cursor:pointer;border-bottom:2px solid transparent}.learn-tab.active{color:#1677ff;border-bottom-color:#1677ff}
+.learn-section{margin-top:18px;border:1px solid #e1e6ed;border-radius:17px;background:#fff;padding:21px;box-shadow:0 7px 23px rgba(15,23,42,.03)}
+.learn-section h2{margin:0 0 11px;font-size:20px;letter-spacing:-.25px}.learn-section p{margin:0 0 11px;color:#58667a;font-size:13.5px;line-height:1.75}
+.learn-note{margin-top:14px;border:1px solid #cfe5ff;background:#f1f8ff;border-radius:12px;padding:13px 14px;color:#41617f;font-size:12px;line-height:1.6}.learn-note strong{color:#1677ff}
+.learn-visual{margin-top:14px;padding:14px;border:1px dashed #d8dee8;border-radius:12px;background:#fafbfc;color:#637084;white-space:pre-wrap;font:10.5px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}
+.learn-examples{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.learn-example{border:1px solid #e2e7ee;border-radius:14px;overflow:hidden;background:#fff}.learn-example.full{grid-column:1/-1}
+.learn-example-head{padding:12px 13px;background:#fbfcfe;border-bottom:1px solid #e7ebf0}.learn-example-head strong{font-size:12px}.learn-example-head span{display:block;color:#6d7788;font-size:10px;margin-top:3px}
+.learn-code-wrap{position:relative}.learn-code{margin:0;padding:15px 15px 16px;overflow:auto;background:#101827;color:#e7edf7;font:12px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;min-height:80px}
+.learn-copy{position:absolute;top:8px;right:8px;border:1px solid #3b4658;background:#182234;color:#dce6f5;border-radius:7px;padding:5px 7px;font-size:8px;cursor:pointer}.learn-copy:hover{background:#243149}
+.learn-result{margin:0;padding:11px 13px;background:#f0fbf5;border-top:1px solid #d6efdf;color:#27734a;font-size:11px;line-height:1.55}
+.learn-use-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.learn-use-card{border:1px solid #e3e8ef;border-radius:13px;padding:14px;background:#fff}.learn-use-card .ico{font-size:18px}.learn-use-card strong{display:block;margin-top:7px;font-size:12px}.learn-use-card span{display:block;margin-top:4px;color:#718096;font-size:10.5px;line-height:1.5}
+.learn-tip{margin-top:14px;border:1px solid #f4df9c;background:#fff9e9;border-radius:12px;padding:13px 14px;color:#775d16;font-size:12px;line-height:1.6}.learn-tip strong{color:#9a7300}
+.learn-warning{margin-top:12px;border:1px solid #f2d0d0;background:#fff5f5;border-radius:12px;padding:12px 13px;color:#7f4040;font-size:10.5px;line-height:1.55}
+.learn-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:15px}.learn-tag{padding:6px 9px;border-radius:999px;background:#edf5ff;color:#3d72b8;font-size:9.5px;font-weight:800}
+.learn-nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.learn-nav button{border:1px solid #dfe4ec;background:#fff;border-radius:10px;padding:10px 13px;color:#4d5a6d;font-size:10px;font-weight:750;cursor:pointer}.learn-nav button.primary{background:#1677ff;border-color:#1677ff;color:#fff}.learn-nav button:disabled{opacity:.45;cursor:not-allowed}
+.learn-empty{padding:40px;text-align:center;color:#778295}.learn-empty strong{display:block;color:#263142;font-size:15px;margin-bottom:6px}
+body.learn-open{overflow:hidden}
+@media(max-width:900px){.learn-panel{inset:0;width:100%;height:100%;border-radius:0;grid-template-columns:240px 1fr}.learn-content{padding:20px}.learn-examples{grid-template-columns:1fr}.learn-use-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.learn-panel{grid-template-columns:1fr}.learn-index{display:none}.learn-content{padding:14px}.learn-main-top{padding:0 14px}.learn-hero h1{font-size:25px}}
+</style>
+
+<style id="learn-home-button-style">
+.learn-home-row{display:flex;align-items:center;margin:0 0 14px}
+.learn-home-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid #e1e6ee;border-radius:10px;background:#fff;color:#334155;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 3px 10px rgba(15,23,42,.04);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,color .18s ease}
+.learn-home-btn:hover{transform:translateY(-1px);border-color:#cfd6e2;color:#4f46c5;box-shadow:0 8px 18px rgba(15,23,42,.08)}
+.learn-home-btn .home-arrow{font-size:15px;line-height:1}
+</style>
+
+<style id="learn-navigation-actions">
+.learn-action-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  margin:0 0 18px;
+}
+.learn-home-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 15px;
+  border:1px solid #e1e6ee;
+  border-radius:11px;
+  background:#fff;
+  color:#263247;
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 3px 10px rgba(15,23,42,.04);
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,color .18s ease;
+}
+.learn-home-btn:hover{
+  transform:translateY(-1px);
+  border-color:#cbd5e1;
+  color:#4f46c5;
+  box-shadow:0 8px 18px rgba(15,23,42,.08);
+}
+.learn-home-btn .home-arrow{font-size:17px;line-height:1}
+.learn-close-btn{
+  width:40px;
+  height:40px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #e1e6ee;
+  border-radius:50%;
+  background:#fff;
+  color:#334155;
+  font-size:25px;
+  line-height:1;
+  font-weight:500;
+  cursor:pointer;
+  box-shadow:0 3px 10px rgba(15,23,42,.04);
+  transition:transform .18s ease,background .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease;
+}
+.learn-close-btn:hover{
+  transform:rotate(90deg);
+  background:#fff1f2;
+  border-color:#fecdd3;
+  color:#e11d48;
+  box-shadow:0 8px 18px rgba(225,29,72,.12);
+}
+@media(max-width:650px){
+  .learn-action-bar{margin-bottom:14px}
+  .learn-home-btn{padding:9px 12px;font-size:12px}
+  .learn-close-btn{width:36px;height:36px;font-size:22px}
+}
+</style>
+
+<style id="learn-close-top-right-final">
+.learn-panel{position:relative!important}
+.learn-close-floating{
+  position:absolute!important;
+  top:22px!important;
+  right:24px!important;
+  z-index:100!important;
+}
+.learn-close-btn{
+  width:42px;
+  height:42px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #dfe5ed;
+  border-radius:50%;
+  background:#fff;
+  color:#263247;
+  font-size:25px;
+  line-height:1;
+  font-weight:500;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(15,23,42,.06);
+  transition:transform .18s ease,background .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease;
+}
+.learn-close-btn:hover{
+  transform:rotate(90deg);
+  background:#fff1f2;
+  border-color:#fecdd3;
+  color:#e11d48;
+  box-shadow:0 8px 20px rgba(225,29,72,.12);
+}
+@media(max-width:650px){
+  .learn-close-floating{top:14px!important;right:14px!important}
+  .learn-close-btn{width:38px;height:38px;font-size:22px}
+}
+</style>
+<style id="full-guide-close-final-fix">
+.learn-panel{position:relative!important}
+.learn-close-floating{position:absolute!important;top:22px!important;right:24px!important;z-index:100!important}
+.learn-close-btn{width:42px!important;height:42px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;border:1px solid #dfe5ed!important;border-radius:50%!important;background:#fff!important;color:#263247!important;font-size:25px!important;line-height:1!important;font-weight:500!important;cursor:pointer!important;box-shadow:0 4px 12px rgba(15,23,42,.06)!important;transition:transform .18s ease,background .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease!important}
+.learn-close-btn:hover{transform:rotate(90deg)!important;background:#fff1f2!important;border-color:#fecdd3!important;color:#e11d48!important;box-shadow:0 8px 20px rgba(225,29,72,.12)!important}
+@media(max-width:650px){.learn-close-floating{top:14px!important;right:14px!important}.learn-close-btn{width:38px!important;height:38px!important;font-size:22px!important}}
+</style>
+
+<style id="blue-levels-authoritative-final">
+:root{--level-blue:#0084FF}
+.level-btn:hover{border-color:rgba(0,132,255,.35)!important;background:rgba(0,132,255,.045)!important;box-shadow:0 10px 25px rgba(0,132,255,.10)!important}
+.level-btn:hover:before{background:#0084FF!important}
+.level-btn.active{border-color:rgba(0,132,255,.45)!important;background:linear-gradient(90deg,rgba(0,132,255,.10),rgba(0,132,255,.025)),#fff!important;box-shadow:0 10px 26px rgba(0,132,255,.12),inset 0 0 0 1px rgba(0,132,255,.05)!important}
+.level-btn.active:before{background:#0084FF!important}
+.level-btn:hover .level-left,.level-btn.active .level-left{color:#0084FF!important}
+.level-btn:hover .num{background:rgba(0,132,255,.12)!important;color:#0084FF!important}
+.level-btn.active .num{background:rgba(0,132,255,.13)!important;color:#0084FF!important}
+.level-btn:hover .arrow,.level-btn.active .arrow{color:#0084FF!important}
+.xp-progress span{background:#0084FF!important}
+</style>
+
+<style id="daily-interview-dark-red-final">
+/* Daily SQL Challenge + Interview Mode accent lines */
+.feature-card:nth-child(2):before,
+.feature-card:nth-child(3):before{
+  background:#D32F2F !important;
+}
+</style>
+
 </head>
 <body>
 
 <header class="topbar">
   <div class="brand"><div class="logo">◉</div>SQL Lab</div>
   <div class="metrics">
-    <div class="metric"><span class="dot"></span><strong>Your Progress</strong><span class="metric-value" id="progress">0 / 150 solved</span></div>
-    <div class="metric"><strong>Accuracy</strong><span class="metric-value" id="accuracy">0%</span></div>
-    <div class="metric"><strong>Current Streak</strong><span class="metric-value" id="streak">0</span></div>
-    <div class="dataset"><button class="apply-now-btn" id="applyNowBtn" type="button">Apply Now</button></div>
+    <div class="stats-group">
+      <div class="metric"><span class="dot"></span><strong>Your Progress</strong><span class="metric-value" id="progress">0 / 150 solved</span></div>
+      <div class="metric"><strong>Accuracy</strong><span class="metric-value" id="accuracy">0%</span></div>
+      <div class="metric"><strong>Current Streak</strong><span class="metric-value" id="streak">0</span></div>
+    </div>
+    <div class="actions-group">
+      <button class="refresh-page-btn" id="refreshPageBtn" type="button" aria-label="Refresh page" title="Refresh page">↻</button>
+      <button class="apply-now-btn" id="applyNowBtn" type="button">Apply Now</button>
+    </div>
   </div>
 </header>
 
@@ -675,6 +1100,17 @@ input:focus,select:focus,textarea:focus{outline:none!important;border-color:rgba
     <strong>Questions Solved</strong>
     <p>Keep going. You've got this!</p>
   </div>
+
+  <div class="learn-more-entry">
+    <button class="learn-more-btn" id="learnMoreBtn" type="button" aria-label="Open Full Guide">
+      <span class="learn-book">📕</span>
+      <span class="learn-more-copy">
+        <strong>Full Guide</strong>
+        <span>Explore all SQL concepts</span>
+      </span>
+      <span class="learn-more-arrow">›</span>
+    </button>
+  </div>
 </aside>
 
 <main>
@@ -687,7 +1123,7 @@ input:focus,select:focus,textarea:focus{outline:none!important;border-color:rgba
 
 <section class="learning-tools">
   <div class="feature-card">
-    <h3>SQL XP</h3>
+    <h3>SQL Score</h3>
     <div class="xp-number" id="xpValue">0 XP</div>
     <p>Earn XP by solving questions and completing challenges.</p>
     <div class="xp-progress"><span id="xpBar"></span></div>
@@ -705,9 +1141,9 @@ input:focus,select:focus,textarea:focus{outline:none!important;border-color:rgba
   </div>
 
   <div class="feature-card">
-    <h3>Interview Mode</h3>
+    <h3>Interview Questions</h3>
     <p>Unlimited conceptual SQL interview questions. Think first, then reveal the answer.</p>
-    <button class="feature-button" id="interviewBtn" type="button">Start Interview</button>
+    <button class="feature-button" id="interviewBtn" type="button">Start</button>
   </div>
 </section>
 <section class="sql-progress-section">
@@ -784,9 +1220,50 @@ input:focus,select:focus,textarea:focus{outline:none!important;border-color:rgba
 </div>
 
 <div class="status" id="status"></div>
+<div class="attempts-status" id="attemptsStatus" aria-live="polite"></div>
+<div class="correct-solution-box" id="correctSolutionBox" hidden>
+  <div class="correct-solution-header">💡 Correct Solution:</div>
+  <pre id="correctSolutionCode"></pre>
+  <button class="continue-question-btn" id="continueQuestionBtn" type="button">Continue to Next Question</button>
+</div>
 
 </section>
 </main>
+</div>
+
+
+<div class="learn-backdrop" id="learnMorePanel" aria-hidden="true">
+  <div class="learn-panel" role="dialog" aria-modal="true" aria-labelledby="learnPanelTitle">
+<button class="learn-close-btn learn-close-floating" id="learnCloseBtn"
+        type="button" aria-label="Close Full Guide" title="Close Full Guide">×</button>
+
+    <aside class="learn-index">
+      <div class="learn-index-top">
+        <h2>All SQL Concepts</h2>
+        <p>Every concept has its own learning section with explanations, examples, use cases and tips.</p>
+        <input class="learn-search" id="learnSearch" type="search" placeholder="Search a concept..." autocomplete="off">
+        <div class="learn-count"><span>Learning library</span><strong id="learnCount">46 concepts</strong></div>
+      </div>
+      <div class="learn-list" id="learnList"></div>
+    </aside>
+    <main class="learn-main" id="learnMain">
+      <div class="learn-main-top">
+        <div class="learn-main-title">
+          <span class="book">▤</span>
+          <div><strong id="learnPanelTitle">SQL Learning Center</strong><span>Master SQL one concept at a time</span></div>
+        </div>
+      </div>
+<div class="learn-content" id="learnContent">
+<div class="learn-action-bar">
+  <button class="learn-home-btn" id="learnHomeBtn" type="button" aria-label="Go back to home page">
+    <span class="home-arrow">←</span>
+    <span>Back to Home</span>
+  </button>
+</div>
+
+</div>
+    </main>
+  </div>
 </div>
 
 <script>
@@ -1043,7 +1520,35 @@ const questions = {
 
 /* ============================================================
    STATE
+   XP RULE: 25 XP for each unique correct question.
+   One-time reset: starts the new scoring system at 0 XP / 0 solved.
 ============================================================ */
+const XP_PER_CORRECT = 25;
+const SCORE_SYSTEM_VERSION = "25XP_RESET_V1";
+
+// Reset the previous score once when this version of the scoring system
+// is loaded. After that, progress persists normally in localStorage.
+if(localStorage.getItem("sqlLabScoreSystemVersion") !== SCORE_SYSTEM_VERSION){
+  [
+    "sqlLabLevel",
+    "sqlLabIndex",
+    "sqlLabSolved",
+    "sqlLabAttempts",
+    "sqlLabCorrect",
+    "sqlLabStreak",
+    "sqlLabXP",
+    "sqlLabHintsUsed",
+    "sqlLabCompletedQuestions"
+  ].forEach(key=>localStorage.removeItem(key));
+
+  // Reset any saved daily challenge counter as part of the fresh start.
+  Object.keys(localStorage)
+    .filter(key=>key.startsWith("sqlLabDailySolved_"))
+    .forEach(key=>localStorage.removeItem(key));
+
+  localStorage.setItem("sqlLabScoreSystemVersion",SCORE_SYSTEM_VERSION);
+}
+
 const state = window.__sqlLabState = {
   level:Number(localStorage.getItem("sqlLabLevel")||1),
   index:Number(localStorage.getItem("sqlLabIndex")||0),
@@ -1052,18 +1557,69 @@ const state = window.__sqlLabState = {
   correct:Number(localStorage.getItem("sqlLabCorrect")||0),
   streak:Number(localStorage.getItem("sqlLabStreak")||0),
   xp:Number(localStorage.getItem("sqlLabXP")||0),
-  hintsUsed:Number(localStorage.getItem("sqlLabHintsUsed")||0)
+  hintsUsed:Number(localStorage.getItem("sqlLabHintsUsed")||0),
+  completedQuestions:JSON.parse(localStorage.getItem("sqlLabCompletedQuestions")||"{}"),
+  failedAttempts:JSON.parse(localStorage.getItem("sqlLabFailedAttempts")||"{}")
 };
 
-function saveState(){
+// XP is always based on unique correctly solved questions: 25 XP each.
+// This also repairs any old saved XP value that was calculated incorrectly.
+function syncScore(){
+  // XP is based ONLY on questions accepted as correct.
+  // Keep the correct-answer count as the authoritative score so a valid
+  // correct answer can never be lost when the page re-renders or reloads.
+  const completedCount=Object.keys(state.completedQuestions||{}).length;
+  const savedCorrect=Number(state.correct)||0;
+  const uniqueCorrect=Math.max(completedCount,savedCorrect);
+  state.correct=uniqueCorrect;
+  state.solved=uniqueCorrect;
+  state.xp=uniqueCorrect * XP_PER_CORRECT;
+}
+
+function awardCorrectQuestion(questionKey){
+  // Award exactly 25 XP once for this question.
+  if(state.completedQuestions[questionKey]) return false;
+
+  state.completedQuestions[questionKey]={
+    solved:true,
+    xp:XP_PER_CORRECT
+  };
+
+  // Recalculate from the authoritative completed-question list so XP
+  // can never drift away from the number of genuinely correct answers.
+  syncScore();
+  saveStateRaw();
+  renderMetrics();
+  return true;
+}
+
+function saveStateRaw(){
   localStorage.setItem("sqlLabLevel",state.level);
   localStorage.setItem("sqlLabIndex",state.index);
   localStorage.setItem("sqlLabSolved",state.solved);
   localStorage.setItem("sqlLabAttempts",state.attempts);
   localStorage.setItem("sqlLabCorrect",state.correct);
   localStorage.setItem("sqlLabStreak",state.streak);
-  localStorage.setItem("sqlLabXP",state.xp||0);
+  localStorage.setItem("sqlLabXP",state.xp);
   localStorage.setItem("sqlLabHintsUsed",state.hintsUsed||0);
+  localStorage.setItem("sqlLabCompletedQuestions",JSON.stringify(state.completedQuestions||{}));
+  localStorage.setItem("sqlLabFailedAttempts",JSON.stringify(state.failedAttempts||{}));
+}
+
+syncScore();
+
+function saveState(){
+  syncScore();
+  localStorage.setItem("sqlLabLevel",state.level);
+  localStorage.setItem("sqlLabIndex",state.index);
+  localStorage.setItem("sqlLabSolved",state.solved);
+  localStorage.setItem("sqlLabAttempts",state.attempts);
+  localStorage.setItem("sqlLabCorrect",state.correct);
+  localStorage.setItem("sqlLabStreak",state.streak);
+  localStorage.setItem("sqlLabXP",state.xp);
+  localStorage.setItem("sqlLabHintsUsed",state.hintsUsed||0);
+  localStorage.setItem("sqlLabCompletedQuestions",JSON.stringify(state.completedQuestions||{}));
+  localStorage.setItem("sqlLabFailedAttempts",JSON.stringify(state.failedAttempts||{}));
 }
 
 function renderMetrics(){
@@ -1071,7 +1627,22 @@ function renderMetrics(){
   document.getElementById("accuracy").textContent=state.attempts ? Math.round(state.correct/state.attempts*100)+"%" : "0%";
   document.getElementById("streak").textContent=state.streak;
   document.getElementById("sideSolved").textContent=state.solved;
-  if(typeof renderFeatureMetrics === "function") renderFeatureMetrics();
+
+  // Keep the visible SQL Score in sync immediately after every answer.
+  const xpValue=document.getElementById("xpValue");
+  const xpBar=document.getElementById("xpBar");
+  const xpLevel=document.getElementById("xpLevel");
+
+  if(xpValue && xpBar && xpLevel){
+    const xp=Number(state.xp)||0;
+    const level=Math.max(1,Math.floor(xp/500)+1);
+    const levelBase=(level-1)*500;
+    const pct=Math.min(100,Math.round(((xp-levelBase)/500)*100));
+
+    xpValue.textContent=xp+" XP";
+    xpBar.style.width=pct+"%";
+    xpLevel.textContent="SQL Level "+level;
+  }
 }
 
 function renderLevelButtons(){
@@ -1088,10 +1659,17 @@ function renderQuestion(){
   if(state.index>=30) state.index=0;
 
   const q=bank[state.index];
+  enableAttemptSubmission();
   document.getElementById("questionNumber").textContent=state.index+1;
   document.getElementById("questionTitle").textContent=q[0];
   document.getElementById("sql").value="";
   clearStatus();
+  resetAttemptUI();
+
+  const savedFailedAttempts=state.failedAttempts[`${state.level}:${state.index}`]||0;
+  if(savedFailedAttempts>=3){
+    showAnswerReveal(q[1]);
+  }
 
   // Every question is deliberately presented without its answer.
   renderTableForQuestion(q[0]);
@@ -1165,6 +1743,47 @@ function normalize(sql){
     .trim();
 }
 
+function resetAttemptUI(){
+  const attemptsEl=document.getElementById("attemptsStatus");
+  const solutionBox=document.getElementById("correctSolutionBox");
+  const solutionCode=document.getElementById("correctSolutionCode");
+
+  if(attemptsEl){
+    attemptsEl.textContent="";
+    attemptsEl.className="attempts-status";
+  }
+  if(solutionBox) solutionBox.hidden=true;
+  if(solutionCode) solutionCode.textContent="";
+}
+
+function showAttemptMessage(remaining){
+  const el=document.getElementById("attemptsStatus");
+  if(!el) return;
+  el.textContent=`You have ${remaining} ${remaining===1?"attempt":"attempts"} left`;
+  el.className="attempts-status attempts-error";
+}
+
+function showAnswerReveal(correct){
+  const attemptsEl=document.getElementById("attemptsStatus");
+  const solutionBox=document.getElementById("correctSolutionBox");
+  const solutionCode=document.getElementById("correctSolutionCode");
+
+  if(attemptsEl){
+    attemptsEl.textContent="No attempts left";
+    attemptsEl.className="attempts-status attempts-error";
+  }
+  if(solutionCode) solutionCode.textContent=correct;
+  if(solutionBox) solutionBox.hidden=false;
+
+  const submitBtn=document.getElementById("submit");
+  if(submitBtn) submitBtn.disabled=true;
+}
+
+function enableAttemptSubmission(){
+  const submitBtn=document.getElementById("submit");
+  if(submitBtn) submitBtn.disabled=false;
+}
+
 function submitAnswer(){
   const user=document.getElementById("sql").value.trim();
   if(!user){
@@ -1172,22 +1791,33 @@ function submitAnswer(){
     return;
   }
 
+  const questionKey=`${state.level}:${state.index}`;
   const correct=questions[state.level][state.index][1];
+  const failedAttempts=state.failedAttempts[questionKey]||0;
+
+  if(failedAttempts>=3){
+    showAnswerReveal(correct);
+    return;
+  }
 
   state.attempts++;
 
-  // Flexible educational comparison:
-  // accepts equivalent whitespace/casing and semicolon differences.
   const isCorrect=normalize(user)===normalize(correct);
 
   if(isCorrect){
-    state.correct++;
-    state.solved++;
+    if(!awardCorrectQuestion(questionKey)){
+      showStatus("Already counted as correct. Moving on.","info");
+      return;
+    }
+
     state.streak++;
-    state.xp = (state.xp||0) + (state.hintsUsed ? 75 : 100);
     state.hintsUsed = 0;
+    state.correct = Object.keys(state.completedQuestions||{}).length;
+    state.solved = state.correct;
+    state.xp = state.correct * XP_PER_CORRECT;
     saveState();
     renderMetrics();
+    resetAttemptUI();
 
     if(state.index<29){
       showStatus("Correct. Nice work. Moving to the next question.","success");
@@ -1201,18 +1831,38 @@ function submitAnswer(){
     }
   }else{
     state.streak=0;
+    state.failedAttempts[questionKey]=(state.failedAttempts[questionKey]||0)+1;
+    const remaining=Math.max(0,3-state.failedAttempts[questionKey]);
+
     saveState();
     renderMetrics();
 
-    // Do NOT reveal the correct query.
-    showStatus("Not quite. Try again. Review the requested columns, filters, sorting, grouping, or joins. The correct solution is intentionally hidden.","error");
+    if(remaining>0){
+      showStatus(
+        `❌ Incorrect. You have ${remaining} ${remaining===1?"attempt":"attempts"} left`,
+        "error"
+      );
+      showAttemptMessage(remaining);
+    }else{
+      showStatus("❌ Incorrect. No attempts left","error");
+      showAnswerReveal(correct);
+    }
   }
 }
-
 /* ============================================================
    BUTTONS
 ============================================================ */
 document.getElementById("submit").addEventListener("click",submitAnswer);
+document.getElementById("continueQuestionBtn").addEventListener("click",()=>{
+  if(state.index<29){
+    state.index++;
+    saveState();
+    renderQuestion();
+  }else{
+    showStatus("Level complete. You solved all 30 questions in this level.","success");
+  }
+});
+
 
 document.getElementById("run").addEventListener("click",()=>{
   const sql=document.getElementById("sql").value.trim();
@@ -1296,8 +1946,6 @@ renderQuestion();
       </div>
     </div>
 
-    <button class="apply-search-btn" id="runJobSearch" type="button">Search jobs from the last 72 hours</button>
-
     <div class="apply-platforms" id="platformResults"></div>
 
     <div class="apply-note">
@@ -1313,7 +1961,6 @@ renderQuestion();
   const modal = document.getElementById('applyModal');
   const openBtn = document.getElementById('applyNowBtn');
   const closeBtn = document.getElementById('applyCloseBtn');
-  const searchBtn = document.getElementById('runJobSearch');
   const role = document.getElementById('jobRole');
   const mode = document.getElementById('workMode');
   const seniority = document.getElementById('seniority');
@@ -1381,7 +2028,6 @@ renderQuestion();
 
   openBtn.addEventListener('click', openModal);
   closeBtn.addEventListener('click', closeModal);
-  searchBtn.addEventListener('click', renderPlatforms);
   modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
   document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
 
@@ -1392,37 +2038,67 @@ renderQuestion();
 
 <div class="interview-modal-backdrop" id="interviewModal" aria-hidden="true">
   <div class="interview-modal interview-concept-modal" role="dialog" aria-modal="true" aria-labelledby="interviewTitle">
-    <div class="interview-top">
-      <div>
-        <h2 id="interviewTitle">SQL Interview Mode</h2>
-        <p>Practice real SQL interview concepts. Think first, then reveal the answer.</p>
-      </div>
-      <button class="interview-close" id="interviewClose" type="button" aria-label="Close">×</button>
-    </div>
+    <div class="interview-shell">
+      <div class="interview-modern-head">
+        <div class="interview-head-row">
+          <div class="interview-level-badge">
+            <span class="interview-level-dot"></span>
+            <span id="interviewLevelBadge">LEVEL 01 · FUNDAMENTAL</span>
+          </div>
+          <button class="interview-close-modern" id="interviewClose" type="button" aria-label="Close">×</button>
+        </div>
 
-    <div class="interview-progress"><span id="interviewProgressBar"></span></div>
+        <h2 class="interview-modern-title" id="interviewTitle">SQL Interview Mode</h2>
+        <p class="interview-modern-subtitle" id="interviewSubtitle">Think first. Reveal when you're ready.</p>
 
-    <div id="interviewQuestionArea">
-      <div class="interview-question concept-question-card">
-        <div class="interview-label" id="interviewCounter">Question 1</div>
-        <h3 id="interviewQuestion"></h3>
-      </div>
-
-      <div class="interview-actions concept-actions">
-        <button class="feature-button" id="interviewAnswer" type="button">Answer</button>
-      </div>
-
-      <div class="concept-answer" id="interviewAnswerPanel" aria-live="polite">
-        <div class="interview-label">Answer</div>
-        <p id="interviewAnswerText"></p>
-        <div class="concept-box">
-          <strong>Concepts</strong>
-          <span id="interviewConcepts"></span>
+        <div class="interview-meta-row">
+          <div class="interview-meta-pill">Progress <strong id="interviewCounter">1 / 10</strong></div>
+          <div class="interview-meta-pill">Streak <strong id="interviewStreak">0</strong></div>
+          <div class="interview-timer" id="interviewTimer">30s</div>
         </div>
       </div>
 
-      <div class="interview-actions next-actions">
-        <button class="feature-button secondary" id="interviewNext" type="button" disabled>Next Question</button>
+      <div class="interview-modern-progress">
+        <span id="interviewProgressBar"></span>
+      </div>
+
+      <div class="interview-modern-body" id="interviewQuestionArea">
+        <div class="interview-question-card-modern">
+          <div class="interview-label-modern">
+            <span id="interviewQuestionNumber">QUESTION 01</span>
+            <span id="interviewTopic">SQL</span>
+          </div>
+          <h3 id="interviewQuestion"></h3>
+        </div>
+
+        <div class="interview-modern-actions">
+          <button class="interview-answer-btn" id="interviewAnswer" type="button">Reveal Answer</button>
+          <button class="interview-skip-btn" id="interviewSkip" type="button">Skip</button>
+        </div>
+
+        <div class="interview-answer-modern" id="interviewAnswerPanel" aria-live="polite">
+          <div class="interview-answer-heading">
+            <strong>Model Answer</strong>
+            <span class="interview-answer-check">✓ Revealed</span>
+          </div>
+          <p id="interviewAnswerText"></p>
+          <div class="interview-concept-tags" id="interviewConcepts"></div>
+
+          <div class="interview-selfcheck">
+            <span>How did you do?</span>
+            <div class="interview-confidence">
+              <button class="confidence-btn" data-confidence="1" type="button">Need work</button>
+              <button class="confidence-btn" data-confidence="2" type="button">Almost</button>
+              <button class="confidence-btn" data-confidence="3" type="button">Nailed it</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="interview-next-row">
+          <button class="feature-button secondary" id="interviewNext" type="button" disabled>Next Question →</button>
+        </div>
+
+        <div class="interview-footer-tip">Your selected level controls the difficulty of every interview question.</div>
       </div>
     </div>
   </div>
@@ -1603,119 +2279,98 @@ renderQuestion();
     if (e.key === "Enter" || e.key === " ") { e.preventDefault(); cycleWelcomeMessage(); }
   });
 
-  // Interview Mode: unlimited conceptual SQL interview questions.
+  // Interview Mode: modern level-based conceptual practice.
   const interviewModal = document.getElementById("interviewModal");
   const interviewClose = document.getElementById("interviewClose");
   const interviewBtn = document.getElementById("interviewBtn");
+  const interviewTitle = document.getElementById("interviewTitle");
   const interviewAnswer = document.getElementById("interviewAnswer");
   const interviewNext = document.getElementById("interviewNext");
+  const interviewSkip = document.getElementById("interviewSkip");
   const interviewQuestion = document.getElementById("interviewQuestion");
   const interviewCounter = document.getElementById("interviewCounter");
+  const interviewQuestionNumber = document.getElementById("interviewQuestionNumber");
+  const interviewTopic = document.getElementById("interviewTopic");
   const interviewProgressBar = document.getElementById("interviewProgressBar");
-  const interviewQuestionArea = document.getElementById("interviewQuestionArea");
+  const interviewLevelBadge = document.getElementById("interviewLevelBadge");
+  const interviewStreak = document.getElementById("interviewStreak");
+  const interviewTimer = document.getElementById("interviewTimer");
+  const interviewSubtitle = document.getElementById("interviewSubtitle");
   const interviewAnswerPanel = document.getElementById("interviewAnswerPanel");
   const interviewAnswerText = document.getElementById("interviewAnswerText");
   const interviewConcepts = document.getElementById("interviewConcepts");
+  const confidenceButtons = [...document.querySelectorAll(".confidence-btn")];
 
-  // The bank is intentionally conceptual: the user sees only the question first.
-  // Answers are revealed only after clicking "Answer".
-  const interviewConceptBank = [
-    {q:"How would you find duplicate records in a table?", a:"Group the columns that define a duplicate and use COUNT(*) to identify groups with more than one row. You can then use HAVING COUNT(*) > 1 to keep only duplicated groups.", c:"GROUP BY, HAVING, COUNT(*)"},
-    {q:"What is the difference between WHERE and HAVING?", a:"WHERE filters individual rows before grouping and aggregation. HAVING filters groups after GROUP BY and is commonly used with aggregate functions such as COUNT, SUM, or AVG.", c:"WHERE, GROUP BY, HAVING, Aggregation"},
-    {q:"What is a Window Function?", a:"A window function calculates a value across related rows while keeping the individual rows in the result. Unlike GROUP BY, it does not collapse those rows into one row per group.", c:"OVER(), PARTITION BY, ORDER BY"},
-    {q:"What is the difference between INNER JOIN and LEFT JOIN?", a:"INNER JOIN returns only rows that match in both tables. LEFT JOIN keeps every row from the left table and adds matching data from the right table when available.", c:"JOINs, INNER JOIN, LEFT JOIN"},
-    {q:"What is the purpose of GROUP BY?", a:"GROUP BY combines rows into groups based on one or more columns so that aggregate calculations can be performed for each group.", c:"GROUP BY, Aggregations"},
-    {q:"What does COUNT(*) count?", a:"COUNT(*) counts rows, including rows where individual columns contain NULL. It counts the rows that remain after the query's FROM, JOIN, and WHERE logic.", c:"COUNT(*), NULL, Aggregation"},
-    {q:"What is the difference between COUNT(*) and COUNT(column)?", a:"COUNT(*) counts rows. COUNT(column) counts only rows where that specific column is not NULL.", c:"COUNT, NULL"},
-    {q:"What is a primary key?", a:"A primary key uniquely identifies each row in a table. It should be unique and cannot contain NULL values.", c:"Primary Key, Constraints, Data Integrity"},
-    {q:"What is a foreign key?", a:"A foreign key is a column or set of columns that references a key in another table, helping enforce relationships and referential integrity.", c:"Foreign Key, Relationships, Referential Integrity"},
-    {q:"What is normalization in a relational database?", a:"Normalization organizes data to reduce unnecessary duplication and improve data integrity, usually by separating related information into multiple tables with clear relationships.", c:"Normalization, Data Modeling, Redundancy"},
-    {q:"What is denormalization and why might you use it?", a:"Denormalization intentionally introduces some redundancy to reduce joins or improve read performance in specific workloads, such as analytics.", c:"Denormalization, Performance, Data Modeling"},
-    {q:"What is the difference between DELETE, TRUNCATE, and DROP?", a:"DELETE removes selected rows and can use a WHERE clause. TRUNCATE removes all rows from a table as a bulk operation. DROP removes the table object itself, including its structure.", c:"DELETE, TRUNCATE, DROP, DDL, DML"},
-    {q:"What is the difference between UNION and UNION ALL?", a:"UNION combines result sets and removes duplicate rows. UNION ALL combines result sets without removing duplicates and is generally faster when duplicates are acceptable.", c:"UNION, UNION ALL, Set Operations"},
-    {q:"What is a subquery?", a:"A subquery is a query nested inside another SQL statement. It can provide a value, a set of values, or a temporary result used by the outer query.", c:"Subqueries, Nested Queries"},
-    {q:"What is a correlated subquery?", a:"A correlated subquery references a column from the outer query, so the inner query is logically evaluated in relation to each outer row.", c:"Correlated Subquery, Outer Query"},
-    {q:"What is a CTE and why would you use one?", a:"A Common Table Expression, or CTE, gives a temporary named result set to a query. It can make complex logic easier to read, debug, and break into logical steps.", c:"WITH, CTE, Query Organization"},
-    {q:"What is a recursive CTE?", a:"A recursive CTE repeatedly references itself to process hierarchical or sequential data, such as employee-manager relationships or category trees.", c:"WITH RECURSIVE, CTE, Hierarchies"},
-    {q:"What is the difference between RANK() and ROW_NUMBER()?", a:"ROW_NUMBER() gives every row a unique sequential number. RANK() gives tied rows the same rank and leaves gaps after ties.", c:"Window Functions, RANK(), ROW_NUMBER()"},
-    {q:"What is the difference between RANK() and DENSE_RANK()?", a:"RANK() leaves gaps after ties. DENSE_RANK() also gives ties the same rank but does not leave gaps in the ranking sequence.", c:"RANK(), DENSE_RANK(), Window Functions"},
-    {q:"What does PARTITION BY do in a window function?", a:"PARTITION BY divides the rows into independent groups for the window calculation while keeping all rows in the final result.", c:"PARTITION BY, Window Functions"},
-    {q:"What does ORDER BY inside OVER() do?", a:"It defines the logical order of rows used by the window calculation, which is essential for functions such as ROW_NUMBER(), LAG(), LEAD(), and running totals.", c:"OVER(), ORDER BY, Window Functions"},
-    {q:"What is LAG() used for?", a:"LAG() lets you access a value from a previous row within the window order, making it useful for comparisons such as month-over-month changes.", c:"LAG(), Window Functions, Time Analysis"},
-    {q:"What is LEAD() used for?", a:"LEAD() lets you access a value from a following row within the window order, which is useful for comparing a row with a future event or period.", c:"LEAD(), Window Functions"},
-    {q:"How would you calculate a running total?", a:"A common approach is SUM() as a window function with an ORDER BY clause so the accumulated value grows according to the defined sequence.", c:"SUM(), OVER(), ORDER BY, Running Total"},
-    {q:"What is a self join?", a:"A self join joins a table to itself using aliases. It is useful when rows in the same table have relationships, such as employees and their managers.", c:"SELF JOIN, Table Aliases"},
-    {q:"What is a CROSS JOIN?", a:"A CROSS JOIN produces the Cartesian product: every row from the first table is paired with every row from the second table.", c:"CROSS JOIN, Cartesian Product"},
-    {q:"What is a NULL value in SQL?", a:"NULL represents missing, unknown, or not-applicable information. It is not the same as zero, an empty string, or the text 'NULL'.", c:"NULL, Three-Valued Logic"},
-    {q:"Why do we use IS NULL instead of = NULL?", a:"NULL represents an unknown value, so equality comparisons with NULL do not evaluate to TRUE. IS NULL and IS NOT NULL are the predicates designed to test for NULL.", c:"NULL, IS NULL, Three-Valued Logic"},
-    {q:"What does COALESCE() do?", a:"COALESCE() returns the first non-NULL expression from its arguments, making it useful for fallback values and NULL handling.", c:"COALESCE, NULL Handling"},
-    {q:"What is CASE WHEN used for?", a:"CASE WHEN creates conditional logic inside SQL and can return different values depending on whether conditions are met.", c:"CASE, Conditional Logic"},
-    {q:"What is the difference between DISTINCT and GROUP BY?", a:"DISTINCT removes duplicate combinations from the selected result. GROUP BY creates groups and is typically used when you need calculations or aggregates per group.", c:"DISTINCT, GROUP BY, Aggregation"},
-    {q:"What is the logical order in which SQL query clauses are processed?", a:"Conceptually, SQL evaluates FROM and JOIN first, then WHERE, GROUP BY, HAVING, SELECT, DISTINCT, ORDER BY, and finally LIMIT or TOP, although the database optimizer may physically execute operations differently.", c:"FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY"},
-    {q:"Why can't you normally use an aggregate function directly in WHERE?", a:"WHERE filters rows before aggregation happens. Aggregate results exist at the grouped stage, so HAVING is normally used to filter based on aggregate values.", c:"WHERE, HAVING, Aggregation"},
-    {q:"What is an index?", a:"An index is a data structure that helps the database find rows more efficiently for certain queries, often at the cost of additional storage and write overhead.", c:"Indexes, Query Performance"},
-    {q:"When can an index hurt performance?", a:"Indexes can slow INSERT, UPDATE, and DELETE operations because the index structures must also be maintained. Too many or poorly chosen indexes can also waste storage and optimizer work.", c:"Indexes, Write Performance, Optimization"},
-    {q:"What is a composite index?", a:"A composite index contains multiple columns. Column order matters because the database can often use the leading columns most effectively for filtering and sorting.", c:"Composite Index, Index Order"},
-    {q:"What is a covering index?", a:"A covering index contains all the columns needed by a query, allowing the database to answer the query from the index without looking up the base table in some cases.", c:"Covering Index, Query Optimization"},
-    {q:"What is an execution plan?", a:"An execution plan describes how the database intends to execute a query, including operations such as scans, seeks, joins, sorts, and aggregations.", c:"Execution Plan, Query Optimization"},
-    {q:"What is the difference between an index seek and an index scan?", a:"A seek navigates directly to relevant portions of an index. A scan reads a larger portion or all of the index. A seek is often preferable for selective predicates, but the best plan depends on the query and data.", c:"Index Seek, Index Scan, Selectivity"},
-    {q:"What does query selectivity mean?", a:"Selectivity describes how much a predicate narrows the data. A highly selective condition returns a small fraction of rows and can make index access more useful.", c:"Selectivity, Indexes, Optimization"},
-    {q:"What is a view?", a:"A view is a saved query that can be queried like a virtual table. It can simplify access to complex logic and provide a controlled presentation of data.", c:"Views, Abstraction, Security"},
-    {q:"What is a materialized view?", a:"A materialized view stores the result of a query physically and must be refreshed or maintained. It can speed up repeated analytical queries at the cost of storage and refresh work.", c:"Materialized Views, Performance"},
-    {q:"What is a stored procedure?", a:"A stored procedure is a named database program containing SQL and sometimes procedural logic that can be executed with parameters.", c:"Stored Procedures, Parameters"},
-    {q:"What is a trigger?", a:"A trigger is database logic that automatically executes when specified events occur, such as INSERT, UPDATE, or DELETE.", c:"Triggers, Database Events"},
-    {q:"What is a transaction?", a:"A transaction groups one or more operations into a unit of work that can be committed or rolled back according to the database's transaction rules.", c:"Transactions, COMMIT, ROLLBACK"},
-    {q:"What does ACID stand for?", a:"ACID stands for Atomicity, Consistency, Isolation, and Durability. These properties describe important guarantees for reliable transactional processing.", c:"ACID, Transactions"},
-    {q:"What is atomicity?", a:"Atomicity means a transaction is treated as one unit: either all required changes succeed or the transaction is rolled back so partial changes are not committed.", c:"ACID, Atomicity"},
-    {q:"What is isolation in database transactions?", a:"Isolation controls how concurrent transactions interact and what intermediate changes one transaction can observe from another.", c:"ACID, Isolation, Concurrency"},
-    {q:"What is a dirty read?", a:"A dirty read occurs when one transaction reads data changed by another transaction before that change has been committed.", c:"Concurrency, Isolation Levels, Dirty Read"},
-    {q:"What is a deadlock?", a:"A deadlock occurs when two or more transactions wait on resources held by each other, so none can proceed until the database resolves the situation.", c:"Concurrency, Locks, Deadlocks"},
-    {q:"What is a surrogate key?", a:"A surrogate key is an artificial identifier, often an integer or generated value, used as a row's key instead of a business attribute.", c:"Surrogate Keys, Data Modeling"},
-    {q:"What is a natural key?", a:"A natural key is a key made from real business data that is inherently unique, such as a carefully chosen business identifier.", c:"Natural Keys, Data Modeling"},
-    {q:"What is referential integrity?", a:"Referential integrity helps ensure that foreign-key values correspond to valid referenced rows, preventing broken relationships between tables.", c:"Foreign Keys, Data Integrity"},
-    {q:"What is a many-to-many relationship and how is it modeled?", a:"A many-to-many relationship means multiple rows on each side can be related. In a relational design it is usually represented with a junction or bridge table containing foreign keys to both entities.", c:"Many-to-Many, Bridge Table, Data Modeling"},
-    {q:"Why can a JOIN unexpectedly increase the number of rows?", a:"If the join is one-to-many or many-to-many, one row from one table can match multiple rows in the other table, multiplying result rows.", c:"JOIN Cardinality, One-to-Many, Duplicates"},
-    {q:"How would you find the second-highest salary?", a:"Common approaches include ranking salaries with a window function or selecting the maximum salary below the overall maximum. The correct approach depends on whether ties should be treated as one rank.", c:"MAX(), Window Functions, Ranking"},
-    {q:"How would you find employees who earn more than their department average?", a:"Calculate the department average and compare each employee against that group-level value, using a window function or a grouped subquery/CTE joined back to the employee rows.", c:"AVG(), Window Functions, CTE, GROUP BY"},
-    {q:"What is the difference between EXISTS and IN?", a:"Both can test membership, but EXISTS checks whether the subquery produces at least one matching row and can be useful for correlated existence checks. IN compares a value against a returned set.", c:"EXISTS, IN, Subqueries"},
-    {q:"When would you use EXISTS instead of a JOIN?", a:"Use EXISTS when you only need to know whether a related row exists and do not need columns from the related table. It can also avoid duplicate rows that a join might introduce.", c:"EXISTS, JOINs, Duplicates"},
-    {q:"What is a scalar subquery?", a:"A scalar subquery returns a single value, such as one count or one maximum, and can be used anywhere an expression is allowed when it truly returns one value.", c:"Scalar Subquery, Subqueries"},
-    {q:"What is the purpose of ORDER BY?", a:"ORDER BY defines the order of rows returned by a query. Without it, result order should not be assumed to be stable.", c:"ORDER BY, Sorting"},
-    {q:"What is the difference between ASC and DESC?", a:"ASC sorts from lower to higher values or earlier to later values. DESC sorts in the opposite direction.", c:"ORDER BY, ASC, DESC"},
-    {q:"What does LIMIT do?", a:"LIMIT restricts how many rows are returned. The exact syntax varies by database; SQL Server commonly uses TOP or OFFSET/FETCH instead.", c:"LIMIT, TOP, Pagination"},
-    {q:"What is pagination in SQL?", a:"Pagination returns a specific slice of a larger result set, commonly using ORDER BY together with LIMIT/OFFSET or database-specific equivalents.", c:"Pagination, ORDER BY, LIMIT/OFFSET"},
-    {q:"What is a temporary table?", a:"A temporary table stores intermediate data for a limited scope, often during a session or transaction, and can be useful for multi-step transformations.", c:"Temporary Tables, Intermediate Results"},
-    {q:"What is the difference between DDL and DML?", a:"DDL defines or changes database structures, such as CREATE, ALTER, and DROP. DML manipulates data, such as INSERT, UPDATE, and DELETE.", c:"DDL, DML, Database Commands"},
-    {q:"What is a CHECK constraint?", a:"A CHECK constraint enforces a rule that values must satisfy when rows are inserted or updated.", c:"CHECK, Constraints, Data Integrity"},
-    {q:"What is a UNIQUE constraint?", a:"A UNIQUE constraint prevents duplicate values in the constrained column or column combination, subject to the database's NULL behavior.", c:"UNIQUE, Constraints"},
-    {q:"What is a database schema?", a:"A schema is a logical namespace or organizational structure used to group database objects such as tables, views, and procedures, depending on the database system.", c:"Schema, Database Objects"},
-    {q:"Why should you avoid SELECT * in production queries?", a:"SELECT * returns every column, which can increase data transfer, make queries less stable when schemas change, and retrieve data the application does not need.", c:"SELECT, Performance, Maintainability"},
-    {q:"What is SQL injection?", a:"SQL injection is a security vulnerability where untrusted input changes the intended SQL statement. Parameterized queries are a primary defense.", c:"SQL Injection, Security, Parameterized Queries"},
-    {q:"What is a parameterized query?", a:"A parameterized query separates SQL code from user-supplied values so the database treats the values as data rather than executable SQL syntax.", c:"Parameterized Queries, Security"},
-    {q:"What is a NULL-safe way to compare values when NULL matters?", a:"Use explicit NULL handling such as IS NULL, IS NOT NULL, COALESCE, or database-specific NULL-safe comparison operators rather than ordinary equality with NULL.", c:"NULL, COALESCE, Three-Valued Logic"},
-    {q:"How would you identify customers who have never placed an order?", a:"A common pattern is a LEFT JOIN from customers to orders followed by a filter where the order key is NULL. NOT EXISTS is another strong approach.", c:"LEFT JOIN, IS NULL, NOT EXISTS"},
-    {q:"How would you find the top-selling product in each category?", a:"Aggregate sales by category and product, then rank products within each category with a window function and keep the desired rank.", c:"GROUP BY, SUM(), RANK(), PARTITION BY"},
-    {q:"What is a running average?", a:"A running average calculates the average from the beginning of the defined sequence through the current row, usually with AVG() as a window function and an ordered frame.", c:"AVG(), Window Frames, ORDER BY"},
-    {q:"What is a window frame?", a:"A window frame defines which rows around the current row are included in a window calculation, such as rows from the start of a partition through the current row.", c:"Window Frames, ROWS, RANGE"},
-    {q:"What is the difference between ROWS and RANGE in a window frame?", a:"ROWS describes a physical number of rows relative to the current row. RANGE is value-based and can include peer rows with equal ordering values, depending on the expression and database behavior.", c:"Window Frames, ROWS, RANGE"},
-    {q:"What is query optimization?", a:"Query optimization is the process of improving a query's execution efficiency by reducing unnecessary work through better SQL, indexes, statistics, data access patterns, and execution plans.", c:"Query Optimization, Indexes, Execution Plans"},
-    {q:"Why are statistics important to a query optimizer?", a:"Statistics help the optimizer estimate data distribution and row counts so it can choose efficient access paths and join strategies.", c:"Statistics, Query Optimizer, Cardinality"},
-    {q:"What is cardinality in a database context?", a:"Cardinality describes the number of rows or the uniqueness/relationship size involved in a dataset. Cardinality estimates are important when choosing query execution strategies.", c:"Cardinality, Query Optimization, Relationships"},
-    {q:"What is a stored procedure parameter?", a:"A parameter allows a stored procedure to receive input values, and in some database systems parameters can also return output values.", c:"Stored Procedures, Parameters"},
-    {q:"What is the difference between a function and a stored procedure?", a:"A function generally returns a value and can often be used inside expressions, while a stored procedure is typically executed as a statement and can perform a broader sequence of operations. Exact capabilities depend on the database system.", c:"Functions, Stored Procedures"},
-    {q:"What is a trigger's main risk?", a:"Triggers can hide side effects because changes to one table may automatically cause changes elsewhere. This can make debugging, performance analysis, and data flows harder to understand.", c:"Triggers, Side Effects, Maintainability"},
-    {q:"Why is a CTE often useful when solving an interview SQL problem?", a:"A CTE lets you name an intermediate result and build the solution in logical stages, making complex joins, aggregations, and ranking steps easier to reason about.", c:"CTE, WITH, Query Decomposition"},
-    {q:"How would you detect gaps in a sequence of IDs?", a:"One approach is to compare each ID with the previous ID using LAG() and identify jumps larger than one. Other approaches use generated sequences or self joins.", c:"LAG(), Window Functions, Gaps and Islands"},
-    {q:"What is the gaps-and-islands problem?", a:"It is a family of SQL problems involving consecutive sequences, such as identifying runs of activity or missing periods. Window functions are often used to create group identifiers for each sequence.", c:"Gaps and Islands, Window Functions"},
-    {q:"How would you find consecutive days with activity?", a:"A common strategy is to order dates, use a window function to compare each date with the previous date, identify breaks, and assign a group to each consecutive run.", c:"LAG(), Date Functions, Gaps and Islands"},
-    {q:"What is a transaction isolation level?", a:"An isolation level defines how much one transaction is protected from seeing or interacting with changes made by concurrent transactions. Higher isolation can provide stronger consistency but may reduce concurrency.", c:"Isolation Levels, Concurrency, Transactions"},
-    {q:"What is a lock in a database?", a:"A lock is a concurrency-control mechanism that restricts conflicting access to data while a transaction is using it, helping maintain consistency.", c:"Locks, Concurrency, Transactions"},
-    {q:"What is a database deadlock prevention strategy?", a:"Common strategies include keeping transactions short, accessing resources in a consistent order, avoiding unnecessary locks, and handling deadlock retries when supported.", c:"Deadlocks, Transactions, Concurrency"}
-  ];
+  const interviewBanks = {
+    1: [
+      {q:"What is SQL?", a:"SQL is a language used to work with relational databases. It lets you retrieve, filter, sort, insert, update, and analyze structured data.", c:"SQL Basics, Relational Databases"},
+      {q:"What is a table?", a:"A table stores data in rows and columns. Each row represents a record and each column represents an attribute of that record.", c:"Tables, Rows, Columns"},
+      {q:"What is the difference between WHERE and SELECT?", a:"SELECT chooses which columns appear in the result. WHERE filters which rows are included in the result.", c:"SELECT, WHERE, Filtering"},
+      {q:"What does ORDER BY do?", a:"ORDER BY controls the order of rows returned by a query. ASC sorts ascending and DESC sorts descending.", c:"ORDER BY, ASC, DESC"},
+      {q:"What does DISTINCT do?", a:"DISTINCT removes duplicate combinations from the selected columns in the result.", c:"DISTINCT, Duplicates"},
+      {q:"What does COUNT(*) do?", a:"COUNT(*) counts rows that remain after the FROM, JOIN, and WHERE logic. It counts rows even when individual columns contain NULL.", c:"COUNT(*), Rows, Aggregation"},
+      {q:"What is NULL?", a:"NULL represents missing, unknown, or not-applicable information. It is not the same as zero or an empty string.", c:"NULL, Missing Values"},
+      {q:"Why do we use IS NULL instead of = NULL?", a:"NULL represents an unknown value, so normal equality does not evaluate to TRUE for NULL. IS NULL is the predicate designed to test for NULL.", c:"NULL, IS NULL"},
+      {q:"What is a primary key?", a:"A primary key uniquely identifies each row in a table. It must be unique and cannot be NULL.", c:"Primary Key, Data Integrity"},
+      {q:"What is the difference between DELETE and DROP?", a:"DELETE removes rows from a table and can use a WHERE clause. DROP removes the table object itself, including its structure.", c:"DELETE, DROP, DML, DDL"}
+    ],
+    2: [
+      {q:"What is an INNER JOIN?", a:"INNER JOIN returns only rows where the join condition finds a match in both tables.", c:"INNER JOIN, JOINs, Matching Rows"},
+      {q:"What is a LEFT JOIN?", a:"LEFT JOIN keeps every row from the left table and adds matching data from the right table. If no match exists, right-side columns are NULL.", c:"LEFT JOIN, JOINs, NULL"},
+      {q:"What is the purpose of GROUP BY?", a:"GROUP BY creates groups based on one or more columns so aggregate calculations such as COUNT, SUM, or AVG can be performed for each group.", c:"GROUP BY, Aggregation"},
+      {q:"What is the difference between WHERE and HAVING?", a:"WHERE filters rows before grouping and aggregation. HAVING filters groups after GROUP BY and is commonly used with aggregate results.", c:"WHERE, GROUP BY, HAVING"},
+      {q:"What is the difference between COUNT(*) and COUNT(column)?", a:"COUNT(*) counts rows. COUNT(column) counts only rows where that specific column is not NULL.", c:"COUNT, NULL"},
+      {q:"What is a foreign key?", a:"A foreign key references a key in another table and helps enforce a valid relationship between the two tables.", c:"Foreign Key, Relationships"},
+      {q:"What is a one-to-many relationship?", a:"It means one row in one table can be related to many rows in another table, such as one customer having many orders.", c:"Relationships, One-to-Many"},
+      {q:"What is UNION versus UNION ALL?", a:"UNION combines result sets and removes duplicates. UNION ALL combines them without removing duplicates and is usually faster when duplicates are acceptable.", c:"UNION, UNION ALL, Set Operations"},
+      {q:"What is a subquery?", a:"A subquery is a query nested inside another SQL statement. It can provide a value, a set of values, or an intermediate result.", c:"Subqueries, Nested Queries"},
+      {q:"Why can a JOIN unexpectedly increase the number of rows?", a:"A one-to-many or many-to-many relationship can cause one row on one side to match multiple rows on the other side, multiplying the result.", c:"JOIN Cardinality, Duplicates"}
+    ],
+    3: [
+      {q:"What is a window function?", a:"A window function calculates a value across related rows while keeping the individual rows in the result. Unlike GROUP BY, it does not collapse rows.", c:"Window Functions, OVER()"},
+      {q:"What is the difference between RANK() and ROW_NUMBER()?", a:"ROW_NUMBER() gives every row a unique sequence number. RANK() gives tied rows the same rank and leaves gaps after ties.", c:"RANK(), ROW_NUMBER(), Window Functions"},
+      {q:"What is the difference between RANK() and DENSE_RANK()?", a:"Both assign the same rank to ties, but RANK() leaves gaps after ties while DENSE_RANK() does not.", c:"RANK(), DENSE_RANK()"},
+      {q:"What does PARTITION BY do?", a:"PARTITION BY divides rows into independent groups for a window calculation while keeping all rows in the final result.", c:"PARTITION BY, Window Functions"},
+      {q:"What does LAG() do?", a:"LAG() lets you access a value from a previous row within a defined window order. It is useful for period-over-period comparisons.", c:"LAG(), Window Functions"},
+      {q:"What does LEAD() do?", a:"LEAD() lets you access a value from a following row within the window order, which is useful for comparing a row with a future value.", c:"LEAD(), Window Functions"},
+      {q:"How would you find the second-highest value in SQL?", a:"Common approaches include DENSE_RANK() or selecting the maximum value below the overall maximum. The best method depends on how ties should be handled.", c:"DENSE_RANK(), MAX(), Ranking"},
+      {q:"What is a correlated subquery?", a:"A correlated subquery references a column from the outer query, so the inner query is evaluated in relation to each outer row.", c:"Correlated Subquery, Outer Query"},
+      {q:"How would you find customers with no orders?", a:"A common pattern is a LEFT JOIN from customers to orders and then filtering where the order key is NULL. NOT EXISTS is another strong approach.", c:"LEFT JOIN, IS NULL, NOT EXISTS"},
+      {q:"How would you calculate a running total?", a:"Use SUM() as a window function with an ORDER BY clause so the accumulated value grows according to the defined sequence.", c:"SUM(), OVER(), Running Total"}
+    ],
+    4: [
+      {q:"What is a CTE and why use one?", a:"A Common Table Expression gives a temporary named result set using WITH. It makes complex SQL easier to break into logical, readable steps.", c:"WITH, CTE, Query Decomposition"},
+      {q:"When would you use a CTE instead of a subquery?", a:"A CTE is often preferable when the logic has multiple stages or when readability matters. It lets you name an intermediate result and reason about the query step by step.", c:"CTE, Subqueries, Readability"},
+      {q:"What is a window frame?", a:"A window frame defines which rows around the current row participate in a window calculation, such as rows from the beginning of a partition through the current row.", c:"Window Frames, ROWS, RANGE"},
+      {q:"What is the difference between ROWS and RANGE in a window frame?", a:"ROWS describes a physical number of rows relative to the current row. RANGE is value-based and can include peer rows with equal ordering values, depending on the database.", c:"ROWS, RANGE, Window Frames"},
+      {q:"How would you find the top 2 records per group?", a:"Partition the rows by the group, rank or number them using a window function ordered by the desired metric, then filter to rank 2 or less in an outer query.", c:"ROW_NUMBER(), PARTITION BY, Ranking"},
+      {q:"How would you compare each employee to their department average?", a:"Calculate the department average with a window function or grouped CTE and compare each employee's value against that department-level result.", c:"AVG(), Window Functions, CTE"},
+      {q:"What is query optimization?", a:"Query optimization improves execution efficiency by reducing unnecessary work through better SQL, indexes, statistics, join strategies, and execution plans.", c:"Query Optimization, Indexes"},
+      {q:"What is an execution plan?", a:"An execution plan describes how the database intends to execute a query, including scans, seeks, joins, sorts, and aggregations.", c:"Execution Plans, Query Performance"},
+      {q:"What is the difference between an index seek and an index scan?", a:"A seek navigates to relevant portions of an index. A scan reads a larger portion or all of the index. A seek is often better for selective predicates, but the best choice depends on the data and query.", c:"Index Seek, Index Scan, Selectivity"},
+      {q:"When can an index hurt performance?", a:"Indexes can slow INSERT, UPDATE, and DELETE operations because they must also be maintained. Too many indexes can add storage and maintenance overhead.", c:"Indexes, Write Performance, Optimization"}
+    ],
+    5: [
+      {q:"What is a recursive CTE?", a:"A recursive CTE references itself to process hierarchical or sequential data, such as employee-manager trees or category hierarchies.", c:"Recursive CTE, WITH RECURSIVE, Hierarchies"},
+      {q:"What is the gaps-and-islands problem?", a:"It is a family of problems involving consecutive sequences, such as runs of activity or missing periods. Window functions are often used to identify each sequence.", c:"Gaps and Islands, Window Functions"},
+      {q:"What is a transaction?", a:"A transaction groups one or more database operations into a unit of work that can be committed or rolled back.", c:"Transactions, COMMIT, ROLLBACK"},
+      {q:"What does ACID stand for?", a:"ACID stands for Atomicity, Consistency, Isolation, and Durability. These properties describe important guarantees for reliable transactional processing.", c:"ACID, Transactions"},
+      {q:"What is a dirty read?", a:"A dirty read occurs when one transaction reads data changed by another transaction before that change has been committed.", c:"Isolation, Concurrency, Dirty Reads"},
+      {q:"What is a deadlock?", a:"A deadlock occurs when transactions wait on resources held by each other and none can continue. Databases typically detect and resolve one side of the conflict.", c:"Deadlocks, Locks, Concurrency"},
+      {q:"What is a covering index?", a:"A covering index contains all columns needed by a query, allowing the database in some cases to answer the query directly from the index without looking up the base table.", c:"Covering Index, Query Optimization"},
+      {q:"What is the difference between EXISTS and IN?", a:"EXISTS checks whether the subquery produces a matching row and is useful for existence tests. IN compares a value against a returned set. NULL behavior and query shape can affect which is preferable.", c:"EXISTS, IN, Subqueries"},
+      {q:"Why would you use a bridge table for a many-to-many relationship?", a:"A bridge or junction table stores the keys from both entities, turning the many-to-many relationship into two one-to-many relationships and avoiding repeated relationship data.", c:"Many-to-Many, Bridge Tables, Data Modeling"},
+      {q:"What is SQL injection and how do you prevent it?", a:"SQL injection occurs when untrusted input changes the intended SQL statement. Parameterized queries or prepared statements are a primary defense, along with validation and least-privilege access.", c:"SQL Injection, Security, Parameterized Queries"}
+    ]
+  };
 
+  const levelNames = ["Fundamental","Core SQL","Intermediate","Advanced","Expert"];
   let interviewSet=[];
   let interviewIndex=0;
   let interviewAnswerShown=false;
+  let interviewStreakValue=0;
+  let interviewTimerId=null;
+  let interviewSeconds=30;
 
   function shuffleConcepts(arr){
     const copy=arr.slice();
@@ -1726,23 +2381,62 @@ renderQuestion();
     return copy;
   }
 
+  function selectedInterviewLevel(){
+    return Math.min(5, Math.max(1, Number(stateRef.level)||1));
+  }
+
+  function startInterviewTimer(){
+    clearInterval(interviewTimerId);
+    interviewSeconds=30;
+    interviewTimer.classList.remove("warning");
+    interviewTimer.textContent="30s";
+    interviewTimerId=setInterval(()=>{
+      if(!interviewModal.classList.contains("open")) return;
+      interviewSeconds--;
+      interviewTimer.textContent=interviewSeconds+"s";
+      if(interviewSeconds<=8) interviewTimer.classList.add("warning");
+      if(interviewSeconds<=0){
+        clearInterval(interviewTimerId);
+        if(!interviewAnswerShown){
+          interviewAnswer.click();
+          interviewSubtitle.textContent="Time's up — compare your answer with the model answer.";
+        }
+      }
+    },1000);
+  }
+
   function renderInterviewQuestion(){
     const q=interviewSet[interviewIndex];
-    interviewCounter.textContent="Question "+(interviewIndex+1);
+    const level=selectedInterviewLevel();
+    const name=levelNames[level-1];
+
+    interviewCounter.textContent=(interviewIndex+1)+" / "+interviewSet.length;
+    interviewQuestionNumber.textContent="QUESTION "+String(interviewIndex+1).padStart(2,"0");
+    interviewTopic.textContent=(q.c||"SQL").split(",")[0].trim();
     interviewQuestion.textContent=q.q;
     interviewAnswerText.textContent=q.a;
-    interviewConcepts.textContent=q.c;
+
+    interviewConcepts.innerHTML=(q.c||"SQL").split(",").map(x=>`<span class="interview-tag">${x.trim()}</span>`).join("");
     interviewAnswerPanel.classList.remove("show");
     interviewAnswerShown=false;
-    interviewAnswer.textContent="Answer";
+    interviewAnswer.textContent="Reveal Answer";
     interviewNext.disabled=true;
-    // The bar indicates progress through the current shuffled bank, then resets.
+    confidenceButtons.forEach(b=>b.classList.remove("active"));
+
+    interviewLevelBadge.textContent=`LEVEL ${String(level).padStart(2,"0")} · ${name.toUpperCase()}`;
+    interviewTitle.textContent="SQL Interview Mode";
+    interviewSubtitle.textContent=`Questions matched to ${name}. Think first, then reveal.`;
+    interviewStreak.textContent=interviewStreakValue;
+
     interviewProgressBar.style.width=(((interviewIndex+1)/interviewSet.length)*100)+"%";
+    startInterviewTimer();
   }
 
   function startInterview(){
-    interviewSet=shuffleConcepts(interviewConceptBank);
+    const level=selectedInterviewLevel();
+    interviewSet=shuffleConcepts(interviewBanks[level]);
     interviewIndex=0;
+    interviewStreakValue=0;
     interviewModal.classList.add("open");
     interviewModal.setAttribute("aria-hidden","false");
     document.body.style.overflow="hidden";
@@ -1750,33 +2444,69 @@ renderQuestion();
   }
 
   function closeInterview(){
+    clearInterval(interviewTimerId);
     interviewModal.classList.remove("open");
     interviewModal.setAttribute("aria-hidden","true");
     document.body.style.overflow="";
   }
 
-  interviewBtn.addEventListener("click",startInterview);
-  interviewClose.addEventListener("click",closeInterview);
-  interviewModal.addEventListener("click",e=>{if(e.target===interviewModal)closeInterview();});
-  document.addEventListener("keydown",e=>{if(e.key==="Escape" && interviewModal.classList.contains("open"))closeInterview();});
-
-  interviewAnswer.addEventListener("click",()=>{
+  function revealInterviewAnswer(){
     if(interviewAnswerShown) return;
     interviewAnswerPanel.classList.add("show");
     interviewAnswerShown=true;
-    interviewAnswer.textContent="Answer Revealed";
+    interviewAnswer.textContent="Answer Revealed ✓";
     interviewNext.disabled=false;
-  });
+    clearInterval(interviewTimerId);
+  }
 
-  interviewNext.addEventListener("click",()=>{
+  function nextInterviewQuestion(){
     if(!interviewAnswerShown) return;
     interviewIndex++;
-    // When the entire bank has been seen, reshuffle it so the session can continue forever.
     if(interviewIndex>=interviewSet.length){
-      interviewSet=shuffleConcepts(interviewConceptBank);
+      const level=selectedInterviewLevel();
+      interviewSet=shuffleConcepts(interviewBanks[level]);
       interviewIndex=0;
     }
     renderInterviewQuestion();
+  }
+
+  interviewBtn.addEventListener("click",startInterview);
+  interviewClose.addEventListener("click",closeInterview);
+  interviewModal.addEventListener("click",e=>{if(e.target===interviewModal)closeInterview();});
+  interviewAnswer.addEventListener("click",revealInterviewAnswer);
+  interviewNext.addEventListener("click",nextInterviewQuestion);
+
+  interviewSkip.addEventListener("click",()=>{
+    interviewStreakValue=0;
+    interviewSubtitle.textContent="Skipped — here's another question from your current level.";
+    interviewIndex++;
+    if(interviewIndex>=interviewSet.length){
+      const level=selectedInterviewLevel();
+      interviewSet=shuffleConcepts(interviewBanks[level]);
+      interviewIndex=0;
+    }
+    renderInterviewQuestion();
+  });
+
+  confidenceButtons.forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      confidenceButtons.forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      const score=Number(btn.dataset.confidence);
+      if(score===3){
+        interviewStreakValue++;
+      }else if(score===1){
+        interviewStreakValue=0;
+      }
+      interviewStreak.textContent=interviewStreakValue;
+    });
+  });
+
+  document.addEventListener("keydown",e=>{
+    if(!interviewModal.classList.contains("open")) return;
+    if(e.key==="Escape") closeInterview();
+    if(e.key==="Enter" && !interviewAnswerShown) { e.preventDefault(); revealInterviewAnswer(); }
+    if((e.key==="n" || e.key==="N") && interviewAnswerShown) nextInterviewQuestion();
   });
 
   // Initialize.
@@ -1788,6 +2518,7 @@ renderQuestion();
     originalSaveState();
     localStorage.setItem("sqlLabXP",stateRef.xp||0);
     localStorage.setItem("sqlLabHintsUsed",stateRef.hintsUsed||0);
+    localStorage.setItem("sqlLabCompletedQuestions",JSON.stringify(stateRef.completedQuestions||{}));
   };
 
   renderFeatureMetrics();
@@ -1804,5 +2535,226 @@ window.__sqlLabExpose = true;
 (function(){const st=window.__sqlLabState;if(!st)return;const $=id=>document.getElementById(id);const todayKey='sqlLabDailySolved_'+new Date().toISOString().slice(0,10);let todaySolved=Number(localStorage.getItem(todayKey)||0);const clamp=n=>Math.max(0,Math.min(100,Math.round(n)));
 function update(){const solved=+st.solved||0,xp=+st.xp||0,attempts=+st.attempts||0,correct=+st.correct||0,accuracy=attempts?Math.round(correct/attempts*100):0;$('dashStreak').textContent=st.streak||0;$('dashXP').textContent=xp;$('dashAccuracy').textContent=accuracy+'%';$('dashSolved').textContent=solved;const level=Math.max(1,Math.floor(xp/500)+1);$('journeyLevelLabel').textContent='SQL Level '+level;$('journeyProgress').style.width=clamp(((xp%500)/500)*100)+'%';const goal=Math.min(3,todaySolved);$('goalProgress').style.width=(goal/3*100)+'%';$('goalText').textContent=goal+' / 3 completed today';const vals=[clamp(55+solved*1.8),clamp(45+solved*1.7),clamp(30+solved*1.5),clamp(20+solved*1.2),clamp(15+solved)];[['skillFiltering',vals[0]],['skillAggregation',vals[1]],['skillJoins',vals[2]],['skillCTEs',vals[3]],['skillWindows',vals[4]]].forEach(([id,v])=>{$(id).style.width=v+'%';$(id+'Text').textContent=v+'%'});const readiness=clamp(accuracy*.45+Math.min(100,solved*2.2)*.35+Math.min(100,xp/10)*.2);$('readinessValue').textContent=readiness+'%';$('readinessBar').style.width=readiness+'%';$('readinessText').textContent=readiness>=80?'You are looking interview-ready. Keep sharpening advanced topics.':readiness>=50?'Good progress. A little more practice will strengthen your interview confidence.':'Start solving questions to build your interview score.';$('recommendedNext').textContent=vals[4]<50?'Window Functions':vals[2]<60?'JOINs':'CTEs & Advanced SQL';[['badgeFirst',solved>=1],['badgeXP',xp>=100],['badgeTen',solved>=10],['badgeStreak',(st.streak||0)>=7]].forEach(([id,on])=>$(id).classList.toggle('unlocked',on))}const originalSave=window.saveState;if(originalSave)window.saveState=function(){originalSave();update()};const submit=$('submit');if(submit)submit.addEventListener('click',()=>setTimeout(()=>{if(st.solved>0){todaySolved=Math.min(3,todaySolved+1);localStorage.setItem(todayKey,todaySolved)}update()},750));update();setInterval(update,1000)})();
 </script>
+<script id="learn-more-script">
+const learnConcepts = [{"id": "concept-01", "index": "01", "title": "SQL HOME", "overview": ["SQL (Structured Query Language) is the standard language used to communicate with relational databases. A SQL statement can retrieve information, filter records, combine tables, summarize data, or modify stored data.", "Think of SQL as a conversation with a database: you describe the result you need, and the database engine determines how to execute the request. Learning the core clauses in the right order gives you a foundation for analytics, reporting, applications, and data engineering."], "examples": [["Example 1", "Read a table", "SELECT *\nFROM Customers;", "Returns all columns and rows from Customers."], ["Example 2", "Read selected fields", "SELECT CustomerID, Name\nFROM Customers;", "Returns only the fields needed for the analysis."], ["Example 3", "Filter a business question", "SELECT Name, City\nFROM Customers\nWHERE City = 'Miami';", "Returns customers located in Miami."]], "use": "SQL is used behind dashboards, web applications, ETL pipelines, reporting systems, and data-quality checks.", "tip": "Start with SELECT, FROM, and WHERE. Once those feel natural, add sorting, aggregation, and joins.", "tags": ["SQL", "Database", "Relational Database", "Data Analysis"], "note": "SQL is declarative: you describe what data you want rather than writing every execution step.", "visual": "DATABASE → TABLES → ROWS + COLUMNS → SQL QUERY → RESULT SET"}, {"id": "concept-02", "index": "02", "title": "SQL Intro", "overview": ["SQL is a declarative language for working with structured data stored in relational database systems. Tables contain rows, while columns describe attributes of those rows.", "A typical analytical workflow is: understand the table, select the fields, filter the population, transform or aggregate the data, and validate the result. SQL lets you perform each step close to the data."], "examples": [["Example 1", "Basic query", "SELECT *\nFROM Products;", "Returns the Products table."], ["Example 2", "Business question", "SELECT ProductName, Price\nFROM Products\nWHERE Price > 50;", "Finds products priced above $50."], ["Example 3", "Simple KPI", "SELECT COUNT(*) AS TotalProducts\nFROM Products;", "Counts the products in the table."]], "use": "Analysts use SQL to prepare datasets for Power BI, Excel, Python, and reporting platforms.", "tip": "Read the query from the clauses: SELECT what, FROM where, WHERE which rows.", "tags": ["SQL Basics", "SELECT", "FROM", "Analytics"], "note": "SQL keywords are generally written in uppercase for readability, but SQL itself is usually case-insensitive for keywords.", "visual": null}, {"id": "concept-03", "index": "03", "title": "SQL Syntax", "overview": ["SQL syntax is the set of rules that determines how statements are written. Most basic queries follow a recognizable structure such as SELECT columns FROM table WHERE condition ORDER BY column.", "Statements normally end with a semicolon. SQL also uses operators, functions, aliases, parentheses, commas, and quoted string literals. Consistent formatting makes complex queries much easier to review."], "examples": [["Example 1", "Standard structure", "SELECT Name, City\nFROM Customers\nWHERE City = 'Miami'\nORDER BY Name;", "Filters and sorts customer records."], ["Example 2", "Multiple conditions", "SELECT *\nFROM Orders\nWHERE Total >= 100\n  AND Status = 'Completed';", "Combines numeric and text conditions."], ["Example 3", "Calculated expression", "SELECT ProductName, Price * 1.07 AS PriceWithTax\nFROM Products;", "Creates a calculated output column."]], "use": "SQL formatting matters in team environments because analysts frequently review and maintain each other's queries.", "tip": "Indent each clause on its own line and use aliases that explain calculated columns.", "tags": ["Syntax", "Clauses", "Semicolon", "Formatting"], "note": null, "visual": "SELECT → FROM → WHERE → GROUP BY → HAVING → ORDER BY → TOP/LIMIT"}, {"id": "concept-04", "index": "04", "title": "SQL Select", "overview": ["SELECT chooses the columns that appear in your result set. It can return individual fields, multiple fields, expressions, functions, or all columns with *.", "Selecting only the fields you need is usually clearer than using SELECT *. It also protects downstream work from unexpected schema changes and avoids moving unnecessary data."], "examples": [["Example 1", "One column", "SELECT CustomerName\nFROM Customers;", "Returns only customer names."], ["Example 2", "Several columns", "SELECT CustomerName, City, Country\nFROM Customers;", "Returns a focused customer list."], ["Example 3", "Calculated column", "SELECT ProductName, Price * Quantity AS LineTotal\nFROM OrderItems;", "Calculates a line total for each item."]], "use": "SELECT is the starting point for almost every report query, data extract, and validation check.", "tip": "Use SELECT * for quick exploration; prefer explicit columns in reusable queries.", "tags": ["SELECT", "Columns", "Expressions", "Result Set"], "note": null, "visual": null}, {"id": "concept-05", "index": "05", "title": "SQL Select Distinct", "overview": ["DISTINCT removes duplicate result rows. It is useful when you need the unique values represented in a column, such as a list of cities, statuses, or product categories.", "DISTINCT applies to the entire selected combination. If you select City and Country, SQL returns unique City-Country pairs rather than unique cities alone."], "examples": [["Example 1", "Unique cities", "SELECT DISTINCT City\nFROM Customers;", "Returns each city once."], ["Example 2", "Unique statuses", "SELECT DISTINCT Status\nFROM Orders;", "Shows the statuses present in the order table."], ["Example 3", "Unique combinations", "SELECT DISTINCT Country, City\nFROM Customers;", "Returns each unique country-city combination."]], "use": "Analysts often use DISTINCT during data profiling to discover categories before creating filters or validation rules.", "tip": "Do not use DISTINCT to hide unexpected duplicates. First determine whether the duplicate records are actually a data-quality problem.", "tags": ["DISTINCT", "Duplicates", "Unique Values", "Data Profiling"], "note": "DISTINCT is a result-set operation; it does not delete duplicate rows from the underlying table.", "visual": null}, {"id": "concept-06", "index": "06", "title": "SQL Where", "overview": ["WHERE filters individual rows before the rest of the query is evaluated. It is the main tool for defining the population you want to analyze.", "Conditions can compare text, numbers, and dates and can be combined with AND, OR, and NOT. Correct filtering is critical because every later calculation depends on which rows were included."], "examples": [["Example 1", "Numeric filter", "SELECT ProductName, Price\nFROM Products\nWHERE Price > 20;", "Returns products above $20."], ["Example 2", "Text filter", "SELECT *\nFROM Customers\nWHERE Country = 'USA';", "Returns customers in the USA."], ["Example 3", "Date filter", "SELECT OrderID, OrderDate\nFROM Orders\nWHERE OrderDate >= '2026-01-01';", "Returns orders from 2026 onward."]], "use": "Use WHERE to define a reporting period, customer segment, transaction status, or investigation scope.", "tip": "Remember: WHERE filters rows; HAVING filters groups after aggregation.", "tags": ["WHERE", "Filtering", "Conditions", "AND", "OR"], "note": "String literals are normally enclosed in single quotes.", "visual": null}, {"id": "concept-07", "index": "07", "title": "SQL Order By", "overview": ["ORDER BY controls the order of rows in the result. ASC sorts ascending and is the default; DESC sorts descending.", "Sorting is especially useful when you need the highest values, lowest values, newest records, or a predictable presentation order. You can sort by more than one column to break ties."], "examples": [["Example 1", "Low to high", "SELECT ProductName, Price\nFROM Products\nORDER BY Price ASC;", "Sorts products from cheapest to most expensive."], ["Example 2", "High to low", "SELECT ProductName, Price\nFROM Products\nORDER BY Price DESC;", "Shows the most expensive products first."], ["Example 3", "Multiple columns", "SELECT ProductName, Category, Price\nFROM Products\nORDER BY Category ASC, Price DESC;", "Sorts categories alphabetically, then price within each category."]], "use": "ORDER BY is used for top-N reports, ranking tables, recent-activity lists, and executive dashboards.", "tip": "Use a secondary sort column when ties need a deterministic order.", "tags": ["ORDER BY", "ASC", "DESC", "Sorting", "Ranking"], "note": "Without ORDER BY, the database does not promise a meaningful row order.", "visual": null}, {"id": "concept-08", "index": "08", "title": "SQL And", "overview": ["AND combines conditions when every condition must be true. It is useful when a business rule has multiple requirements.", "Because AND narrows a result, adding more AND conditions generally reduces the number of matching rows. Parentheses help when AND is mixed with OR."], "examples": [["Example 1", "Two requirements", "SELECT *\nFROM Customers\nWHERE Country = 'USA'\n  AND City = 'Miami';", "Finds Miami customers in the USA."], ["Example 2", "Range conditions", "SELECT *\nFROM Products\nWHERE Price > 10\n  AND Price < 30;", "Finds products between the two boundaries."], ["Example 3", "Business rule", "SELECT *\nFROM Orders\nWHERE Status = 'Completed'\n  AND Total >= 100;", "Finds completed high-value orders."]], "use": "AND is common in data-quality rules, customer segmentation, fraud screening, and operational reports.", "tip": "Read each AND condition as a requirement that must be satisfied.", "tags": ["AND", "Boolean Logic", "Filtering", "Conditions"], "note": null, "visual": null}, {"id": "concept-09", "index": "09", "title": "SQL Or", "overview": ["OR returns a row when at least one of its conditions is true. It is useful when a query should accept several alternatives.", "OR broadens a result compared with AND. When mixing OR and AND, use parentheses to make the intended logic explicit and avoid surprises caused by operator precedence."], "examples": [["Example 1", "Two cities", "SELECT *\nFROM Customers\nWHERE City = 'Miami'\n   OR City = 'Orlando';", "Returns customers from either city."], ["Example 2", "Multiple statuses", "SELECT *\nFROM Orders\nWHERE Status = 'Pending'\n   OR Status = 'Processing';", "Returns orders in either state."], ["Example 3", "Grouped logic", "SELECT *\nFROM Products\nWHERE Category = 'Fish'\n  AND (Price < 20 OR Price > 50);", "Finds fish products outside the middle price range."]], "use": "OR is useful for exception lists, alternative statuses, multiple locations, and rule-based investigations.", "tip": "Use parentheses whenever OR is combined with AND.", "tags": ["OR", "Boolean Logic", "Parentheses", "Filtering"], "note": null, "visual": null}, {"id": "concept-10", "index": "10", "title": "SQL Not", "overview": ["NOT reverses a logical condition. It lets you exclude a category or select everything that does not satisfy a rule.", "NOT is often paired with IN, LIKE, or a simple comparison. It can make exclusion logic easier to express, but always check the resulting population carefully."], "examples": [["Example 1", "Exclude a country", "SELECT *\nFROM Customers\nWHERE NOT Country = 'USA';", "Returns customers outside the USA."], ["Example 2", "Exclude statuses", "SELECT *\nFROM Orders\nWHERE Status NOT IN ('Cancelled', 'Returned');", "Removes cancelled and returned orders."], ["Example 3", "Exclude a pattern", "SELECT *\nFROM Customers\nWHERE Name NOT LIKE 'A%';", "Returns names that do not start with A."]], "use": "NOT is useful for exclusion rules such as removing cancelled transactions or excluding internal test accounts.", "tip": "Use NOT with clear parentheses when the condition is complex.", "tags": ["NOT", "Boolean Logic", "Exclusion", "Filtering"], "note": null, "visual": null}, {"id": "concept-11", "index": "11", "title": "SQL Insert Into", "overview": ["INSERT INTO adds new rows to a table. You can specify the target columns and then provide one or more values that match those columns.", "Explicitly naming the columns is safer than relying on the table's physical column order. In production systems, inserts should also respect keys, constraints, data types, and required fields."], "examples": [["Example 1", "Insert one row", "INSERT INTO Customers (Name, City)\nVALUES ('Ana', 'Miami');", "Adds a new customer."], ["Example 2", "Insert several rows", "INSERT INTO Products (ProductName, Price)\nVALUES ('Betta Ruby', 18.99),\n       ('Betta Pearl', 14.99);", "Adds two products."], ["Example 3", "Insert selected fields", "INSERT INTO Orders (CustomerID, Total, Status)\nVALUES (101, 89.50, 'Pending');", "Creates a new order."]], "use": "INSERT is used by applications, ETL processes, data imports, and controlled administrative operations.", "tip": "Never insert values blindly into production tables. Validate keys, required fields, and business rules first.", "tags": ["INSERT INTO", "DML", "Rows", "Data Modification"], "note": "INSERT changes stored data; SELECT only reads it.", "visual": null}, {"id": "concept-12", "index": "12", "title": "SQL Null Values", "overview": ["NULL represents a missing, unknown, or not-applicable value. It is not the same thing as zero, an empty string, or false.", "Because NULL represents unknown information, comparisons behave differently. Use IS NULL and IS NOT NULL rather than = NULL or <> NULL."], "examples": [["Example 1", "Find missing values", "SELECT Name, Email\nFROM Customers\nWHERE Email IS NULL;", "Finds customers without an email."], ["Example 2", "Find populated values", "SELECT Name, Email\nFROM Customers\nWHERE Email IS NOT NULL;", "Returns customers with an email."], ["Example 3", "Missing prices", "SELECT ProductName\nFROM Products\nWHERE Price IS NULL;", "Finds products whose price is unknown."]], "use": "NULL analysis is a core part of data quality and helps explain why metrics may be incomplete.", "tip": "Do not automatically convert NULL to zero. Decide what the missing value means in the business context.", "tags": ["NULL", "IS NULL", "Data Quality", "Missing Data"], "note": "SQL uses three-valued logic: TRUE, FALSE, and UNKNOWN.", "visual": null}, {"id": "concept-13", "index": "13", "title": "SQL Update", "overview": ["UPDATE changes existing rows. A SET clause defines the new value, while WHERE determines which records are modified.", "The WHERE clause is critical. Without it, an UPDATE can change every row in the table. In production work, preview the target rows with SELECT before running the update."], "examples": [["Example 1", "Update one customer", "UPDATE Customers\nSET City = 'Miami'\nWHERE CustomerID = 101;", "Changes one customer's city."], ["Example 2", "Increase prices", "UPDATE Products\nSET Price = Price * 1.10\nWHERE Category = 'Fish';", "Raises fish-product prices by 10%."], ["Example 3", "Change a status", "UPDATE Orders\nSET Status = 'Completed'\nWHERE OrderID = 5001;", "Marks one order completed."]], "use": "UPDATE is used for corrections, status transitions, price changes, and controlled data maintenance.", "tip": "Run SELECT with the same WHERE clause first to verify exactly which rows will change.", "tags": ["UPDATE", "SET", "DML", "Data Modification"], "note": "For critical updates, use transactions and validate the affected row count.", "visual": null}, {"id": "concept-14", "index": "14", "title": "SQL Delete", "overview": ["DELETE removes rows from a table. Like UPDATE, it depends on a WHERE clause to identify the records that should be affected.", "Deleting data is destructive, so it deserves extra validation. A missing WHERE clause can remove every row in the target table."], "examples": [["Example 1", "Delete one order", "DELETE FROM Orders\nWHERE OrderID = 5001;", "Removes one order."], ["Example 2", "Delete test records", "DELETE FROM Customers\nWHERE IsTestAccount = 1;", "Removes records marked as test accounts."], ["Example 3", "Delete old data", "DELETE FROM Logs\nWHERE CreatedAt < '2020-01-01';", "Removes records older than a defined date."]], "use": "DELETE may be used for cleanup, retention policies, test-data removal, and correcting records created in error.", "tip": "Always verify the WHERE clause and affected row count before committing a delete.", "tags": ["DELETE", "DML", "Data Removal", "WHERE"], "note": "DELETE removes rows; DROP removes database objects such as tables.", "visual": null}, {"id": "concept-15", "index": "15", "title": "SQL Select Top", "overview": ["TOP limits the number of rows returned in SQL Server. It is commonly paired with ORDER BY to answer top-N questions.", "TOP is especially useful when the database contains many records but the business question asks for only a small ranked subset."], "examples": [["Example 1", "Top 5 expensive", "SELECT TOP 5 ProductName, Price\nFROM Products\nORDER BY Price DESC;", "Returns the five most expensive products."], ["Example 2", "Top 10 recent orders", "SELECT TOP 10 OrderID, OrderDate\nFROM Orders\nORDER BY OrderDate DESC;", "Returns the ten newest orders."], ["Example 3", "Top 3 customers", "SELECT TOP 3 CustomerID, TotalSpent\nFROM CustomerTotals\nORDER BY TotalSpent DESC;", "Returns the three highest-spending customers."]], "use": "TOP is common in SQL Server reporting, operational dashboards, and exploratory analysis.", "tip": "Always pair TOP with ORDER BY when the meaning is 'highest', 'lowest', 'newest', or 'oldest'.", "tags": ["TOP", "SQL Server", "Top N", "ORDER BY"], "note": null, "visual": null}, {"id": "concept-16", "index": "16", "title": "SQL Aggregate Functions", "overview": ["Aggregate functions summarize multiple rows into a single value or a value per group. Common functions include COUNT, SUM, AVG, MIN, and MAX.", "Aggregates are the foundation of KPIs. They turn transaction-level data into metrics such as total sales, order count, average ticket, and highest transaction."], "examples": [["Example 1", "Count rows", "SELECT COUNT(*) AS OrderCount\nFROM Orders;", "Counts all orders."], ["Example 2", "Total sales", "SELECT SUM(Total) AS Revenue\nFROM Orders;", "Adds order totals."], ["Example 3", "Average sale", "SELECT AVG(Total) AS AverageOrder\nFROM Orders;", "Calculates average order value."]], "use": "Use aggregates for dashboards, financial reports, operational KPIs, and data validation.", "tip": "Always define the population first with WHERE when the KPI applies to only certain rows.", "tags": ["Aggregate", "COUNT", "SUM", "AVG", "MIN", "MAX", "KPIs"], "note": null, "visual": null}, {"id": "concept-17", "index": "17", "title": "SQL Min()", "overview": ["MIN returns the smallest value in a column. It can be applied to numeric values, dates, and other orderable data types.", "MIN is useful for finding the earliest date, lowest price, or smallest measured value. It can also be used within GROUP BY to find the minimum per category."], "examples": [["Example 1", "Lowest price", "SELECT MIN(Price) AS LowestPrice\nFROM Products;", "Finds the cheapest product price."], ["Example 2", "Earliest order", "SELECT MIN(OrderDate) AS FirstOrder\nFROM Orders;", "Finds the earliest order date."], ["Example 3", "Minimum by category", "SELECT Category, MIN(Price) AS LowestPrice\nFROM Products\nGROUP BY Category;", "Finds the lowest price in each category."]], "use": "MIN is useful for identifying baselines, earliest events, minimum costs, and product price floors.", "tip": "Check NULL behavior and the business meaning of missing values before interpreting the minimum.", "tags": ["MIN", "Aggregate", "Lowest Value", "Dates"], "note": null, "visual": null}, {"id": "concept-18", "index": "18", "title": "SQL Max()", "overview": ["MAX returns the largest value in a column. Like MIN, it can be used globally or within groups.", "MAX is commonly used for highest prices, latest dates, largest transactions, and maximum observed measurements."], "examples": [["Example 1", "Highest price", "SELECT MAX(Price) AS HighestPrice\nFROM Products;", "Finds the most expensive price."], ["Example 2", "Latest order", "SELECT MAX(OrderDate) AS LatestOrder\nFROM Orders;", "Finds the most recent order date."], ["Example 3", "Maximum by category", "SELECT Category, MAX(Price) AS HighestPrice\nFROM Products\nGROUP BY Category;", "Finds the maximum price per category."]], "use": "MAX supports monitoring, anomaly checks, latest-event analysis, and high-value customer reporting.", "tip": "MAX on a date is a powerful way to find the latest event, but it does not automatically return the row associated with that date.", "tags": ["MAX", "Aggregate", "Highest Value", "Latest Date"], "note": null, "visual": null}, {"id": "concept-19", "index": "19", "title": "SQL Count()", "overview": ["COUNT measures how many records or non-NULL values exist. COUNT(*) counts rows, while COUNT(column) ignores NULL values in that column.", "Understanding the difference matters for data quality. If a column is missing for some rows, COUNT(column) may be lower than COUNT(*)."], "examples": [["Example 1", "Count all rows", "SELECT COUNT(*) AS TotalCustomers\nFROM Customers;", "Counts every customer row."], ["Example 2", "Count populated emails", "SELECT COUNT(Email) AS CustomersWithEmail\nFROM Customers;", "Counts rows where Email is not NULL."], ["Example 3", "Count by city", "SELECT City, COUNT(*) AS Customers\nFROM Customers\nGROUP BY City;", "Counts customers in each city."]], "use": "COUNT is one of the most common dashboard metrics: customers, orders, admissions, cases, tickets, or transactions.", "tip": "Choose COUNT(*) when you mean rows and COUNT(column) when you specifically mean non-NULL values in that column.", "tags": ["COUNT", "Rows", "NULL", "KPIs"], "note": null, "visual": null}, {"id": "concept-20", "index": "20", "title": "SQL Sum()", "overview": ["SUM adds numeric values across rows. It is the standard choice for totals such as revenue, quantity sold, cost, or hours.", "SUM becomes more powerful with GROUP BY, allowing totals by customer, product, month, department, or region."], "examples": [["Example 1", "Total revenue", "SELECT SUM(Total) AS Revenue\nFROM Orders;", "Adds all order totals."], ["Example 2", "Revenue by status", "SELECT Status, SUM(Total) AS Revenue\nFROM Orders\nGROUP BY Status;", "Calculates revenue for each status."], ["Example 3", "Quantity by product", "SELECT ProductID, SUM(Quantity) AS UnitsSold\nFROM OrderItems\nGROUP BY ProductID;", "Totals units sold per product."]], "use": "SUM powers financial dashboards, sales reporting, inventory movement, and operational volume metrics.", "tip": "Check for duplicate rows before summing. A join that multiplies rows can inflate a SUM.", "tags": ["SUM", "Totals", "Revenue", "Aggregation"], "note": null, "visual": null}, {"id": "concept-21", "index": "21", "title": "SQL Avg()", "overview": ["AVG calculates the arithmetic mean of numeric values. It is useful for average order value, average price, average duration, and similar metrics.", "Average can hide distribution differences, so analysts often pair AVG with COUNT, MIN, MAX, or percentile measures when deeper analysis is needed."], "examples": [["Example 1", "Average order", "SELECT AVG(Total) AS AverageOrder\nFROM Orders;", "Calculates average order value."], ["Example 2", "Average price by category", "SELECT Category, AVG(Price) AS AvgPrice\nFROM Products\nGROUP BY Category;", "Calculates the average price in each category."], ["Example 3", "Average score", "SELECT AVG(Score) AS AvgScore\nFROM Reviews\nWHERE Score IS NOT NULL;", "Calculates the average review score."]], "use": "AVG is useful for KPI monitoring, benchmarking, customer behavior analysis, and product comparisons.", "tip": "Always consider outliers. A few very large values can make the average misleading.", "tags": ["AVG", "Average", "Mean", "KPI"], "note": null, "visual": null}, {"id": "concept-22", "index": "22", "title": "SQL Like", "overview": ["LIKE compares text against a pattern. It is useful when you know part of a value rather than the exact full value.", "LIKE commonly works with % for any number of characters and _ for exactly one character. Pattern matching is helpful for names, emails, codes, and descriptions."], "examples": [["Example 1", "Starts with A", "SELECT *\nFROM Customers\nWHERE Name LIKE 'A%';", "Finds names beginning with A."], ["Example 2", "Contains 'tech'", "SELECT *\nFROM Products\nWHERE ProductName LIKE '%tech%';", "Finds product names containing tech."], ["Example 3", "Ends with .com", "SELECT *\nFROM Customers\nWHERE Email LIKE '%.com';", "Finds emails ending in .com."]], "use": "LIKE is useful for search boxes, data-quality checks, categorization, and exploratory analysis.", "tip": "Pattern matching can be expensive on large tables, especially when the pattern begins with %. Use it thoughtfully.", "tags": ["LIKE", "Pattern Matching", "Text Search", "Filtering"], "note": null, "visual": null}, {"id": "concept-23", "index": "23", "title": "SQL Wildcards", "overview": ["Wildcards are special characters used with LIKE to represent unknown text. In common SQL patterns, % represents zero or more characters and _ represents exactly one character.", "Wildcards let you create flexible searches without knowing the complete value. They are especially useful when data contains naming conventions or variable identifiers."], "examples": [["Example 1", "Any suffix", "SELECT *\nFROM Customers\nWHERE Name LIKE 'Jo%';", "Matches names beginning with Jo."], ["Example 2", "Any single character", "SELECT *\nFROM Codes\nWHERE Code LIKE 'A_1';", "Matches values such as AB1 or AC1."], ["Example 3", "Contains a phrase", "SELECT *\nFROM Products\nWHERE Description LIKE '%wireless%';", "Finds descriptions containing wireless."]], "use": "Wildcards support flexible search in applications and help analysts identify patterns in messy text data.", "tip": "Remember: % can match zero characters; _ matches exactly one character.", "tags": ["Wildcards", "%", "_", "LIKE"], "note": null, "visual": null}, {"id": "concept-24", "index": "24", "title": "SQL In", "overview": ["IN tests whether a value belongs to a list of accepted values. It is often cleaner than writing many OR conditions.", "IN can also be used with a subquery, allowing a value to be compared with a dynamically generated list."], "examples": [["Example 1", "Several cities", "SELECT *\nFROM Customers\nWHERE City IN ('Miami', 'Orlando', 'Tampa');", "Returns customers from three cities."], ["Example 2", "Several statuses", "SELECT *\nFROM Orders\nWHERE Status IN ('Pending', 'Processing');", "Returns orders in either status."], ["Example 3", "Exclude a list", "SELECT *\nFROM Products\nWHERE Category NOT IN ('Test', 'Internal');", "Excludes specified categories."]], "use": "IN is useful for segment filters, allowed-status rules, regional lists, and business exceptions.", "tip": "For long dynamic lists, consider a reference table or join rather than hard-coding dozens of values.", "tags": ["IN", "NOT IN", "Filtering", "Lists"], "note": null, "visual": null}, {"id": "concept-25", "index": "25", "title": "SQL Between", "overview": ["BETWEEN checks whether a value falls within an inclusive range. It is commonly used with numbers and dates.", "BETWEEN includes both endpoints. That detail matters when filtering dates and numeric thresholds, so always verify whether inclusive boundaries match the business definition."], "examples": [["Example 1", "Price range", "SELECT *\nFROM Products\nWHERE Price BETWEEN 10 AND 20;", "Returns prices from 10 through 20."], ["Example 2", "Date range", "SELECT *\nFROM Orders\nWHERE OrderDate BETWEEN '2026-01-01' AND '2026-01-31';", "Filters dates within the stated range."], ["Example 3", "Score range", "SELECT *\nFROM Reviews\nWHERE Score BETWEEN 4 AND 5;", "Returns high-scoring reviews."]], "use": "BETWEEN is useful for price bands, date windows, score ranges, and operational thresholds.", "tip": "For datetime columns, be careful with the time portion. A half-open range can be safer for full-day reporting.", "tags": ["BETWEEN", "Ranges", "Dates", "Filtering"], "note": null, "visual": null}, {"id": "concept-26", "index": "26", "title": "SQL Aliases", "overview": ["Aliases give temporary names to tables or output columns. They make queries shorter and improve readability, especially when multiple tables contain similarly named columns.", "Column aliases are also useful for presenting calculated fields with business-friendly names. Table aliases are essential in joins and self-joins."], "examples": [["Example 1", "Column alias", "SELECT Price * Quantity AS LineTotal\nFROM OrderItems;", "Names a calculated column."], ["Example 2", "Table aliases", "SELECT c.Name, o.Total\nFROM Customers AS c\nJOIN Orders AS o ON c.CustomerID = o.CustomerID;", "Shortens table references."], ["Example 3", "Readable KPI", "SELECT SUM(Total) AS TotalRevenue\nFROM Orders;", "Gives a meaningful metric name."]], "use": "Aliases make reporting SQL easier to read and help downstream tools display meaningful field names.", "tip": "Use short table aliases in complex joins but descriptive column aliases for business metrics.", "tags": ["Aliases", "AS", "Readability", "JOINs"], "note": null, "visual": null}, {"id": "concept-27", "index": "27", "title": "SQL Joins", "overview": ["JOINs combine related data from multiple tables. A relational database often separates customers, orders, products, and payments, so joins are how analysts bring those entities together.", "The most important part of a join is the relationship between keys. Before writing the SQL, identify the primary key and the matching foreign key and understand whether the relationship is one-to-one or one-to-many."], "examples": [["Example 1", "Customer + order", "SELECT c.Name, o.OrderID, o.Total\nFROM Customers c\nJOIN Orders o ON c.CustomerID = o.CustomerID;", "Combines customer and order information."], ["Example 2", "Order + product", "SELECT o.OrderID, p.ProductName\nFROM Orders o\nJOIN Products p ON o.ProductID = p.ProductID;", "Adds product attributes to orders."], ["Example 3", "Three-table join", "SELECT c.Name, o.OrderID, p.ProductName\nFROM Customers c\nJOIN Orders o ON c.CustomerID = o.CustomerID\nJOIN Products p ON o.ProductID = p.ProductID;", "Combines three related entities."]], "use": "JOINs are the backbone of analytical SQL because business questions rarely live in a single table.", "tip": "Check cardinality before aggregating after a join; one-to-many relationships can multiply rows.", "tags": ["JOIN", "Relationships", "Primary Key", "Foreign Key"], "note": null, "visual": null}, {"id": "concept-28", "index": "28", "title": "SQL Inner Join", "overview": ["INNER JOIN returns only rows where the join condition matches in both tables. Unmatched rows are excluded.", "It is the right choice when you need records that definitely have a corresponding record on both sides—for example, orders with valid customers."], "examples": [["Example 1", "Orders with customers", "SELECT o.OrderID, c.Name\nFROM Orders o\nINNER JOIN Customers c\n  ON o.CustomerID = c.CustomerID;", "Returns orders with matching customers."], ["Example 2", "Products with categories", "SELECT p.ProductName, c.CategoryName\nFROM Products p\nINNER JOIN Categories c\n  ON p.CategoryID = c.CategoryID;", "Returns products with valid categories."], ["Example 3", "Filter after join", "SELECT c.Name, o.Total\nFROM Customers c\nINNER JOIN Orders o\n  ON c.CustomerID = o.CustomerID\nWHERE o.Total > 100;", "Returns customers with matching high-value orders."]], "use": "INNER JOIN is common when building clean datasets where unmatched relationships should not appear.", "tip": "Think 'intersection': only the records that have a match on both sides survive.", "tags": ["INNER JOIN", "JOIN", "Matching Rows", "Relationships"], "note": null, "visual": "LEFT TABLE ∩ RIGHT TABLE = INNER JOIN RESULT"}, {"id": "concept-29", "index": "29", "title": "SQL Left Join", "overview": ["LEFT JOIN keeps every row from the left table and adds matching data from the right table when available. Missing matches appear as NULL.", "This makes LEFT JOIN ideal for finding gaps, such as customers who have never ordered or products that have never sold."], "examples": [["Example 1", "Keep all customers", "SELECT c.Name, o.OrderID\nFROM Customers c\nLEFT JOIN Orders o\n  ON c.CustomerID = o.CustomerID;", "Keeps every customer."], ["Example 2", "Find customers with no orders", "SELECT c.Name\nFROM Customers c\nLEFT JOIN Orders o\n  ON c.CustomerID = o.CustomerID\nWHERE o.OrderID IS NULL;", "Finds customers without a matching order."], ["Example 3", "Preserve products", "SELECT p.ProductName, s.Quantity\nFROM Products p\nLEFT JOIN Sales s\n  ON p.ProductID = s.ProductID;", "Keeps products even when no sale exists."]], "use": "LEFT JOIN is widely used in data-quality analysis, coverage reporting, and 'find what is missing' investigations.", "tip": "Be careful with WHERE conditions on right-table columns; they can accidentally eliminate the NULL matches you wanted to keep.", "tags": ["LEFT JOIN", "Missing Matches", "Data Quality", "Anti-Join"], "note": null, "visual": "ALL LEFT ROWS + matching RIGHT DATA → LEFT JOIN"}, {"id": "concept-30", "index": "30", "title": "SQL Right Join", "overview": ["RIGHT JOIN keeps every row from the right table and matching rows from the left. It is the mirror image of LEFT JOIN.", "Many teams prefer rewriting RIGHT JOIN as LEFT JOIN by switching table order because LEFT JOIN tends to be easier to read consistently. The result concept is the same."], "examples": [["Example 1", "Keep all departments", "SELECT e.Name, d.DepartmentName\nFROM Employees e\nRIGHT JOIN Departments d\n  ON e.DepartmentID = d.DepartmentID;", "Keeps every department, even empty ones."], ["Example 2", "Keep all products", "SELECT s.ProductID, p.ProductName\nFROM Sales s\nRIGHT JOIN Products p\n  ON s.ProductID = p.ProductID;", "Keeps every product."], ["Example 3", "Equivalent LEFT JOIN", "SELECT e.Name, d.DepartmentName\nFROM Departments d\nLEFT JOIN Employees e\n  ON e.DepartmentID = d.DepartmentID;", "Produces the same logical preservation."]], "use": "RIGHT JOIN can help when the right-hand table is the population you must preserve, although many teams standardize on LEFT JOIN.", "tip": "If a RIGHT JOIN feels confusing, swap the tables and write the equivalent LEFT JOIN.", "tags": ["RIGHT JOIN", "JOIN", "Relationships", "Preserve Rows"], "note": null, "visual": null}, {"id": "concept-31", "index": "31", "title": "SQL Full Join", "overview": ["FULL OUTER JOIN returns matching rows plus unmatched rows from both tables. Missing columns on either side become NULL.", "It is useful when you need to compare two populations and find what exists only on the left, only on the right, or in both."], "examples": [["Example 1", "Compare customer lists", "SELECT a.CustomerID, b.CustomerID\nFROM CRM_Customers a\nFULL OUTER JOIN Billing_Customers b\n  ON a.CustomerID = b.CustomerID;", "Shows matches and gaps across both systems."], ["Example 2", "Compare product catalogs", "SELECT a.ProductID, b.ProductID\nFROM OldCatalog a\nFULL OUTER JOIN NewCatalog b\n  ON a.ProductID = b.ProductID;", "Highlights added and removed products."], ["Example 3", "Find mismatches", "SELECT a.ID, b.ID\nFROM SourceA a\nFULL OUTER JOIN SourceB b ON a.ID = b.ID\nWHERE a.ID IS NULL OR b.ID IS NULL;", "Returns IDs present in only one source."]], "use": "FULL JOIN is useful for reconciliation, migrations, system comparisons, and completeness checks.", "tip": "Not every SQL engine supports FULL OUTER JOIN; know the capabilities of your database platform.", "tags": ["FULL JOIN", "Reconciliation", "Data Quality", "Comparison"], "note": null, "visual": null}, {"id": "concept-32", "index": "32", "title": "SQL Self Join", "overview": ["A self join joins a table to itself. It is useful when rows in the same table have a relationship with other rows in that table.", "A classic example is an employee table where each employee has a ManagerID that points back to another employee's EmployeeID."], "examples": [["Example 1", "Employee + manager", "SELECT e.Name AS Employee, m.Name AS Manager\nFROM Employees e\nLEFT JOIN Employees m\n  ON e.ManagerID = m.EmployeeID;", "Matches each employee to their manager."], ["Example 2", "Category hierarchy", "SELECT c.Name AS Child, p.Name AS Parent\nFROM Categories c\nLEFT JOIN Categories p\n  ON c.ParentID = p.CategoryID;", "Shows parent-child categories."], ["Example 3", "Find pairs", "SELECT a.Name, b.Name\nFROM Employees a\nJOIN Employees b\n  ON a.DepartmentID = b.DepartmentID\nWHERE a.EmployeeID < b.EmployeeID;", "Creates unique employee pairs within departments."]], "use": "Self joins appear in organizational charts, category trees, referral systems, and hierarchical data.", "tip": "Use clear aliases such as e and m because the same table appears more than once.", "tags": ["SELF JOIN", "Hierarchy", "Parent Child", "Aliases"], "note": null, "visual": null}, {"id": "concept-33", "index": "33", "title": "SQL Union", "overview": ["UNION combines the result sets of two compatible SELECT statements and removes duplicate rows from the combined result.", "The queries must return the same number of columns in compatible positions. UNION is useful when data comes from similar structures that need to be presented as one list."], "examples": [["Example 1", "Combine cities", "SELECT City FROM Customers_USA\nUNION\nSELECT City FROM Customers_Canada;", "Returns unique cities from both tables."], ["Example 2", "Combine names", "SELECT Name FROM Leads\nUNION\nSELECT Name FROM Customers;", "Creates a unique combined name list."], ["Example 3", "Add a source label", "SELECT Name, 'Lead' AS Source FROM Leads\nUNION\nSELECT Name, 'Customer' AS Source FROM Customers;", "Combines records while retaining origin."]], "use": "UNION is useful for consolidation, cross-region reporting, and combining equivalent datasets.", "tip": "Remember that UNION removes duplicates. If duplicates matter, use UNION ALL.", "tags": ["UNION", "Set Operations", "Duplicate Removal", "Combining Data"], "note": null, "visual": null}, {"id": "concept-34", "index": "34", "title": "SQL Union All", "overview": ["UNION ALL combines result sets and keeps duplicate rows. Because it does not need to remove duplicates, it can also be faster than UNION.", "Use UNION ALL when the two inputs represent distinct records or when duplicate preservation is part of the requirement."], "examples": [["Example 1", "Combine monthly tables", "SELECT * FROM Sales_Jan\nUNION ALL\nSELECT * FROM Sales_Feb;", "Stacks both months without deduplication."], ["Example 2", "Preserve repeated names", "SELECT Name FROM Leads\nUNION ALL\nSELECT Name FROM Customers;", "Keeps names appearing in both sources."], ["Example 3", "Regional consolidation", "SELECT OrderID, 'East' AS Region FROM EastOrders\nUNION ALL\nSELECT OrderID, 'West' AS Region FROM WestOrders;", "Creates one combined order stream."]], "use": "UNION ALL is common in ETL pipelines and partitioned datasets where each source row should remain visible.", "tip": "Do not use UNION ALL as a default if duplicates must be eliminated.", "tags": ["UNION ALL", "Set Operations", "ETL", "Duplicates"], "note": null, "visual": null}, {"id": "concept-35", "index": "35", "title": "SQL Group By", "overview": ["GROUP BY changes the level of detail of a query. It creates one group for each distinct combination of the grouped columns and lets aggregate functions calculate metrics for each group.", "A strong habit is to ask: 'What dimension am I grouping by, and what metric am I calculating?' For example, City + COUNT(*) answers customers by city."], "examples": [["Example 1", "Customers by city", "SELECT City, COUNT(*) AS Customers\nFROM Customers\nGROUP BY City;", "Counts customers per city."], ["Example 2", "Revenue by category", "SELECT Category, SUM(Total) AS Revenue\nFROM Orders\nGROUP BY Category;", "Calculates revenue by category."], ["Example 3", "Average price by variety", "SELECT Variety, AVG(Price) AS AvgPrice\nFROM Products\nGROUP BY Variety;", "Calculates average price for each variety."]], "use": "GROUP BY powers charts, scorecards, pivot-style summaries, and most business reporting queries.", "tip": "Every non-aggregated selected column generally belongs in GROUP BY.", "tags": ["GROUP BY", "Aggregation", "Dimensions", "Metrics"], "note": null, "visual": null}, {"id": "concept-36", "index": "36", "title": "SQL Having", "overview": ["HAVING filters groups after aggregation. It is similar to WHERE, but it operates on group-level results.", "Use HAVING when the condition depends on an aggregate such as COUNT, SUM, or AVG. Use WHERE when you need to filter individual rows before aggregation."], "examples": [["Example 1", "Cities with many customers", "SELECT City, COUNT(*) AS Customers\nFROM Customers\nGROUP BY City\nHAVING COUNT(*) > 10;", "Keeps cities with more than ten customers."], ["Example 2", "High-spending customers", "SELECT CustomerID, SUM(Total) AS Spending\nFROM Orders\nGROUP BY CustomerID\nHAVING SUM(Total) > 1000;", "Finds customers spending over $1,000."], ["Example 3", "Categories with high average", "SELECT Category, AVG(Price) AS AvgPrice\nFROM Products\nGROUP BY Category\nHAVING AVG(Price) > 25;", "Keeps categories with high average prices."]], "use": "Analysts use HAVING to identify segments that meet aggregate thresholds.", "tip": "Remember the order conceptually: WHERE filters rows → GROUP BY creates groups → HAVING filters groups.", "tags": ["HAVING", "GROUP BY", "Aggregates", "Filtering Groups"], "note": null, "visual": null}, {"id": "concept-37", "index": "37", "title": "SQL Exists", "overview": ["EXISTS checks whether a subquery returns at least one row. It is often used when you care about the existence of a related record rather than the related values themselves.", "EXISTS can be a very natural way to ask questions such as 'Which customers have at least one order?' It can also express anti-matching logic with NOT EXISTS."], "examples": [["Example 1", "Customers with orders", "SELECT c.Name\nFROM Customers c\nWHERE EXISTS (\n  SELECT 1 FROM Orders o\n  WHERE o.CustomerID = c.CustomerID\n);", "Finds customers with at least one order."], ["Example 2", "Customers without orders", "SELECT c.Name\nFROM Customers c\nWHERE NOT EXISTS (\n  SELECT 1 FROM Orders o\n  WHERE o.CustomerID = c.CustomerID\n);", "Finds customers with no orders."], ["Example 3", "Products ever sold", "SELECT p.ProductName\nFROM Products p\nWHERE EXISTS (\n  SELECT 1 FROM Sales s\n  WHERE s.ProductID = p.ProductID\n);", "Finds products that have sales."]], "use": "EXISTS is useful for relationship checks, eligibility rules, and efficient existence testing.", "tip": "Inside EXISTS, SELECT 1 is conventional because the actual selected value is irrelevant; only the presence of a row matters.", "tags": ["EXISTS", "NOT EXISTS", "Subquery", "Relationships"], "note": null, "visual": null}, {"id": "concept-38", "index": "38", "title": "SQL Any", "overview": ["ANY compares a value against the values returned by a subquery and succeeds if the comparison is true for at least one value.", "ANY is useful for questions like 'Is this price greater than at least one price in another group?' It is less common than IN or EXISTS, but understanding it helps with advanced SQL logic."], "examples": [["Example 1", "Greater than any value", "SELECT ProductName, Price\nFROM Products\nWHERE Price > ANY (\n  SELECT Price FROM Products WHERE Category = 'Basic'\n);", "Returns products priced above at least one Basic product."], ["Example 2", "Equal to any value", "SELECT *\nFROM Products\nWHERE Price = ANY (\n  SELECT Price FROM SpecialPrices\n);", "Matches prices appearing in the subquery."], ["Example 3", "Compare scores", "SELECT Name, Score\nFROM Students s\nWHERE Score > ANY (\n  SELECT Score FROM Students WHERE Class = 'A'\n);", "Finds scores above at least one Class A score."]], "use": "ANY can express flexible comparisons against a dynamic set of values.", "tip": "Read ANY literally as 'the comparison is true for at least one value returned by the subquery.'", "tags": ["ANY", "Subquery", "Comparison", "Advanced SQL"], "note": null, "visual": null}, {"id": "concept-39", "index": "39", "title": "SQL All", "overview": ["ALL compares a value against every value returned by a subquery. The comparison must be true for the entire set.", "ALL is useful for strict comparisons such as 'greater than every value in this group.' It is more restrictive than ANY."], "examples": [["Example 1", "Greater than all values", "SELECT ProductName, Price\nFROM Products\nWHERE Price > ALL (\n  SELECT Price FROM Products WHERE Category = 'Basic'\n);", "Finds products more expensive than every Basic product."], ["Example 2", "Less than all values", "SELECT ProductName, Price\nFROM Products\nWHERE Price < ALL (\n  SELECT Price FROM Products WHERE Category = 'Premium'\n);", "Finds products cheaper than every Premium product."], ["Example 3", "Compare scores", "SELECT Name, Score\nFROM Students s\nWHERE Score >= ALL (\n  SELECT Score FROM Students WHERE Class = 'A'\n);", "Finds scores at least as high as every Class A score."]], "use": "ALL is useful when a business rule requires beating an entire comparison population rather than just one member.", "tip": "Read ALL as 'the condition must be true for every value returned.'", "tags": ["ALL", "Subquery", "Comparison", "Advanced SQL"], "note": null, "visual": null}, {"id": "concept-40", "index": "40", "title": "SQL Select Into", "overview": ["SELECT INTO creates a new table from the result of a SELECT statement. In SQL Server, it is commonly used for temporary copies, snapshots, and intermediate datasets.", "It can quickly create a table with the selected columns and inferred data types. Because it creates a new object, use it carefully in production environments."], "examples": [["Example 1", "Create an archive", "SELECT *\nINTO Customers_Archive\nFROM Customers;", "Creates a new archive table."], ["Example 2", "Create a filtered table", "SELECT CustomerID, Name, City\nINTO MiamiCustomers\nFROM Customers\nWHERE City = 'Miami';", "Creates a table containing Miami customers."], ["Example 3", "Create an analytical snapshot", "SELECT Category, SUM(Total) AS Revenue\nINTO CategoryRevenue\nFROM Orders\nGROUP BY Category;", "Creates a summarized table."]], "use": "SELECT INTO is useful for one-time transformations, migration staging, snapshots, and quick SQL Server prototypes.", "tip": "Check whether the destination table already exists and remember that SELECT INTO creates the object rather than inserting into an existing one.", "tags": ["SELECT INTO", "SQL Server", "Table Creation", "Staging"], "note": null, "visual": null}, {"id": "concept-41", "index": "41", "title": "SQL Insert Into Select", "overview": ["INSERT INTO ... SELECT copies rows from one query result into an existing target table. It is ideal when the destination table already has a defined schema.", "The source SELECT can filter, transform, join, or aggregate data before inserting it. This makes the pattern common in ETL and data migration workflows."], "examples": [["Example 1", "Copy active customers", "INSERT INTO ActiveCustomers (CustomerID, Name)\nSELECT CustomerID, Name\nFROM Customers\nWHERE Status = 'Active';", "Loads active customers into the target."], ["Example 2", "Archive completed orders", "INSERT INTO OrderArchive (OrderID, Total)\nSELECT OrderID, Total\nFROM Orders\nWHERE Status = 'Completed';", "Moves selected records into an archive."], ["Example 3", "Load a summary", "INSERT INTO DailySales (SaleDate, Revenue)\nSELECT CAST(OrderDate AS date), SUM(Total)\nFROM Orders\nGROUP BY CAST(OrderDate AS date);", "Loads aggregated daily sales."]], "use": "INSERT INTO SELECT is a common building block in ETL, migration, archiving, and data warehouse staging.", "tip": "Make sure source and target columns line up in meaning and compatible data type—not just in count.", "tags": ["INSERT INTO SELECT", "ETL", "Data Migration", "DML"], "note": null, "visual": null}, {"id": "concept-42", "index": "42", "title": "SQL Case", "overview": ["CASE adds conditional logic to SQL. It can classify rows, create flags, map codes to labels, and implement business rules directly in a query.", "CASE is similar to if/else logic. Conditions are evaluated in order, so the first matching WHEN determines the returned value."], "examples": [["Example 1", "Price band", "SELECT ProductName, Price,\nCASE\n  WHEN Price >= 50 THEN 'High'\n  WHEN Price >= 20 THEN 'Medium'\n  ELSE 'Low'\nEND AS PriceBand\nFROM Products;", "Classifies products by price."], ["Example 2", "Order flag", "SELECT OrderID,\nCASE WHEN Status = 'Completed' THEN 1 ELSE 0 END AS IsCompleted\nFROM Orders;", "Creates a numeric completion flag."], ["Example 3", "Readable status", "SELECT OrderID,\nCASE Status\n  WHEN 'P' THEN 'Pending'\n  WHEN 'C' THEN 'Completed'\n  ELSE 'Other'\nEND AS StatusLabel\nFROM Orders;", "Maps compact codes to labels."]], "use": "CASE is heavily used in BI datasets, segmentation, KPI flags, and data transformation.", "tip": "Include ELSE when unexpected values should receive a controlled fallback instead of NULL.", "tags": ["CASE", "WHEN", "THEN", "ELSE", "Business Logic"], "note": null, "visual": null}, {"id": "concept-43", "index": "43", "title": "SQL Null Functions", "overview": ["NULL-handling functions help you replace, compare, or reason about missing values. Common SQL Server tools include ISNULL and COALESCE.", "NULL functions are important because missing data can otherwise propagate through calculations or create confusing report output. Choose replacements based on the business meaning of the field."], "examples": [["Example 1", "ISNULL fallback", "SELECT Name, ISNULL(City, 'Unknown') AS City\nFROM Customers;", "Replaces NULL city values."], ["Example 2", "COALESCE fallback", "SELECT Name, COALESCE(Phone, Email, 'No Contact') AS Contact\nFROM Customers;", "Uses the first available contact field."], ["Example 3", "Protect a calculation", "SELECT ProductName, Price * ISNULL(Quantity, 0) AS Value\nFROM OrderItems;", "Provides a defined fallback for missing quantity."]], "use": "NULL functions are useful in reporting, data cleaning, exports, and defensive SQL logic.", "tip": "Do not confuse a missing value with zero. The correct fallback depends on what NULL means in the source data.", "tags": ["NULL", "ISNULL", "COALESCE", "Data Cleaning"], "note": null, "visual": null}, {"id": "concept-44", "index": "44", "title": "SQL Stored Procedures", "overview": ["A stored procedure is a reusable program stored in the database. It can accept parameters, execute multiple SQL statements, and return results or perform controlled data changes.", "Stored procedures are useful when business logic needs to be centralized and repeatedly executed. They can also support permissions, transaction handling, and application integration."], "examples": [["Example 1", "Create a procedure", "CREATE PROCEDURE GetCustomerOrders\n  @CustomerID INT\nAS\nBEGIN\n  SELECT * FROM Orders\n  WHERE CustomerID = @CustomerID;\nEND;", "Defines a reusable customer-order query."], ["Example 2", "Execute it", "EXEC GetCustomerOrders @CustomerID = 101;", "Runs the procedure for one customer."], ["Example 3", "Parameterized report", "CREATE PROCEDURE SalesByStatus\n  @Status VARCHAR(20)\nAS\nBEGIN\n  SELECT SUM(Total) AS Revenue\n  FROM Orders\n  WHERE Status = @Status;\nEND;", "Creates a reusable KPI procedure."]], "use": "Stored procedures are common in enterprise applications, reporting databases, operational systems, and controlled data workflows.", "tip": "Keep procedures focused, parameterized, documented, and tested. Avoid hiding overly complex business logic without clear documentation.", "tags": ["Stored Procedures", "SQL Server", "Parameters", "Database Programming"], "note": null, "visual": null}, {"id": "concept-45", "index": "45", "title": "SQL Comments", "overview": ["Comments explain SQL code without changing its execution. They are useful for documenting business rules, assumptions, warnings, and complex transformations.", "Good comments explain why something is done, not merely repeat what the SQL obviously says. Consistent documentation makes shared SQL much easier to maintain."], "examples": [["Example 1", "Single-line comment", "-- Only completed orders\nSELECT *\nFROM Orders\nWHERE Status = 'Completed';", "Documents the purpose of the filter."], ["Example 2", "Inline comment", "SELECT Total * 1.07 AS TotalWithTax -- 7% tax\nFROM Orders;", "Explains a business assumption."], ["Example 3", "Block comment", "/*\n  Revenue excludes cancelled orders.\n  This matches the dashboard definition.\n*/\nSELECT SUM(Total)\nFROM Orders\nWHERE Status <> 'Cancelled';", "Documents a multi-line rule."]], "use": "Comments are especially valuable in production analytics, shared repositories, and SQL used in recurring reporting pipelines.", "tip": "Comment the business reason when the logic is not obvious from the SQL itself.", "tags": ["Comments", "Documentation", "--", "/* */"], "note": null, "visual": null}, {"id": "concept-46", "index": "46", "title": "SQL Operators", "overview": ["SQL operators are symbols or keywords used to compare, calculate, combine, and transform values. They include arithmetic, comparison, logical, and pattern operators.", "Knowing operators well makes WHERE, CASE, calculated columns, and joins much easier to write. Operators also determine how SQL evaluates conditions."], "examples": [["Example 1", "Comparison", "SELECT *\nFROM Products\nWHERE Price >= 20;", "Uses >= to compare a price."], ["Example 2", "Arithmetic", "SELECT ProductName, Price * Quantity AS Total\nFROM OrderItems;", "Uses * for multiplication."], ["Example 3", "Logical", "SELECT *\nFROM Orders\nWHERE Status = 'Completed'\n  AND Total > 100;", "Uses AND to combine conditions."]], "use": "Operators appear in nearly every SQL query, from simple filters to complex analytical transformations.", "tip": "Learn the difference between comparison operators (=, <>, >, <) and logical operators (AND, OR, NOT).", "tags": ["Operators", "Comparison", "Arithmetic", "Logical", "Filtering"], "note": null, "visual": "Arithmetic: +  -  *  /\nComparison: =  <>  >  <  >=  <=\nLogical: AND  OR  NOT\nPattern: LIKE  IN  BETWEEN"}];
+
+const learnMoreBtn = document.getElementById("learnMoreBtn");
+const learnPanel = document.getElementById("learnMorePanel");
+const learnCloseBtn = document.getElementById("learnCloseBtn");
+const learnList = document.getElementById("learnList");
+const learnContent = document.getElementById("learnContent");
+const learnSearch = document.getElementById("learnSearch");
+const learnCount = document.getElementById("learnCount");
+let activeLearnIndex = 0;
+
+function learnEscape(value){
+  return String(value ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
+function learnCode(value){
+  return learnEscape(value);
+}
+function renderLearnList(filter=""){
+  const q = filter.trim().toLowerCase();
+  const filtered = learnConcepts.map((x,i)=>({...x,_i:i})).filter(x=>x.title.toLowerCase().includes(q));
+  learnCount.textContent = `${filtered.length} concept${filtered.length===1?"":"s"}`;
+  if(!filtered.length){
+    learnList.innerHTML = `<div class="learn-empty"><strong>No concepts found</strong>Try another search.</div>`;
+    return;
+  }
+  learnList.innerHTML = filtered.map(x=>`
+    <button class="learn-item ${x._i===activeLearnIndex?"active":""}" type="button" data-learn-index="${x._i}">
+      <span class="learn-item-num">${x.index}</span>
+      <span class="learn-item-label">${learnEscape(x.title)}</span>
+    </button>`).join("");
+  learnList.querySelectorAll("[data-learn-index]").forEach(btn=>{
+    btn.addEventListener("click",()=>selectLearnConcept(Number(btn.dataset.learnIndex),true));
+  });
+}
+function exampleHtml(ex, idx, total){
+  return `<article class="learn-example ${total===3 && idx===2 ? "full":""}">
+    <div class="learn-example-head"><strong>${learnEscape(ex[0])}</strong><span>${learnEscape(ex[1])}</span></div>
+    <div class="learn-code-wrap">
+      <button class="learn-copy" type="button" data-copy-code="${encodeURIComponent(ex[2])}">Copy</button>
+      <pre class="learn-code">${learnCode(ex[2])}</pre>
+    </div>
+    <div class="learn-result"><strong>✓ What it does:</strong> ${learnEscape(ex[3])}</div>
+  </article>`;
+}
+function selectLearnConcept(index, scrollList){
+  activeLearnIndex = Math.max(0, Math.min(index, learnConcepts.length-1));
+  const c = learnConcepts[activeLearnIndex];
+  renderLearnList(learnSearch.value);
+  learnContent.scrollTop = 0;
+
+  const prev = learnConcepts[activeLearnIndex-1];
+  const next = learnConcepts[activeLearnIndex+1];
+  const examples = c.examples.map((ex,i)=>exampleHtml(ex,i,c.examples.length)).join("");
+  const tags = c.tags.map(tag=>`<span class="learn-tag">#${learnEscape(tag)}</span>`).join("");
+  const note = c.note ? `<div class="learn-note"><strong>ⓘ Note</strong><br>${learnEscape(c.note)}</div>` : "";
+  const visual = c.visual ? `<div class="learn-visual">${learnEscape(c.visual)}</div>` : "";
+  const useCards = [
+    ["📊","Business Intelligence","Build dashboards, KPIs, and recurring reports from structured data."],
+    ["🌐","Applications","Power web and internal applications that read or modify database records."],
+    ["🔎","Data Analysis","Clean, explore, validate, transform, and investigate real datasets."]
+  ].map(x=>`<div class="learn-use-card"><div class="ico">${x[0]}</div><strong>${x[1]}</strong><span>${x[2]}</span></div>`).join("");
+
+  learnContent.innerHTML = `
+    <section class="learn-hero">
+      <span class="learn-kicker"><i></i>Concept ${c.index} · SQL Learning</span>
+      <h1>${learnEscape(c.title)}</h1>
+      <p>${learnEscape(c.overview[0])}</p>
+      <div class="learn-tabs">
+        <button class="learn-tab active" type="button">Overview</button>
+        <button class="learn-tab" type="button" onclick="document.getElementById('learnExamples').scrollIntoView({behavior:'smooth'})">Examples</button>
+        <button class="learn-tab" type="button" onclick="document.getElementById('learnUseCases').scrollIntoView({behavior:'smooth'})">Use Cases</button>
+        <button class="learn-tab" type="button" onclick="document.getElementById('learnTip').scrollIntoView({behavior:'smooth'})">Tips & Notes</button>
+      </div>
+    </section>
+
+    <section class="learn-section">
+      <h2>What is ${learnEscape(c.title.replace(/^SQL\\s+/i,""))}?</h2>
+      <p>${learnEscape(c.overview[0])}</p>
+      <p>${learnEscape(c.overview[1])}</p>
+      ${visual}
+      ${note}
+    </section>
+
+    <section class="learn-section" id="learnExamples">
+      <h2>Examples</h2>
+      <p>Study the examples below and focus on what changes in the query and why the result changes.</p>
+      <div class="learn-examples">${examples}</div>
+    </section>
+
+    <section class="learn-section" id="learnUseCases">
+      <h2>Real World Use Cases</h2>
+      <div class="learn-use-grid">${useCards}</div>
+      <div class="learn-note"><strong>How this concept helps an analyst:</strong><br>${learnEscape(c.use)}</div>
+    </section>
+
+    <section class="learn-section" id="learnTip">
+      <h2>Tips & Notes</h2>
+      <div class="learn-tip"><strong>💡 Pro Tip</strong><br>${learnEscape(c.tip)}</div>
+      ${c.note ? `<div class="learn-note"><strong>Remember</strong><br>${learnEscape(c.note)}</div>` : ""}
+      <div class="learn-tags">${tags}</div>
+    </section>
+
+    <div class="learn-nav">
+      <button type="button" ${prev?"":"disabled"} data-nav="-1">← Previous${prev?": "+learnEscape(prev.title):""}</button>
+      <button type="button" class="primary" ${next?"":"disabled"} data-nav="1">${next?"Next: "+learnEscape(next.title)+" →":"Complete ✓"}</button>
+    </div>
+  `;
+
+  learnContent.querySelectorAll("[data-nav]").forEach(btn=>{
+    btn.addEventListener("click",()=>selectLearnConcept(activeLearnIndex + Number(btn.dataset.nav),true));
+  });
+  learnContent.querySelectorAll("[data-copy-code]").forEach(btn=>{
+    btn.addEventListener("click",async()=>{
+      const text = decodeURIComponent(btn.dataset.copyCode);
+      try{
+        await navigator.clipboard.writeText(text);
+        const old = btn.textContent; btn.textContent="Copied!";
+        setTimeout(()=>btn.textContent=old,900);
+      }catch{
+        btn.textContent="Select code";
+        setTimeout(()=>btn.textContent="Copy",900);
+      }
+    });
+  });
+
+  if(scrollList){
+    const active = learnList.querySelector(".learn-item.active");
+    if(active) active.scrollIntoView({block:"nearest",behavior:"smooth"});
+  }
+}
+function openLearnMore(){
+  learnPanel.classList.add("open");
+  learnPanel.setAttribute("aria-hidden","false");
+  document.body.classList.add("learn-open");
+  learnSearch.value="";
+  activeLearnIndex=0;
+  renderLearnList("");
+  selectLearnConcept(0,false);
+  setTimeout(()=>learnSearch.focus(),120);
+}
+function closeLearnMore(){
+  learnPanel.classList.remove("open");
+  learnPanel.setAttribute("aria-hidden","true");
+  document.body.classList.remove("learn-open");
+  learnMoreBtn.focus();
+}
+learnMoreBtn?.addEventListener("click",openLearnMore);
+learnCloseBtn?.addEventListener("click",closeLearnMore);
+learnPanel?.addEventListener("click",e=>{if(e.target===learnPanel)closeLearnMore()});
+learnSearch?.addEventListener("input",e=>renderLearnList(e.target.value));
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape" && learnPanel.classList.contains("open")) closeLearnMore();
+  if(e.key==="ArrowRight" && learnPanel.classList.contains("open") && !e.target.matches("input,textarea")) {
+    if(activeLearnIndex < learnConcepts.length-1) selectLearnConcept(activeLearnIndex+1,true);
+  }
+  if(e.key==="ArrowLeft" && learnPanel.classList.contains("open") && !e.target.matches("input,textarea")) {
+    if(activeLearnIndex > 0) selectLearnConcept(activeLearnIndex-1,true);
+  }
+});
+</script>
+
+<script id="refresh-page-script">
+(function(){
+  const refreshBtn = document.getElementById("refreshPageBtn");
+  if(!refreshBtn) return;
+
+  refreshBtn.addEventListener("click", function(){
+    const confirmed = window.confirm(
+      "Reset your SQL Lab progress? This will clear all solved questions, XP, accuracy, streak, and attempts."
+    );
+
+    if(!confirmed) return;
+
+    // Reset the in-memory state first so the UI updates immediately.
+    state.level = 1;
+    state.index = 0;
+    state.solved = 0;
+    state.attempts = 0;
+    state.correct = 0;
+    state.streak = 0;
+    state.xp = 0;
+    state.hintsUsed = 0;
+    state.completedQuestions = {};
+    state.failedAttempts = {};
+
+    // Clear every piece of quiz progress persisted by SQL Lab.
+    [
+      "sqlLabLevel",
+      "sqlLabIndex",
+      "sqlLabSolved",
+      "sqlLabAttempts",
+      "sqlLabCorrect",
+      "sqlLabStreak",
+      "sqlLabXP",
+      "sqlLabHintsUsed",
+      "sqlLabCompletedQuestions",
+      "sqlLabFailedAttempts"
+    ].forEach(key => localStorage.removeItem(key));
+
+    // Clear daily challenge completion flags as part of a full reset.
+    Object.keys(localStorage)
+      .filter(key => key.startsWith("sqlLabDailySolved_"))
+      .forEach(key => localStorage.removeItem(key));
+
+    // Persist the clean starting state and refresh every visible metric.
+    saveState();
+    renderMetrics();
+    renderLevelButtons();
+    renderQuestion();
+
+    const sqlBox = document.getElementById("sql");
+    if(sqlBox) sqlBox.value = "";
+
+    clearStatus();
+
+    showStatus("Progress reset. You're back at Question 1 with 0 XP.", "success");
+  });
+})();
+</script>
+
 </body>
 </html>
