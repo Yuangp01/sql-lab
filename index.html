@@ -2799,27 +2799,246 @@ document.addEventListener("keydown",e=>{
     const spec=specs[lvl]||specs[1]; let x=spec.make(); uniqueKey("debug",x.topic+"|"+x.question+"|"+x.sql); return x;
   }
   function makePredict(){
+    /*
+      Predict the Output now uses a progressive question engine:
+      - Every level has 5 difficulty stages.
+      - Each new question advances the stage for that level.
+      - Questions are generated with randomized data/thresholds.
+      - Previously shown questions are avoided using the existing seen store.
+      - After stage 5, the engine keeps generating fresh variations at Expert difficulty.
+    */
     const lvl=state.level||1;
-    let x;
-    if(lvl===1){
-      const prices=[12,18,24,31].map(v=>v+randInt(5));
-      const threshold=pick([15,20,25]);
-      const rows=[["Coral",String(prices[0])],["Mint",String(prices[1])],["Shadow",String(prices[2])],["Storm",String(prices[3])]];
-      const matches=rows.filter(r=>Number(r[1])>threshold).map(r=>r[0]);
-      x={topic:"SQL Where",question:"Using the table below, which bettas are returned?",tables:[table("bettas",["betta_name","price"],rows)],sql:`SELECT betta_name FROM bettas WHERE price > ${threshold};`,options:[matches.join(", ")||"No rows",rows.map(r=>r[0]).join(", "),rows.filter(r=>Number(r[1])<=threshold).map(r=>r[0]).join(", ")],correct:0,explain:`Only rows with price > ${threshold} qualify. Trace each price in the snapshot before choosing.`};
-    } else if(lvl===2){
-      const colors=pick(["Blue","Green","Red"]); const other=pick(["Yellow","Black","White"]);
-      const rows=[["Coral",colors],["Mint",other],["Shadow",colors],["Storm",pick([other,"Purple"])] , ["Cosmo",pick([colors,other])]];
-      const unique=new Set(rows.map(r=>r[1])).size;
-      x={topic:"SQL Select Distinct",question:"Using the table below, how many rows are returned?",tables:[table("bettas",["betta_name","color"],rows)],sql:"SELECT DISTINCT color FROM bettas;",options:[String(unique-1),String(unique),String(rows.length)],correct:1,explain:`DISTINCT returns one row per unique color. Count the distinct color values in the snapshot: ${unique}.`};
-    } else if(lvl===3){
-      x={topic:"SQL Inner Join",question:"Using the tables below, how many customer rows can match an INNER JOIN?",tables:[table("customers",["customer_id","name"],[["1","Emma"],["2","Noah"],["3","Liam"],["4","Sofia"]]),table("orders",["order_id","customer_id"],[["801","1"],["802","1"],["803","3"]])],sql:"SELECT c.name, o.order_id FROM customers c INNER JOIN orders o ON c.customer_id=o.customer_id;",options:["2","3","4"],correct:1,explain:"The INNER JOIN returns one row per matching customer-order pair. Customer 1 has two matching orders and customer 3 has one, for 3 result rows."};
-    } else if(lvl===4){
-      x={topic:"SQL Subqueries",question:"Using the table below, how many customers have spending above the average customer spending?",tables:[table("customer_totals",["customer_id","spending"],[["1","100"],["2","50"],["3","200"],["4","150"]])],sql:"SELECT customer_id FROM customer_totals WHERE spending > (SELECT AVG(spending) FROM customer_totals);",options:["1","2","3"],correct:1,explain:"The average is 125. Customers 3 and 4 have spending above 125, so 2 rows are returned."};
-    } else {
-      x={topic:"ROW_NUMBER()",question:"Using the table below, what row number does Sofia receive within IT?",tables:[table("employees",["name","department","salary"],[["Emma","Sales","70000"],["Noah","Sales","65000"],["Liam","IT","90000"],["Sofia","IT","85000"]])],sql:"SELECT name, department, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rn FROM employees;",options:["1","2","3"],correct:1,explain:"Within IT, Liam has the higher salary and receives 1. Sofia is second, so her ROW_NUMBER is 2."};
+    const progressKey=`sqlLabPredictProgress_${lvl}`;
+    const progress=Number(localStorage.getItem(progressKey)||0);
+    const difficulty=Math.min(progress+1,5);
+    const shuffle=(arr)=>{
+      const a=arr.slice();
+      for(let i=a.length-1;i>0;i--){
+        const j=randInt(i+1);
+        [a[i],a[j]]=[a[j],a[i]];
+      }
+      return a;
+    };
+    const makeOptions=(correct,distractors)=>{
+      const raw=[String(correct),...distractors.map(String).filter(v=>String(v)!==String(correct))];
+      const unique=[...new Set(raw)];
+      while(unique.length<3) unique.push(`Option ${unique.length+1}`);
+      const options=shuffle(unique.slice(0,3));
+      return {options,correct:options.indexOf(String(correct))};
+    };
+    const finish=(x)=>{
+      x.difficulty=difficulty;
+      x.difficultyLabel=["Beginner","Easy","Medium","Hard","Expert"][difficulty-1];
+      return x;
+    };
+
+    const factories={
+      1:[
+        // Stage 1 — simple WHERE
+        ()=>{
+          const prices=[12+randInt(5),18+randInt(5),24+randInt(5),31+randInt(5)];
+          const threshold=pick([15,20,25]);
+          const rows=[["Coral",String(prices[0])],["Mint",String(prices[1])],["Shadow",String(prices[2])],["Storm",String(prices[3])]];
+          const matches=rows.filter(r=>Number(r[1])>threshold).map(r=>r[0]);
+          const o=makeOptions(matches.join(", ")||"None",[rows.map(r=>r[0]).join(", "),rows.filter(r=>Number(r[1])<=threshold).map(r=>r[0]).join(", ")||"None"]);
+          return finish({topic:"SQL Where",question:"Using the table below, which bettas are returned?",tables:[table("bettas",["betta_name","price"],rows)],sql:`SELECT betta_name FROM bettas WHERE price > ${threshold};`,...o,explain:`Only rows with price > ${threshold} qualify. Check each price against the threshold.`});
+        },
+        // Stage 2 — two conditions
+        ()=>{
+          const minPrice=pick([15,18,20,22]);
+          const wanted=pick(["Red","Blue","Green"]);
+          const rows=[["Coral",wanted,String(minPrice+randInt(4))],["Mint","Yellow",String(minPrice+randInt(3))],["Shadow",wanted,String(minPrice-randInt(4)-1)],["Storm",wanted,String(minPrice+5+randInt(4))],["Luna","Black",String(minPrice+8)]];
+          const matches=rows.filter(r=>r[1]===wanted && Number(r[2])>minPrice).map(r=>r[0]);
+          const o=makeOptions(matches.join(", ")||"None",[rows.filter(r=>r[1]===wanted).map(r=>r[0]).join(", ")||"None",rows.filter(r=>Number(r[2])>minPrice).map(r=>r[0]).join(", ")||"None"]);
+          return finish({topic:"SQL And / Or / Not",question:`Which bettas match both conditions: color = '${wanted}' AND price > ${minPrice}?`,tables:[table("bettas",["betta_name","color","price"],rows)],sql:`SELECT betta_name FROM bettas WHERE color = '${wanted}' AND price > ${minPrice};`,...o,explain:`Both conditions must be true for the same row. First filter by color, then check the price.`});
+        },
+        // Stage 3 — BETWEEN
+        ()=>{
+          const low=pick([15,18,20]), high=low+pick([5,7,10]);
+          const vals=[low-2,low,low+2,high,high+3];
+          const names=["Coral","Mint","Shadow","Storm","Luna"];
+          const rows=names.map((n,i)=>[n,String(vals[i])]);
+          const matches=rows.filter(r=>Number(r[1])>=low&&Number(r[1])<=high).map(r=>r[0]);
+          const o=makeOptions(matches.join(", ")||"None",[rows.filter(r=>Number(r[1])<low).map(r=>r[0]).join(", ")||"None",rows.filter(r=>Number(r[1])>high).map(r=>r[0]).join(", ")||"None"]);
+          return finish({topic:"SQL Between",question:`Which bettas are returned by the inclusive range ${low} to ${high}?`,tables:[table("bettas",["betta_name","price"],rows)],sql:`SELECT betta_name FROM bettas WHERE price BETWEEN ${low} AND ${high};`,...o,explain:`BETWEEN is inclusive, so values equal to ${low} or ${high} are included.`});
+        },
+        // Stage 4 — LIKE + OR
+        ()=>{
+          const rows=[["Coral","Red"],["Mint","Blue"],["Shadow","Black"],["Storm","Green"],["Cosmo","Orange"],["Luna","Purple"]];
+          const pattern=pick(["%o%","%a%","S%","%m%"]);
+          const colorsWanted=pick([["Red","Green"],["Blue","Orange"],["Black","Purple"]]);
+          const matches=rows.filter(r=>r[0].toLowerCase().includes(pattern.replaceAll("%","").toLowerCase()) && colorsWanted.includes(r[1])).map(r=>r[0]);
+          const o=makeOptions(matches.join(", ")||"None",[rows.filter(r=>r[0].toLowerCase().includes(pattern.replaceAll("%","").toLowerCase())).map(r=>r[0]).join(", ")||"None",rows.filter(r=>colorsWanted.includes(r[1])).map(r=>r[0]).join(", ")||"None"]);
+          return finish({topic:"SQL Like",question:`Which bettas match the name pattern '${pattern}' AND have color '${colorsWanted[0]}' OR '${colorsWanted[1]}'?`,tables:[table("bettas",["betta_name","color"],rows)],sql:`SELECT betta_name FROM bettas WHERE betta_name LIKE '${pattern}' AND color IN ('${colorsWanted[0]}','${colorsWanted[1]}');`,...o,explain:`Evaluate the LIKE condition and the color condition together. The row must satisfy the name pattern and one of the two allowed colors.`});
+        },
+        // Stage 5 — ORDER BY + LIMIT
+        ()=>{
+          const rows=[["Coral",String(10+randInt(8))],["Mint",String(18+randInt(7))],["Shadow",String(24+randInt(7))],["Storm",String(30+randInt(7))],["Luna",String(38+randInt(7))]];
+          const n=pick([2,3]);
+          const sorted=rows.slice().sort((a,b)=>Number(b[1])-Number(a[1]));
+          const matches=sorted.slice(0,n).map(r=>r[0]);
+          const o=makeOptions(matches.join(", "),[sorted.slice(0,n-1).map(r=>r[0]).join(", "),sorted.slice(0,n+1).map(r=>r[0]).join(", ")]);
+          return finish({topic:"SQL Select Top / Limit",question:`Which ${n} bettas are returned by this query?`,tables:[table("bettas",["betta_name","price"],rows)],sql:`SELECT betta_name FROM bettas ORDER BY price DESC LIMIT ${n};`,...o,explain:`ORDER BY price DESC puts the most expensive bettas first, and LIMIT ${n} keeps only the first ${n} rows.`});
+        }
+      ],
+      2:[
+        ()=>{
+          const rows=[["Coral","Red"],["Mint","Blue"],["Shadow","Red"],["Storm","Green"],["Luna","Blue"]];
+          const colors=[...new Set(rows.map(r=>r[1]))];
+          const o=makeOptions(colors.length,[String(rows.length),String(colors.length+1)]);
+          return finish({topic:"SQL Select Distinct",question:"How many rows are returned?",tables:[table("bettas",["betta_name","color"],rows)],sql:"SELECT DISTINCT color FROM bettas;",...o,explain:`DISTINCT removes duplicate color values. The table contains ${colors.length} unique colors.`});
+        },
+        ()=>{
+          const rows=[["101","Completed","40"],["102","Pending","70"],["103","Completed","60"],["104","Cancelled","30"],["105","Pending","20"]];
+          const status=pick(["Completed","Pending"]);
+          const sum=rows.filter(r=>r[1]===status).reduce((a,r)=>a+Number(r[2]),0);
+          const o=makeOptions(sum,[sum+20,sum-20]);
+          return finish({topic:"SUM()",question:`What value is returned for SUM(total) after filtering status = '${status}'?`,tables:[table("orders",["order_id","status","total"],rows)],sql:`SELECT SUM(total) FROM orders WHERE status = '${status}';`,...o,explain:`Filter to '${status}' orders first, then add their total values. The result is ${sum}.`});
+        },
+        ()=>{
+          const rows=[["101","Completed","40"],["102","Pending","70"],["103","Completed","60"],["104","Cancelled","30"],["105","Pending","20"],["106","Completed","25"]];
+          const groups={};
+          rows.forEach(r=>groups[r[1]]=(groups[r[1]]||0)+Number(r[2]));
+          const o=makeOptions(Object.keys(groups).length,[rows.length,Math.max(...Object.values(groups))]);
+          return finish({topic:"SQL Group By",question:"How many rows are returned by the grouped query?",tables:[table("orders",["order_id","status","total"],rows)],sql:"SELECT status, SUM(total) AS revenue FROM orders GROUP BY status;",...o,explain:`GROUP BY status creates one result row per distinct status. There are ${Object.keys(groups).length} statuses.`});
+        },
+        ()=>{
+          const rows=[["101","1","40"],["102","1","70"],["103","2","60"],["104","3","30"],["105","2","50"]];
+          const threshold=pick([80,100,110]);
+          const sums={};
+          rows.forEach(r=>sums[r[1]]=(sums[r[1]]||0)+Number(r[2]));
+          const count=Object.values(sums).filter(v=>v>threshold).length;
+          const o=makeOptions(count,[Object.keys(sums).length,rows.length]);
+          return finish({topic:"SQL Having",question:`How many customer groups survive HAVING SUM(total) > ${threshold}?`,tables:[table("orders",["order_id","customer_id","total"],rows)],sql:`SELECT customer_id, SUM(total) AS spending FROM orders GROUP BY customer_id HAVING SUM(total) > ${threshold};`,...o,explain:`GROUP BY creates customer totals first. HAVING then keeps only groups whose SUM(total) is above ${threshold}. ${count} group(s) qualify.`});
+        },
+        ()=>{
+          const rows=[["Emma","Miami","100"],["Noah","NULL","80"],["Liam","Miami","120"],["Sofia","NULL","90"]];
+          const values=rows.map(r=>r[1]==="NULL"?"Unknown":r[1]);
+          const o=makeOptions(values.filter((v,i,a)=>a.indexOf(v)===i).length,[rows.length,2]);
+          return finish({topic:"SQL Null Functions (ISNULL, COALESCE)",question:"How many distinct city values remain after replacing NULL with 'Unknown'?",tables:[table("customers",["name","city","spending"],rows)],sql:"SELECT DISTINCT COALESCE(city,'Unknown') AS city FROM customers;",...o,explain:`NULL values are converted to 'Unknown'. The distinct values are ${[...new Set(values)].join(", ")}, so ${new Set(values).size} rows remain.`});
+        }
+      ],
+      3:[
+        ()=>{
+          const customers=[["1","Emma"],["2","Noah"],["3","Liam"],["4","Sofia"]];
+          const orders=[["801","1"],["802","1"],["803","3"]];
+          const o=makeOptions(3,[2,4]);
+          return finish({topic:"SQL Inner Join",question:"How many rows are returned by this INNER JOIN?",tables:[table("customers",["customer_id","name"],customers),table("orders",["order_id","customer_id"],orders)],sql:"SELECT c.name, o.order_id FROM customers c INNER JOIN orders o ON c.customer_id=o.customer_id;",...o,explain:"Customer 1 matches two orders and customer 3 matches one order. Each matching pair becomes a row, so 3 rows are returned."});
+        },
+        ()=>{
+          const customers=[["1","Emma"],["2","Noah"],["3","Liam"],["4","Sofia"]];
+          const orders=[["801","1"],["802","3"]];
+          const o=makeOptions(2,[4,1]);
+          return finish({topic:"SQL Left Join",question:"How many rows contain NULL for order_id?",tables:[table("customers",["customer_id","name"],customers),table("orders",["order_id","customer_id"],orders)],sql:"SELECT c.name, o.order_id FROM customers c LEFT JOIN orders o ON c.customer_id=o.customer_id;",...o,explain:"LEFT JOIN keeps every customer. Customers 2 and 4 have no matching order, so their order_id is NULL: 2 rows."});
+        },
+        ()=>{
+          const customers=[["1","Emma"],["2","Noah"],["3","Liam"]];
+          const orders=[["801","1","40"],["802","1","70"],["803","2","60"],["804","3","30"]];
+          const sums={};
+          orders.forEach(r=>sums[r[1]]=(sums[r[1]]||0)+Number(r[2]));
+          const highest=Math.max(...Object.values(sums));
+          const name=customers.find(c=>sums[c[0]]===highest)[1];
+          const o=makeOptions(name,[customers.find(c=>c[0]==="2")[1],customers.find(c=>c[0]==="3")[1]]);
+          return finish({topic:"SQL Aliases (con tablas)",question:"Which customer has the highest total order value?",tables:[table("customers",["customer_id","name"],customers),table("orders",["order_id","customer_id","total"],orders)],sql:"SELECT c.name, SUM(o.total) AS spending FROM customers c JOIN orders o ON c.customer_id=o.customer_id GROUP BY c.name ORDER BY spending DESC;",...o,explain:`After joining and grouping, Emma has ${sums["1"]}, Noah ${sums["2"]}, and Liam ${sums["3"]}. Emma is highest.`});
+        },
+        ()=>{
+          const left=[["1","Emma"],["2","Noah"],["3","Liam"]];
+          const right=[["2","Noah"],["3","Liam"],["4","Sofia"]];
+          const common=new Set(left.map(r=>r[0])).size+new Set(right.map(r=>r[0])).size-new Set([...left.map(r=>r[0]),...right.map(r=>r[0])]).size;
+          const unionAll=left.length+right.length;
+          const o=makeOptions(unionAll-common,[left.length+right.length,common]);
+          return finish({topic:"SQL Union / Union All",question:"How many rows are returned by UNION (not UNION ALL)?",tables:[table("customers_a",["customer_id","name"],left),table("customers_b",["customer_id","name"],right)],sql:"SELECT customer_id, name FROM customers_a UNION SELECT customer_id, name FROM customers_b;",...o,explain:`UNION removes duplicate rows. There are ${common} duplicate customer rows across the two result sets, leaving ${unionAll-common} rows.`});
+        },
+        ()=>{
+          const customers=[["1","Emma"],["2","Noah"],["3","Liam"]];
+          const orders=[["801","1","40"],["802","1","70"],["803","2","60"],["804","3","30"]];
+          const threshold=pick([50,90,100]);
+          const qualified=customers.filter(c=>orders.filter(o=>o[1]===c[0]).reduce((s,o)=>s+Number(o[2]),0)>threshold).map(c=>c[1]);
+          const o=makeOptions(qualified.join(", ")||"None",[customers.map(c=>c[1]).join(", "),customers.filter(c=>!qualified.includes(c[1])).map(c=>c[1]).join(", ")||"None"]);
+          return finish({topic:"SQL Insert Into Select",question:`Which customers have total spending above ${threshold}?`,tables:[table("customers",["customer_id","name"],customers),table("orders",["order_id","customer_id","total"],orders)],sql:`SELECT c.name FROM customers c JOIN orders o ON c.customer_id=o.customer_id GROUP BY c.name HAVING SUM(o.total) > ${threshold};`,...o,explain:`The JOIN creates customer-order pairs, GROUP BY totals each customer's spending, and HAVING keeps only totals above ${threshold}.`});
+        }
+      ],
+      4:[
+        ()=>{
+          const vals=[100,50,200,150];
+          const avg=vals.reduce((a,b)=>a+b,0)/vals.length;
+          const count=vals.filter(v=>v>avg).length;
+          const o=makeOptions(count,[1,3]);
+          return finish({topic:"SQL Subqueries",question:"How many customers have spending above the average?",tables:[table("customer_totals",["customer_id","spending"],vals.map((v,i)=>[String(i+1),String(v)]))],sql:"SELECT customer_id FROM customer_totals WHERE spending > (SELECT AVG(spending) FROM customer_totals);",...o,explain:`The average spending is ${avg}. Only values above ${avg} qualify, giving ${count} rows.`});
+        },
+        ()=>{
+          const rows=[["1","60"],["1","50"],["2","40"],["3","120"],["3","20"],["4","70"]];
+          const totals={};
+          rows.forEach(r=>totals[r[0]]=(totals[r[0]]||0)+Number(r[1]));
+          const threshold=pick([80,100,110]);
+          const count=Object.values(totals).filter(v=>v>threshold).length;
+          const o=makeOptions(count,[Object.keys(totals).length,rows.length]);
+          return finish({topic:"SQL CTE (Common Table Expressions) — WITH clause",question:`How many customers remain after the CTE calculates totals and the outer query keeps spending > ${threshold}?`,tables:[table("orders",["customer_id","total"],rows)],sql:`WITH totals AS (SELECT customer_id, SUM(total) AS spending FROM orders GROUP BY customer_id) SELECT customer_id FROM totals WHERE spending > ${threshold};`,...o,explain:`The CTE produces totals per customer. Those totals are ${JSON.stringify(totals)}; ${count} customer(s) exceed ${threshold}.`});
+        },
+        ()=>{
+          const customers=[["1","Emma"],["2","Noah"],["3","Liam"],["4","Sofia"]];
+          const orders=[["801","1","Completed"],["802","1","Pending"],["803","3","Completed"],["804","4","Cancelled"]];
+          const count=customers.filter(c=>orders.some(o=>o[1]===c[0]&&o[2]==="Completed")).length;
+          const o=makeOptions(count,[orders.length,customers.length-count]);
+          return finish({topic:"SQL Exists / Any / All",question:"How many customers are returned by this EXISTS query?",tables:[table("customers",["customer_id","name"],customers),table("orders",["order_id","customer_id","status"],orders)],sql:"SELECT c.customer_id FROM customers c WHERE EXISTS (SELECT 1 FROM orders o WHERE o.customer_id=c.customer_id AND o.status='Completed');",...o,explain:`EXISTS is true when at least one matching Completed order exists. ${count} customer(s) satisfy that condition.`});
+        },
+        ()=>{
+          const rows=[["1","120"],["2","90"],["3","150"],["4","60"]];
+          const threshold=pick([80,100,130]);
+          const count=rows.filter(r=>Number(r[1])>threshold).length;
+          const o=makeOptions(count,[rows.length,1]);
+          return finish({topic:"SQL Case Avanzado",question:`How many rows would have case_label = 'High' when spending > ${threshold}?`,tables:[table("customer_totals",["customer_id","spending"],rows)],sql:`SELECT customer_id, CASE WHEN spending > ${threshold} THEN 'High' ELSE 'Standard' END AS case_label FROM customer_totals;`,...o,explain:`CASE labels each row. ${count} spending value(s) are greater than ${threshold}, so ${count} rows receive 'High'.`});
+        },
+        ()=>{
+          const rows=[["1","100"],["2","100"],["3","80"],["4","120"]];
+          const avg=rows.reduce((s,r)=>s+Number(r[1]),0)/rows.length;
+          const count=rows.filter(r=>Number(r[1])>avg).length;
+          const o=makeOptions(count,[1,3]);
+          return finish({topic:"SQL CTE — Multiple CTEs",question:"How many customers are above the average after the totals CTE is evaluated?",tables:[table("customer_totals",["customer_id","spending"],rows)],sql:"WITH avg_value AS (SELECT AVG(spending) AS avg_spending FROM customer_totals) SELECT customer_id FROM customer_totals WHERE spending > (SELECT avg_spending FROM avg_value);",...o,explain:`The average is ${avg}. Values above the average belong to ${count} customer(s).`});
+        }
+      ],
+      5:[
+        ()=>{
+          const rows=[["Emma","Sales","70000"],["Noah","Sales","65000"],["Liam","IT","90000"],["Sofia","IT","85000"]];
+          const o=makeOptions(2,[1,3]);
+          return finish({topic:"ROW_NUMBER()",question:"What row number does Sofia receive within IT?",tables:[table("employees",["name","department","salary"],rows)],sql:"SELECT name, department, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rn FROM employees;",...o,explain:"Within IT, Liam earns more and gets row number 1. Sofia is second, so her row number is 2."});
+        },
+        ()=>{
+          const rows=[["Emma","Sales","70000"],["Noah","Sales","70000"],["Liam","IT","90000"],["Sofia","IT","85000"]];
+          const o=makeOptions("1, 1, 1, 2",["1, 2, 1, 2","1, 1, 2, 2"]);
+          return finish({topic:"RANK() / DENSE_RANK()",question:"What RANK() values are assigned in department order [Emma, Noah, Liam, Sofia]?",tables:[table("employees",["name","department","salary"],rows)],sql:"SELECT name, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS rnk FROM employees;",...o,explain:"Emma and Noah tie at 70,000, so both receive rank 1. The next Sales rank would be 3; in IT, Liam is 1 and Sofia is 2."});
+        },
+        ()=>{
+          const rows=[["401","2026-01-03","100"],["402","2026-01-05","150"],["403","2026-01-08","90"],["404","2026-01-12","210"]];
+          const o=makeOptions("150",["100","90"]);
+          return finish({topic:"LAG() / LEAD()",question:"What previous total is returned for order 403?",tables:[table("orders",["order_id","order_date","total"],rows)],sql:"SELECT order_id, total, LAG(total) OVER (ORDER BY order_date) AS previous_total FROM orders;",...o,explain:"Order 403 comes after order 402 when sorted by date, so LAG(total) returns 150."});
+        },
+        ()=>{
+          const rows=[["A","North","100"],["B","North","150"],["C","South","80"],["D","South","120"]];
+          const northTotal=250,southTotal=200;
+          const o=makeOptions("North: 250; South: 200",["North: 250; South: 120","North: 150; South: 120"]);
+          return finish({topic:"SUM() OVER / AVG() OVER",question:"What department totals are shown by SUM(amount) OVER (PARTITION BY region)?",tables:[table("sales",["sale_id","region","amount"],rows)],sql:"SELECT sale_id, region, SUM(amount) OVER (PARTITION BY region) AS region_total FROM sales;",...o,explain:`Window SUM keeps every original row but repeats the partition total. North totals ${northTotal}; South totals ${southTotal}.`});
+        },
+        ()=>{
+          const rows=[["A","North","100"],["B","North","150"],["C","South","80"],["D","South","120"],["E","North","200"]];
+          const o=makeOptions("B, E",["A, B","C, D","E"]);
+          return finish({topic:"PARTITION BY",question:"Which rows are in the top-2 positions within North when ordered by amount DESC using ROW_NUMBER()?",tables:[table("sales",["sale_id","region","amount"],rows)],sql:"SELECT sale_id, ROW_NUMBER() OVER (PARTITION BY region ORDER BY amount DESC) AS rn FROM sales;",...o,explain:"Within North, amounts are 200 (E), 150 (B), then 100 (A). The top two are E and B."});
+        }
+      ]
+    };
+
+    const pool=factories[lvl]||factories[1];
+    let x=null;
+    for(let i=0;i<100;i++){
+      const candidate=pool[Math.min(difficulty,5)-1]();
+      if(uniqueKey("predict",candidate.sql+"|"+JSON.stringify(candidate.tables))){
+        x=candidate;
+        break;
+      }
     }
-    uniqueKey("predict",x.sql+"|"+JSON.stringify(x.tables)); return x;
+    if(!x) x=pool[Math.min(difficulty,5)-1]();
+    localStorage.setItem(progressKey,String(progress+1));
+    return x;
   }
   function makeMultiple(){
     const lvl=state.level||1;
