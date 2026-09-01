@@ -93,6 +93,7 @@ textarea::placeholder{color:#7b9b83}
 @media(max-width:470px){.levels{grid-template-columns:1fr}.actions{flex-direction:column}.run,.submit{width:100%}.welcome h1{font-size:34px}}
 
 .attempts-status{margin-top:10px;font-weight:600}
+.unlimited-note{grid-column:1/-1;font-size:12px;font-weight:700;color:#1769aa;padding:8px 10px;background:#f1f7ff;border-radius:10px;margin-bottom:4px}.question-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.topic-badge,.accepted-badge{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;background:#eef5ff;color:#1769aa}.accepted-badge{background:#f3f7f4;color:#3d6b4d}
 .attempts-error{color:#E74C3C;font-weight:600}
 .correct-solution-box{margin-top:16px;background:#E8F4F8;border:1px solid #0052CC;border-radius:8px;padding:16px}
 .correct-solution-header{font-weight:700;margin-bottom:12px}
@@ -197,7 +198,7 @@ textarea::placeholder{color:#7b9b83}
 }
 .apply-filters{
   display:grid;
-  grid-template-columns:1.3fr 1fr 1fr;
+  grid-template-columns:1.25fr 1fr 1fr 1fr;
   gap:12px;
   margin-bottom:18px;
 }
@@ -261,6 +262,10 @@ textarea::placeholder{color:#7b9b83}
   font-weight:700;
 }
 .apply-platform a:hover{background:#f1f5f9;}
+.apply-platform-actions{display:flex;gap:8px;flex-wrap:wrap}
+.apply-platform-actions a{flex:1 1 auto}
+.apply-platform a.apply-platform-direct{background:#111827;color:#fff;border-color:#111827}
+.apply-platform a.apply-platform-direct:hover{background:#263244;}
 .apply-note{
   margin-top:18px;
   color:#64748b;
@@ -1064,6 +1069,14 @@ body.learn-open{overflow:hidden}
 }
 </style>
 
+
+<style id="training-modes-v1">
+.training-modes-section{margin:24px 0;padding:28px;background:#fff;border:1px solid #e5e9f0;border-radius:20px;box-shadow:0 12px 30px rgba(15,23,42,.05)}
+.training-modes-section h2{margin:4px 0 6px;font-size:24px;color:#182235}.training-subtitle{margin:0 0 20px;color:#667085}
+.training-modes-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.training-mode-card{appearance:none;text-align:left;border:1px solid #e1e6ee;background:#fbfcfe;border-radius:15px;padding:17px;cursor:pointer;transition:.2s;min-height:150px}.training-mode-card:hover{transform:translateY(-3px);border-color:#0084FF;box-shadow:0 12px 24px rgba(0,132,255,.10);background:#fff}.mode-icon{display:block;font-size:25px;margin-bottom:12px}.training-mode-card strong{display:block;color:#1d2939;font-size:15px;margin-bottom:7px}.training-mode-card small{display:block;color:#667085;line-height:1.4}
+.training-modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}.training-modal-backdrop.open{display:flex}.training-modal{width:min(980px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:22px;box-shadow:0 30px 80px rgba(15,23,42,.25);padding:28px;position:relative}.training-modal-close{position:absolute;right:18px;top:16px;border:0;background:#f2f4f7;border-radius:50%;width:38px;height:38px;font-size:23px;cursor:pointer}.training-modal-head{padding-right:48px}.training-modal-head h2{margin:0 0 5px;color:#182235}.training-modal-head p{margin:0;color:#667085}.training-mode-meta{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.training-pill{padding:6px 10px;border-radius:999px;background:#eef6ff;color:#006bd6;font-size:12px;font-weight:700}.training-question{font-size:18px;font-weight:700;line-height:1.5;color:#182235;margin:18px 0}.training-context{background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;padding:15px;margin:15px 0;overflow:auto}.training-context pre{margin:0;white-space:pre-wrap;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}.training-data-card{background:#fff;border:1px solid #dfe5ec;border-radius:14px;padding:14px;margin:0 0 14px;box-shadow:0 2px 8px rgba(15,23,42,.04)}.training-data-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 10px;font-size:14px;font-weight:800;color:#182235}.training-data-label{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#667085;background:#f2f4f7;padding:5px 8px;border-radius:999px}.training-data-table{width:100%;border-collapse:collapse;font-size:13px;min-width:520px}.training-data-table th{background:#f4f7fb;color:#344054;font-weight:800;text-align:left}.training-data-table th,.training-data-table td{border-bottom:1px solid #eaecf0;padding:9px 10px;white-space:nowrap}.training-data-table tr:last-child td{border-bottom:0}.training-schema{margin:0 0 12px;color:#667085;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}.training-query-card{background:#101828;color:#f8fafc;border-radius:14px;padding:16px;margin-top:14px}.training-query-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#98a2b3;font-weight:800;margin-bottom:9px}.training-query-card pre{margin:0;white-space:pre-wrap;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}.training-task-card{background:#eef6ff;border:1px solid #cfe4ff;border-radius:14px;padding:13px 15px;color:#194b7a;line-height:1.5;margin:12px 0}.training-task-card strong{color:#123b62}.training-hint-card{background:#fffaeb;border:1px solid #fedf89;border-radius:12px;padding:12px 14px;color:#7a5a00;line-height:1.5;margin-top:12px}.training-answer-label{font-size:12px;font-weight:800;color:#475467;margin:14px 0 7px}.training-answer-help{font-size:12px;color:#667085;margin:-2px 0 10px}.training-answer{width:100%;min-height:180px;resize:vertical;border:1px solid #d0d5dd;border-radius:12px;padding:14px;font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;box-sizing:border-box}.training-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.training-actions button{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer}.training-primary{background:#0084FF;color:#fff}.training-secondary{background:#eef2f6;color:#344054}.training-feedback{margin-top:14px;padding:13px;border-radius:12px;display:none}.training-feedback.show{display:block}.training-feedback.ok{background:#ecfdf3;color:#067647}.training-feedback.bad{background:#fef3f2;color:#b42318}.training-options{display:grid;gap:10px;margin:16px 0}.training-option{padding:14px;border:1px solid #d0d5dd;border-radius:12px;background:#fff;text-align:left;cursor:pointer;font-weight:600}.training-option:hover{border-color:#0084FF}.training-option.correct{border-color:#12b76a;background:#ecfdf3}.training-option.wrong{border-color:#f04438;background:#fef3f2}.weakness-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}.weakness-item{padding:13px;border:1px solid #e4e7ec;border-radius:12px}.weakness-item b{float:right}.weakness-bar{height:7px;background:#eef2f6;border-radius:99px;margin-top:10px;overflow:hidden}.weakness-bar span{display:block;height:100%;background:#0084FF;border-radius:99px}.training-explain{margin-top:14px;padding:14px;background:#f8fafc;border-radius:12px;color:#475467;line-height:1.55}.
+@media(max-width:900px){.training-modes-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.training-modes-grid{grid-template-columns:1fr}.training-modal{padding:20px}.weakness-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
@@ -1088,6 +1101,7 @@ body.learn-open{overflow:hidden}
   <h2>Choose your level</h2>
 
   <div class="levels">
+    <div class="unlimited-note">∞ Unlimited randomized exercises</div>
     <button class="level-btn active" data-level="1"><span class="level-left"><span class="num">01</span>Fundamental</span><span class="arrow">›</span></button>
     <button class="level-btn" data-level="2"><span class="level-left"><span class="num">02</span>Core SQL</span><span class="arrow">›</span></button>
     <button class="level-btn" data-level="3"><span class="level-left"><span class="num">03</span>Intermediate</span><span class="arrow">›</span></button>
@@ -1146,6 +1160,18 @@ body.learn-open{overflow:hidden}
     <button class="feature-button" id="interviewBtn" type="button">Start</button>
   </div>
 </section>
+<section class="training-modes-section">
+  <div class="section-kicker">LEVEL UP YOUR SQL</div>
+  <h2>Practice Modes</h2>
+  <p class="training-subtitle">Go beyond memorizing syntax. Solve business problems, debug SQL, predict results, and review your weak areas.</p>
+  <div class="training-modes-grid">
+    <button class="training-mode-card" data-mode="business"><span class="mode-icon">💼</span><strong>Business Problems</strong><small>Turn real business questions into SQL.</small></button>
+    <button class="training-mode-card" data-mode="debug"><span class="mode-icon">🐞</span><strong>SQL Debugging</strong><small>Find and fix broken queries.</small></button>
+    <button class="training-mode-card" data-mode="predict"><span class="mode-icon">🔮</span><strong>Predict the Output</strong><small>Reason about the result before running SQL.</small></button>
+    <button class="training-mode-card" data-mode="multiple"><span class="mode-icon">🧩</span><strong>Multiple Valid Solutions</strong><small>Discover different correct SQL approaches.</small></button>
+    <button class="training-mode-card" data-mode="review"><span class="mode-icon">🎯</span><strong>Weakness Review</strong><small>Practice topics you struggle with most.</small></button>
+  </div>
+</section>
 <section class="sql-progress-section">
 <div class="journey-card"><div class="section-kicker">YOUR SQL JOURNEY</div><div class="journey-grid">
 <div><span class="journey-icon">🔥</span><strong id="dashStreak">0</strong><small>Day Streak</small></div>
@@ -1172,11 +1198,12 @@ body.learn-open{overflow:hidden}
 
   <div class="challenge-head">
     <div>
-      <div class="title-row"><span class="target">◎</span><h2>SQL Challenge</h2></div>
+      <div class="title-row"><span class="target">◎</span><h2>SQL Practice Lab</h2></div>
       <div class="question" id="questionTitle"></div>
-      <p class="instruction">Write a SQL query to return the exact result.</p>
+      <p class="instruction">Write a SQL query. Equivalent SQL approaches are accepted when they produce the requested result.</p>
+      <div class="question-meta"><span class="topic-badge" id="questionTopic">Topic</span><span class="accepted-badge" id="acceptedForms">Multiple valid SQL forms accepted.</span></div>
     </div>
-    <div class="question-count">Question <span id="questionNumber">1</span> of 30</div>
+    <div class="question-count">Exercise <span id="questionNumber">∞</span> · Unlimited</div>
   </div>
 
   <div class="challenge-grid">
@@ -1354,169 +1381,117 @@ const DB = {
 };
 
 /* ============================================================
-   30 QUESTIONS PER LEVEL
-   Each level has its own 30-question bank.
-   The correct SQL is intentionally NOT displayed in the UI.
+   UNLIMITED QUESTION GENERATOR
 ============================================================ */
-const questions = {
-1:[
- ["Show the 3 cheapest bettas.","SELECT betta_name, price FROM bettas ORDER BY price ASC LIMIT 3;"],
- ["Show all bettas that are female.","SELECT * FROM bettas WHERE gender = 'Female';"],
- ["Show all blue bettas.","SELECT * FROM bettas WHERE color = 'Blue';"],
- ["Show the names and prices of all bettas.","SELECT betta_name, price FROM bettas;"],
- ["Show bettas costing more than $20.","SELECT * FROM bettas WHERE price > 20;"],
- ["Show bettas costing $20 or less.","SELECT * FROM bettas WHERE price <= 20;"],
- ["Sort all bettas from most expensive to cheapest.","SELECT * FROM bettas ORDER BY price DESC;"],
- ["Sort bettas alphabetically by name.","SELECT * FROM bettas ORDER BY betta_name ASC;"],
- ["Show only Halfmoon bettas.","SELECT * FROM bettas WHERE variety = 'Halfmoon';"],
- ["Show only male bettas.","SELECT * FROM bettas WHERE gender = 'Male';"],
- ["Show the 5 most expensive bettas.","SELECT betta_name, price FROM bettas ORDER BY price DESC LIMIT 5;"],
- ["Count all bettas.","SELECT COUNT(*) FROM bettas;"],
- ["Find the average betta price.","SELECT AVG(price) FROM bettas;"],
- ["Find the cheapest betta price.","SELECT MIN(price) FROM bettas;"],
- ["Find the most expensive betta price.","SELECT MAX(price) FROM bettas;"],
- ["Find the total value of all betta prices.","SELECT SUM(price) FROM bettas;"],
- ["Show all red or blue bettas.","SELECT * FROM bettas WHERE color IN ('Red','Blue');"],
- ["Show bettas priced between $15 and $25.","SELECT * FROM bettas WHERE price BETWEEN 15 AND 25;"],
- ["Show bettas whose names start with S.","SELECT * FROM bettas WHERE betta_name LIKE 'S%';"],
- ["Show all bettas except females.","SELECT * FROM bettas WHERE gender <> 'Female';"],
- ["Show the 4 cheapest bettas.","SELECT betta_name, price FROM bettas ORDER BY price LIMIT 4;"],
- ["Show all bettas in tank 1.","SELECT * FROM bettas WHERE tank_id = 1;"],
- ["Show all bettas in tanks 2 or 3.","SELECT * FROM bettas WHERE tank_id IN (2,3);"],
- ["Show betta names and varieties.","SELECT betta_name, variety FROM bettas;"],
- ["Show white bettas ordered by price.","SELECT * FROM bettas WHERE color = 'White' ORDER BY price;"],
- ["Show male bettas costing more than $20.","SELECT * FROM bettas WHERE gender = 'Male' AND price > 20;"],
- ["Show female bettas costing less than $20.","SELECT * FROM bettas WHERE gender = 'Female' AND price < 20;"],
- ["Show the 3 most expensive female bettas.","SELECT betta_name, price FROM bettas WHERE gender = 'Female' ORDER BY price DESC LIMIT 3;"],
- ["Show all Plakat bettas.","SELECT * FROM bettas WHERE variety = 'Plakat';"],
- ["Show bettas with a price greater than $25.","SELECT * FROM bettas WHERE price > 25;"]
-],
-2:[
- ["List each customer and their city.","SELECT name, city FROM customers;"],
- ["Show completed orders.","SELECT * FROM orders WHERE status = 'Completed';"],
- ["Show orders above $40.","SELECT * FROM orders WHERE total > 40;"],
- ["Show customer names with their orders.","SELECT c.name, o.order_id FROM customers c JOIN orders o ON c.customer_id = o.customer_id;"],
- ["Show each order with the customer's name.","SELECT o.order_id, c.name, o.total FROM orders o JOIN customers c ON o.customer_id = c.customer_id;"],
- ["Show all customers, including customers without orders.","SELECT c.name, o.order_id FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id;"],
- ["Show order IDs and product IDs from order_items.","SELECT order_id, product_id FROM order_items;"],
- ["Show products with stock below 25.","SELECT * FROM products WHERE stock < 25;"],
- ["Show products in the Food category.","SELECT * FROM products WHERE category = 'Food';"],
- ["Show products sorted by price descending.","SELECT * FROM products ORDER BY price DESC;"],
- ["Count customers by city.","SELECT city, COUNT(*) FROM customers GROUP BY city;"],
- ["Count orders by status.","SELECT status, COUNT(*) FROM orders GROUP BY status;"],
- ["Find total sales from completed orders.","SELECT SUM(total) FROM orders WHERE status = 'Completed';"],
- ["Find the average order total.","SELECT AVG(total) FROM orders;"],
- ["Find the highest order total.","SELECT MAX(total) FROM orders;"],
- ["Show cities with more than one customer.","SELECT city, COUNT(*) FROM customers GROUP BY city HAVING COUNT(*) > 1;"],
- ["Show product names and their categories.","SELECT name, category FROM products;"],
- ["Show products priced between $8 and $20.","SELECT * FROM products WHERE price BETWEEN 8 AND 20;"],
- ["Show customers from Miami.","SELECT * FROM customers WHERE city = 'Miami';"],
- ["Show pending orders with totals.","SELECT order_id, total FROM orders WHERE status = 'Pending';"],
- ["Show customers who placed an order.","SELECT DISTINCT c.name FROM customers c JOIN orders o ON c.customer_id = o.customer_id;"],
- ["Show all orders with customer city.","SELECT o.order_id, c.city FROM orders o JOIN customers c ON o.customer_id = c.customer_id;"],
- ["Show products with stock of at least 30.","SELECT * FROM products WHERE stock >= 30;"],
- ["Find the number of completed orders.","SELECT COUNT(*) FROM orders WHERE status = 'Completed';"],
- ["Show the cheapest product.","SELECT name, price FROM products ORDER BY price LIMIT 1;"],
- ["Show the 3 highest order totals.","SELECT order_id, total FROM orders ORDER BY total DESC LIMIT 3;"],
- ["Show orders from February 2026.","SELECT * FROM orders WHERE date LIKE '2026-02%';"],
- ["Show customers whose name starts with A.","SELECT * FROM customers WHERE name LIKE 'A%';"],
- ["Show all distinct order statuses.","SELECT DISTINCT status FROM orders;"],
- ["Show all distinct product categories.","SELECT DISTINCT category FROM products;"]
-],
-3:[
- ["Find the average price for each betta variety.","SELECT variety, AVG(price) FROM bettas GROUP BY variety;"],
- ["Find the number of bettas in each tank.","SELECT tank_id, COUNT(*) FROM bettas GROUP BY tank_id;"],
- ["Show varieties with an average price above $20.","SELECT variety, AVG(price) FROM bettas GROUP BY variety HAVING AVG(price) > 20;"],
- ["Rank bettas by price from highest to lowest.","SELECT betta_name, price, RANK() OVER (ORDER BY price DESC) AS price_rank FROM bettas;"],
- ["Number each betta by price within its variety.","SELECT betta_name, variety, price, ROW_NUMBER() OVER (PARTITION BY variety ORDER BY price DESC) AS rn FROM bettas;"],
- ["Show each order and the running total of completed sales.","SELECT order_id, date, total, SUM(total) OVER (ORDER BY date) AS running_total FROM orders WHERE status='Completed';"],
- ["Find each customer's total completed spending.","SELECT c.name, SUM(o.total) FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.customer_id,c.name;"],
- ["Find customers whose completed spending exceeds $40.","SELECT c.name, SUM(o.total) AS spending FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.customer_id,c.name HAVING SUM(o.total)>40;"],
- ["Show the most expensive betta in each variety.","SELECT * FROM (SELECT b.*, ROW_NUMBER() OVER(PARTITION BY variety ORDER BY price DESC) rn FROM bettas b) x WHERE rn=1;"],
- ["Find the second most expensive betta.","SELECT * FROM (SELECT b.*, DENSE_RANK() OVER(ORDER BY price DESC) rnk FROM bettas b) x WHERE rnk=2;"],
- ["Find the top 2 bettas per variety.","SELECT * FROM (SELECT b.*, ROW_NUMBER() OVER(PARTITION BY variety ORDER BY price DESC) rn FROM bettas b) x WHERE rn<=2;"],
- ["Find the percentage of orders that are completed.","SELECT 100.0*SUM(CASE WHEN status='Completed' THEN 1 ELSE 0 END)/COUNT(*) FROM orders;"],
- ["Find monthly completed revenue.","SELECT substr(date,1,7) month, SUM(total) FROM orders WHERE status='Completed' GROUP BY substr(date,1,7);"],
- ["Find the month with the highest completed revenue.","SELECT substr(date,1,7) month, SUM(total) revenue FROM orders WHERE status='Completed' GROUP BY substr(date,1,7) ORDER BY revenue DESC LIMIT 1;"],
- ["Find customers with no orders.","SELECT c.* FROM customers c LEFT JOIN orders o ON c.customer_id=o.customer_id WHERE o.order_id IS NULL;"],
- ["Find customers with at least two orders.","SELECT customer_id, COUNT(*) FROM orders GROUP BY customer_id HAVING COUNT(*)>=2;"],
- ["Find the average order total by status.","SELECT status, AVG(total) FROM orders GROUP BY status;"],
- ["Find the most popular product by quantity sold.","SELECT product_id, SUM(quantity) qty FROM order_items GROUP BY product_id ORDER BY qty DESC LIMIT 1;"],
- ["Show products that have never been ordered.","SELECT p.* FROM products p LEFT JOIN order_items oi ON p.product_id=oi.product_id WHERE oi.product_id IS NULL;"],
- ["Find total quantity sold for each product.","SELECT p.name, SUM(oi.quantity) qty FROM products p JOIN order_items oi ON p.product_id=oi.product_id GROUP BY p.product_id,p.name;"],
- ["Find customers whose city has more than one customer.","SELECT * FROM customers WHERE city IN (SELECT city FROM customers GROUP BY city HAVING COUNT(*)>1);"],
- ["Find bettas priced above the overall average.","SELECT * FROM bettas WHERE price > (SELECT AVG(price) FROM bettas);"],
- ["Find products priced above their category average.","SELECT p.* FROM products p WHERE price > (SELECT AVG(p2.price) FROM products p2 WHERE p2.category=p.category);"],
- ["Show each order with a rank by total.","SELECT order_id,total,RANK() OVER(ORDER BY total DESC) rnk FROM orders;"],
- ["Show each customer and their order count.","SELECT c.name, COUNT(o.order_id) order_count FROM customers c LEFT JOIN orders o ON c.customer_id=o.customer_id GROUP BY c.customer_id,c.name;"],
- ["Find the difference between each order and the previous order total.","SELECT order_id,total,total-LAG(total) OVER(ORDER BY date) AS difference FROM orders;"],
- ["Find the cheapest betta in each gender.","SELECT * FROM (SELECT b.*,ROW_NUMBER() OVER(PARTITION BY gender ORDER BY price) rn FROM bettas b) x WHERE rn=1;"],
- ["Find cities whose average completed order is above $30.","SELECT c.city,AVG(o.total) avg_order FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.city HAVING AVG(o.total)>30;"],
- ["Find each product's share of total ordered quantity.","SELECT product_id,100.0*SUM(quantity)/(SELECT SUM(quantity) FROM order_items) pct FROM order_items GROUP BY product_id;"]
-],
-4:[
- ["Use a CTE to find bettas above the average price.","WITH avg_price AS (SELECT AVG(price) avg_p FROM bettas) SELECT b.* FROM bettas b CROSS JOIN avg_price a WHERE b.price>a.avg_p;"],
- ["Use a CTE to calculate completed revenue by customer.","WITH completed AS (SELECT * FROM orders WHERE status='Completed') SELECT customer_id,SUM(total) FROM completed GROUP BY customer_id;"],
- ["Find the top 2 customers by completed spending using a CTE.","WITH spending AS (SELECT customer_id,SUM(total) total_spent FROM orders WHERE status='Completed' GROUP BY customer_id) SELECT * FROM spending ORDER BY total_spent DESC LIMIT 2;"],
- ["Find products with stock below the average stock.","SELECT * FROM products WHERE stock < (SELECT AVG(stock) FROM products);"],
- ["Find the highest priced betta for every color.","SELECT * FROM (SELECT b.*,ROW_NUMBER() OVER(PARTITION BY color ORDER BY price DESC) rn FROM bettas b) x WHERE rn=1;"],
- ["Calculate a 3-order moving average.","SELECT order_id,date,total,AVG(total) OVER(ORDER BY date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) moving_avg FROM orders;"],
- ["Find the difference between each betta price and its variety average.","SELECT betta_name,variety,price,price-AVG(price) OVER(PARTITION BY variety) diff FROM bettas;"],
- ["Find the cumulative completed revenue by date.","SELECT date,total,SUM(total) OVER(ORDER BY date) cumulative FROM orders WHERE status='Completed';"],
- ["Find customers whose completed spending is above the overall customer average.","WITH s AS (SELECT customer_id,SUM(total) spent FROM orders WHERE status='Completed' GROUP BY customer_id) SELECT * FROM s WHERE spent>(SELECT AVG(spent) FROM s);"],
- ["Find the first order for every customer.","SELECT * FROM (SELECT o.*,ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY date) rn FROM orders o) x WHERE rn=1;"],
- ["Find the latest order for every customer.","SELECT * FROM (SELECT o.*,ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY date DESC) rn FROM orders o) x WHERE rn=1;"],
- ["Find repeat customers.","SELECT customer_id,COUNT(*) orders FROM orders GROUP BY customer_id HAVING COUNT(*)>1;"],
- ["Find the percentage of each status within all orders.","SELECT status,100.0*COUNT(*)/SUM(COUNT(*)) OVER() pct FROM orders GROUP BY status;"],
- ["Find the top-selling product category by quantity.","SELECT p.category,SUM(oi.quantity) qty FROM products p JOIN order_items oi ON p.product_id=oi.product_id GROUP BY p.category ORDER BY qty DESC LIMIT 1;"],
- ["Find completed revenue by customer city.","SELECT c.city,SUM(o.total) revenue FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.city;"],
- ["Find cities ranked by completed revenue.","SELECT c.city,SUM(o.total) revenue,RANK() OVER(ORDER BY SUM(o.total) DESC) rnk FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.city;"],
- ["Find the median-like middle two betta prices.","SELECT AVG(price) FROM (SELECT price,ROW_NUMBER() OVER(ORDER BY price) rn,COUNT(*) OVER() cnt FROM bettas) x WHERE rn IN ((cnt+1)/2,(cnt+2)/2);"],
- ["Find orders larger than the customer's average order.","SELECT * FROM (SELECT o.*,AVG(total) OVER(PARTITION BY customer_id) avg_customer FROM orders o) x WHERE total>avg_customer;"],
- ["Find products whose price is greater than every Food product.","SELECT * FROM products WHERE price>(SELECT MAX(price) FROM products WHERE category='Food');"],
- ["Find the customer with the highest completed spending.","SELECT c.name,SUM(o.total) spent FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.customer_id,c.name ORDER BY spent DESC LIMIT 1;"],
- ["Find each customer's first and last order dates.","SELECT customer_id,MIN(date) first_order,MAX(date) last_order FROM orders GROUP BY customer_id;"],
- ["Find the number of days between first and last order for each customer.","SELECT customer_id,julianday(MAX(date))-julianday(MIN(date)) days_between FROM orders GROUP BY customer_id;"],
- ["Find the most expensive product in each category.","SELECT * FROM (SELECT p.*,ROW_NUMBER() OVER(PARTITION BY category ORDER BY price DESC) rn FROM products p) x WHERE rn=1;"],
- ["Find the product category with the lowest average price.","SELECT category,AVG(price) avg_price FROM products GROUP BY category ORDER BY avg_price LIMIT 1;"],
- ["Find customers whose latest order is Pending.","SELECT * FROM (SELECT o.*,ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY date DESC) rn FROM orders o) x WHERE rn=1 AND status='Pending';"],
- ["Find the share of revenue generated by each city.","SELECT c.city,SUM(o.total) revenue,100.0*SUM(o.total)/(SELECT SUM(total) FROM orders WHERE status='Completed') pct FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.city;"],
- ["Find the second highest order total without LIMIT.","SELECT MAX(total) FROM orders WHERE total<(SELECT MAX(total) FROM orders);"],
- ["Find bettas whose price is above their gender average.","SELECT * FROM (SELECT b.*,AVG(price) OVER(PARTITION BY gender) avg_gender FROM bettas b) x WHERE price>avg_gender;"]
-],
-5:[
- ["Build a multi-CTE report of customers, completed orders, and spending tiers.","WITH completed AS (SELECT * FROM orders WHERE status='Completed'), spend AS (SELECT customer_id,SUM(total) spent FROM completed GROUP BY customer_id), tier AS (SELECT customer_id,spent,CASE WHEN spent>=50 THEN 'High' WHEN spent>=25 THEN 'Medium' ELSE 'Low' END tier FROM spend) SELECT c.name,t.spent,t.tier FROM customers c JOIN tier t ON c.customer_id=t.customer_id;"],
- ["Find the top 3 customers by completed revenue and rank all customers.","WITH s AS (SELECT customer_id,SUM(total) revenue FROM orders WHERE status='Completed' GROUP BY customer_id) SELECT c.name,s.revenue,RANK() OVER(ORDER BY s.revenue DESC) rnk FROM s JOIN customers c ON c.customer_id=s.customer_id ORDER BY rnk LIMIT 3;"],
- ["Find the top 2 products in each category by price.","SELECT * FROM (SELECT p.*,ROW_NUMBER() OVER(PARTITION BY category ORDER BY price DESC) rn FROM products p) x WHERE rn<=2;"],
- ["Find customers whose spending is above the average spending of customers who placed orders.","WITH s AS (SELECT customer_id,SUM(total) spent FROM orders WHERE status='Completed' GROUP BY customer_id) SELECT * FROM s WHERE spent>(SELECT AVG(spent) FROM s);"],
- ["Calculate each order's contribution to its customer's total spending.","SELECT o.order_id,o.customer_id,o.total,100.0*o.total/SUM(o.total) OVER(PARTITION BY o.customer_id) pct FROM orders o;"],
- ["Find the longest gap between orders for each customer.","WITH x AS (SELECT customer_id,date,LAG(date) OVER(PARTITION BY customer_id ORDER BY date) prev_date FROM orders) SELECT customer_id,MAX(julianday(date)-julianday(prev_date)) max_gap FROM x GROUP BY customer_id;"],
- ["Find the best-selling product by quantity and include its category.","WITH q AS (SELECT product_id,SUM(quantity) qty FROM order_items GROUP BY product_id), r AS (SELECT *,RANK() OVER(ORDER BY qty DESC) rnk FROM q) SELECT p.name,p.category,r.qty FROM r JOIN products p ON p.product_id=r.product_id WHERE rnk=1;"],
- ["Find the top revenue city and its percentage of all completed revenue.","WITH city_rev AS (SELECT c.city,SUM(o.total) revenue FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.city) SELECT city,revenue,100.0*revenue/SUM(revenue) OVER() pct FROM city_rev ORDER BY revenue DESC LIMIT 1;"],
- ["Find customers who have purchased from at least two different product categories.","SELECT c.name FROM customers c JOIN orders o ON c.customer_id=o.customer_id JOIN order_items oi ON o.order_id=oi.order_id JOIN products p ON oi.product_id=p.product_id GROUP BY c.customer_id,c.name HAVING COUNT(DISTINCT p.category)>=2;"],
- ["Find the most expensive betta in each variety, with ties preserved.","SELECT * FROM (SELECT b.*,RANK() OVER(PARTITION BY variety ORDER BY price DESC) rnk FROM bettas b) x WHERE rnk=1;"],
- ["Find the third highest betta price with ties preserved.","SELECT * FROM (SELECT b.*,DENSE_RANK() OVER(ORDER BY price DESC) rnk FROM bettas b) x WHERE rnk=3;"],
- ["Find each customer's percentage of total completed revenue.","WITH s AS (SELECT customer_id,SUM(total) revenue FROM orders WHERE status='Completed' GROUP BY customer_id) SELECT customer_id,revenue,100.0*revenue/SUM(revenue) OVER() pct FROM s;"],
- ["Find the first completed order and total completed spending for every customer.","WITH c AS (SELECT * FROM orders WHERE status='Completed') SELECT customer_id,MIN(date) first_completed,SUM(total) total_completed FROM c GROUP BY customer_id;"],
- ["Find products that account for more than 15% of ordered quantity.","WITH q AS (SELECT product_id,SUM(quantity) qty FROM order_items GROUP BY product_id) SELECT * FROM q WHERE 100.0*qty/(SELECT SUM(qty) FROM q)>15;"],
- ["Find each month's revenue and month-over-month revenue change.","WITH m AS (SELECT substr(date,1,7) month,SUM(total) revenue FROM orders WHERE status='Completed' GROUP BY substr(date,1,7)) SELECT month,revenue,revenue-LAG(revenue) OVER(ORDER BY month) change FROM m;"],
- ["Find the highest-value completed order for each city.","SELECT * FROM (SELECT o.*,c.city,ROW_NUMBER() OVER(PARTITION BY c.city ORDER BY o.total DESC) rn FROM orders o JOIN customers c ON o.customer_id=c.customer_id WHERE o.status='Completed') x WHERE rn=1;"],
- ["Find customers whose completed order count is above the average completed order count.","WITH counts AS (SELECT customer_id,COUNT(*) cnt FROM orders WHERE status='Completed' GROUP BY customer_id) SELECT * FROM counts WHERE cnt>(SELECT AVG(cnt) FROM counts);"],
- ["Find the percentage of customers with at least one completed order.","WITH active AS (SELECT DISTINCT customer_id FROM orders WHERE status='Completed') SELECT 100.0*COUNT(*)/(SELECT COUNT(*) FROM customers) pct FROM active;"],
- ["Find the most profitable-looking betta variety using price average and count.","SELECT variety,AVG(price) avg_price,COUNT(*) cnt,AVG(price)*COUNT(*) score FROM bettas GROUP BY variety ORDER BY score DESC LIMIT 1;"],
- ["Find products with zero stock or below the average stock.","SELECT * FROM products WHERE stock=0 OR stock<(SELECT AVG(stock) FROM products);"],
- ["Find the customer with the largest single completed order.","SELECT c.name,o.order_id,o.total FROM orders o JOIN customers c ON c.customer_id=o.customer_id WHERE o.status='Completed' ORDER BY o.total DESC LIMIT 1;"],
- ["Find each customer's best completed order and rank customers by that value.","WITH x AS (SELECT customer_id,MAX(total) best_order FROM orders WHERE status='Completed' GROUP BY customer_id) SELECT c.name,x.best_order,RANK() OVER(ORDER BY x.best_order DESC) rnk FROM x JOIN customers c ON c.customer_id=x.customer_id;"],
- ["Find bettas priced above both the overall average and their variety average.","SELECT * FROM (SELECT b.*,AVG(price) OVER() overall_avg,AVG(price) OVER(PARTITION BY variety) variety_avg FROM bettas b) x WHERE price>overall_avg AND price>variety_avg;"],
- ["Find cities with at least 25% of all completed revenue.","WITH city_rev AS (SELECT c.city,SUM(o.total) revenue FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.city), total AS (SELECT SUM(revenue) total_rev FROM city_rev) SELECT city,revenue FROM city_rev CROSS JOIN total WHERE revenue/total_rev>=.25;"],
- ["Find the median betta price exactly for the 20-row dataset.","SELECT AVG(price) median_price FROM (SELECT price,ROW_NUMBER() OVER(ORDER BY price) rn FROM bettas) x WHERE rn IN (10,11);"],
- ["Find the customer order with the largest percentage of that customer's completed spending.","WITH x AS (SELECT o.*,SUM(total) OVER(PARTITION BY customer_id) customer_total FROM orders o WHERE status='Completed') SELECT * FROM x WHERE total/customer_total=(SELECT MAX(total/customer_total) FROM x);"],
- ["Find products that were ordered but have current stock below 20.","SELECT DISTINCT p.* FROM products p JOIN order_items oi ON p.product_id=oi.product_id WHERE p.stock<20;"],
- ["Find the best city by revenue per customer.","WITH x AS (SELECT c.city,SUM(o.total) revenue,COUNT(DISTINCT c.customer_id) customers FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.city) SELECT city,revenue/customers revenue_per_customer FROM x ORDER BY revenue_per_customer DESC LIMIT 1;"],
- ["Create a customer-level summary with order count, completed revenue, latest order, and spending rank.","WITH s AS (SELECT c.customer_id,c.name,COUNT(o.order_id) order_count,COALESCE(SUM(CASE WHEN o.status='Completed' THEN o.total END),0) completed_revenue,MAX(o.date) latest_order FROM customers c LEFT JOIN orders o ON c.customer_id=o.customer_id GROUP BY c.customer_id,c.name) SELECT *,RANK() OVER(ORDER BY completed_revenue DESC) spending_rank FROM s;"],
- ["Find the top 3 betta varieties by average price while requiring at least 3 bettas.","SELECT variety,AVG(price) avg_price FROM bettas GROUP BY variety HAVING COUNT(*)>=3 ORDER BY avg_price DESC LIMIT 3;"]
-]
+const levelTopics = {
+  1:["SQL Select","SQL Where","SQL And / Or / Not","SQL Like","SQL In","SQL Between","SQL Wildcards","SQL Order By","SQL Select Distinct","SQL Select Top / Limit"],
+  2:["Count()","Sum()","Avg()","Min()","Max()","SQL Group By","SQL Having","SQL Null Values","SQL Null Functions (ISNULL, COALESCE)","SQL Case","SQL Aliases"],
+  3:["SQL Inner Join","SQL Left Join","SQL Right Join","SQL Full Join","SQL Self Join","SQL Union / Union All","SQL Aliases (con tablas)","SQL Insert Into","SQL Insert Into Select"],
+  4:["SQL Subqueries","SQL CTE (Common Table Expressions) — WITH clause","SQL CTE — Multiple CTEs","SQL CTE — Recursive CTEs","SQL Exists / Any / All","SQL Update","SQL Delete","SQL Operators (=, !=, <, >, <=, >=)","SQL Case Avanzado"],
+  5:["ROW_NUMBER()","RANK() / DENSE_RANK()","LAG() / LEAD()","FIRST_VALUE() / LAST_VALUE()","SUM() OVER / AVG() OVER","PARTITION BY","SQL Stored Procedures","SQL Select Into","SQL Backup Database","SQL Performance (índices, explain plan)"]
 };
+const rand=(n)=>Math.floor(Math.random()*n);
+const pick=(a)=>a[rand(a.length)];
+const quote=(v)=>`'${String(v).replace(/'/g,"''")}'`;
+const hashQuestion=(s)=>{let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return(h>>>0).toString(36);};
+const colors=["Red","Blue","White","Black","Yellow","Orange","Pink","Green","Purple","Gray"];
+const varieties=["Halfmoon","Crowntail","Veiltail","Plakat","Dumbo Ear"];
+const genders=["Male","Female"];
+const cities=["Miami","Orlando","Tampa","Atlanta","Dallas"];
+const statuses=["Completed","Pending","Cancelled"];
+const categories=["Food","Tanks","Decor","Care","Equipment"];
+function q(prompt,topic,accepted,table,acceptedNote){return{id:hashQuestion(topic+"|"+prompt+"|"+accepted.join("|")),prompt,topic,accepted,table,acceptedNote:acceptedNote||"Equivalent SQL forms are accepted when they return the requested result."};}
+
+function makeGeneratedQuestion(level){
+  const c=[];
+  if(level===1){
+    c.push(
+      ()=>{const col=pick(["betta_name","variety","color","gender","price","tank_id"]);return q(`Select the ${col} column from bettas.`,"SQL Select",[`SELECT ${col} FROM bettas;`,`SELECT b.${col} FROM bettas b;`],"bettas","SELECT the requested column; a table alias is optional.")},
+      ()=>{const gender=pick(genders);return q(`Show all bettas whose gender is ${gender}.`,"SQL Where",[`SELECT * FROM bettas WHERE gender = ${quote(gender)};`,`SELECT b.* FROM bettas b WHERE b.gender = ${quote(gender)};`],"bettas","WHERE is required; an optional table alias is accepted.")},
+      ()=>{const color=pick(colors),price=pick([15,18,20,22,25]);return q(`Show bettas that are ${color} and cost more than $${price}.`,"SQL And / Or / Not",[`SELECT * FROM bettas WHERE color = ${quote(color)} AND price > ${price};`,`SELECT * FROM bettas WHERE (color = ${quote(color)}) AND (price > ${price});`],"bettas","Both conditions must be enforced; parentheses are optional.")},
+      ()=>{const color=pick(colors),other=pick(colors.filter(x=>x!==color));return q(`Show bettas that are ${color} OR ${other}.`,"SQL And / Or / Not",[`SELECT * FROM bettas WHERE color = ${quote(color)} OR color = ${quote(other)};`,`SELECT * FROM bettas WHERE color IN (${quote(color)}, ${quote(other)});`],"bettas","OR or the equivalent IN form is accepted.")},
+      ()=>{const gender=pick(genders);return q(`Show all bettas that are NOT ${gender}.`,"SQL And / Or / Not",[`SELECT * FROM bettas WHERE NOT gender = ${quote(gender)};`,`SELECT * FROM bettas WHERE gender <> ${quote(gender)};`,`SELECT * FROM bettas WHERE gender != ${quote(gender)};`],"bettas","NOT, <>, and != are accepted equivalent exclusion forms.")},
+      ()=>{const w=pick(["S","M","C","O","R"]);return q(`Find bettas whose names start with ${w}.`,"SQL Like",[`SELECT * FROM bettas WHERE betta_name LIKE ${quote(w+"%")} ;`,`SELECT b.* FROM bettas b WHERE b.betta_name LIKE ${quote(w+"%")} ;`],"bettas","LIKE with a trailing % wildcard; aliases are optional.")},
+      ()=>{const col=pick(["color","variety","gender"]),arr=col==="color"?colors:col==="variety"?varieties:genders,a=pick(arr),b=pick(arr.filter(x=>x!==a));return q(`Show bettas whose ${col} is ${a} or ${b}.`,"SQL In",[`SELECT * FROM bettas WHERE ${col} IN (${quote(a)}, ${quote(b)});`,`SELECT * FROM bettas WHERE ${col} = ${quote(a)} OR ${col} = ${quote(b)};`],"bettas","IN and equivalent OR conditions are accepted.")},
+      ()=>{const low=pick([12,15,18,20]),high=low+pick([5,7,10]);return q(`Show bettas priced between $${low} and $${high}.`,"SQL Between",[`SELECT * FROM bettas WHERE price BETWEEN ${low} AND ${high};`,`SELECT * FROM bettas WHERE price >= ${low} AND price <= ${high};`],"bettas","BETWEEN and equivalent inclusive comparisons are accepted.")},
+      ()=>{const pattern=pick(["%a%","%o%","_u%","S%","%e"]);return q(`Use a wildcard pattern to find betta names matching ${pattern}.`,"SQL Wildcards",[`SELECT * FROM bettas WHERE betta_name LIKE ${quote(pattern)};`],"bettas","Use % for any number of characters or _ for exactly one character.")},
+      ()=>{const col=pick(["price","betta_name","tank_id"]),dir=pick(["ASC","DESC"]);return q(`Sort all bettas by ${col} in ${dir==="ASC"?"ascending":"descending"} order.`,"SQL Order By",[`SELECT * FROM bettas ORDER BY ${col} ${dir};`,`SELECT b.* FROM bettas b ORDER BY b.${col} ${dir};`],"bettas","ORDER BY with the requested direction; aliases are optional.")},
+      ()=>{const col=pick(["color","variety","gender","tank_id"]);return q(`Return only distinct ${col} values from bettas.`,"SQL Select Distinct",[`SELECT DISTINCT ${col} FROM bettas;`,`SELECT DISTINCT b.${col} FROM bettas b;`],"bettas","DISTINCT must apply to the requested column.")},
+      ()=>{const n=pick([2,3,4,5]),dir=pick(["ASC","DESC"]);return q(`Return the top ${n} bettas by price, ${dir==="ASC"?"cheapest first":"most expensive first"}.`,"SQL Select Top / Limit",[`SELECT * FROM bettas ORDER BY price ${dir} LIMIT ${n};`,`SELECT TOP ${n} * FROM bettas ORDER BY price ${dir};`],"bettas","LIMIT and TOP are both accepted as dialect-specific row-limit syntax.")}
+    );
+  }
+  if(level===2){
+    c.push(
+      ()=>{const table=pick(["bettas","products","orders"]);return q(`Count all rows in ${table}.`,"Count()",[`SELECT COUNT(*) FROM ${table};`,`SELECT COUNT(1) FROM ${table};`],table,"COUNT(*) and COUNT(1) are accepted row-count forms.")},
+      ()=>{const field=pick(["price","tank_id"]);return q(`Calculate the total of ${field} across all bettas.`,"Sum()",[`SELECT SUM(${field}) FROM bettas;`,`SELECT SUM(b.${field}) FROM bettas b;`],"bettas","SUM() over the requested numeric column; table aliasing is optional.")},
+      ()=>{const field=pick(["price","tank_id"]);return q(`Calculate the average ${field} for bettas.`,"Avg()",[`SELECT AVG(${field}) FROM bettas;`,`SELECT AVG(b.${field}) FROM bettas b;`],"bettas","AVG() over the requested numeric column; aliasing is optional.")},
+      ()=>{const field=pick(["price","tank_id"]);return q(`Find the minimum ${field} in bettas.`,"Min()",[`SELECT MIN(${field}) FROM bettas;`,`SELECT MIN(b.${field}) FROM bettas b;`],"bettas","MIN() over the requested numeric column; aliasing is optional.")},
+      ()=>{const field=pick(["price","tank_id"]);return q(`Find the maximum ${field} in bettas.`,"Max()",[`SELECT MAX(${field}) FROM bettas;`,`SELECT MAX(b.${field}) FROM bettas b;`],"bettas","MAX() over the requested numeric column; aliasing is optional.")},
+      ()=>{const col=pick(["gender","color","variety","tank_id"]);return q(`Group bettas by ${col} and count each group.`,"SQL Group By",[`SELECT ${col}, COUNT(*) FROM bettas GROUP BY ${col};`,`SELECT ${col}, COUNT(*) AS total FROM bettas GROUP BY ${col};`],"bettas","GROUP BY the requested dimension; output alias is optional.")},
+      ()=>{const n=pick([2,3,4]);return q(`Show betta varieties having more than ${n} rows.`,"SQL Having",[`SELECT variety, COUNT(*) FROM bettas GROUP BY variety HAVING COUNT(*) > ${n};`,`SELECT variety, COUNT(*) AS total FROM bettas GROUP BY variety HAVING total > ${n};`],"bettas","HAVING filters groups after aggregation.")},
+      ()=>{const col=pick(["gender","color","variety"]);return q(`Find bettas where ${col} is NULL.`,"SQL Null Values",[`SELECT * FROM bettas WHERE ${col} IS NULL;`,`SELECT b.* FROM bettas b WHERE b.${col} IS NULL;`],"bettas","Use IS NULL rather than = NULL.")},
+      ()=>{const col=pick(["gender","color","variety"]),fallback=pick(["Unknown","Not Provided","N/A"]);return q(`Replace NULL ${col} values with ${fallback}.`,"SQL Null Functions (ISNULL, COALESCE)",[`SELECT COALESCE(${col}, ${quote(fallback)}) FROM bettas;`,`SELECT ISNULL(${col}, ${quote(fallback)}) FROM bettas;`],"bettas","COALESCE and ISNULL are accepted dialect-specific forms.")},
+      ()=>{const n=pick([15,20,25]);return q(`Label each betta as 'Expensive' when price > $${n}, otherwise 'Standard'.`,"SQL Case",[`SELECT betta_name, CASE WHEN price > ${n} THEN 'Expensive' ELSE 'Standard' END AS price_label FROM bettas;`,`SELECT betta_name, CASE WHEN price > ${n} THEN 'Expensive' ELSE 'Standard' END price_label FROM bettas;`],"bettas","CASE WHEN/THEN/ELSE/END; AS is optional." )},
+      ()=>{const alias=pick(["customer_name","buyer","client_name"]);return q(`Return customer names from customers using the output alias ${alias}.`,"SQL Aliases",[`SELECT name AS ${alias} FROM customers;`,`SELECT name ${alias} FROM customers;`],"customers","AS is optional for a column alias.")}
+    );
+  }
+  if(level===3){
+    c.push(
+      ()=>{const extra=pick([""," WHERE o.status='Completed'"," WHERE o.total > 20"]);return q(`Return customer names and order IDs using an INNER JOIN${extra?" with the requested order filter":""}.`,"SQL Inner Join",[`SELECT c.name, o.order_id FROM customers c INNER JOIN orders o ON c.customer_id = o.customer_id${extra};`,`SELECT c.name, o.order_id FROM customers c JOIN orders o ON c.customer_id = o.customer_id${extra};`],"customers","JOIN and INNER JOIN are equivalent; the optional filter is part of the generated variant.")},
+      ()=>{const col=pick(["o.order_id","o.total"]);return q(`Return every customer and the matching ${col.split('.')[1]}, including customers with no orders.`,"SQL Left Join",[`SELECT c.name, ${col} FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id;`,`SELECT c.name, ${col} FROM customers c LEFT OUTER JOIN orders o ON c.customer_id = o.customer_id;`],"customers","LEFT JOIN and LEFT OUTER JOIN are accepted.")},
+      ()=>{const field=pick(["c.name","c.city"]);return q(`Return every order and the matching customer ${field.split('.')[1]}, keeping all orders.`,"SQL Right Join",[`SELECT o.order_id, ${field} FROM customers c RIGHT JOIN orders o ON c.customer_id = o.customer_id;`,`SELECT o.order_id, ${field} FROM orders o LEFT JOIN customers c ON c.customer_id = o.customer_id;`],"orders","RIGHT JOIN or equivalent reversed LEFT JOIN is accepted.")},
+      ()=>q("Return all customers and all orders, matched where possible.","SQL Full Join",["SELECT c.name, o.order_id FROM customers c FULL OUTER JOIN orders o ON c.customer_id = o.customer_id;","SELECT c.name, o.order_id FROM customers c FULL JOIN orders o ON c.customer_id = o.customer_id;"],"customers","FULL JOIN and FULL OUTER JOIN are accepted."),
+      ()=>q("Use a self join to find pairs of customers living in the same city, excluding self-pairs.","SQL Self Join",["SELECT a.name, b.name FROM customers a JOIN customers b ON a.city = b.city AND a.customer_id <> b.customer_id;","SELECT a.name AS customer1, b.name AS customer2 FROM customers a INNER JOIN customers b ON a.city = b.city AND a.customer_id <> b.customer_id;"],"customers","The same table appears twice with different aliases."),
+      ()=>q("Combine Miami and Orlando customer names without duplicates.","SQL Union / Union All",["SELECT name FROM customers WHERE city = 'Miami' UNION SELECT name FROM customers WHERE city = 'Orlando';","SELECT name FROM customers WHERE city IN ('Miami','Orlando');"],"customers","UNION removes duplicates; equivalent IN filtering is accepted for this result."),
+      ()=>q("Return customer name and order total using table aliases.","SQL Aliases (con tablas)",["SELECT c.name, o.total FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id;","SELECT c.name, o.total FROM customers c JOIN orders o ON c.customer_id = o.customer_id;"],"customers","AS on table aliases is optional."),
+      ()=>q("Insert a new Miami customer named Practice User with email practice_user@example.com.","SQL Insert Into",["INSERT INTO customers (name, email, city) VALUES ('Practice User', 'practice_user@example.com', 'Miami');","INSERT INTO customers VALUES (999, 'Practice User', 'practice_user@example.com', 'Miami');"],"customers","Column-list INSERT is preferred; full-row INSERT is accepted with the correct column order."),
+      ()=>q("Insert into orders a completed order for customer 1 dated 2026-03-15 totaling 29.99.","SQL Insert Into",["INSERT INTO orders (customer_id, date, status, total) VALUES (1, '2026-03-15', 'Completed', 29.99);","INSERT INTO orders VALUES (1011, 1, '2026-03-15', 'Completed', 29.99);"],"orders","Column-list INSERT or full-row INSERT with a unique order_id are accepted."),
+      ()=>q("Insert product names and prices for Equipment products into equipment_products (name, price).","SQL Insert Into Select",["INSERT INTO equipment_products (name, price) SELECT name, price FROM products WHERE category = 'Equipment';","INSERT INTO equipment_products SELECT name, price FROM products WHERE category = 'Equipment';"],"products","INSERT ... SELECT is required; target column list is optional when order matches.")
+    );
+  }
+  if(level===4){
+    c.push(
+      ()=>q("Find bettas priced above the overall average using a subquery.","SQL Subqueries",["SELECT * FROM bettas WHERE price > (SELECT AVG(price) FROM bettas);","SELECT b.* FROM bettas b WHERE b.price > (SELECT AVG(price) FROM bettas);"],"bettas","A scalar subquery for the overall average is required."),
+      ()=>q("Use a WITH clause to calculate average betta price and return bettas above it.","SQL CTE (Common Table Expressions) — WITH clause",["WITH avg_price AS (SELECT AVG(price) AS avg_p FROM bettas) SELECT b.* FROM bettas b CROSS JOIN avg_price a WHERE b.price > a.avg_p;","WITH avg_price AS (SELECT AVG(price) avg_p FROM bettas) SELECT b.* FROM bettas b, avg_price a WHERE b.price > a.avg_p;"],"bettas","Use a named CTE; equivalent join syntax is accepted."),
+      ()=>q("Use multiple CTEs to calculate completed revenue by city and then keep cities above $40.","SQL CTE — Multiple CTEs",["WITH city_revenue AS (SELECT c.city, SUM(o.total) revenue FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.city), filtered AS (SELECT * FROM city_revenue WHERE revenue > 40) SELECT * FROM filtered;","WITH city_revenue AS (SELECT c.city, SUM(o.total) revenue FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.city) SELECT * FROM city_revenue WHERE revenue > 40;"],"customers","One or more named CTE stages are accepted when the result is equivalent."),
+      ()=>q("Write a recursive CTE starting at employee_id 1 and following manager_id relationships in an employees table.","SQL CTE — Recursive CTEs",["WITH RECURSIVE org AS (SELECT employee_id, manager_id FROM employees WHERE employee_id = 1 UNION ALL SELECT e.employee_id, e.manager_id FROM employees e JOIN org o ON e.manager_id = o.employee_id) SELECT * FROM org;","WITH org AS (SELECT employee_id, manager_id FROM employees WHERE employee_id = 1 UNION ALL SELECT e.employee_id, e.manager_id FROM employees e JOIN org o ON e.manager_id = o.employee_id) SELECT * FROM org;"],"customers","Recursive CTE syntax varies by dialect; both common forms are accepted."),
+      ()=>q("Find customers who have at least one completed order using EXISTS.","SQL Exists / Any / All",["SELECT * FROM customers c WHERE EXISTS (SELECT 1 FROM orders o WHERE o.customer_id=c.customer_id AND o.status='Completed');","SELECT * FROM customers c WHERE EXISTS (SELECT * FROM orders o WHERE o.customer_id=c.customer_id AND o.status='Completed');"],"customers","EXISTS tests for at least one matching row; SELECT 1 or SELECT * is accepted."),
+      ()=>q("Find orders whose total is greater than ANY order total above $40.","SQL Exists / Any / All",["SELECT * FROM orders WHERE total > ANY (SELECT total FROM orders WHERE total > 40);","SELECT * FROM orders WHERE total > SOME (SELECT total FROM orders WHERE total > 40);"],"orders","ANY and SOME are equivalent in this comparison pattern."),
+      ()=>q("Find orders whose total is greater than ALL completed orders below $50.","SQL Exists / Any / All",["SELECT * FROM orders WHERE total > ALL (SELECT total FROM orders WHERE status='Completed' AND total < 50);"],"orders","ALL compares the value against every value returned by the subquery."),
+      ()=>{const pct=pick([5,10,15,20]),cat=pick(categories);const factor=(1+pct/100).toFixed(2);return q(`Increase prices for ${cat} products by ${pct}%.`,"SQL Update",[`UPDATE products SET price = price * ${factor} WHERE category = ${quote(cat)};`,`UPDATE products SET price = price + (price * ${pct/100}) WHERE category = ${quote(cat)};`],"products","Equivalent percentage arithmetic expressions are accepted.")},
+      ()=>{const status=pick(statuses);return q(`Delete orders whose status is ${status}.`,"SQL Delete",[`DELETE FROM orders WHERE status = ${quote(status)};`,`DELETE FROM orders WHERE status IN (${quote(status)});`],"orders","The DELETE must target only the generated status.")},
+      ()=>q("Return orders with totals from $40 through $60 using comparison operators.","SQL Operators (=, !=, <, >, <=, >=)",["SELECT * FROM orders WHERE total >= 40 AND total <= 60;","SELECT * FROM orders WHERE total >= 40 AND total <= 60;"],"orders","Inclusive >= and <= comparisons are accepted."),
+      ()=>q("Use an advanced CASE to label products High Stock when stock >= 30, Low Stock when stock < 20, and Medium Stock otherwise.","SQL Case Avanzado",["SELECT name, CASE WHEN stock >= 30 THEN 'High Stock' WHEN stock < 20 THEN 'Low Stock' ELSE 'Medium Stock' END AS stock_label FROM products;","SELECT name, CASE WHEN stock >= 30 THEN 'High Stock' WHEN stock < 20 THEN 'Low Stock' ELSE 'Medium Stock' END stock_label FROM products;"],"products","Multiple WHEN branches plus ELSE; AS is optional.")
+    );
+  }
+  if(level===5){
+    c.push(
+      ()=>q("Number all bettas from most expensive to cheapest with a unique row number.","ROW_NUMBER()",["SELECT betta_name, price, ROW_NUMBER() OVER (ORDER BY price DESC) AS rn FROM bettas;","SELECT betta_name, price, ROW_NUMBER() OVER(ORDER BY price DESC) rn FROM bettas;"],"bettas","ROW_NUMBER() OVER with the requested ORDER BY; alias syntax may vary."),
+      ()=>q("Rank bettas by price while allowing ties to share a rank.","RANK() / DENSE_RANK()",["SELECT betta_name, price, RANK() OVER (ORDER BY price DESC) AS price_rank FROM bettas;","SELECT betta_name, price, DENSE_RANK() OVER (ORDER BY price DESC) AS price_rank FROM bettas;"],"bettas","RANK and DENSE_RANK are accepted; both preserve ties but differ in gap behavior."),
+      ()=>q("For each order, show the previous order total ordered by date.","LAG() / LEAD()",["SELECT order_id, total, LAG(total) OVER (ORDER BY date) AS previous_total FROM orders;","SELECT order_id, total, LAG(total, 1) OVER (ORDER BY date) AS previous_total FROM orders;"],"orders","LAG with default offset 1 or explicit offset 1 is accepted."),
+      ()=>q("For each order, show the next order total ordered by date.","LAG() / LEAD()",["SELECT order_id, total, LEAD(total) OVER (ORDER BY date) AS next_total FROM orders;","SELECT order_id, total, LEAD(total, 1) OVER (ORDER BY date) AS next_total FROM orders;"],"orders","LEAD with default offset 1 or explicit offset 1 is accepted."),
+      ()=>q("Show each order total alongside the average order total across the entire table.","SUM() OVER / AVG() OVER",["SELECT order_id, total, AVG(total) OVER () AS avg_total FROM orders;","SELECT order_id, total, AVG(total) OVER(ORDER BY order_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS avg_total FROM orders;"],"orders","AVG() OVER can calculate the overall average without collapsing rows."),
+      ()=>q("For each betta, show the first and last price in the overall price ordering.","FIRST_VALUE() / LAST_VALUE()",["SELECT betta_name, price, FIRST_VALUE(price) OVER (ORDER BY price) AS first_price, LAST_VALUE(price) OVER (ORDER BY price ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_price FROM bettas;","SELECT betta_name, price, MIN(price) OVER () AS first_price, MAX(price) OVER () AS last_price FROM bettas;"],"bettas","FIRST_VALUE/LAST_VALUE is the direct form; equivalent MIN/MAX window values are accepted for this dataset."),
+      ()=>q("Show each order and a running total ordered by date.","SUM() OVER / AVG() OVER",["SELECT order_id, date, total, SUM(total) OVER (ORDER BY date) AS running_total FROM orders;","SELECT order_id, date, total, SUM(total) OVER(ORDER BY date ROWS UNBOUNDED PRECEDING) AS running_total FROM orders;"],"orders","SUM() OVER with ORDER BY; explicit running frame is accepted."),
+      ()=>{const metric=pick(["AVG(price)","SUM(price)","COUNT(*)"]);return q(`Show each betta row alongside the ${metric} for its variety.`,"PARTITION BY",[`SELECT betta_name, variety, price, ${metric} OVER (PARTITION BY variety) AS variety_metric FROM bettas;`,`SELECT b.betta_name, b.variety, b.price, ${metric.replace("price","b.price")} OVER(PARTITION BY b.variety) variety_metric FROM bettas b;`],"bettas","PARTITION BY variety keeps individual rows while calculating a group-level window metric.")},
+      ()=>q("Write a SQL Server stored procedure named GetCompletedOrders that returns completed orders.","SQL Stored Procedures",["CREATE PROCEDURE GetCompletedOrders AS SELECT * FROM orders WHERE status = 'Completed';","CREATE PROCEDURE GetCompletedOrders AS BEGIN SELECT * FROM orders WHERE status = 'Completed'; END;"],"orders","SQL Server-style procedure syntax; BEGIN/END is optional here."),
+      ()=>q("Select product name and price into a new table named product_snapshot.","SQL Select Into",["SELECT name, price INTO product_snapshot FROM products;","SELECT products.name, products.price INTO product_snapshot FROM products;"],"products","SELECT ... INTO creates a new table in SQL Server-style syntax."),
+      ()=>q("Write the SQL Server statement to back up BettaStore to C:\\Backups\\BettaStore.bak.","SQL Backup Database",["BACKUP DATABASE BettaStore TO DISK = 'C:\\Backups\\BettaStore.bak';","BACKUP DATABASE [BettaStore] TO DISK = 'C:\\Backups\\BettaStore.bak';"],"orders","SQL Server BACKUP DATABASE syntax; bracketed identifiers are accepted."),
+      ()=>q("Create a nonclustered index on orders.customer_id to help a slow customer filter query.","SQL Performance (índices, explain plan)",["CREATE INDEX IX_orders_customer_id ON orders(customer_id);","CREATE NONCLUSTERED INDEX IX_orders_customer_id ON orders(customer_id);"],"orders","A nonclustered index is accepted; then inspect EXPLAIN/actual execution plans to validate the improvement.")
+    );
+  }
+  return pick(c)();
+}
+
+const questionSeen=JSON.parse(localStorage.getItem("sqlLabSeenQuestions")||"{}");
+function generateUniqueQuestion(level){
+  for(let i=0;i<200;i++){const candidate=makeGeneratedQuestion(level);if(!questionSeen[candidate.id]){questionSeen[candidate.id]={seenAt:Date.now(),level};localStorage.setItem("sqlLabSeenQuestions",JSON.stringify(questionSeen));return candidate;}}
+  const candidate=makeGeneratedQuestion(level);candidate.id+="-"+Date.now();questionSeen[candidate.id]={seenAt:Date.now(),level};localStorage.setItem("sqlLabSeenQuestions",JSON.stringify(questionSeen));return candidate;
+}
+function currentGeneratedQuestion(){
+  if(!state.currentQuestion || state.currentQuestion.level!==state.level){state.currentQuestion=generateUniqueQuestion(state.level);state.currentQuestion.level=state.level;state.currentQuestionAttempts=0;state.failedAttempts=0;saveState();}
+  return state.currentQuestion;
+}
 
 /* ============================================================
    STATE
@@ -1524,7 +1499,7 @@ const questions = {
    One-time reset: starts the new scoring system at 0 XP / 0 solved.
 ============================================================ */
 const XP_PER_CORRECT = 25;
-const SCORE_SYSTEM_VERSION = "25XP_RESET_V1";
+const SCORE_SYSTEM_VERSION = "UNLIMITED_GENERATOR_V2";
 
 // Reset the previous score once when this version of the scoring system
 // is loaded. After that, progress persists normally in localStorage.
@@ -1538,7 +1513,10 @@ if(localStorage.getItem("sqlLabScoreSystemVersion") !== SCORE_SYSTEM_VERSION){
     "sqlLabStreak",
     "sqlLabXP",
     "sqlLabHintsUsed",
-    "sqlLabCompletedQuestions"
+    "sqlLabCompletedQuestions",
+    "sqlLabCurrentQuestion",
+    "sqlLabCurrentQuestionAttempts",
+    "sqlLabSeenQuestions"
   ].forEach(key=>localStorage.removeItem(key));
 
   // Reset any saved daily challenge counter as part of the fresh start.
@@ -1559,7 +1537,9 @@ const state = window.__sqlLabState = {
   xp:Number(localStorage.getItem("sqlLabXP")||0),
   hintsUsed:Number(localStorage.getItem("sqlLabHintsUsed")||0),
   completedQuestions:JSON.parse(localStorage.getItem("sqlLabCompletedQuestions")||"{}"),
-  failedAttempts:JSON.parse(localStorage.getItem("sqlLabFailedAttempts")||"{}")
+  failedAttempts:JSON.parse(localStorage.getItem("sqlLabFailedAttempts")||"{}"),
+  currentQuestion:JSON.parse(localStorage.getItem("sqlLabCurrentQuestion")||"null"),
+  currentQuestionAttempts:Number(localStorage.getItem("sqlLabCurrentQuestionAttempts")||0)
 };
 
 // XP is always based on unique correctly solved questions: 25 XP each.
@@ -1604,6 +1584,8 @@ function saveStateRaw(){
   localStorage.setItem("sqlLabHintsUsed",state.hintsUsed||0);
   localStorage.setItem("sqlLabCompletedQuestions",JSON.stringify(state.completedQuestions||{}));
   localStorage.setItem("sqlLabFailedAttempts",JSON.stringify(state.failedAttempts||{}));
+  localStorage.setItem("sqlLabCurrentQuestion",JSON.stringify(state.currentQuestion||null));
+  localStorage.setItem("sqlLabCurrentQuestionAttempts",state.currentQuestionAttempts||0);
 }
 
 syncScore();
@@ -1620,10 +1602,12 @@ function saveState(){
   localStorage.setItem("sqlLabHintsUsed",state.hintsUsed||0);
   localStorage.setItem("sqlLabCompletedQuestions",JSON.stringify(state.completedQuestions||{}));
   localStorage.setItem("sqlLabFailedAttempts",JSON.stringify(state.failedAttempts||{}));
+  localStorage.setItem("sqlLabCurrentQuestion",JSON.stringify(state.currentQuestion||null));
+  localStorage.setItem("sqlLabCurrentQuestionAttempts",state.currentQuestionAttempts||0);
 }
 
 function renderMetrics(){
-  document.getElementById("progress").textContent=`${state.solved} / 150 solved`;
+  document.getElementById("progress").textContent=`${state.solved} solved`;
   document.getElementById("accuracy").textContent=state.attempts ? Math.round(state.correct/state.attempts*100)+"%" : "0%";
   document.getElementById("streak").textContent=state.streak;
   document.getElementById("sideSolved").textContent=state.solved;
@@ -1655,38 +1639,41 @@ function renderLevelButtons(){
    RENDER CURRENT QUESTION
 ============================================================ */
 function renderQuestion(){
-  const bank=questions[state.level];
-  if(state.index>=30) state.index=0;
-
-  const q=bank[state.index];
+  const q=currentGeneratedQuestion();
   enableAttemptSubmission();
-  document.getElementById("questionNumber").textContent=state.index+1;
-  document.getElementById("questionTitle").textContent=q[0];
+  document.getElementById("questionNumber").textContent="∞";
+  document.getElementById("questionTitle").textContent=q.prompt;
   document.getElementById("sql").value="";
   clearStatus();
   resetAttemptUI();
-
-  const savedFailedAttempts=state.failedAttempts[`${state.level}:${state.index}`]||0;
-  if(savedFailedAttempts>=3){
-    showAnswerReveal(q[1]);
-  }
-
-  // Every question is deliberately presented without its answer.
-  renderTableForQuestion(q[0]);
+  const topicEl=document.getElementById("questionTopic");
+  const acceptedEl=document.getElementById("acceptedForms");
+  if(topicEl) topicEl.textContent=q.topic;
+  if(acceptedEl) acceptedEl.textContent=q.acceptedNote;
+  if((state.currentQuestionAttempts||0)>=3) showAnswerReveal(q.accepted[0]);
+  renderTableForQuestion(q.table);
   saveState();
+}
+function nextGeneratedQuestion(){
+  state.currentQuestion=generateUniqueQuestion(state.level);
+  state.currentQuestion.level=state.level;
+  state.currentQuestionAttempts=0;
+  state.failedAttempts=0;
+  saveState();
+  renderQuestion();
 }
 
 function renderTableForQuestion(text){
   // Select the most relevant table for the current challenge.
-  let table="bettas";
-  if(/customer|city|order|spending|revenue|status/i.test(text) && !/betta/i.test(text)) table="orders";
-  if(/product|stock|category/i.test(text)) table="products";
-  if(/customer.*city|customers.*city/i.test(text)) table="customers";
+  let table=DB[text]?text:"bettas";
+  if(!DB[text] && /customer|city|order|spending|revenue|status/i.test(text) && !/betta/i.test(text)) table="orders";
+  if(!DB[text] && /product|stock|category/i.test(text)) table="products";
+  if(!DB[text] && /customer.*city|customers.*city/i.test(text)) table="customers";
 
   // Questions involving products + orders show order_items as the supporting table.
-  if(/product.*(ordered|quantity)|quantity.*product|categories/i.test(text)) table="order_items";
+  if(!DB[text] && /product.*(ordered|quantity)|quantity.*product|categories/i.test(text)) table="order_items";
 
-  const schema=DB[table];
+  const schema=DB[table] || DB.bettas;
   document.getElementById("tableName").textContent=table;
   document.getElementById("previewName").textContent=table;
   document.getElementById("columnCount").textContent=schema.columns.length+" columns";
@@ -1708,24 +1695,16 @@ const levelButtons = document.querySelectorAll(".level-btn");
 levelButtons.forEach(btn=>{
   btn.addEventListener("click",()=>{
     state.level=Number(btn.dataset.level);
-    state.index=0;
+    state.currentQuestion=null;
+    state.currentQuestionAttempts=0;
     saveState();
     renderLevelButtons();
     renderQuestion();
-
     const name=btn.querySelector(".level-left").textContent.replace(/^\d+\s*/,"").trim();
-    showStatus(`${name} selected — Question 1 of 30. This level has its own 30-question challenge set.`,`info`);
-
-    btn.animate([
-      {transform:"translateX(4px) scale(.99)"},
-      {transform:"translateX(4px) scale(1.01)"},
-      {transform:"translateX(0) scale(1)"}
-    ],{duration:220,easing:"ease-out"});
-
+    showStatus(`${name} selected — a new randomized exercise has been generated.`,"info");
+    btn.animate([{transform:"translateX(4px) scale(.99)"},{transform:"translateX(4px) scale(1.01)"},{transform:"translateX(0) scale(1)"}],{duration:220,easing:"ease-out"});
     const challenge=document.querySelector(".challenge");
-    if(challenge){
-      window.scrollTo({top:challenge.offsetTop-20,behavior:"smooth"});
-    }
+    if(challenge) window.scrollTo({top:challenge.offsetTop-20,behavior:"smooth"});
   });
 });
 
@@ -1786,82 +1765,29 @@ function enableAttemptSubmission(){
 
 function submitAnswer(){
   const user=document.getElementById("sql").value.trim();
-  if(!user){
-    showStatus("Write your SQL solution before submitting.","error");
-    return;
-  }
-
-  const questionKey=`${state.level}:${state.index}`;
-  const correct=questions[state.level][state.index][1];
-  const failedAttempts=state.failedAttempts[questionKey]||0;
-
-  if(failedAttempts>=3){
-    showAnswerReveal(correct);
-    return;
-  }
-
+  if(!user){showStatus("Write your SQL solution before submitting.","error");return;}
+  const current=currentGeneratedQuestion();
+  const attempts=state.currentQuestionAttempts||0;
+  if(attempts>=3){showAnswerReveal(current.accepted.join("\nOR\n"));return;}
   state.attempts++;
-
-  const isCorrect=normalize(user)===normalize(correct);
-
+  const isCorrect=current.accepted.some(answer=>normalize(answer)===normalize(user));
+  if(window.recordSqlTopic) window.recordSqlTopic(current.topic,isCorrect);
   if(isCorrect){
-    if(!awardCorrectQuestion(questionKey)){
-      showStatus("Already counted as correct. Moving on.","info");
-      return;
-    }
-
-    state.streak++;
-    state.hintsUsed = 0;
-    state.correct = Object.keys(state.completedQuestions||{}).length;
-    state.solved = state.correct;
-    state.xp = state.correct * XP_PER_CORRECT;
-    saveState();
-    renderMetrics();
-    resetAttemptUI();
-
-    if(state.index<29){
-      showStatus("Correct. Nice work. Moving to the next question.","success");
-      setTimeout(()=>{
-        state.index++;
-        saveState();
-        renderQuestion();
-      },700);
-    }else{
-      showStatus("Level complete. You solved all 30 questions in this level.","success");
-    }
+    if(!awardCorrectQuestion(current.id)){showStatus("Already counted as correct. Generating a new exercise.","info");nextGeneratedQuestion();return;}
+    state.streak++; state.hintsUsed=0; state.correct=Object.keys(state.completedQuestions||{}).length; state.solved=state.correct; state.xp=state.correct*XP_PER_CORRECT; saveState(); renderMetrics(); resetAttemptUI();
+    showStatus("Correct. Nice work. Generating a new randomized exercise.","success");
+    setTimeout(nextGeneratedQuestion,650);
   }else{
-    state.streak=0;
-    state.failedAttempts[questionKey]=(state.failedAttempts[questionKey]||0)+1;
-    const remaining=Math.max(0,3-state.failedAttempts[questionKey]);
-
-    saveState();
-    renderMetrics();
-
-    if(remaining>0){
-      showStatus(
-        `❌ Incorrect. You have ${remaining} ${remaining===1?"attempt":"attempts"} left`,
-        "error"
-      );
-      showAttemptMessage(remaining);
-    }else{
-      showStatus("❌ Incorrect. No attempts left","error");
-      showAnswerReveal(correct);
-    }
+    state.streak=0; state.currentQuestionAttempts=attempts+1; state.failedAttempts=state.currentQuestionAttempts; const remaining=Math.max(0,3-state.currentQuestionAttempts); saveState(); renderMetrics();
+    if(remaining>0){showStatus(`❌ Incorrect. You have ${remaining} ${remaining===1?"attempt":"attempts"} left. Try another accepted SQL form.`,"error");showAttemptMessage(remaining);}
+    else{showStatus("❌ Incorrect. No attempts left. Review the accepted forms below and continue.","error");showAnswerReveal(current.accepted.join("\nOR\n"));}
   }
 }
 /* ============================================================
    BUTTONS
 ============================================================ */
 document.getElementById("submit").addEventListener("click",submitAnswer);
-document.getElementById("continueQuestionBtn").addEventListener("click",()=>{
-  if(state.index<29){
-    state.index++;
-    saveState();
-    renderQuestion();
-  }else{
-    showStatus("Level complete. You solved all 30 questions in this level.","success");
-  }
-});
+document.getElementById("continueQuestionBtn").addEventListener("click",()=>{nextGeneratedQuestion();showStatus("New randomized exercise generated.","info");});
 
 
 document.getElementById("run").addEventListener("click",()=>{
@@ -1903,6 +1829,9 @@ function clearStatus(){
 
 renderMetrics();
 renderLevelButtons();
+// Every page load intentionally starts with a fresh unseen exercise, so F5 never repeats the previous question.
+state.currentQuestion=null;
+state.currentQuestionAttempts=0;
 renderQuestion();
 </script>
 
@@ -1911,7 +1840,7 @@ renderQuestion();
     <div class="apply-modal-header">
       <div>
         <h2 class="apply-modal-title" id="applyModalTitle">Recent Data Jobs</h2>
-        <p class="apply-modal-subtitle">Search Data Analyst and Data Engineering opportunities from the last 72 hours.</p>
+
       </div>
       <button class="apply-close" id="applyCloseBtn" type="button" aria-label="Close">×</button>
     </div>
@@ -1928,7 +1857,8 @@ renderQuestion();
       <div class="apply-field">
         <label for="workMode">Work mode</label>
         <select id="workMode">
-          <option value="any">Remote / On-site</option>
+          <option value="any">Any</option>
+          <option value="remote-onsite">Remote / On-site</option>
           <option value="remote">Remote</option>
           <option value="onsite">On-site</option>
           <option value="hybrid">Hybrid</option>
@@ -1944,13 +1874,21 @@ renderQuestion();
           <option value="lead">Lead / Staff</option>
         </select>
       </div>
+      <div class="apply-field">
+        <label for="timeRange">Posted</label>
+        <select id="timeRange">
+          <option value="24h">Last 24 hours</option>
+          <option value="72h" selected>Last 72 hours</option>
+          <option value="1w">Last 1 week</option>
+        </select>
+      </div>
     </div>
 
     <div class="apply-platforms" id="platformResults"></div>
 
     <div class="apply-note">
       The browser cannot reliably scrape job-board pages directly because these sites restrict cross-origin requests.
-      The buttons below open live searches on each platform using your selected filters and a 72-hour date constraint.
+      The buttons below open live searches on each platform using your selected role, work mode, seniority, and posting-age filter. The search links use each site's public web results; exact posting timestamps depend on the platform.
     </div>
   </div>
 </div>
@@ -1964,9 +1902,17 @@ renderQuestion();
   const role = document.getElementById('jobRole');
   const mode = document.getElementById('workMode');
   const seniority = document.getElementById('seniority');
+  const timeRange = document.getElementById('timeRange');
+  const subtitle = document.getElementById('applyModalSubtitle');
   const results = document.getElementById('platformResults');
 
   if(!modal || !openBtn) return;
+
+  const timeLabels = {
+    '24h': 'the last 24 hours',
+    '72h': 'the last 72 hours',
+    '1w': 'the last week'
+  };
 
   function buildQuery(){
     const roleText = {
@@ -1976,6 +1922,7 @@ renderQuestion();
     }[role.value];
 
     const modeText = mode.value === 'any' ? '' :
+      mode.value === 'remote-onsite' ? 'remote OR onsite OR "on-site"' :
       mode.value === 'remote' ? 'remote' :
       mode.value === 'onsite' ? '"on-site" OR onsite' :
       'hybrid';
@@ -1989,26 +1936,51 @@ renderQuestion();
     return [roleText, modeText, seniorText].filter(Boolean).join(' ');
   }
 
-  function googleSiteSearch(domain, label){
+  function getTimeFilter(){
+    // Google supports qdr ranges for recent searches. The 72h option uses a 3-day
+    // window, while 24h and 1 week use the corresponding day/week windows.
+    return {
+      '24h': 'qdr:d',
+      '72h': 'qdr:d3',
+      '1w': 'qdr:w'
+    }[timeRange.value] || 'qdr:d3';
+  }
+
+  function googleSiteSearch(domain, label, homeUrl){
     const q = buildQuery();
     const url = 'https://www.google.com/search?q=' +
-      encodeURIComponent('site:' + domain + ' ' + q + ' after:' + new Date(Date.now()-72*60*60*1000).toISOString().slice(0,10));
-    return {label, url};
+      encodeURIComponent('site:' + domain + ' ' + q) +
+      '&tbs=' + getTimeFilter();
+    return {label, url, homeUrl};
   }
 
   function renderPlatforms(){
     const searches = [
-      googleSiteSearch('indeed.com', 'Indeed'),
-      googleSiteSearch('linkedin.com/jobs', 'LinkedIn'),
-      googleSiteSearch('glassdoor.com/Job', 'Glassdoor'),
-      googleSiteSearch('stackoverflow.com/jobs', 'Stack Overflow Jobs')
+      googleSiteSearch('indeed.com', 'Indeed', 'https://www.indeed.com/'),
+      googleSiteSearch('linkedin.com/jobs', 'LinkedIn', 'https://www.linkedin.com/jobs/'),
+      googleSiteSearch('glassdoor.com/Job', 'Glassdoor', 'https://www.glassdoor.com/Job/'),
+      googleSiteSearch('stackoverflow.com/jobs', 'Stack Overflow Jobs', 'https://stackoverflow.com/jobs'),
+      googleSiteSearch('dataanalyst.com', 'DataAnalyst.com', 'https://www.dataanalyst.com/'),
+      googleSiteSearch('datajobs.com', 'DataJobs', 'https://datajobs.com/'),
+      googleSiteSearch('wellfound.com/jobs', 'Wellfound', 'https://wellfound.com/jobs'),
+      googleSiteSearch('weworkremotely.com', 'We Work Remotely', 'https://weworkremotely.com/remote-jobs'),
+      googleSiteSearch('dice.com/jobs', 'Dice', 'https://www.dice.com/jobs'),
+      googleSiteSearch('remoteok.com', 'Remote OK', 'https://remoteok.com/')
     ];
+
+    const rangeText = timeLabels[timeRange.value] || 'the last 72 hours';
+    if(subtitle){
+      subtitle.textContent = `Search Data Analyst and Data Engineering opportunities from ${rangeText}.`;
+    }
 
     results.innerHTML = searches.map(s => `
       <div class="apply-platform">
         <h3>${s.label}</h3>
-        <p>Live search filtered for your selected role, work mode, seniority, and recent postings.</p>
-        <a href="${s.url}" target="_blank" rel="noopener noreferrer">View recent jobs</a>
+        <p>Search ${rangeText}, filtered for your selected role, work mode, and seniority.</p>
+        <div class="apply-platform-actions">
+          <a href="${s.url}" target="_blank" rel="noopener noreferrer">Search filtered</a>
+          <a class="apply-platform-direct" href="${s.homeUrl}" target="_blank" rel="noopener noreferrer">Open site</a>
+        </div>
       </div>
     `).join('');
   }
@@ -2025,6 +1997,10 @@ renderQuestion();
     modal.setAttribute('aria-hidden','true');
     document.body.style.overflow='';
   }
+
+  [role, mode, seniority, timeRange].forEach(el => {
+    if(el) el.addEventListener('change', renderPlatforms);
+  });
 
   openBtn.addEventListener('click', openModal);
   closeBtn.addEventListener('click', closeModal);
@@ -2720,6 +2696,8 @@ document.addEventListener("keydown",e=>{
     state.hintsUsed = 0;
     state.completedQuestions = {};
     state.failedAttempts = {};
+    state.currentQuestion = null;
+    state.currentQuestionAttempts = 0;
 
     // Clear every piece of quiz progress persisted by SQL Lab.
     [
@@ -2732,7 +2710,10 @@ document.addEventListener("keydown",e=>{
       "sqlLabXP",
       "sqlLabHintsUsed",
       "sqlLabCompletedQuestions",
-      "sqlLabFailedAttempts"
+      "sqlLabFailedAttempts",
+      "sqlLabCurrentQuestion",
+      "sqlLabCurrentQuestionAttempts",
+      "sqlLabSeenQuestions"
     ].forEach(key => localStorage.removeItem(key));
 
     // Clear daily challenge completion flags as part of a full reset.
@@ -2751,10 +2732,167 @@ document.addEventListener("keydown",e=>{
 
     clearStatus();
 
-    showStatus("Progress reset. You're back at Question 1 with 0 XP.", "success");
+    showStatus("Progress reset. You're back at a fresh randomized exercise with 0 XP.", "success");
   });
 })();
 </script>
 
+
+<div class="training-modal-backdrop" id="trainingModal" aria-hidden="true">
+  <div class="training-modal" role="dialog" aria-modal="true" aria-labelledby="trainingModalTitle">
+    <button class="training-modal-close" id="trainingModalClose" type="button" aria-label="Close">×</button>
+    <div class="training-modal-head"><h2 id="trainingModalTitle">Practice Mode</h2><p id="trainingModalSubtitle"></p></div>
+    <div class="training-mode-meta"><span class="training-pill" id="trainingLevelPill"></span><span class="training-pill" id="trainingTopicPill"></span><span class="training-pill">∞ Unlimited</span></div>
+    <div class="training-question" id="trainingQuestion"></div>
+    <div id="trainingContext"></div>
+    <div id="trainingInputArea"></div>
+    <div class="training-actions"><button class="training-primary" id="trainingSubmit">Submit</button><button class="training-secondary" id="trainingNext">New Exercise</button></div>
+    <div class="training-feedback" id="trainingFeedback"></div>
+    <div id="trainingExtra"></div>
+  </div>
+</div>
+
+<script id="training-modes-v1-script">
+(function(){
+  const $=id=>document.getElementById(id);
+  const modal=$("trainingModal"); if(!modal) return;
+  const levelNames=["Fundamental","Core SQL","Intermediate","Advanced","Expert"];
+  const topics=levelTopics;
+  const modeState={mode:null,exercise:null,attempted:false};
+  const seen=JSON.parse(localStorage.getItem("sqlLabTrainingSeen")||"{}");
+  const stats=JSON.parse(localStorage.getItem("sqlLabTopicStats")||"{}");
+  const topic=(level)=>pick(topics[level]||topics[1]);
+  const escapeHtml=v=>String(v).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+  function saveStats(){localStorage.setItem("sqlLabTopicStats",JSON.stringify(stats));}
+  window.recordSqlTopic=function(topicName,correct){record(topicName,correct)};
+  function record(topicName,correct){if(!stats[topicName])stats[topicName]={attempts:0,wrong:0,correct:0};stats[topicName].attempts++;correct?stats[topicName].correct++:stats[topicName].wrong++;saveStats();}
+  function uniqueKey(prefix,text){let k=prefix+"|"+text; if(!seen[k]){seen[k]=Date.now();localStorage.setItem("sqlLabTrainingSeen",JSON.stringify(seen));return true}return false}
+  function randInt(n){return Math.floor(Math.random()*n)}
+  function table(name, columns, rows){ return {name, columns, rows}; }
+  function tableHtml(t){
+    return `<div class="training-data-card"><div class="training-data-title"><span>${escapeHtml(t.name)}</span><span class="training-data-label">Table</span></div><div class="training-schema">${escapeHtml(t.columns.join("  •  "))}</div><table class="training-data-table"><thead><tr>${t.columns.map(c=>`<th>${escapeHtml(c)}</th>`).join("")}</tr></thead><tbody>${t.rows.map(r=>`<tr>${r.map(v=>`<td>${escapeHtml(v===null?"NULL":v)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  }
+  function makeBusiness(){
+    const lvl=state.level||1;
+    const templates=[
+      {topic:"SQL Where",question:"The operations team wants a list of bettas priced above $20. Return betta_name and price, ordered from highest price to lowest.",tables:[table("bettas",["betta_name","price"],[["Coral","27.99"],["Mint","18.50"],["Shadow","31.25"],["Storm","22.00"],["Cosmo","14.75"],["Luna","25.40"]])],accepted:["SELECT betta_name, price FROM bettas WHERE price > 20 ORDER BY price DESC;","SELECT b.betta_name, b.price FROM bettas AS b WHERE b.price > 20 ORDER BY b.price DESC;"],explain:"Filter rows with WHERE price > 20, then sort the qualifying rows with ORDER BY price DESC."},
+      {topic:"SQL Group By",question:"A sales manager wants total revenue by order status. Return status and total revenue, highest revenue first.",tables:[table("orders",["order_id","status","total"],[["101","Completed","120.00"],["102","Pending","80.00"],["103","Completed","250.00"],["104","Cancelled","90.00"],["105","Pending","150.00"],["106","Completed","75.00"]])],accepted:["SELECT status, SUM(total) AS total_revenue FROM orders GROUP BY status ORDER BY total_revenue DESC;","SELECT status, SUM(total) total_revenue FROM orders GROUP BY status ORDER BY total_revenue DESC;"],explain:"GROUP BY creates one group per status, SUM calculates revenue in each group, and ORDER BY ranks the totals from highest to lowest."},
+      {topic:"SQL Joins",question:"A manager wants each customer's total completed spending. Return customer name and total spending for customers with completed orders.",tables:[table("customers",["customer_id","name"],[["1","Emma"],["2","Noah"],["3","Liam"],["4","Sofia"]]),table("orders",["order_id","customer_id","status","total"],[["201","1","Completed","120.00"],["202","1","Pending","50.00"],["203","2","Completed","90.00"],["204","3","Cancelled","70.00"],["205","3","Completed","140.00"]])],accepted:["SELECT c.name, SUM(o.total) AS total_spending FROM customers c INNER JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.name;","SELECT c.name, SUM(o.total) total_spending FROM customers AS c JOIN orders AS o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.name;"],explain:"Join customers to orders by customer_id, keep only Completed orders, then aggregate spending per customer."},
+      {topic:"SQL CTE",question:"Find customers whose completed spending is above the average completed spending per customer. Return customer_id and spending.",tables:[table("orders",["order_id","customer_id","status","total"],[["301","1","Completed","120.00"],["302","1","Completed","80.00"],["303","2","Completed","90.00"],["304","2","Pending","200.00"],["305","3","Completed","250.00"],["306","4","Completed","60.00"]])],accepted:["WITH customer_totals AS (SELECT customer_id, SUM(total) AS spending FROM orders WHERE status='Completed' GROUP BY customer_id) SELECT customer_id, spending FROM customer_totals WHERE spending > (SELECT AVG(spending) FROM customer_totals);","WITH customer_totals AS (SELECT customer_id, SUM(total) spending FROM orders WHERE status='Completed' GROUP BY customer_id) SELECT customer_id, spending FROM customer_totals WHERE spending > (SELECT AVG(spending) FROM customer_totals);"],explain:"The CTE calculates completed spending per customer first. The outer query compares each customer's spending with the average of those customer totals."},
+      {topic:"Window Functions",question:"For every order, show order_id, total, and the previous order total when ordered by order_date.",tables:[table("orders",["order_id","order_date","total"],[["401","2026-01-03","100.00"],["402","2026-01-05","150.00"],["403","2026-01-08","90.00"],["404","2026-01-12","210.00"]])],accepted:["SELECT order_id, total, LAG(total) OVER (ORDER BY order_date) AS previous_total FROM orders;","SELECT order_id, total, LAG(total,1) OVER (ORDER BY order_date) AS previous_total FROM orders;"],explain:"LAG looks at the previous row in order_date sequence while keeping every order in the result."}
+    ];
+    const preferred={1:"SQL Where",2:"SQL Group By",3:"SQL Inner Join",4:"SQL CTE (Common Table Expressions) — WITH clause",5:"ROW_NUMBER()"};
+    const target=preferred[lvl];
+    const eligible=templates.filter(x=>x.topic===target || (lvl===3 && x.topic==="SQL Joins") || (lvl===4 && x.topic==="SQL CTE") || (lvl===5 && x.topic==="Window Functions"));
+    const pool=eligible.length?eligible:templates; let x;
+    for(let i=0;i<50;i++){x=pick(pool);if(uniqueKey("business",x.topic+"|"+x.question))break} return x;
+  }
+  function makeDebug(){
+    const lvl=state.level||1;
+    const specs={
+      1:{topic:"SQL Where",make:()=>{const price=pick([18,20,22,25,28]);return {question:`Fix the query so it returns only bettas priced above $${price}.`,tables:[table("bettas",["betta_name","price"],[["Coral","14.00"],["Mint",String(price+2)], ["Shadow",String(price-3)], ["Storm","31.00"]])],sql:`SELECT * FROM bettas WHERE price < ${price};`,accepted:[`SELECT * FROM bettas WHERE price > ${price};`,`SELECT b.* FROM bettas AS b WHERE b.price > ${price};`],explain:`The requirement says above $${price}, so the comparison must use > rather than <.`};}},
+      2:{topic:"SQL Having",make:()=>{const threshold=pick([50,75,100]);return {question:`Fix the query so it returns customers whose total order value is greater than $${threshold}.`,tables:[table("orders",["order_id","customer_id","total"],[["501","1","20.00"],["502","1","45.00"],["503","2","80.00"],["504","3","30.00"]])],sql:`SELECT customer_id, SUM(total) AS total_spending FROM orders WHERE SUM(total) > ${threshold} GROUP BY customer_id;`,accepted:[`SELECT customer_id, SUM(total) AS total_spending FROM orders GROUP BY customer_id HAVING SUM(total) > ${threshold};`,`SELECT customer_id, SUM(total) total_spending FROM orders GROUP BY customer_id HAVING total_spending > ${threshold};`],explain:"SUM(total) is an aggregate, so its filter belongs in HAVING after GROUP BY."};}},
+      3:{topic:"SQL Inner Join",make:()=>({question:"Fix the query so it returns only customers who have a matching order.",tables:[table("customers",["customer_id","name"],[["1","Emma"],["2","Noah"],["3","Liam"],["4","Sofia"]]),table("orders",["order_id","customer_id"],[["601","1"],["602","3"]])],sql:"SELECT c.name, o.order_id FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id;",accepted:["SELECT c.name, o.order_id FROM customers c INNER JOIN orders o ON c.customer_id = o.customer_id;","SELECT c.name, o.order_id FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id;"],explain:"The requirement says only matching customers, so INNER JOIN (or JOIN) is the correct join type."})},
+      4:{topic:"SQL CTE (Common Table Expressions) — WITH clause",make:()=>({question:"Fix the query by using a CTE to calculate total spending per customer, then return customers whose total exceeds 100.",tables:[table("orders",["order_id","customer_id","total"],[["701","1","60.00"],["702","1","70.00"],["703","2","40.00"],["704","3","130.00"]])],sql:"SELECT customer_id, spending FROM customer_totals WHERE spending > 100;",accepted:["WITH customer_totals AS (SELECT customer_id, SUM(total) AS spending FROM orders GROUP BY customer_id) SELECT customer_id, spending FROM customer_totals WHERE spending > 100;","WITH customer_totals AS (SELECT customer_id, SUM(total) spending FROM orders GROUP BY customer_id) SELECT customer_id, spending FROM customer_totals WHERE spending > 100;"],explain:"customer_totals does not exist yet. A CTE defined with WITH creates that named intermediate result before the outer SELECT uses it."})},
+      5:{topic:"ROW_NUMBER()",make:()=>({question:"Fix the query so each employee receives a unique row number within their department, ordered by salary from highest to lowest.",tables:[table("employees",["employee_id","name","department","salary"],[["1","Emma","Sales","70000"],["2","Noah","Sales","65000"],["3","Liam","IT","90000"],["4","Sofia","IT","85000"]])],sql:"SELECT name, department, ROW_NUMBER() OVER (ORDER BY salary DESC) AS rn FROM employees;",accepted:["SELECT name, department, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rn FROM employees;","SELECT name, department, ROW_NUMBER() OVER(PARTITION BY department ORDER BY salary DESC) AS rn FROM employees;"],explain:"PARTITION BY department restarts the row number for each department while ORDER BY salary DESC ranks employees within that department."})}
+    };
+    const spec=specs[lvl]||specs[1]; let x=spec.make(); uniqueKey("debug",x.topic+"|"+x.question+"|"+x.sql); return x;
+  }
+  function makePredict(){
+    const lvl=state.level||1;
+    let x;
+    if(lvl===1){
+      const prices=[12,18,24,31].map(v=>v+randInt(5));
+      const threshold=pick([15,20,25]);
+      const rows=[["Coral",String(prices[0])],["Mint",String(prices[1])],["Shadow",String(prices[2])],["Storm",String(prices[3])]];
+      const matches=rows.filter(r=>Number(r[1])>threshold).map(r=>r[0]);
+      x={topic:"SQL Where",question:"Using the table below, which bettas are returned?",tables:[table("bettas",["betta_name","price"],rows)],sql:`SELECT betta_name FROM bettas WHERE price > ${threshold};`,options:[matches.join(", ")||"No rows",rows.map(r=>r[0]).join(", "),rows.filter(r=>Number(r[1])<=threshold).map(r=>r[0]).join(", ")],correct:0,explain:`Only rows with price > ${threshold} qualify. Trace each price in the snapshot before choosing.`};
+    } else if(lvl===2){
+      const colors=pick(["Blue","Green","Red"]); const other=pick(["Yellow","Black","White"]);
+      const rows=[["Coral",colors],["Mint",other],["Shadow",colors],["Storm",pick([other,"Purple"])] , ["Cosmo",pick([colors,other])]];
+      const unique=new Set(rows.map(r=>r[1])).size;
+      x={topic:"SQL Select Distinct",question:"Using the table below, how many rows are returned?",tables:[table("bettas",["betta_name","color"],rows)],sql:"SELECT DISTINCT color FROM bettas;",options:[String(unique-1),String(unique),String(rows.length)],correct:1,explain:`DISTINCT returns one row per unique color. Count the distinct color values in the snapshot: ${unique}.`};
+    } else if(lvl===3){
+      x={topic:"SQL Inner Join",question:"Using the tables below, how many customer rows can match an INNER JOIN?",tables:[table("customers",["customer_id","name"],[["1","Emma"],["2","Noah"],["3","Liam"],["4","Sofia"]]),table("orders",["order_id","customer_id"],[["801","1"],["802","1"],["803","3"]])],sql:"SELECT c.name, o.order_id FROM customers c INNER JOIN orders o ON c.customer_id=o.customer_id;",options:["2","3","4"],correct:1,explain:"The INNER JOIN returns one row per matching customer-order pair. Customer 1 has two matching orders and customer 3 has one, for 3 result rows."};
+    } else if(lvl===4){
+      x={topic:"SQL Subqueries",question:"Using the table below, how many customers have spending above the average customer spending?",tables:[table("customer_totals",["customer_id","spending"],[["1","100"],["2","50"],["3","200"],["4","150"]])],sql:"SELECT customer_id FROM customer_totals WHERE spending > (SELECT AVG(spending) FROM customer_totals);",options:["1","2","3"],correct:1,explain:"The average is 125. Customers 3 and 4 have spending above 125, so 2 rows are returned."};
+    } else {
+      x={topic:"ROW_NUMBER()",question:"Using the table below, what row number does Sofia receive within IT?",tables:[table("employees",["name","department","salary"],[["Emma","Sales","70000"],["Noah","Sales","65000"],["Liam","IT","90000"],["Sofia","IT","85000"]])],sql:"SELECT name, department, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rn FROM employees;",options:["1","2","3"],correct:1,explain:"Within IT, Liam has the higher salary and receives 1. Sofia is second, so her ROW_NUMBER is 2."};
+    }
+    uniqueKey("predict",x.sql+"|"+JSON.stringify(x.tables)); return x;
+  }
+  function makeMultiple(){
+    const lvl=state.level||1;
+    const arr={
+      1:[{topic:"SQL Between",question:"Return bettas priced from 15 through 20 inclusive. You may use BETWEEN or equivalent comparison operators.",tables:[table("bettas",["betta_name","price"],[["Coral","14.00"],["Mint","15.00"],["Shadow","18.50"],["Storm","20.00"],["Cosmo","21.00"]])],accepted:["SELECT * FROM bettas WHERE price BETWEEN 15 AND 20;","SELECT * FROM bettas WHERE price >= 15 AND price <= 20;"],explain:"BETWEEN includes both endpoints, so price BETWEEN 15 AND 20 is equivalent to price >= 15 AND price <= 20."}],
+      2:[{topic:"SQL Null Functions",question:"Return each customer's city, replacing NULL with 'Unknown'. You may use any valid SQL approach.",tables:[table("customers",["name","city"],[["Emma","NULL"],["Noah","Miami"],["Liam","NULL"],["Sofia","Madrid"]])],accepted:["SELECT name, COALESCE(city,'Unknown') AS city FROM customers;","SELECT name, ISNULL(city,'Unknown') AS city FROM customers;","SELECT name, CASE WHEN city IS NULL THEN 'Unknown' ELSE city END AS city FROM customers;"],explain:"COALESCE, ISNULL, and CASE can all express the requested NULL replacement in this SQL Server-oriented lab."}],
+      3:[{topic:"SQL Inner Join",question:"Return customers who have at least one order. Duplicate customer rows should appear only once.",tables:[table("customers",["customer_id","name"],[["1","Emma"],["2","Noah"],["3","Liam"]]),table("orders",["order_id","customer_id"],[["801","1"],["802","1"],["803","3"]])],accepted:["SELECT DISTINCT c.name FROM customers c INNER JOIN orders o ON c.customer_id=o.customer_id;","SELECT c.name FROM customers c WHERE EXISTS (SELECT 1 FROM orders o WHERE o.customer_id=c.customer_id);"],explain:"DISTINCT + INNER JOIN and EXISTS are two valid approaches. Both return each matching customer once."}],
+      4:[{topic:"SQL Subqueries",question:"Return customers whose spending is above the average spending. You may use a scalar subquery or an equivalent CTE.",tables:[table("customer_totals",["customer_id","spending"],[["1","100"],["2","50"],["3","200"],["4","150"]])],accepted:["SELECT customer_id, spending FROM customer_totals WHERE spending > (SELECT AVG(spending) FROM customer_totals);","WITH avg_spending AS (SELECT AVG(spending) AS avg_value FROM customer_totals) SELECT c.customer_id, c.spending FROM customer_totals c CROSS JOIN avg_spending a WHERE c.spending > a.avg_value;"],explain:"Both approaches compare each customer's value with the overall average. The result is determined by the data shown."}],
+      5:[{topic:"ROW_NUMBER()",question:"Return each employee with a unique row number within their department, ordered by salary descending. Equivalent window-function syntax is accepted.",tables:[table("employees",["name","department","salary"],[["Emma","Sales","70000"],["Noah","Sales","65000"],["Liam","IT","90000"],["Sofia","IT","85000"]])],accepted:["SELECT name, department, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rn FROM employees;","SELECT name,department,ROW_NUMBER() OVER(PARTITION BY department ORDER BY salary DESC) rn FROM employees;"],explain:"PARTITION BY creates an independent numbering sequence for each department and ORDER BY salary DESC determines the ranking order."}]
+    };
+    const pool=arr[lvl]||arr[1]; const x=pick(pool); uniqueKey("multiple",x.topic+"|"+x.question+"|"+JSON.stringify(x.tables)); return x;
+  }
+  function weakestTopic(){
+    const all=Object.keys(stats); if(!all.length)return levelTopics[state.level||1][rand(levelTopics[state.level||1].length)];
+    return all.sort((a,b)=>{const A=stats[a],B=stats[b];const ar=A.attempts?A.wrong/A.attempts:0,br=B.attempts?B.wrong/B.attempts:0;return br-ar||B.wrong-A.wrong})[0];
+  }
+  function makeReview(){
+    const weak=weakestTopic();
+    if(!weak) return makeBusiness();
+    const lvl=levelForTopic(weak);
+    let x=null;
+    for(let i=0;i<80;i++){
+      const candidate=makeGeneratedQuestion(lvl);
+      if(String(candidate.topic).toLowerCase()===String(weak).toLowerCase()){x=candidate;break}
+    }
+    if(!x){x=makeBusiness(); x.topic=weak;}
+    x.context=(x.context||"")+"\n\nWeakness Review targets your lowest-performing topic: "+weak+".";
+    return x;
+  }
+  function generate(mode){
+    if(mode==="business")return makeBusiness(); if(mode==="debug")return makeDebug(); if(mode==="predict")return makePredict(); if(mode==="multiple")return makeMultiple(); return makeReview();
+  }
+  function levelForTopic(t){for(const [l,arr] of Object.entries(topics))if(arr.some(x=>x.toLowerCase()===String(t).toLowerCase()))return Number(l);return state.level||1}
+  function renderExercise(){
+    const e=modeState.exercise,m=modeState.mode; modeState.attempted=false;
+    const titles={business:"Business Problems",debug:"SQL Debugging",predict:"Predict the Output",multiple:"Multiple Valid Solutions",review:"Weakness Review"};
+    const subtitles={business:"Use the complete scenario and data provided. Choose the SQL operations that actually solve the business request.",debug:"Use the table data and broken query below. Identify the logic error and submit a corrected query.",predict:"The table data is provided. Read the query and predict the result before selecting an answer.",multiple:"More than one SQL solution may be correct. Write one valid solution and be ready to explain why it works.",review:"Your next exercise targets a topic that needs reinforcement."};
+    const lvl=levelForTopic(e.topic);
+    $("trainingModalTitle").textContent=titles[m];
+    $("trainingModalSubtitle").textContent=subtitles[m];
+    $("trainingLevelPill").textContent="Level "+lvl+" · "+levelNames[lvl-1];
+    $("trainingTopicPill").textContent=e.topic;
+    $("trainingQuestion").textContent=e.question;
+    let html="";
+    if(e.tables?.length) html+=e.tables.map(tableHtml).join("");
+    if(m==="business") html+=`<div class="training-task-card"><strong>Business requirement:</strong> Write SQL that satisfies the request exactly. Use only the information provided above.</div>`;
+    if(m==="debug") html+=`<div class="training-task-card"><strong>Your task:</strong> Find the logic problem in the broken SQL and rewrite it so the stated requirement is met. Do not just describe the error.</div><div class="training-query-card"><div class="training-query-label">Broken SQL</div><pre>${escapeHtml(e.sql||"")}</pre></div>`;
+    if(m==="predict") html+=`<div class="training-query-card"><div class="training-query-label">Query</div><pre>${escapeHtml(e.sql||"")}</pre></div>`;
+    if(m==="multiple") html+=`<div class="training-hint-card"><strong>Accepted:</strong> any logically equivalent SQL that returns the requested result. Formatting and alias names do not matter.</div>`;
+    $("trainingContext").innerHTML=html;
+    const area=$("trainingInputArea"),extra=$("trainingExtra"); extra.innerHTML=""; $("trainingFeedback").className="training-feedback"; $("trainingFeedback").textContent="";
+    if(m==="predict"){ $("trainingSubmit").style.display="none"; area.innerHTML='<div class="training-options" id="trainingOptions">'+e.options.map((o,i)=>`<button class="training-option" data-i="${i}">${escapeHtml(o)}</button>`).join("")+'</div>'; }
+    else { $("trainingSubmit").style.display="inline-block"; area.innerHTML='<div class="training-answer-label">Your SQL answer</div><div class="training-answer-help">Write your own solution. Equivalent SQL approaches can be accepted when they produce the required result.</div><textarea class="training-answer" id="trainingAnswer" spellcheck="false" placeholder="-- Write your SQL solution here"></textarea>'; }
+  }
+  function openMode(mode){modeState.mode=mode;modeState.exercise=generate(mode);renderExercise();modal.classList.add("open");modal.setAttribute("aria-hidden","false");}
+  function closeMode(){modal.classList.remove("open");modal.setAttribute("aria-hidden","true");}
+  function feedback(msg,ok){const f=$("trainingFeedback");f.textContent=msg;f.className="training-feedback show "+(ok?"ok":"bad");}
+  function normalized(s){return String(s).toLowerCase().replace(/--.*$/gm,"").replace(/\s+/g," ").replace(/\s*;\s*$/," ").trim().replace(/\s+/g," ");}
+  function submit(){
+    const e=modeState.exercise,m=modeState.mode; if(m==="predict")return;
+    const val=$("trainingAnswer")?.value.trim(); if(!val){feedback("Write your answer before submitting.",false);return}
+    let ok=false; if(e.accepted) ok=e.accepted.some(a=>normalized(a)===normalized(val));
+    record(e.topic,ok); modeState.attempted=true;
+    if(ok){feedback("✅ Correct. Your topic performance has been updated.",true); if(e.explain) $("trainingExtra").innerHTML='<div class="training-explain"><strong>Why:</strong> '+escapeHtml(e.explain)+'</div>';}
+    else {feedback("❌ Not accepted yet. Check the requirement and try again.",false); $("trainingExtra").innerHTML='<div class="training-explain"><strong>Hint:</strong> Review the table data, requested output, and SQL operation required. Try a different valid approach before revealing the explanation.</div>';}
+  }
+  function renderPredict(){document.querySelectorAll(".training-option").forEach(b=>b.addEventListener("click",()=>{if(modeState.attempted)return;const i=Number(b.dataset.i),e=modeState.exercise;modeState.attempted=true;document.querySelectorAll(".training-option").forEach(x=>x.disabled=true);const ok=i===e.correct; b.classList.add(ok?"correct":"wrong");if(!ok)document.querySelector(`.training-option[data-i="${e.correct}"]`)?.classList.add("correct");record(e.topic,ok);feedback(ok?"✅ Correct prediction.":"❌ Not quite. Compare your reasoning with the explanation below.",ok);$("trainingExtra").innerHTML='<div class="training-explain"><strong>Explanation:</strong> '+escapeHtml(e.explain)+'</div>';}));}
+  $("trainingNext").addEventListener("click",()=>{modeState.exercise=generate(modeState.mode);renderExercise();if(modeState.mode==="predict")renderPredict();});
+  $("trainingSubmit").addEventListener("click",submit); $("trainingModalClose").addEventListener("click",closeMode); modal.addEventListener("click",e=>{if(e.target===modal)closeMode()}); document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMode()});
+  document.querySelectorAll(".training-mode-card").forEach(b=>b.addEventListener("click",()=>{openMode(b.dataset.mode);if(b.dataset.mode==="predict")renderPredict();}));
+  // Weakness dashboard replaces the old generic skill estimate with actual topic-level review data when available.
+  const weakCard=document.querySelector('.training-mode-card[data-mode="review"]'); if(weakCard){weakCard.addEventListener("contextmenu",e=>e.preventDefault())}
+})();
+</script>
 </body>
 </html>
