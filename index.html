@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SQL Lab — Betta Store</title>
+<title>SQL Lab</title>
 <style>
 :root{
   --bg:#f6f7f9;--card:#fff;--text:#111827;--muted:#697386;--line:#e6e9ee;
@@ -86,7 +86,7 @@ textarea::placeholder{color:#7b9b83}
 @media(max-width:760px){
  .topbar{padding:0 14px}.metrics{width:auto;gap:10px}.stats-group{gap:6px}.actions-group{gap:8px}.refresh-page-btn,.apply-now-btn{display:none}.metric{padding:0 10px;font-size:12px}
  .app{display:block}.sidebar{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:22px 15px}
- .sidebar h2{font-size:24px;margin-bottom:18px}.levels{display:grid;grid-template-columns:repeat(2,1fr)}.progress-card{display:none}
+ .sidebar h2{font-size:24px;margin-bottom:18px}.levels{display:grid;grid-template-columns:1fr}.progress-card{display:none}
  main{padding:17px 14px 50px}.welcome{min-height:170px;padding:25px 15px}.welcome h1{font-size:42px}.welcome p{font-size:17px}
  .challenge{padding:17px}.challenge-head{flex-direction:column}.question-count{align-self:flex-start}
 }
@@ -799,8 +799,63 @@ h1,h2,h3{letter-spacing:-.035em}
 .feature-card:before{content:"";position:absolute;left:0;top:0;right:0;height:5px;background:linear-gradient(90deg,var(--primary),#8c85ff);opacity:.95}
 .feature-card:nth-child(2):before,.feature-card:nth-child(3):before{background:linear-gradient(90deg,var(--accent),var(--accent-light))}
 .feature-card:nth-child(3):hover{border-color:rgba(255,184,77,.35)!important;box-shadow:0 24px 55px rgba(255,184,77,.13)!important}
-#dailyChallengeBtn{background:#111827;color:#fff}
-#dailyChallengeBtn:hover{background:#000;color:#fff;box-shadow:0 12px 25px rgba(17,24,39,.20)}
+#dailyChallengeBtn{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  width:100%;
+  min-height:44px;
+  overflow:hidden;
+  background:linear-gradient(135deg,#0f172a 0%,#172554 55%,#166534 100%);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 10px 24px rgba(15,23,42,.18), inset 0 1px 0 rgba(255,255,255,.08);
+  letter-spacing:.01em;
+}
+#dailyChallengeBtn:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.13) 45%,transparent 70%);
+  transform:translateX(-120%);
+  transition:transform .55s ease;
+  pointer-events:none;
+}
+#dailyChallengeBtn:hover{
+  transform:translateY(-2px);
+  background:linear-gradient(135deg,#111827 0%,#1e3a8a 55%,#15803d 100%);
+  box-shadow:0 15px 30px rgba(15,23,42,.24),0 0 0 1px rgba(34,197,94,.12);
+}
+#dailyChallengeBtn:hover:before{transform:translateX(120%)}
+#dailyChallengeBtn:active{transform:translateY(0)}
+.teleport-label{position:relative;z-index:1;font-size:13px;font-weight:800}
+.teleport-arrows{
+  position:relative;
+  z-index:1;
+  display:inline-flex;
+  align-items:center;
+  gap:1px;
+  color:#86efac;
+  font-size:22px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-6px;
+  transform:translateY(-1px);
+}
+.teleport-arrows span{
+  display:inline-block;
+  transition:transform .2s ease,opacity .2s ease;
+}
+.teleport-arrows span:nth-child(1){opacity:.42}
+.teleport-arrows span:nth-child(2){opacity:.68}
+.teleport-arrows span:nth-child(3){opacity:.9}
+.teleport-arrows span:nth-child(4){opacity:1}
+#dailyChallengeBtn:hover .teleport-arrows span:nth-child(1){transform:translateX(3px)}
+#dailyChallengeBtn:hover .teleport-arrows span:nth-child(2){transform:translateX(5px)}
+#dailyChallengeBtn:hover .teleport-arrows span:nth-child(3){transform:translateX(7px)}
+#dailyChallengeBtn:hover .teleport-arrows span:nth-child(4){transform:translateX(9px)}
 #interviewBtn{background:#111827;color:#fff}
 #interviewBtn:hover{background:#000;box-shadow:0 12px 25px rgba(17,24,39,.20)}
 
@@ -1048,24 +1103,44 @@ body.learn-open{overflow:hidden}
 @media(max-width:650px){.learn-close-floating{top:14px!important;right:14px!important}.learn-close-btn{width:38px!important;height:38px!important;font-size:22px!important}}
 </style>
 
-<style id="blue-levels-authoritative-final">
-:root{--level-blue:#0084FF}
-.level-btn:hover{border-color:rgba(0,132,255,.35)!important;background:rgba(0,132,255,.045)!important;box-shadow:0 10px 25px rgba(0,132,255,.10)!important}
-.level-btn:hover:before{background:#0084FF!important}
-.level-btn.active{border-color:rgba(0,132,255,.45)!important;background:linear-gradient(90deg,rgba(0,132,255,.10),rgba(0,132,255,.025)),#fff!important;box-shadow:0 10px 26px rgba(0,132,255,.12),inset 0 0 0 1px rgba(0,132,255,.05)!important}
-.level-btn.active:before{background:#0084FF!important}
-.level-btn:hover .level-left,.level-btn.active .level-left{color:#0084FF!important}
-.level-btn:hover .num{background:rgba(0,132,255,.12)!important;color:#0084FF!important}
-.level-btn.active .num{background:rgba(0,132,255,.13)!important;color:#0084FF!important}
-.level-btn:hover .arrow,.level-btn.active .arrow{color:#0084FF!important}
-.xp-progress span{background:#0084FF!important}
+<style id="green-levels-authoritative-final">
+:root{--level-green:#2f7d46;--level-green-light:#e8f5eb;--level-green-border:#7fbd8f}
+/* Hover stays neutral. Only .active gets the light-green selected state. */
+.level-btn:hover{
+  border-color:#dfe8f3!important;
+  background:#f8fafc!important;
+  box-shadow:0 6px 18px rgba(15,23,42,.06)!important;
+  transform:translateX(3px);
+}
+.level-btn:hover:before{
+  background:#dfe8f3!important;
+  transform:scaleY(.35)!important;
+}
+.level-btn:hover .level-left{color:#111827!important}
+.level-btn:hover .num{
+  background:#f1f3f6!important;
+  color:#687386!important;
+  transform:none!important;
+}
+.level-btn:hover .arrow{color:#9aa3b2!important;transform:translateX(2px)!important}
+.level-btn.active{
+  border-color:var(--level-green-border)!important;
+  background:linear-gradient(90deg,rgba(232,245,235,.95),rgba(232,245,235,.38)),#fff!important;
+  box-shadow:0 10px 26px rgba(47,125,70,.14),inset 0 0 0 1px rgba(47,125,70,.06)!important;
+}
+.level-btn.active:before{background:var(--level-green)!important;transform:scaleY(1)!important}
+.level-btn.active .level-left{color:var(--level-green)!important}
+.level-btn.active .num{background:#d5ecd9!important;color:var(--level-green)!important}
+.level-btn.active .arrow{color:var(--level-green)!important}
+.xp-progress span{background:var(--level-green)!important}
 </style>
 
-<style id="daily-interview-dark-red-final">
-/* Daily SQL Challenge + Interview Mode accent lines */
+<style id="daily-interview-dark-green-final">
+/* All feature-card accent lines use dark green */
+.feature-card:first-child:before,
 .feature-card:nth-child(2):before,
 .feature-card:nth-child(3):before{
-  background:#D32F2F !important;
+  background:#166534 !important;
 }
 </style>
 
@@ -1073,9 +1148,14 @@ body.learn-open{overflow:hidden}
 <style id="training-modes-v1">
 .training-modes-section{margin:24px 0;padding:28px;background:#fff;border:1px solid #e5e9f0;border-radius:20px;box-shadow:0 12px 30px rgba(15,23,42,.05)}
 .training-modes-section h2{margin:4px 0 6px;font-size:24px;color:#182235}.training-subtitle{margin:0 0 20px;color:#667085}
-.training-modes-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.training-mode-card{appearance:none;text-align:left;border:1px solid #e1e6ee;background:#fbfcfe;border-radius:15px;padding:17px;cursor:pointer;transition:.2s;min-height:150px}.training-mode-card:hover{transform:translateY(-3px);border-color:#0084FF;box-shadow:0 12px 24px rgba(0,132,255,.10);background:#fff}.mode-icon{display:block;font-size:25px;margin-bottom:12px}.training-mode-card strong{display:block;color:#1d2939;font-size:15px;margin-bottom:7px}.training-mode-card small{display:block;color:#667085;line-height:1.4}
+.training-modes-grid{display:grid;grid-template-columns:260px 260px minmax(0,1fr);gap:14px;align-items:stretch}.training-mode-card{appearance:none;text-align:left;border:1px solid #e1e6ee;background:#fbfcfe;border-radius:15px;padding:17px;cursor:pointer;transition:.2s;min-height:150px}.training-mode-card:hover{transform:translateY(-3px);border-color:#0084FF;box-shadow:0 12px 24px rgba(0,132,255,.10);background:#fff}.mode-icon{display:block;font-size:25px;margin-bottom:12px}.training-mode-card strong{display:block;color:#1d2939;font-size:15px;margin-bottom:7px}.training-mode-card small{display:block;color:#667085;line-height:1.4}
 .training-modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}.training-modal-backdrop.open{display:flex}.training-modal{width:min(980px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:22px;box-shadow:0 30px 80px rgba(15,23,42,.25);padding:28px;position:relative}.training-modal-close{position:absolute;right:18px;top:16px;border:0;background:#f2f4f7;border-radius:50%;width:38px;height:38px;font-size:23px;cursor:pointer}.training-modal-head{padding-right:48px}.training-modal-head h2{margin:0 0 5px;color:#182235}.training-modal-head p{margin:0;color:#667085}.training-mode-meta{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.training-pill{padding:6px 10px;border-radius:999px;background:#eef6ff;color:#006bd6;font-size:12px;font-weight:700}.training-question{font-size:18px;font-weight:700;line-height:1.5;color:#182235;margin:18px 0}.training-context{background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;padding:15px;margin:15px 0;overflow:auto}.training-context pre{margin:0;white-space:pre-wrap;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}.training-data-card{background:#fff;border:1px solid #dfe5ec;border-radius:14px;padding:14px;margin:0 0 14px;box-shadow:0 2px 8px rgba(15,23,42,.04)}.training-data-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 10px;font-size:14px;font-weight:800;color:#182235}.training-data-label{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#667085;background:#f2f4f7;padding:5px 8px;border-radius:999px}.training-data-table{width:100%;border-collapse:collapse;font-size:13px;min-width:520px}.training-data-table th{background:#f4f7fb;color:#344054;font-weight:800;text-align:left}.training-data-table th,.training-data-table td{border-bottom:1px solid #eaecf0;padding:9px 10px;white-space:nowrap}.training-data-table tr:last-child td{border-bottom:0}.training-schema{margin:0 0 12px;color:#667085;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}.training-query-card{background:#101828;color:#f8fafc;border-radius:14px;padding:16px;margin-top:14px}.training-query-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#98a2b3;font-weight:800;margin-bottom:9px}.training-query-card pre{margin:0;white-space:pre-wrap;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}.training-task-card{background:#eef6ff;border:1px solid #cfe4ff;border-radius:14px;padding:13px 15px;color:#194b7a;line-height:1.5;margin:12px 0}.training-task-card strong{color:#123b62}.training-hint-card{background:#fffaeb;border:1px solid #fedf89;border-radius:12px;padding:12px 14px;color:#7a5a00;line-height:1.5;margin-top:12px}.training-answer-label{font-size:12px;font-weight:800;color:#475467;margin:14px 0 7px}.training-answer-help{font-size:12px;color:#667085;margin:-2px 0 10px}.training-answer{width:100%;min-height:180px;resize:vertical;border:1px solid #d0d5dd;border-radius:12px;padding:14px;font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;box-sizing:border-box}.training-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.training-actions button{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer}.training-primary{background:#0084FF;color:#fff}.training-secondary{background:#eef2f6;color:#344054}.training-feedback{margin-top:14px;padding:13px;border-radius:12px;display:none}.training-feedback.show{display:block}.training-feedback.ok{background:#ecfdf3;color:#067647}.training-feedback.bad{background:#fef3f2;color:#b42318}.training-options{display:grid;gap:10px;margin:16px 0}.training-option{padding:14px;border:1px solid #d0d5dd;border-radius:12px;background:#fff;text-align:left;cursor:pointer;font-weight:600}.training-option:hover{border-color:#0084FF}.training-option.correct{border-color:#12b76a;background:#ecfdf3}.training-option.wrong{border-color:#f04438;background:#fef3f2}.weakness-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}.weakness-item{padding:13px;border:1px solid #e4e7ec;border-radius:12px}.weakness-item b{float:right}.weakness-bar{height:7px;background:#eef2f6;border-radius:99px;margin-top:10px;overflow:hidden}.weakness-bar span{display:block;height:100%;background:#0084FF;border-radius:99px}.training-explain{margin-top:14px;padding:14px;background:#f8fafc;border-radius:12px;color:#475467;line-height:1.55}.
 @media(max-width:900px){.training-modes-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.training-modes-grid{grid-template-columns:1fr}.training-modal{padding:20px}.weakness-grid{grid-template-columns:1fr}}
+
+/* Clickable motivational message panel */
+.motivation-card{min-width:0;min-height:150px;border:1px solid rgba(67,114,78,.38);border-radius:15px;background:linear-gradient(155deg,#eef7ed 0%,#d9ecd9 38%,#a9c9a8 72%,#6f9871 100%);padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:pointer;position:relative;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}.motivation-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 22% 18%,rgba(255,255,255,.72),transparent 24%),linear-gradient(to bottom,rgba(255,255,255,.08),rgba(26,65,36,.18));pointer-events:none}.motivation-card:after{content:"";position:absolute;left:-5%;right:-5%;bottom:-34px;height:105px;background:linear-gradient(to top,rgba(28,68,38,.72),rgba(48,91,53,.34) 42%,transparent);clip-path:polygon(0 78%,4% 60%,8% 73%,12% 50%,16% 70%,21% 42%,26% 66%,31% 48%,36% 72%,42% 40%,48% 68%,54% 47%,60% 70%,66% 43%,72% 65%,78% 49%,84% 72%,90% 45%,96% 68%,100% 53%,100% 100%,0 100%);pointer-events:none}.motivation-card:hover{transform:translateY(-3px);border-color:#4f8a58;box-shadow:0 14px 30px rgba(48,91,53,.22)}.motivation-card:active{transform:translateY(-1px)}.motivation-label{position:relative;z-index:2;font-size:11px;font-weight:850;letter-spacing:.1em;text-transform:uppercase;color:#2f6b3b;margin-bottom:13px}.motivation-message{position:relative;z-index:2;font-size:19px;line-height:1.4;font-weight:750;letter-spacing:-.2px;color:#193522;max-width:560px;text-shadow:0 1px 0 rgba(255,255,255,.35);transition:opacity .16s ease,transform .16s ease}.motivation-hint{position:relative;z-index:2;margin-top:13px;font-size:11px;color:#42634a}.motivation-trees{position:absolute;z-index:1;left:0;right:0;bottom:0;height:92px;opacity:.55;pointer-events:none;background:linear-gradient(to top,rgba(31,74,39,.28),transparent)}.motivation-trees:before,.motivation-trees:after{content:"";position:absolute;bottom:18px;width:0;height:0;border-left:28px solid transparent;border-right:28px solid transparent;border-bottom:70px solid rgba(35,78,42,.38);filter:blur(.15px)}.motivation-trees:before{left:8%;box-shadow:76px 12px 0 rgba(35,78,42,.25),155px -5px 0 rgba(35,78,42,.32),245px 10px 0 rgba(35,78,42,.24),345px -2px 0 rgba(35,78,42,.31),445px 13px 0 rgba(35,78,42,.23),535px -6px 0 rgba(35,78,42,.28)}.motivation-trees:after{right:4%;bottom:10px;border-left-width:34px;border-right-width:34px;border-bottom-width:82px;opacity:.55}.motivation-card .peace-dot{position:absolute;z-index:2;top:16px;right:18px;width:8px;height:8px;border-radius:50%;background:#76a97c;box-shadow:0 0 0 6px rgba(255,255,255,.25)}
+@media(max-width:1100px){.training-modes-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.motivation-card{grid-column:1/-1;min-height:170px}}
+@media(max-width:600px){.training-modes-grid{grid-template-columns:1fr}.motivation-card{grid-column:auto;min-height:180px}}
 </style>
 </head>
 <body>
@@ -1098,15 +1178,20 @@ body.learn-open{overflow:hidden}
 <div class="app">
 
 <aside class="sidebar">
-  <h2>Choose your level</h2>
+  <h2>Choose your section</h2>
 
   <div class="levels">
     <div class="unlimited-note">∞ Unlimited randomized exercises</div>
-    <button class="level-btn active" data-level="1"><span class="level-left"><span class="num">01</span>Fundamental</span><span class="arrow">›</span></button>
-    <button class="level-btn" data-level="2"><span class="level-left"><span class="num">02</span>Core SQL</span><span class="arrow">›</span></button>
-    <button class="level-btn" data-level="3"><span class="level-left"><span class="num">03</span>Intermediate</span><span class="arrow">›</span></button>
-    <button class="level-btn" data-level="4"><span class="level-left"><span class="num">04</span>Advanced</span><span class="arrow">›</span></button>
-    <button class="level-btn" data-level="5"><span class="level-left"><span class="num">05</span>Expert</span><span class="arrow">›</span></button>
+    <button class="level-btn active" data-section="1" data-level="1"><span class="level-left"><span class="num">01</span>Basic</span><span class="arrow">›</span></button>
+    <button class="level-btn" data-section="2" data-level="1"><span class="level-left"><span class="num">02</span>Queries</span><span class="arrow">›</span></button>
+    <button class="level-btn" data-section="3" data-level="2"><span class="level-left"><span class="num">03</span>Functions</span><span class="arrow">›</span></button>
+    <button class="level-btn" data-section="4" data-level="3"><span class="level-left"><span class="num">04</span>Joins</span><span class="arrow">›</span></button>
+    <button class="level-btn" data-section="5" data-level="3"><span class="level-left"><span class="num">05</span>Constraints</span><span class="arrow">›</span></button>
+    <button class="level-btn" data-section="6" data-level="4"><span class="level-left"><span class="num">06</span>Subqueries</span><span class="arrow">›</span></button>
+    <button class="level-btn" data-section="7" data-level="4"><span class="level-left"><span class="num">07</span>Indexes &amp; Views</span><span class="arrow">›</span></button>
+    <button class="level-btn" data-section="8" data-level="4"><span class="level-left"><span class="num">08</span>Normalization</span><span class="arrow">›</span></button>
+    <button class="level-btn" data-section="9" data-level="5"><span class="level-left"><span class="num">09</span>Transactions</span><span class="arrow">›</span></button>
+    <button class="level-btn" data-section="10" data-level="5"><span class="level-left"><span class="num">10</span>Advanced</span><span class="arrow">›</span></button>
   </div>
 
   <div class="progress-card">
@@ -1145,13 +1230,16 @@ body.learn-open{overflow:hidden}
   </div>
 
   <div class="feature-card">
-    <h3>Daily SQL Challenge</h3>
+    <h3>SQL Playground</h3>
     <p id="dailyDescription">A fresh business problem selected for today.</p>
     <div class="daily-meta">
       <span class="daily-tag" id="dailyLevel">Level</span>
       <span class="daily-tag" id="dailyDifficulty">Difficulty</span>
     </div>
-    <button class="feature-button" id="dailyChallengeBtn" type="button">Start Today's Challenge</button>
+    <button class="feature-button teleport-button" id="dailyChallengeBtn" type="button" aria-label="Teleport to SQL + English Practice Lab">
+    <span class="teleport-label">Teleport</span>
+    <span class="teleport-arrows" aria-hidden="true"><span>›</span><span>›</span><span>›</span><span>›</span></span>
+  </button>
   </div>
 
   <div class="feature-card">
@@ -1163,13 +1251,17 @@ body.learn-open{overflow:hidden}
 <section class="training-modes-section">
   <div class="section-kicker">LEVEL UP YOUR SQL</div>
   <h2>Practice Modes</h2>
-  <p class="training-subtitle">Go beyond memorizing syntax. Solve business problems, debug SQL, predict results, and review your weak areas.</p>
+  <p class="training-subtitle">Go beyond memorizing syntax. Debug SQL, predict results, and keep building your confidence one query at a time.</p>
   <div class="training-modes-grid">
-    <button class="training-mode-card" data-mode="business"><span class="mode-icon">💼</span><strong>Business Problems</strong><small>Turn real business questions into SQL.</small></button>
     <button class="training-mode-card" data-mode="debug"><span class="mode-icon">🐞</span><strong>SQL Debugging</strong><small>Find and fix broken queries.</small></button>
     <button class="training-mode-card" data-mode="predict"><span class="mode-icon">🔮</span><strong>Predict the Output</strong><small>Reason about the result before running SQL.</small></button>
-    <button class="training-mode-card" data-mode="multiple"><span class="mode-icon">🧩</span><strong>Multiple Valid Solutions</strong><small>Discover different correct SQL approaches.</small></button>
-    <button class="training-mode-card" data-mode="review"><span class="mode-icon">🎯</span><strong>Weakness Review</strong><small>Practice topics you struggle with most.</small></button>
+    <button class="motivation-card" id="motivationCard" type="button" aria-label="Show a new motivational message">
+      <span class="peace-dot" aria-hidden="true"></span>
+      <span class="motivation-trees" aria-hidden="true"></span>
+      <span class="motivation-label">A quiet moment</span>
+      <span class="motivation-message" id="motivationMessage">Every expert was once a beginner who kept practicing.</span>
+      <span class="motivation-hint">Click for a new thought</span>
+    </button>
   </div>
 </section>
 <section class="sql-progress-section">
@@ -1402,94 +1494,209 @@ const statuses=["Completed","Pending","Cancelled"];
 const categories=["Food","Tanks","Decor","Care","Equipment"];
 function q(prompt,topic,accepted,table,acceptedNote){return{id:hashQuestion(topic+"|"+prompt+"|"+accepted.join("|")),prompt,topic,accepted,table,acceptedNote:acceptedNote||"Equivalent SQL forms are accepted when they return the requested result."};}
 
-function makeGeneratedQuestion(level){
+/* ============================================================
+   SECTION-BASED QUESTION GENERATOR
+   Each visible section has its own topic bank.
+   state.level remains available for the rest of the app, but
+   generated practice questions are selected by state.section.
+============================================================ */
+const sectionDescriptions = {
+  1:"Explain SQL fundamentals, databases, tables, data types, and CRUD operations with simple examples.",
+  2:"Teach SELECT statements, WHERE clauses, ORDER BY/GROUP BY, and LIMIT/DISTINCT with sample queries.",
+  3:"Show aggregate, string, and date functions such as COUNT, SUM, AVG, UPPER, LOWER, CONCAT, NOW, DATE, and DATEDIFF.",
+  4:"Explain INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN, and SELF JOIN with practical examples.",
+  5:"Teach subqueries in SELECT, FROM, and WHERE clauses, plus correlated subqueries.",
+  6:"Explain PRIMARY KEY, FOREIGN KEY, UNIQUE, NOT NULL, and CHECK constraints and when to use them.",
+  7:"Show how indexes improve query performance and how to create and use views.",
+  8:"Explain 1NF, 2NF, 3NF, and how to avoid data redundancy.",
+  9:"Teach BEGIN, COMMIT, ROLLBACK, and ACID properties with examples.",
+  10:"Introduce stored procedures, triggers, window functions, and CTEs using the WITH clause."
+};
+
+function makeGeneratedQuestion(section){
   const c=[];
-  if(level===1){
+
+  if(section===1){
     c.push(
-      ()=>{const col=pick(["betta_name","variety","color","gender","price","tank_id"]);return q(`Select the ${col} column from bettas.`,"SQL Select",[`SELECT ${col} FROM bettas;`,`SELECT b.${col} FROM bettas b;`],"bettas","SELECT the requested column; a table alias is optional.")},
-      ()=>{const gender=pick(genders);return q(`Show all bettas whose gender is ${gender}.`,"SQL Where",[`SELECT * FROM bettas WHERE gender = ${quote(gender)};`,`SELECT b.* FROM bettas b WHERE b.gender = ${quote(gender)};`],"bettas","WHERE is required; an optional table alias is accepted.")},
-      ()=>{const color=pick(colors),price=pick([15,18,20,22,25]);return q(`Show bettas that are ${color} and cost more than $${price}.`,"SQL And / Or / Not",[`SELECT * FROM bettas WHERE color = ${quote(color)} AND price > ${price};`,`SELECT * FROM bettas WHERE (color = ${quote(color)}) AND (price > ${price});`],"bettas","Both conditions must be enforced; parentheses are optional.")},
-      ()=>{const color=pick(colors),other=pick(colors.filter(x=>x!==color));return q(`Show bettas that are ${color} OR ${other}.`,"SQL And / Or / Not",[`SELECT * FROM bettas WHERE color = ${quote(color)} OR color = ${quote(other)};`,`SELECT * FROM bettas WHERE color IN (${quote(color)}, ${quote(other)});`],"bettas","OR or the equivalent IN form is accepted.")},
-      ()=>{const gender=pick(genders);return q(`Show all bettas that are NOT ${gender}.`,"SQL And / Or / Not",[`SELECT * FROM bettas WHERE NOT gender = ${quote(gender)};`,`SELECT * FROM bettas WHERE gender <> ${quote(gender)};`,`SELECT * FROM bettas WHERE gender != ${quote(gender)};`],"bettas","NOT, <>, and != are accepted equivalent exclusion forms.")},
-      ()=>{const w=pick(["S","M","C","O","R"]);return q(`Find bettas whose names start with ${w}.`,"SQL Like",[`SELECT * FROM bettas WHERE betta_name LIKE ${quote(w+"%")} ;`,`SELECT b.* FROM bettas b WHERE b.betta_name LIKE ${quote(w+"%")} ;`],"bettas","LIKE with a trailing % wildcard; aliases are optional.")},
-      ()=>{const col=pick(["color","variety","gender"]),arr=col==="color"?colors:col==="variety"?varieties:genders,a=pick(arr),b=pick(arr.filter(x=>x!==a));return q(`Show bettas whose ${col} is ${a} or ${b}.`,"SQL In",[`SELECT * FROM bettas WHERE ${col} IN (${quote(a)}, ${quote(b)});`,`SELECT * FROM bettas WHERE ${col} = ${quote(a)} OR ${col} = ${quote(b)};`],"bettas","IN and equivalent OR conditions are accepted.")},
-      ()=>{const low=pick([12,15,18,20]),high=low+pick([5,7,10]);return q(`Show bettas priced between $${low} and $${high}.`,"SQL Between",[`SELECT * FROM bettas WHERE price BETWEEN ${low} AND ${high};`,`SELECT * FROM bettas WHERE price >= ${low} AND price <= ${high};`],"bettas","BETWEEN and equivalent inclusive comparisons are accepted.")},
-      ()=>{const pattern=pick(["%a%","%o%","_u%","S%","%e"]);return q(`Use a wildcard pattern to find betta names matching ${pattern}.`,"SQL Wildcards",[`SELECT * FROM bettas WHERE betta_name LIKE ${quote(pattern)};`],"bettas","Use % for any number of characters or _ for exactly one character.")},
-      ()=>{const col=pick(["price","betta_name","tank_id"]),dir=pick(["ASC","DESC"]);return q(`Sort all bettas by ${col} in ${dir==="ASC"?"ascending":"descending"} order.`,"SQL Order By",[`SELECT * FROM bettas ORDER BY ${col} ${dir};`,`SELECT b.* FROM bettas b ORDER BY b.${col} ${dir};`],"bettas","ORDER BY with the requested direction; aliases are optional.")},
-      ()=>{const col=pick(["color","variety","gender","tank_id"]);return q(`Return only distinct ${col} values from bettas.`,"SQL Select Distinct",[`SELECT DISTINCT ${col} FROM bettas;`,`SELECT DISTINCT b.${col} FROM bettas b;`],"bettas","DISTINCT must apply to the requested column.")},
-      ()=>{const n=pick([2,3,4,5]),dir=pick(["ASC","DESC"]);return q(`Return the top ${n} bettas by price, ${dir==="ASC"?"cheapest first":"most expensive first"}.`,"SQL Select Top / Limit",[`SELECT * FROM bettas ORDER BY price ${dir} LIMIT ${n};`,`SELECT TOP ${n} * FROM bettas ORDER BY price ${dir};`],"bettas","LIMIT and TOP are both accepted as dialect-specific row-limit syntax.")}
+      ()=>q("Select all columns from the customers table.","SQL Fundamentals",["SELECT * FROM customers;","SELECT customers.* FROM customers;"],"customers","Use SELECT to read rows from a table."),
+      ()=>q("Select customer name and city from the customers table.","Tables & Columns",["SELECT name, city FROM customers;","SELECT customers.name, customers.city FROM customers;"],"customers","Specify the columns you want to retrieve."),
+      ()=>q("Show the data types of the customers table conceptually by selecting its numeric customer_id and text name columns.","Data Types",["SELECT customer_id, name FROM customers;","SELECT customer_id, name FROM customers;"],"customers","customer_id is numeric and name is text in the practice schema."),
+      ()=>q("Insert a new customer named Practice User in Miami with email practice_user@example.com.","CRUD - INSERT",["INSERT INTO customers (name, email, city) VALUES ('Practice User', 'practice_user@example.com', 'Miami');","INSERT INTO customers VALUES (999, 'Practice User', 'practice_user@example.com', 'Miami');"],"customers","INSERT adds a new row; a column list is preferred."),
+      ()=>q("Update the city for customer 1 to Miami.","CRUD - UPDATE",["UPDATE customers SET city = 'Miami' WHERE customer_id = 1;","UPDATE customers SET city='Miami' WHERE customer_id=1;"],"customers","UPDATE changes existing rows and should normally use a WHERE clause."),
+      ()=>q("Delete customer 8 from the customers table.","CRUD - DELETE",["DELETE FROM customers WHERE customer_id = 8;","DELETE FROM customers WHERE customer_id=8;"],"customers","DELETE removes rows and should target the intended row with WHERE."),
+      ()=>q("Create a simple table named practice_products with an integer id, a text name, and a decimal price.","Databases & Tables",["CREATE TABLE practice_products (id INTEGER PRIMARY KEY, name VARCHAR(100), price DECIMAL(10,2));","CREATE TABLE practice_products (id INT PRIMARY KEY, name VARCHAR(100), price DECIMAL(10,2));"],"products","CREATE TABLE defines columns and their data types."),
+      ()=>q("Create a database named PracticeDB.","Databases",["CREATE DATABASE PracticeDB;","CREATE DATABASE [PracticeDB];"],"customers","CREATE DATABASE creates a database container in systems that support the statement."),
+      ()=>q("Select the five most expensive products.","CRUD & Retrieval",["SELECT TOP 5 * FROM products ORDER BY price DESC;","SELECT * FROM products ORDER BY price DESC LIMIT 5;"],"products","Use ORDER BY with a row limit to retrieve a subset of rows."),
+      ()=>q("Show all orders so you can read their order_id, status, and total.","CRUD - READ",["SELECT order_id, status, total FROM orders;","SELECT orders.order_id, orders.status, orders.total FROM orders;"],"orders","READ operations commonly use SELECT.")
     );
   }
-  if(level===2){
+
+  if(section===2){
     c.push(
-      ()=>{const table=pick(["bettas","products","orders"]);return q(`Count all rows in ${table}.`,"Count()",[`SELECT COUNT(*) FROM ${table};`,`SELECT COUNT(1) FROM ${table};`],table,"COUNT(*) and COUNT(1) are accepted row-count forms.")},
-      ()=>{const field=pick(["price","tank_id"]);return q(`Calculate the total of ${field} across all bettas.`,"Sum()",[`SELECT SUM(${field}) FROM bettas;`,`SELECT SUM(b.${field}) FROM bettas b;`],"bettas","SUM() over the requested numeric column; table aliasing is optional.")},
-      ()=>{const field=pick(["price","tank_id"]);return q(`Calculate the average ${field} for bettas.`,"Avg()",[`SELECT AVG(${field}) FROM bettas;`,`SELECT AVG(b.${field}) FROM bettas b;`],"bettas","AVG() over the requested numeric column; aliasing is optional.")},
-      ()=>{const field=pick(["price","tank_id"]);return q(`Find the minimum ${field} in bettas.`,"Min()",[`SELECT MIN(${field}) FROM bettas;`,`SELECT MIN(b.${field}) FROM bettas b;`],"bettas","MIN() over the requested numeric column; aliasing is optional.")},
-      ()=>{const field=pick(["price","tank_id"]);return q(`Find the maximum ${field} in bettas.`,"Max()",[`SELECT MAX(${field}) FROM bettas;`,`SELECT MAX(b.${field}) FROM bettas b;`],"bettas","MAX() over the requested numeric column; aliasing is optional.")},
-      ()=>{const col=pick(["gender","color","variety","tank_id"]);return q(`Group bettas by ${col} and count each group.`,"SQL Group By",[`SELECT ${col}, COUNT(*) FROM bettas GROUP BY ${col};`,`SELECT ${col}, COUNT(*) AS total FROM bettas GROUP BY ${col};`],"bettas","GROUP BY the requested dimension; output alias is optional.")},
-      ()=>{const n=pick([2,3,4]);return q(`Show betta varieties having more than ${n} rows.`,"SQL Having",[`SELECT variety, COUNT(*) FROM bettas GROUP BY variety HAVING COUNT(*) > ${n};`,`SELECT variety, COUNT(*) AS total FROM bettas GROUP BY variety HAVING total > ${n};`],"bettas","HAVING filters groups after aggregation.")},
-      ()=>{const col=pick(["gender","color","variety"]);return q(`Find bettas where ${col} is NULL.`,"SQL Null Values",[`SELECT * FROM bettas WHERE ${col} IS NULL;`,`SELECT b.* FROM bettas b WHERE b.${col} IS NULL;`],"bettas","Use IS NULL rather than = NULL.")},
-      ()=>{const col=pick(["gender","color","variety"]),fallback=pick(["Unknown","Not Provided","N/A"]);return q(`Replace NULL ${col} values with ${fallback}.`,"SQL Null Functions (ISNULL, COALESCE)",[`SELECT COALESCE(${col}, ${quote(fallback)}) FROM bettas;`,`SELECT ISNULL(${col}, ${quote(fallback)}) FROM bettas;`],"bettas","COALESCE and ISNULL are accepted dialect-specific forms.")},
-      ()=>{const n=pick([15,20,25]);return q(`Label each betta as 'Expensive' when price > $${n}, otherwise 'Standard'.`,"SQL Case",[`SELECT betta_name, CASE WHEN price > ${n} THEN 'Expensive' ELSE 'Standard' END AS price_label FROM bettas;`,`SELECT betta_name, CASE WHEN price > ${n} THEN 'Expensive' ELSE 'Standard' END price_label FROM bettas;`],"bettas","CASE WHEN/THEN/ELSE/END; AS is optional." )},
-      ()=>{const alias=pick(["customer_name","buyer","client_name"]);return q(`Return customer names from customers using the output alias ${alias}.`,"SQL Aliases",[`SELECT name AS ${alias} FROM customers;`,`SELECT name ${alias} FROM customers;`],"customers","AS is optional for a column alias.")}
+      ()=>q("Select customer names and cities from customers.","SELECT",["SELECT name, city FROM customers;"],"customers","SELECT chooses the columns returned."),
+      ()=>{const city=pick(cities);return q(`Find customers who live in ${city}.`,"WHERE",[`SELECT * FROM customers WHERE city = ${quote(city)};`,`SELECT c.* FROM customers c WHERE c.city = ${quote(city)};`],"customers","WHERE filters rows before the result is returned.")},
+      ()=>{const min=pick([15,20,25,30]);return q(`Find orders with a total greater than $${min}.`,"WHERE",[`SELECT * FROM orders WHERE total > ${min};`],"orders","Use a comparison condition in WHERE.")},
+      ()=>{const col=pick(["price","name","stock"]);const dir=pick(["ASC","DESC"]);return q(`Sort products by ${col} in ${dir==="ASC"?"ascending":"descending"} order.`,"ORDER BY",[`SELECT * FROM products ORDER BY ${col} ${dir};`,`SELECT p.* FROM products p ORDER BY p.${col} ${dir};`],"products","ORDER BY controls result ordering.")},
+      ()=>{const col=pick(["city","category","status"]);return q(`Group the data by ${col} and count the rows in each group.`,"GROUP BY",[`SELECT ${col}, COUNT(*) FROM ${col==="city"?"customers":col==="category"?"products":"orders"} GROUP BY ${col};`,`SELECT ${col}, COUNT(*) AS total FROM ${col==="city"?"customers":col==="category"?"products":"orders"} GROUP BY ${col};`],col==="city"?"customers":col==="category"?"products":"orders","GROUP BY creates one group per distinct value for aggregation.")},
+      ()=>{const col=pick(["color","variety","gender","tank_id"]);return q(`Return only distinct ${col} values from bettas.`,"DISTINCT",[`SELECT DISTINCT ${col} FROM bettas;`],"bettas","DISTINCT removes duplicate result values.")},
+      ()=>{const n=pick([2,3,5]);return q(`Return the first ${n} rows from orders.`,"LIMIT / TOP",[`SELECT TOP ${n} * FROM orders;`,`SELECT * FROM orders LIMIT ${n};`],"orders","TOP is common in SQL Server; LIMIT is common in MySQL/PostgreSQL.")},
+      ()=>q("Find customers in Miami or Orlando using a WHERE condition.","WHERE with OR",["SELECT * FROM customers WHERE city = 'Miami' OR city = 'Orlando';","SELECT * FROM customers WHERE city IN ('Miami','Orlando');"],"customers","OR and the equivalent IN form are accepted."),
+      ()=>q("Return completed orders sorted from highest total to lowest total.","WHERE + ORDER BY",["SELECT * FROM orders WHERE status = 'Completed' ORDER BY total DESC;"],"orders","Filtering and sorting can be combined in one query."),
+      ()=>q("Show product categories with at least two products.","GROUP BY + HAVING",["SELECT category, COUNT(*) FROM products GROUP BY category HAVING COUNT(*) >= 2;","SELECT category, COUNT(*) AS total FROM products GROUP BY category HAVING COUNT(*) >= 2;"],"products","HAVING filters grouped results after aggregation.")
     );
   }
-  if(level===3){
+
+  if(section===3){
     c.push(
-      ()=>{const extra=pick([""," WHERE o.status='Completed'"," WHERE o.total > 20"]);return q(`Return customer names and order IDs using an INNER JOIN${extra?" with the requested order filter":""}.`,"SQL Inner Join",[`SELECT c.name, o.order_id FROM customers c INNER JOIN orders o ON c.customer_id = o.customer_id${extra};`,`SELECT c.name, o.order_id FROM customers c JOIN orders o ON c.customer_id = o.customer_id${extra};`],"customers","JOIN and INNER JOIN are equivalent; the optional filter is part of the generated variant.")},
-      ()=>{const col=pick(["o.order_id","o.total"]);return q(`Return every customer and the matching ${col.split('.')[1]}, including customers with no orders.`,"SQL Left Join",[`SELECT c.name, ${col} FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id;`,`SELECT c.name, ${col} FROM customers c LEFT OUTER JOIN orders o ON c.customer_id = o.customer_id;`],"customers","LEFT JOIN and LEFT OUTER JOIN are accepted.")},
-      ()=>{const field=pick(["c.name","c.city"]);return q(`Return every order and the matching customer ${field.split('.')[1]}, keeping all orders.`,"SQL Right Join",[`SELECT o.order_id, ${field} FROM customers c RIGHT JOIN orders o ON c.customer_id = o.customer_id;`,`SELECT o.order_id, ${field} FROM orders o LEFT JOIN customers c ON c.customer_id = o.customer_id;`],"orders","RIGHT JOIN or equivalent reversed LEFT JOIN is accepted.")},
-      ()=>q("Return all customers and all orders, matched where possible.","SQL Full Join",["SELECT c.name, o.order_id FROM customers c FULL OUTER JOIN orders o ON c.customer_id = o.customer_id;","SELECT c.name, o.order_id FROM customers c FULL JOIN orders o ON c.customer_id = o.customer_id;"],"customers","FULL JOIN and FULL OUTER JOIN are accepted."),
-      ()=>q("Use a self join to find pairs of customers living in the same city, excluding self-pairs.","SQL Self Join",["SELECT a.name, b.name FROM customers a JOIN customers b ON a.city = b.city AND a.customer_id <> b.customer_id;","SELECT a.name AS customer1, b.name AS customer2 FROM customers a INNER JOIN customers b ON a.city = b.city AND a.customer_id <> b.customer_id;"],"customers","The same table appears twice with different aliases."),
-      ()=>q("Combine Miami and Orlando customer names without duplicates.","SQL Union / Union All",["SELECT name FROM customers WHERE city = 'Miami' UNION SELECT name FROM customers WHERE city = 'Orlando';","SELECT name FROM customers WHERE city IN ('Miami','Orlando');"],"customers","UNION removes duplicates; equivalent IN filtering is accepted for this result."),
-      ()=>q("Return customer name and order total using table aliases.","SQL Aliases (con tablas)",["SELECT c.name, o.total FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id;","SELECT c.name, o.total FROM customers c JOIN orders o ON c.customer_id = o.customer_id;"],"customers","AS on table aliases is optional."),
-      ()=>q("Insert a new Miami customer named Practice User with email practice_user@example.com.","SQL Insert Into",["INSERT INTO customers (name, email, city) VALUES ('Practice User', 'practice_user@example.com', 'Miami');","INSERT INTO customers VALUES (999, 'Practice User', 'practice_user@example.com', 'Miami');"],"customers","Column-list INSERT is preferred; full-row INSERT is accepted with the correct column order."),
-      ()=>q("Insert into orders a completed order for customer 1 dated 2026-03-15 totaling 29.99.","SQL Insert Into",["INSERT INTO orders (customer_id, date, status, total) VALUES (1, '2026-03-15', 'Completed', 29.99);","INSERT INTO orders VALUES (1011, 1, '2026-03-15', 'Completed', 29.99);"],"orders","Column-list INSERT or full-row INSERT with a unique order_id are accepted."),
-      ()=>q("Insert product names and prices for Equipment products into equipment_products (name, price).","SQL Insert Into Select",["INSERT INTO equipment_products (name, price) SELECT name, price FROM products WHERE category = 'Equipment';","INSERT INTO equipment_products SELECT name, price FROM products WHERE category = 'Equipment';"],"products","INSERT ... SELECT is required; target column list is optional when order matches.")
+      ()=>q("Count all rows in the orders table.","COUNT()",["SELECT COUNT(*) FROM orders;"],"orders","COUNT(*) counts rows."),
+      ()=>q("Calculate total order revenue across all orders.","SUM()",["SELECT SUM(total) FROM orders;"],"orders","SUM adds numeric values."),
+      ()=>q("Calculate the average order total.","AVG()",["SELECT AVG(total) FROM orders;"],"orders","AVG calculates the mean of a numeric column."),
+      ()=>q("Return all customer names in uppercase.","UPPER()",["SELECT UPPER(name) FROM customers;","SELECT UPPER(customers.name) FROM customers;"],"customers","UPPER converts text to uppercase."),
+      ()=>q("Return all customer names in lowercase.","LOWER()",["SELECT LOWER(name) FROM customers;","SELECT LOWER(customers.name) FROM customers;"],"customers","LOWER converts text to lowercase."),
+      ()=>q("Combine each customer's name and city into one value separated by a space.","CONCAT()",["SELECT CONCAT(name, ' ', city) FROM customers;","SELECT CONCAT(customers.name, ' ', customers.city) FROM customers;"],"customers","CONCAT combines text values."),
+      ()=>q("Return the current date and time.","NOW()",["SELECT NOW();","SELECT CURRENT_TIMESTAMP;","SELECT GETDATE();"],"customers","NOW(), CURRENT_TIMESTAMP, and GETDATE() are common dialect-specific forms."),
+      ()=>q("Return only the date portion of the current date and time.","DATE()",["SELECT DATE(NOW());","SELECT CAST(GETDATE() AS DATE);","SELECT CONVERT(DATE, GETDATE());"],"customers","DATE extraction syntax varies by SQL dialect."),
+      ()=>q("Calculate the number of days between 2026-01-01 and 2026-01-10.","DATEDIFF()",["SELECT DATEDIFF(day, '2026-01-01', '2026-01-10');","SELECT DATEDIFF('2026-01-10', '2026-01-01');"],"orders","DATEDIFF syntax differs between SQL Server and MySQL-style dialects."),
+      ()=>q("Calculate the total revenue for completed orders.","SUM() + WHERE",["SELECT SUM(total) FROM orders WHERE status = 'Completed';"],"orders","Aggregate functions can be combined with filtering."),
+      ()=>q("Count how many orders each status has.","COUNT() + GROUP BY",["SELECT status, COUNT(*) FROM orders GROUP BY status;","SELECT status, COUNT(*) AS total FROM orders GROUP BY status;"],"orders","COUNT and GROUP BY produce an aggregate per status.")
     );
   }
-  if(level===4){
+
+  if(section===4){
     c.push(
-      ()=>q("Find bettas priced above the overall average using a subquery.","SQL Subqueries",["SELECT * FROM bettas WHERE price > (SELECT AVG(price) FROM bettas);","SELECT b.* FROM bettas b WHERE b.price > (SELECT AVG(price) FROM bettas);"],"bettas","A scalar subquery for the overall average is required."),
-      ()=>q("Use a WITH clause to calculate average betta price and return bettas above it.","SQL CTE (Common Table Expressions) — WITH clause",["WITH avg_price AS (SELECT AVG(price) AS avg_p FROM bettas) SELECT b.* FROM bettas b CROSS JOIN avg_price a WHERE b.price > a.avg_p;","WITH avg_price AS (SELECT AVG(price) avg_p FROM bettas) SELECT b.* FROM bettas b, avg_price a WHERE b.price > a.avg_p;"],"bettas","Use a named CTE; equivalent join syntax is accepted."),
-      ()=>q("Use multiple CTEs to calculate completed revenue by city and then keep cities above $40.","SQL CTE — Multiple CTEs",["WITH city_revenue AS (SELECT c.city, SUM(o.total) revenue FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.city), filtered AS (SELECT * FROM city_revenue WHERE revenue > 40) SELECT * FROM filtered;","WITH city_revenue AS (SELECT c.city, SUM(o.total) revenue FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.city) SELECT * FROM city_revenue WHERE revenue > 40;"],"customers","One or more named CTE stages are accepted when the result is equivalent."),
-      ()=>q("Write a recursive CTE starting at employee_id 1 and following manager_id relationships in an employees table.","SQL CTE — Recursive CTEs",["WITH RECURSIVE org AS (SELECT employee_id, manager_id FROM employees WHERE employee_id = 1 UNION ALL SELECT e.employee_id, e.manager_id FROM employees e JOIN org o ON e.manager_id = o.employee_id) SELECT * FROM org;","WITH org AS (SELECT employee_id, manager_id FROM employees WHERE employee_id = 1 UNION ALL SELECT e.employee_id, e.manager_id FROM employees e JOIN org o ON e.manager_id = o.employee_id) SELECT * FROM org;"],"customers","Recursive CTE syntax varies by dialect; both common forms are accepted."),
-      ()=>q("Find customers who have at least one completed order using EXISTS.","SQL Exists / Any / All",["SELECT * FROM customers c WHERE EXISTS (SELECT 1 FROM orders o WHERE o.customer_id=c.customer_id AND o.status='Completed');","SELECT * FROM customers c WHERE EXISTS (SELECT * FROM orders o WHERE o.customer_id=c.customer_id AND o.status='Completed');"],"customers","EXISTS tests for at least one matching row; SELECT 1 or SELECT * is accepted."),
-      ()=>q("Find orders whose total is greater than ANY order total above $40.","SQL Exists / Any / All",["SELECT * FROM orders WHERE total > ANY (SELECT total FROM orders WHERE total > 40);","SELECT * FROM orders WHERE total > SOME (SELECT total FROM orders WHERE total > 40);"],"orders","ANY and SOME are equivalent in this comparison pattern."),
-      ()=>q("Find orders whose total is greater than ALL completed orders below $50.","SQL Exists / Any / All",["SELECT * FROM orders WHERE total > ALL (SELECT total FROM orders WHERE status='Completed' AND total < 50);"],"orders","ALL compares the value against every value returned by the subquery."),
-      ()=>{const pct=pick([5,10,15,20]),cat=pick(categories);const factor=(1+pct/100).toFixed(2);return q(`Increase prices for ${cat} products by ${pct}%.`,"SQL Update",[`UPDATE products SET price = price * ${factor} WHERE category = ${quote(cat)};`,`UPDATE products SET price = price + (price * ${pct/100}) WHERE category = ${quote(cat)};`],"products","Equivalent percentage arithmetic expressions are accepted.")},
-      ()=>{const status=pick(statuses);return q(`Delete orders whose status is ${status}.`,"SQL Delete",[`DELETE FROM orders WHERE status = ${quote(status)};`,`DELETE FROM orders WHERE status IN (${quote(status)});`],"orders","The DELETE must target only the generated status.")},
-      ()=>q("Return orders with totals from $40 through $60 using comparison operators.","SQL Operators (=, !=, <, >, <=, >=)",["SELECT * FROM orders WHERE total >= 40 AND total <= 60;","SELECT * FROM orders WHERE total >= 40 AND total <= 60;"],"orders","Inclusive >= and <= comparisons are accepted."),
-      ()=>q("Use an advanced CASE to label products High Stock when stock >= 30, Low Stock when stock < 20, and Medium Stock otherwise.","SQL Case Avanzado",["SELECT name, CASE WHEN stock >= 30 THEN 'High Stock' WHEN stock < 20 THEN 'Low Stock' ELSE 'Medium Stock' END AS stock_label FROM products;","SELECT name, CASE WHEN stock >= 30 THEN 'High Stock' WHEN stock < 20 THEN 'Low Stock' ELSE 'Medium Stock' END stock_label FROM products;"],"products","Multiple WHEN branches plus ELSE; AS is optional.")
+      ()=>q("Use an INNER JOIN to return customer names and their order IDs.","INNER JOIN",["SELECT c.name, o.order_id FROM customers c INNER JOIN orders o ON c.customer_id = o.customer_id;","SELECT c.name, o.order_id FROM customers c JOIN orders o ON c.customer_id = o.customer_id;"],"customers","INNER JOIN returns matching rows from both tables."),
+      ()=>q("Use a LEFT JOIN to return every customer and any matching order ID, including customers with no orders.","LEFT JOIN",["SELECT c.name, o.order_id FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id;","SELECT c.name, o.order_id FROM customers c LEFT OUTER JOIN orders o ON c.customer_id = o.customer_id;"],"customers","LEFT JOIN preserves every row from the left table."),
+      ()=>q("Use a RIGHT JOIN to return every order and the matching customer name.","RIGHT JOIN",["SELECT o.order_id, c.name FROM customers c RIGHT JOIN orders o ON c.customer_id = o.customer_id;","SELECT o.order_id, c.name FROM orders o LEFT JOIN customers c ON c.customer_id = o.customer_id;"],"orders","RIGHT JOIN preserves every row from the right table; reversed LEFT JOIN is equivalent."),
+      ()=>q("Use a FULL JOIN to return all customers and all orders, matched where possible.","FULL JOIN",["SELECT c.name, o.order_id FROM customers c FULL OUTER JOIN orders o ON c.customer_id = o.customer_id;","SELECT c.name, o.order_id FROM customers c FULL JOIN orders o ON c.customer_id = o.customer_id;"],"customers","FULL JOIN preserves unmatched rows from both sides."),
+      ()=>q("Use a SELF JOIN to find pairs of customers who live in the same city, excluding the same customer from matching themselves.","SELF JOIN",["SELECT a.name, b.name FROM customers a JOIN customers b ON a.city = b.city AND a.customer_id <> b.customer_id;","SELECT a.name AS customer1, b.name AS customer2 FROM customers a INNER JOIN customers b ON a.city = b.city AND a.customer_id <> b.customer_id;"],"customers","A self join uses the same table twice with different aliases."),
+      ()=>q("Join customers to orders and return customer name, order date, and total for completed orders.","JOIN + WHERE",["SELECT c.name, o.date, o.total FROM customers c INNER JOIN orders o ON c.customer_id = o.customer_id WHERE o.status = 'Completed';"],"customers","The join connects the relationship; WHERE filters the joined rows."),
+      ()=>q("Join orders to order_items and return order IDs with product IDs.","Joining Three-Level Data",["SELECT o.order_id, oi.product_id FROM orders o INNER JOIN order_items oi ON o.order_id = oi.order_id;"],"orders","Use the shared order_id key to connect the tables."),
+      ()=>q("Return every customer and the number of orders they have, including customers with zero orders.","LEFT JOIN + GROUP BY",["SELECT c.name, COUNT(o.order_id) FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id GROUP BY c.name;","SELECT c.name, COUNT(o.order_id) AS order_count FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id GROUP BY c.name;"],"customers","LEFT JOIN keeps customers with no matching orders."),
+      ()=>q("Find customers who have at least one order using an INNER JOIN.","INNER JOIN",["SELECT DISTINCT c.name FROM customers c INNER JOIN orders o ON c.customer_id = o.customer_id;"],"customers","DISTINCT prevents duplicate customer names when a customer has multiple orders."),
+      ()=>q("Return customer names and order totals using table aliases.","JOIN Aliases",["SELECT c.name, o.total FROM customers c JOIN orders o ON c.customer_id = o.customer_id;","SELECT c.name, o.total FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id;"],"customers","Aliases make joined queries easier to read.")
     );
   }
-  if(level===5){
+
+  if(section===5){
     c.push(
-      ()=>q("Number all bettas from most expensive to cheapest with a unique row number.","ROW_NUMBER()",["SELECT betta_name, price, ROW_NUMBER() OVER (ORDER BY price DESC) AS rn FROM bettas;","SELECT betta_name, price, ROW_NUMBER() OVER(ORDER BY price DESC) rn FROM bettas;"],"bettas","ROW_NUMBER() OVER with the requested ORDER BY; alias syntax may vary."),
-      ()=>q("Rank bettas by price while allowing ties to share a rank.","RANK() / DENSE_RANK()",["SELECT betta_name, price, RANK() OVER (ORDER BY price DESC) AS price_rank FROM bettas;","SELECT betta_name, price, DENSE_RANK() OVER (ORDER BY price DESC) AS price_rank FROM bettas;"],"bettas","RANK and DENSE_RANK are accepted; both preserve ties but differ in gap behavior."),
-      ()=>q("For each order, show the previous order total ordered by date.","LAG() / LEAD()",["SELECT order_id, total, LAG(total) OVER (ORDER BY date) AS previous_total FROM orders;","SELECT order_id, total, LAG(total, 1) OVER (ORDER BY date) AS previous_total FROM orders;"],"orders","LAG with default offset 1 or explicit offset 1 is accepted."),
-      ()=>q("For each order, show the next order total ordered by date.","LAG() / LEAD()",["SELECT order_id, total, LEAD(total) OVER (ORDER BY date) AS next_total FROM orders;","SELECT order_id, total, LEAD(total, 1) OVER (ORDER BY date) AS next_total FROM orders;"],"orders","LEAD with default offset 1 or explicit offset 1 is accepted."),
-      ()=>q("Show each order total alongside the average order total across the entire table.","SUM() OVER / AVG() OVER",["SELECT order_id, total, AVG(total) OVER () AS avg_total FROM orders;","SELECT order_id, total, AVG(total) OVER(ORDER BY order_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS avg_total FROM orders;"],"orders","AVG() OVER can calculate the overall average without collapsing rows."),
-      ()=>q("For each betta, show the first and last price in the overall price ordering.","FIRST_VALUE() / LAST_VALUE()",["SELECT betta_name, price, FIRST_VALUE(price) OVER (ORDER BY price) AS first_price, LAST_VALUE(price) OVER (ORDER BY price ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_price FROM bettas;","SELECT betta_name, price, MIN(price) OVER () AS first_price, MAX(price) OVER () AS last_price FROM bettas;"],"bettas","FIRST_VALUE/LAST_VALUE is the direct form; equivalent MIN/MAX window values are accepted for this dataset."),
-      ()=>q("Show each order and a running total ordered by date.","SUM() OVER / AVG() OVER",["SELECT order_id, date, total, SUM(total) OVER (ORDER BY date) AS running_total FROM orders;","SELECT order_id, date, total, SUM(total) OVER(ORDER BY date ROWS UNBOUNDED PRECEDING) AS running_total FROM orders;"],"orders","SUM() OVER with ORDER BY; explicit running frame is accepted."),
-      ()=>{const metric=pick(["AVG(price)","SUM(price)","COUNT(*)"]);return q(`Show each betta row alongside the ${metric} for its variety.`,"PARTITION BY",[`SELECT betta_name, variety, price, ${metric} OVER (PARTITION BY variety) AS variety_metric FROM bettas;`,`SELECT b.betta_name, b.variety, b.price, ${metric.replace("price","b.price")} OVER(PARTITION BY b.variety) variety_metric FROM bettas b;`],"bettas","PARTITION BY variety keeps individual rows while calculating a group-level window metric.")},
-      ()=>q("Write a SQL Server stored procedure named GetCompletedOrders that returns completed orders.","SQL Stored Procedures",["CREATE PROCEDURE GetCompletedOrders AS SELECT * FROM orders WHERE status = 'Completed';","CREATE PROCEDURE GetCompletedOrders AS BEGIN SELECT * FROM orders WHERE status = 'Completed'; END;"],"orders","SQL Server-style procedure syntax; BEGIN/END is optional here."),
-      ()=>q("Select product name and price into a new table named product_snapshot.","SQL Select Into",["SELECT name, price INTO product_snapshot FROM products;","SELECT products.name, products.price INTO product_snapshot FROM products;"],"products","SELECT ... INTO creates a new table in SQL Server-style syntax."),
-      ()=>q("Write the SQL Server statement to back up BettaStore to C:\\Backups\\BettaStore.bak.","SQL Backup Database",["BACKUP DATABASE BettaStore TO DISK = 'C:\\Backups\\BettaStore.bak';","BACKUP DATABASE [BettaStore] TO DISK = 'C:\\Backups\\BettaStore.bak';"],"orders","SQL Server BACKUP DATABASE syntax; bracketed identifiers are accepted."),
-      ()=>q("Create a nonclustered index on orders.customer_id to help a slow customer filter query.","SQL Performance (índices, explain plan)",["CREATE INDEX IX_orders_customer_id ON orders(customer_id);","CREATE NONCLUSTERED INDEX IX_orders_customer_id ON orders(customer_id);"],"orders","A nonclustered index is accepted; then inspect EXPLAIN/actual execution plans to validate the improvement.")
+      ()=>q("Find bettas priced above the overall average price using a subquery in WHERE.","Subquery in WHERE",["SELECT * FROM bettas WHERE price > (SELECT AVG(price) FROM bettas);","SELECT b.* FROM bettas b WHERE b.price > (SELECT AVG(price) FROM bettas);"],"bettas","The inner query returns the overall average used by the outer WHERE."),
+      ()=>q("Return the customer whose customer_id equals the maximum customer_id using a scalar subquery in WHERE.","Subquery in WHERE",["SELECT * FROM customers WHERE customer_id = (SELECT MAX(customer_id) FROM customers);"],"customers","A scalar subquery can return one value for comparison."),
+      ()=>q("Use a subquery in FROM to calculate average order total, then return that average.","Subquery in FROM",["SELECT avg_total FROM (SELECT AVG(total) AS avg_total FROM orders) x;","SELECT x.avg_total FROM (SELECT AVG(total) AS avg_total FROM orders) x;"],"orders","A subquery in FROM acts as a derived table and needs an alias in many dialects."),
+      ()=>q("Use a subquery in FROM to calculate revenue by customer.","Subquery in FROM",["SELECT customer_id, revenue FROM (SELECT customer_id, SUM(total) AS revenue FROM orders GROUP BY customer_id) x;","SELECT x.customer_id, x.revenue FROM (SELECT customer_id, SUM(total) AS revenue FROM orders GROUP BY customer_id) x;"],"orders","The inner query produces an intermediate result set."),
+      ()=>q("Return each customer's name and a subquery-calculated count of their orders.","Subquery in SELECT",["SELECT c.name, (SELECT COUNT(*) FROM orders o WHERE o.customer_id = c.customer_id) AS order_count FROM customers c;","SELECT c.name, (SELECT COUNT(o.order_id) FROM orders o WHERE o.customer_id = c.customer_id) AS order_count FROM customers c;"],"customers","The subquery in SELECT is correlated to the outer customer row."),
+      ()=>q("Find customers who have at least one completed order using EXISTS.","Correlated Subquery",["SELECT * FROM customers c WHERE EXISTS (SELECT 1 FROM orders o WHERE o.customer_id = c.customer_id AND o.status = 'Completed');","SELECT * FROM customers c WHERE EXISTS (SELECT * FROM orders o WHERE o.customer_id = c.customer_id AND o.status = 'Completed');"],"customers","EXISTS is a common correlated subquery pattern."),
+      ()=>q("Find orders whose total is greater than the average order total.","Scalar Subquery",["SELECT * FROM orders WHERE total > (SELECT AVG(total) FROM orders);"],"orders","The subquery returns one aggregate value."),
+      ()=>q("Find products whose price is above the average product price.","Scalar Subquery",["SELECT * FROM products WHERE price > (SELECT AVG(price) FROM products);"],"products","Compare each product to a scalar aggregate result."),
+      ()=>q("Find customers who have no orders using NOT EXISTS.","Correlated Subquery",["SELECT * FROM customers c WHERE NOT EXISTS (SELECT 1 FROM orders o WHERE o.customer_id = c.customer_id);"],"customers","NOT EXISTS identifies rows with no matching related records."),
+      ()=>q("Find orders whose total is greater than ALL completed orders below $50.","Subquery with ALL",["SELECT * FROM orders WHERE total > ALL (SELECT total FROM orders WHERE status = 'Completed' AND total < 50);"],"orders","ALL compares the outer value against every value returned by the subquery.")
     );
   }
+
+  if(section===6){
+    c.push(
+      ()=>q("Create a customers table with customer_id as the PRIMARY KEY.","PRIMARY KEY",["CREATE TABLE practice_customers (customer_id INT PRIMARY KEY, name VARCHAR(100));","CREATE TABLE practice_customers (customer_id INTEGER PRIMARY KEY, name VARCHAR(100));"],"customers","A primary key uniquely identifies each row."),
+      ()=>q("Create an orders table where customer_id is a FOREIGN KEY referencing customers(customer_id).","FOREIGN KEY",["CREATE TABLE practice_orders (order_id INT PRIMARY KEY, customer_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id));","CREATE TABLE practice_orders (order_id INTEGER PRIMARY KEY, customer_id INTEGER, FOREIGN KEY (customer_id) REFERENCES customers(customer_id));"],"orders","A foreign key enforces a relationship to a referenced key."),
+      ()=>q("Create a users table where email must be UNIQUE.","UNIQUE",["CREATE TABLE users (user_id INT PRIMARY KEY, email VARCHAR(255) UNIQUE);","CREATE TABLE users (user_id INTEGER PRIMARY KEY, email VARCHAR(255), UNIQUE (email));"],"customers","UNIQUE prevents duplicate values in the constrained column or set of columns."),
+      ()=>q("Create a products table where product name cannot be NULL.","NOT NULL",["CREATE TABLE practice_products (product_id INT PRIMARY KEY, name VARCHAR(100) NOT NULL);","CREATE TABLE practice_products (product_id INTEGER PRIMARY KEY, name VARCHAR(100) NOT NULL);"],"products","NOT NULL requires a value for the column."),
+      ()=>q("Create an accounts table where balance must be greater than or equal to zero.","CHECK",["CREATE TABLE accounts (account_id INT PRIMARY KEY, balance DECIMAL(10,2) CHECK (balance >= 0));","CREATE TABLE accounts (account_id INTEGER PRIMARY KEY, balance DECIMAL(10,2), CHECK (balance >= 0));"],"customers","CHECK enforces a rule on allowed values."),
+      ()=>q("Add a PRIMARY KEY constraint to customer_id in a practice customers table.","PRIMARY KEY",["ALTER TABLE practice_customers ADD PRIMARY KEY (customer_id);"],"customers","ALTER TABLE can add a key constraint to an existing table."),
+      ()=>q("Add a FOREIGN KEY from orders.customer_id to customers.customer_id.","FOREIGN KEY",["ALTER TABLE orders ADD CONSTRAINT FK_orders_customers FOREIGN KEY (customer_id) REFERENCES customers(customer_id);","ALTER TABLE orders ADD FOREIGN KEY (customer_id) REFERENCES customers(customer_id);"],"orders","The foreign key connects child rows to valid parent keys."),
+      ()=>q("Add a UNIQUE constraint to customers.email.","UNIQUE",["ALTER TABLE customers ADD CONSTRAINT UQ_customers_email UNIQUE (email);","ALTER TABLE customers ADD UNIQUE (email);"],"customers","A UNIQUE constraint protects against duplicate email values."),
+      ()=>q("Add a CHECK constraint requiring order totals to be greater than or equal to zero.","CHECK",["ALTER TABLE orders ADD CONSTRAINT CK_orders_total CHECK (total >= 0);","ALTER TABLE orders ADD CHECK (total >= 0);"],"orders","CHECK enforces valid ranges or business rules."),
+      ()=>q("Create a table with a required name and a unique email while using an integer primary key.","Multiple Constraints",["CREATE TABLE practice_users (user_id INT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(255) UNIQUE);","CREATE TABLE practice_users (user_id INTEGER PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(255) UNIQUE);"],"customers","Multiple constraints can protect data integrity together.")
+    );
+  }
+
+  if(section===7){
+    c.push(
+      ()=>q("Create an index on orders.customer_id to speed up customer-based filtering.","Indexes",["CREATE INDEX IX_orders_customer_id ON orders(customer_id);","CREATE NONCLUSTERED INDEX IX_orders_customer_id ON orders(customer_id);"],"orders","An index can speed selective lookups and joins, depending on the execution plan."),
+      ()=>q("Create a composite index on orders.customer_id and orders.status.","Composite Indexes",["CREATE INDEX IX_orders_customer_status ON orders(customer_id, status);"],"orders","Column order matters in a composite index."),
+      ()=>q("Create a view named completed_orders that returns all completed orders.","Views",["CREATE VIEW completed_orders AS SELECT * FROM orders WHERE status = 'Completed';","CREATE VIEW completed_orders AS SELECT order_id, customer_id, date, status, total FROM orders WHERE status = 'Completed';"],"orders","A view stores a reusable query definition."),
+      ()=>q("Query the completed_orders view to return order IDs and totals.","Using Views",["SELECT order_id, total FROM completed_orders;"],"orders","Once created, a view can be queried like a table."),
+      ()=>q("Create a view named customer_orders that joins customers and orders.","Views + JOIN",["CREATE VIEW customer_orders AS SELECT c.name, o.order_id, o.total FROM customers c JOIN orders o ON c.customer_id = o.customer_id;"],"customers","Views can encapsulate reusable joins."),
+      ()=>q("Create an index on products.category to help category filtering.","Indexes",["CREATE INDEX IX_products_category ON products(category);"],"products","Index columns commonly used in selective WHERE predicates can improve reads."),
+      ()=>q("Create an index on orders.status and total for a query filtering status and sorting by total.","Composite Indexes",["CREATE INDEX IX_orders_status_total ON orders(status, total);"],"orders","A composite index can support related filtering and ordering patterns."),
+      ()=>q("Select all rows from the customer_orders view.","Using Views",["SELECT * FROM customer_orders;"],"customers","A view can be read with SELECT like a table."),
+      ()=>q("Create a view named product_catalog showing product name, category, and price.","Views",["CREATE VIEW product_catalog AS SELECT name, category, price FROM products;"],"products","A view can expose only the columns needed by users or applications."),
+      ()=>q("Create an index on bettas.variety to help searches by variety.","Indexes",["CREATE INDEX IX_bettas_variety ON bettas(variety);"],"bettas","Indexes can reduce the work needed for selective searches, but they also add write and storage overhead.")
+    );
+  }
+
+  if(section===8){
+    c.push(
+      ()=>q("Create a normalized customers table where each row stores one customer and city is a single atomic value.","1NF",["CREATE TABLE normalized_customers (customer_id INT PRIMARY KEY, name VARCHAR(100) NOT NULL, city VARCHAR(100));","CREATE TABLE normalized_customers (customer_id INTEGER PRIMARY KEY, name VARCHAR(100) NOT NULL, city VARCHAR(100));"],"customers","1NF requires atomic values and no repeating groups."),
+      ()=>q("Create a normalized order_items table using order_id and product_id as a composite PRIMARY KEY.","2NF",["CREATE TABLE normalized_order_items (order_id INT, product_id INT, quantity INT, PRIMARY KEY (order_id, product_id));","CREATE TABLE normalized_order_items (order_id INTEGER, product_id INTEGER, quantity INTEGER, PRIMARY KEY (order_id, product_id));"],"order_items","A composite key is common in junction tables; non-key attributes should depend on the whole key."),
+      ()=>q("Create a normalized products table where product category is stored once as a category_id rather than repeating category details.","3NF",["CREATE TABLE normalized_products (product_id INT PRIMARY KEY, name VARCHAR(100), category_id INT, price DECIMAL(10,2));","CREATE TABLE normalized_products (product_id INTEGER PRIMARY KEY, name VARCHAR(100), category_id INTEGER, price DECIMAL(10,2));"],"products","3NF removes transitive dependencies by separating attributes that describe other non-key attributes."),
+      ()=>q("Create a categories table so category names are stored once and referenced by category_id.","Avoiding Redundancy",["CREATE TABLE categories (category_id INT PRIMARY KEY, category_name VARCHAR(100) UNIQUE NOT NULL);","CREATE TABLE categories (category_id INTEGER PRIMARY KEY, category_name VARCHAR(100) UNIQUE NOT NULL);"],"products","A lookup table prevents repeating the same category description across many product rows."),
+      ()=>q("Create a normalized customer_orders table that stores customer_id and order_id rather than repeating customer names on every order.","Normalization",["CREATE TABLE customer_orders (order_id INT PRIMARY KEY, customer_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id));","CREATE TABLE customer_orders (order_id INTEGER PRIMARY KEY, customer_id INTEGER, FOREIGN KEY (customer_id) REFERENCES customers(customer_id));"],"orders","Store the relationship using keys instead of duplicating descriptive customer data."),
+      ()=>q("Create a normalized order_items table where quantity depends on both order_id and product_id.","2NF",["CREATE TABLE normalized_order_items (order_id INT, product_id INT, quantity INT NOT NULL, PRIMARY KEY (order_id, product_id));"],"order_items","The quantity belongs to the order-product relationship and depends on the full composite key."),
+      ()=>q("Create separate customers and cities tables so city information is not repeated as descriptive data in every customer row.","3NF",["CREATE TABLE cities (city_id INT PRIMARY KEY, city_name VARCHAR(100) UNIQUE NOT NULL); CREATE TABLE normalized_customers (customer_id INT PRIMARY KEY, name VARCHAR(100), city_id INT, FOREIGN KEY (city_id) REFERENCES cities(city_id));","CREATE TABLE cities (city_id INTEGER PRIMARY KEY, city_name VARCHAR(100) UNIQUE NOT NULL); CREATE TABLE normalized_customers (customer_id INTEGER PRIMARY KEY, name VARCHAR(100), city_id INTEGER, FOREIGN KEY (city_id) REFERENCES cities(city_id));"],"customers","Separating city attributes avoids repeating city descriptions and supports 3NF-style modeling."),
+      ()=>q("Create a products table where each row contains one product and one price value, with no repeating price columns.","1NF",["CREATE TABLE atomic_products (product_id INT PRIMARY KEY, name VARCHAR(100), price DECIMAL(10,2));","CREATE TABLE atomic_products (product_id INTEGER PRIMARY KEY, name VARCHAR(100), price DECIMAL(10,2));"],"products","Atomic columns avoid repeating groups such as price1, price2, and price3."),
+      ()=>q("Create a normalized customer table with customer_id as the key and no duplicated customer records.","Avoiding Redundancy",["CREATE TABLE normalized_customers (customer_id INT PRIMARY KEY, name VARCHAR(100), email VARCHAR(255) UNIQUE, city VARCHAR(100));","CREATE TABLE normalized_customers (customer_id INTEGER PRIMARY KEY, name VARCHAR(100), email VARCHAR(255) UNIQUE, city VARCHAR(100));"],"customers","A key and unique business identifier help prevent duplicate customer records."),
+      ()=>q("Create a normalized order table that stores only order attributes and references the customer by customer_id.","3NF",["CREATE TABLE normalized_orders (order_id INT PRIMARY KEY, customer_id INT, date DATE, status VARCHAR(30), total DECIMAL(10,2), FOREIGN KEY (customer_id) REFERENCES customers(customer_id));","CREATE TABLE normalized_orders (order_id INTEGER PRIMARY KEY, customer_id INTEGER, date DATE, status VARCHAR(30), total DECIMAL(10,2), FOREIGN KEY (customer_id) REFERENCES customers(customer_id));"],"orders","Keep order attributes in the order entity and use a foreign key for the customer relationship.")
+    );
+  }
+
+  if(section===9){
+    c.push(
+      ()=>q("Start a transaction, update order 1003 to Completed, then commit the change.","BEGIN / COMMIT",["BEGIN TRANSACTION; UPDATE orders SET status = 'Completed' WHERE order_id = 1003; COMMIT;","BEGIN; UPDATE orders SET status = 'Completed' WHERE order_id = 1003; COMMIT;"],"orders","BEGIN starts the unit of work and COMMIT makes the changes permanent."),
+      ()=>q("Start a transaction, update order 1008 to Cancelled, then roll back the change.","BEGIN / ROLLBACK",["BEGIN TRANSACTION; UPDATE orders SET status = 'Cancelled' WHERE order_id = 1008; ROLLBACK;","BEGIN; UPDATE orders SET status = 'Cancelled' WHERE order_id = 1008; ROLLBACK;"],"orders","ROLLBACK undoes changes made in the current transaction."),
+      ()=>q("Start a transaction and delete order 1005, then roll back the deletion.","ROLLBACK",["BEGIN TRANSACTION; DELETE FROM orders WHERE order_id = 1005; ROLLBACK;","BEGIN; DELETE FROM orders WHERE order_id = 1005; ROLLBACK;"],"orders","A rollback restores the transaction's prior state when supported."),
+      ()=>q("Start a transaction, insert a new order for customer 1, and commit it.","COMMIT",["BEGIN TRANSACTION; INSERT INTO orders (order_id, customer_id, date, status, total) VALUES (1011, 1, '2026-03-15', 'Completed', 29.99); COMMIT;","BEGIN; INSERT INTO orders (order_id, customer_id, date, status, total) VALUES (1011, 1, '2026-03-15', 'Completed', 29.99); COMMIT;"],"orders","COMMIT makes a successful transaction permanent."),
+      ()=>q("Demonstrate a transaction that changes a product price and then rolls the change back.","Transaction Example",["BEGIN TRANSACTION; UPDATE products SET price = price + 1 WHERE product_id = 1; ROLLBACK;","BEGIN; UPDATE products SET price = price + 1 WHERE product_id = 1; ROLLBACK;"],"products","The example demonstrates Atomicity by undoing the unit of work."),
+      ()=>q("Begin a transaction and update two orders as one unit, then commit both changes.","Atomicity",["BEGIN TRANSACTION; UPDATE orders SET status = 'Completed' WHERE order_id = 1003; UPDATE orders SET status = 'Completed' WHERE order_id = 1008; COMMIT;","BEGIN; UPDATE orders SET status = 'Completed' WHERE order_id = 1003; UPDATE orders SET status = 'Completed' WHERE order_id = 1008; COMMIT;"],"orders","Grouping related operations in one transaction supports atomic all-or-nothing behavior."),
+      ()=>q("Begin a transaction, insert a practice customer, then roll back so the row is not persisted.","ROLLBACK",["BEGIN TRANSACTION; INSERT INTO customers (name, email, city) VALUES ('Practice User', 'practice_tx@example.com', 'Miami'); ROLLBACK;","BEGIN; INSERT INTO customers (name, email, city) VALUES ('Practice User', 'practice_tx@example.com', 'Miami'); ROLLBACK;"],"customers","ROLLBACK cancels the transaction's changes."),
+      ()=>q("Write the transaction control sequence that starts work, performs an update, and makes it permanent.","ACID / Transaction Control",["BEGIN TRANSACTION; UPDATE orders SET status = 'Completed' WHERE order_id = 1003; COMMIT;","BEGIN; UPDATE orders SET status = 'Completed' WHERE order_id = 1003; COMMIT;"],"orders","The essential control flow is BEGIN, work, then COMMIT."),
+      ()=>q("Write the transaction control sequence that starts work, performs an update, and cancels it.","ACID / Transaction Control",["BEGIN TRANSACTION; UPDATE orders SET status = 'Completed' WHERE order_id = 1003; ROLLBACK;","BEGIN; UPDATE orders SET status = 'Completed' WHERE order_id = 1003; ROLLBACK;"],"orders","The essential rollback flow is BEGIN, work, then ROLLBACK."),
+      ()=>q("Use a transaction to delete all Pending orders and then commit the deletion.","Transaction + DELETE",["BEGIN TRANSACTION; DELETE FROM orders WHERE status = 'Pending'; COMMIT;","BEGIN; DELETE FROM orders WHERE status = 'Pending'; COMMIT;"],"orders","A transaction can wrap DML operations such as DELETE.")
+    );
+  }
+
+  if(section===10){
+    c.push(
+      ()=>q("Create a SQL Server stored procedure named GetCompletedOrders that returns completed orders.","Stored Procedures",["CREATE PROCEDURE GetCompletedOrders AS SELECT * FROM orders WHERE status = 'Completed';","CREATE PROCEDURE GetCompletedOrders AS BEGIN SELECT * FROM orders WHERE status = 'Completed'; END;"],"orders","Stored procedures package reusable SQL logic on the database server."),
+      ()=>q("Write a CTE using WITH to calculate average betta price and return bettas above that average.","CTEs - WITH",["WITH avg_price AS (SELECT AVG(price) AS avg_p FROM bettas) SELECT b.* FROM bettas b CROSS JOIN avg_price a WHERE b.price > a.avg_p;","WITH avg_price AS (SELECT AVG(price) avg_p FROM bettas) SELECT b.* FROM bettas b, avg_price a WHERE b.price > a.avg_p;"],"bettas","A CTE gives a temporary named result set for the following statement."),
+      ()=>q("Use a CTE to calculate completed revenue by city and return the city totals.","CTEs - WITH",["WITH city_revenue AS (SELECT c.city, SUM(o.total) AS revenue FROM customers c JOIN orders o ON c.customer_id = o.customer_id WHERE o.status = 'Completed' GROUP BY c.city) SELECT * FROM city_revenue;","WITH city_revenue AS (SELECT c.city, SUM(o.total) revenue FROM customers c JOIN orders o ON c.customer_id = o.customer_id WHERE o.status = 'Completed' GROUP BY c.city) SELECT * FROM city_revenue;"],"customers","CTEs make multi-step queries easier to read."),
+      ()=>q("Number orders from highest total to lowest using ROW_NUMBER().","Window Functions",["SELECT order_id, total, ROW_NUMBER() OVER (ORDER BY total DESC) AS rn FROM orders;","SELECT order_id, total, ROW_NUMBER() OVER(ORDER BY total DESC) rn FROM orders;"],"orders","ROW_NUMBER assigns a unique sequence number within the window ordering."),
+      ()=>q("Rank bettas by price from highest to lowest using RANK().","Window Functions",["SELECT betta_name, price, RANK() OVER (ORDER BY price DESC) AS price_rank FROM bettas;","SELECT betta_name, price, DENSE_RANK() OVER (ORDER BY price DESC) AS price_rank FROM bettas;"],"bettas","RANK and DENSE_RANK handle ties differently; both are window functions."),
+      ()=>q("For each order, show the previous order total ordered by date using LAG().","Window Functions",["SELECT order_id, total, LAG(total) OVER (ORDER BY date) AS previous_total FROM orders;","SELECT order_id, total, LAG(total, 1) OVER (ORDER BY date) AS previous_total FROM orders;"],"orders","LAG accesses a value from a preceding row in the window order."),
+      ()=>q("Show each order and a running total ordered by date using SUM() OVER().","Window Functions",["SELECT order_id, date, total, SUM(total) OVER (ORDER BY date) AS running_total FROM orders;","SELECT order_id, date, total, SUM(total) OVER(ORDER BY date ROWS UNBOUNDED PRECEDING) AS running_total FROM orders;"],"orders","A windowed SUM can calculate a running total without collapsing rows."),
+      ()=>q("Create a SQL Server trigger named trg_orders_audit on orders that runs after an INSERT.","Triggers",["CREATE TRIGGER trg_orders_audit ON orders AFTER INSERT AS BEGIN SELECT 1; END;","CREATE TRIGGER trg_orders_audit ON orders AFTER INSERT AS SELECT 1;"],"orders","Trigger syntax varies by database; this is a SQL Server-style example."),
+      ()=>q("Use a CTE to identify customers whose completed revenue is greater than $40.","CTEs + Aggregation",["WITH revenue AS (SELECT c.customer_id, c.name, SUM(o.total) AS total_revenue FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE o.status='Completed' GROUP BY c.customer_id, c.name) SELECT * FROM revenue WHERE total_revenue > 40;"],"customers","A CTE can isolate an aggregate stage before filtering it."),
+      ()=>q("Show each order total alongside the average order total using AVG() OVER().","Window Functions",["SELECT order_id, total, AVG(total) OVER () AS avg_total FROM orders;","SELECT order_id, total, AVG(total) OVER(ORDER BY order_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS avg_total FROM orders;"],"orders","Window functions calculate across related rows while preserving individual rows.")
+    );
+  }
+
   return pick(c)();
 }
 
 const questionSeen=JSON.parse(localStorage.getItem("sqlLabSeenQuestions")||"{}");
-function generateUniqueQuestion(level){
-  for(let i=0;i<200;i++){const candidate=makeGeneratedQuestion(level);if(!questionSeen[candidate.id]){questionSeen[candidate.id]={seenAt:Date.now(),level};localStorage.setItem("sqlLabSeenQuestions",JSON.stringify(questionSeen));return candidate;}}
-  const candidate=makeGeneratedQuestion(level);candidate.id+="-"+Date.now();questionSeen[candidate.id]={seenAt:Date.now(),level};localStorage.setItem("sqlLabSeenQuestions",JSON.stringify(questionSeen));return candidate;
+function generateUniqueQuestion(section){
+  const selectedSection=Math.min(10,Math.max(1,Number(section)||1));
+  for(let i=0;i<200;i++){
+    const candidate=makeGeneratedQuestion(selectedSection);
+    if(!questionSeen[candidate.id]){
+      questionSeen[candidate.id]={seenAt:Date.now(),section:selectedSection};
+      localStorage.setItem("sqlLabSeenQuestions",JSON.stringify(questionSeen));
+      return candidate;
+    }
+  }
+  const candidate=makeGeneratedQuestion(selectedSection);
+  candidate.id+="-"+Date.now();
+  questionSeen[candidate.id]={seenAt:Date.now(),section:selectedSection};
+  localStorage.setItem("sqlLabSeenQuestions",JSON.stringify(questionSeen));
+  return candidate;
 }
 function currentGeneratedQuestion(){
-  if(!state.currentQuestion || state.currentQuestion.level!==state.level){state.currentQuestion=generateUniqueQuestion(state.level);state.currentQuestion.level=state.level;state.currentQuestionAttempts=0;state.failedAttempts=0;saveState();}
+  const selectedSection=Number(state.section)||1;
+  if(!state.currentQuestion || state.currentQuestion.section!==selectedSection){
+    state.currentQuestion=generateUniqueQuestion(selectedSection);
+    state.currentQuestion.section=selectedSection;
+    state.currentQuestion.level=state.level;
+    state.currentQuestionAttempts=0;
+    state.failedAttempts=0;
+    saveState();
+  }
   return state.currentQuestion;
 }
 
@@ -1506,6 +1713,7 @@ const SCORE_SYSTEM_VERSION = "UNLIMITED_GENERATOR_V2";
 if(localStorage.getItem("sqlLabScoreSystemVersion") !== SCORE_SYSTEM_VERSION){
   [
     "sqlLabLevel",
+    "sqlLabSection",
     "sqlLabIndex",
     "sqlLabSolved",
     "sqlLabAttempts",
@@ -1527,8 +1735,13 @@ if(localStorage.getItem("sqlLabScoreSystemVersion") !== SCORE_SYSTEM_VERSION){
   localStorage.setItem("sqlLabScoreSystemVersion",SCORE_SYSTEM_VERSION);
 }
 
+const savedLevel=Number(localStorage.getItem("sqlLabLevel")||1);
+const savedSection=Number(localStorage.getItem("sqlLabSection")||0);
+const defaultSectionByLevel={1:1,2:3,3:4,4:6,5:9};
+
 const state = window.__sqlLabState = {
-  level:Number(localStorage.getItem("sqlLabLevel")||1),
+  level:savedLevel,
+  section:savedSection || defaultSectionByLevel[savedLevel] || 1,
   index:Number(localStorage.getItem("sqlLabIndex")||0),
   solved:Number(localStorage.getItem("sqlLabSolved")||0),
   attempts:Number(localStorage.getItem("sqlLabAttempts")||0),
@@ -1575,6 +1788,7 @@ function awardCorrectQuestion(questionKey){
 
 function saveStateRaw(){
   localStorage.setItem("sqlLabLevel",state.level);
+  localStorage.setItem("sqlLabSection",state.section);
   localStorage.setItem("sqlLabIndex",state.index);
   localStorage.setItem("sqlLabSolved",state.solved);
   localStorage.setItem("sqlLabAttempts",state.attempts);
@@ -1593,6 +1807,7 @@ syncScore();
 function saveState(){
   syncScore();
   localStorage.setItem("sqlLabLevel",state.level);
+  localStorage.setItem("sqlLabSection",state.section);
   localStorage.setItem("sqlLabIndex",state.index);
   localStorage.setItem("sqlLabSolved",state.solved);
   localStorage.setItem("sqlLabAttempts",state.attempts);
@@ -1631,7 +1846,7 @@ function renderMetrics(){
 
 function renderLevelButtons(){
   document.querySelectorAll(".level-btn").forEach(b=>{
-    b.classList.toggle("active",Number(b.dataset.level)===state.level);
+    b.classList.toggle("active",Number(b.dataset.section)===state.section);
   });
 }
 
@@ -1655,7 +1870,8 @@ function renderQuestion(){
   saveState();
 }
 function nextGeneratedQuestion(){
-  state.currentQuestion=generateUniqueQuestion(state.level);
+  state.currentQuestion=generateUniqueQuestion(state.section);
+  state.currentQuestion.section=state.section;
   state.currentQuestion.level=state.level;
   state.currentQuestionAttempts=0;
   state.failedAttempts=0;
@@ -1694,6 +1910,9 @@ function renderTableForQuestion(text){
 const levelButtons = document.querySelectorAll(".level-btn");
 levelButtons.forEach(btn=>{
   btn.addEventListener("click",()=>{
+    // Each visible section has its own selection state.
+    // The underlying question difficulty remains mapped through data-level.
+    state.section=Number(btn.dataset.section);
     state.level=Number(btn.dataset.level);
     state.currentQuestion=null;
     state.currentQuestionAttempts=0;
@@ -1707,6 +1926,9 @@ levelButtons.forEach(btn=>{
     if(challenge) window.scrollTo({top:challenge.offsetTop-20,behavior:"smooth"});
   });
 });
+
+// Restore exactly one selected section on load.
+renderLevelButtons();
 
 /* ============================================================
    SUBMIT
@@ -2220,14 +2442,18 @@ renderQuestion();
   }
 
   document.getElementById("dailyChallengeBtn").addEventListener("click",()=>{
-    const d = dailySelection();
-    stateRef.level=d.level;
-    stateRef.index=d.index;
-    saveState();
-    renderLevelButtons();
-    renderQuestion();
-    showStatus("Today's challenge is ready. Solve it without using the answer.","info");
-    window.scrollTo({top:document.querySelector(".challenge").offsetTop-20,behavior:"smooth"});
+    const encodedPage = "PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+U1FMICsgRW5nbGlzaCBQcmFjdGljZSBMYWI8L3RpdGxlPgo8c3R5bGU+Cjpyb290ewogLS1ncmVlbjojMmY3ZDUwOy0tZ3JlZW4yOiM2OGE4Nzg7LS1mb3Jlc3Q6IzFlNGQzMjstLW1pbnQ6I2VlZjhmMTsKIC0tYmx1ZTojMzk3M2M1Oy0tZ29sZDojZDM5YTMyOy0tcmVkOiNjOTU2NTY7LS10ZXh0OiMyMDMwMjc7LS1tdXRlZDojNmE3NzcwOwogLS1jYXJkOiNmZmY7LS1ib3JkZXI6I2RjZThkZjstLXNoYWRvdzowIDEycHggMzBweCByZ2JhKDI1LDYwLDQwLC4xMCkKfQoqe2JveC1zaXppbmc6Ym9yZGVyLWJveH1ib2R5e21hcmdpbjowO2ZvbnQtZmFtaWx5OkludGVyLFNlZ29lIFVJLEFyaWFsLHNhbnMtc2VyaWY7Y29sb3I6dmFyKC0tdGV4dCk7CiBiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxMzVkZWcsI2Y1ZmFmNiwjZTdmMmVhKX0KYnV0dG9uLGlucHV0LHRleHRhcmVhe2ZvbnQ6aW5oZXJpdH1idXR0b257Y3Vyc29yOnBvaW50ZXJ9CmhlYWRlcntiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxMjBkZWcsIzFkNGIzMSwjNDM4YjVjKTtjb2xvcjojZmZmO3BhZGRpbmc6MjdweCA1JTtib3gtc2hhZG93OjAgNXB4IDIwcHggIzAwMDJ9Ci5oZWFkZXJ7bWF4LXdpZHRoOjEyNTBweDttYXJnaW46YXV0bztkaXNwbGF5OmZsZXg7anVzdGlmeS1jb250ZW50OnNwYWNlLWJldHdlZW47YWxpZ24taXRlbXM6Y2VudGVyO2dhcDoyNXB4fQpoMXttYXJnaW46MDtmb250LXNpemU6MzFweH0udGFne21hcmdpbi10b3A6NnB4O29wYWNpdHk6Ljg3fS5zdGF0c3tkaXNwbGF5OmZsZXg7Z2FwOjEwcHh9Ci5zdGF0e2JhY2tncm91bmQ6I2ZmZjI7cGFkZGluZzoxMXB4IDE1cHg7Ym9yZGVyLXJhZGl1czoxM3B4O3RleHQtYWxpZ246Y2VudGVyfS5zdGF0IGJ7ZGlzcGxheTpibG9jaztmb250LXNpemU6MjFweH0KbWFpbnttYXgtd2lkdGg6MTI1MHB4O21hcmdpbjoyOHB4IGF1dG87cGFkZGluZzowIDIwcHh9Ci50YWJze2Rpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KDcsMWZyKTtnYXA6OXB4O21hcmdpbi1ib3R0b206MjNweH0KLnRhYntib3JkZXI6MXB4IHNvbGlkIHZhcigtLWJvcmRlcik7YmFja2dyb3VuZDojZmZmO3BhZGRpbmc6MTNweCA4cHg7Ym9yZGVyLXJhZGl1czoxM3B4O2ZvbnQtd2VpZ2h0Ojc1MDtjb2xvcjojNDA1MTQ4O3RyYW5zaXRpb246LjJzfQoudGFiOmhvdmVye3RyYW5zZm9ybTp0cmFuc2xhdGVZKC0ycHgpfS50YWIuYWN0aXZle2JhY2tncm91bmQ6dmFyKC0tZ3JlZW4pO2NvbG9yOiNmZmY7Ym9yZGVyLWNvbG9yOnZhcigtLWdyZWVuKX0KLnBhbmVse2Rpc3BsYXk6bm9uZX0ucGFuZWwuYWN0aXZle2Rpc3BsYXk6YmxvY2t9Lmhlcm8sLmNhcmR7YmFja2dyb3VuZDojZmZmO2JvcmRlcjoxcHggc29saWQgdmFyKC0tYm9yZGVyKTtib3JkZXItcmFkaXVzOjIxcHg7Ym94LXNoYWRvdzp2YXIoLS1zaGFkb3cpfQouaGVyb3twYWRkaW5nOjI3cHg7bWFyZ2luLWJvdHRvbToyMHB4fS5oZXJvIGgye21hcmdpbjowIDAgOHB4fS5oZXJvIHB7bWFyZ2luOjA7Y29sb3I6dmFyKC0tbXV0ZWQpfQouZ3JpZHtkaXNwbGF5OmdyaWQ7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOjEuMzVmciAuNjVmcjtnYXA6MjBweH0uY2FyZHtwYWRkaW5nOjI0cHh9LmNhcmQgaDN7bWFyZ2luLXRvcDowfQoucGlsbHtkaXNwbGF5OmlubGluZS1ibG9jaztwYWRkaW5nOjVweCAxMHB4O2JvcmRlci1yYWRpdXM6MjBweDtiYWNrZ3JvdW5kOiNlOGY1ZWM7Y29sb3I6IzJlNzA0ODtmb250LXNpemU6MTJweDtmb250LXdlaWdodDo4MDB9Ci5xdWVzdGlvbntmb250LXNpemU6MjBweDtsaW5lLWhlaWdodDoxLjY7bWFyZ2luOjE4cHggMH0ub3B0aW9uc3tkaXNwbGF5OmdyaWQ7Z2FwOjEwcHh9Ci5vcHRpb257Ym9yZGVyOjFweCBzb2xpZCAjZDdlM2RhO2JhY2tncm91bmQ6I2ZiZmRmYjtwYWRkaW5nOjE0cHggMTZweDtib3JkZXItcmFkaXVzOjEycHg7dGV4dC1hbGlnbjpsZWZ0O3RyYW5zaXRpb246LjE4c30KLm9wdGlvbjpob3Zlcntib3JkZXItY29sb3I6dmFyKC0tZ3JlZW4pO2JhY2tncm91bmQ6I2YwZjhmMn0ub3B0aW9uLmNvcnJlY3R7YmFja2dyb3VuZDojZTRmNWU5O2JvcmRlci1jb2xvcjojNGQ5YzYzfQoub3B0aW9uLndyb25ne2JhY2tncm91bmQ6I2ZmZjBmMDtib3JkZXItY29sb3I6I2Q4NjY2Nn0ub3B0aW9uOmRpc2FibGVke2N1cnNvcjpkZWZhdWx0fQouZmVlZGJhY2t7bWluLWhlaWdodDo1MHB4O3BhZGRpbmctdG9wOjE0cHg7Zm9udC13ZWlnaHQ6NjUwfS5nb29ke2NvbG9yOiMyZDdiNGJ9LmJhZHtjb2xvcjojYjc0NzQ3fQoucHJpbWFyeXtiYWNrZ3JvdW5kOnZhcigtLWdyZWVuKTtjb2xvcjojZmZmO2JvcmRlcjowO2JvcmRlci1yYWRpdXM6MTFweDtwYWRkaW5nOjEycHggMThweDtmb250LXdlaWdodDo3NTB9Ci5zZWNvbmRhcnl7YmFja2dyb3VuZDojZWVmNWYwO2NvbG9yOiMyZjYwNDM7Ym9yZGVyOjFweCBzb2xpZCAjZDZlNWRhO2JvcmRlci1yYWRpdXM6MTFweDtwYWRkaW5nOjExcHggMTZweDtmb250LXdlaWdodDo3MDB9Ci5yb3d7ZGlzcGxheTpmbGV4O2dhcDo5cHg7ZmxleC13cmFwOndyYXB9LmJveHtiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxMzVkZWcsI2VmZjlmMSwjZGNlZmUxKTtib3JkZXI6MXB4IHNvbGlkICNjOWRmY2Y7Ym9yZGVyLXJhZGl1czoxN3B4O3BhZGRpbmc6MjBweH0KLnRlcm17Zm9udC1zaXplOjI3cHg7Zm9udC13ZWlnaHQ6ODAwO2NvbG9yOnZhcigtLWdyZWVuKX0uZGVmaW5pdGlvbntjb2xvcjojNTI2MTU5O2xpbmUtaGVpZ2h0OjEuNTV9Ci5leGFtcGxle2ZvbnQtc2l6ZToxOHB4O2xpbmUtaGVpZ2h0OjEuNzttYXJnaW4tdG9wOjEwcHh9LmhpZ2hsaWdodHtjb2xvcjp2YXIoLS1ncmVlbik7Zm9udC13ZWlnaHQ6ODAwfQoudGlwe2JvcmRlci1sZWZ0OjRweCBzb2xpZCB2YXIoLS1nb2xkKTtwYWRkaW5nOjEwcHggMTRweDtiYWNrZ3JvdW5kOiNmZmZhZjA7bWFyZ2luLXRvcDoxNHB4O2JvcmRlci1yYWRpdXM6N3B4fQp0ZXh0YXJlYSxpbnB1dHt3aWR0aDoxMDAlO2JvcmRlcjoxcHggc29saWQgI2Q0ZTBkNztib3JkZXItcmFkaXVzOjEycHg7cGFkZGluZzoxM3B4O291dGxpbmU6bm9uZX0KdGV4dGFyZWE6Zm9jdXMsaW5wdXQ6Zm9jdXN7Ym9yZGVyLWNvbG9yOnZhcigtLWdyZWVuKTtib3gtc2hhZG93OjAgMCAwIDNweCAjZTFmMWU1fQouY2hhbGxlbmdle2JhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDEzNWRlZywjMWY1MTM0LCM0Yjk4NjYpO2NvbG9yOiNmZmZ9LmNoYWxsZW5nZSBwe2NvbG9yOiNlZWY5ZjB9Ci5iaWd7Zm9udC1zaXplOjM4cHg7Zm9udC13ZWlnaHQ6ODUwfS5wcm9ncmVzc3toZWlnaHQ6MTBweDtiYWNrZ3JvdW5kOiNlM2VlZTY7Ym9yZGVyLXJhZGl1czoyMHB4O292ZXJmbG93OmhpZGRlbn0ucHJvZ3Jlc3Mgc3BhbntkaXNwbGF5OmJsb2NrO2hlaWdodDoxMDAlO2JhY2tncm91bmQ6dmFyKC0tZ3JlZW4pO3dpZHRoOjA7dHJhbnNpdGlvbjouMzVzfQoubWluaXtmb250LXNpemU6MTNweDtjb2xvcjp2YXIoLS1tdXRlZCl9LmNvZGV7Zm9udC1mYW1pbHk6Q29uc29sYXMsbW9ub3NwYWNlO2JhY2tncm91bmQ6IzE3MjMxYztjb2xvcjojZGZmNWU0O3BhZGRpbmc6MTZweDtib3JkZXItcmFkaXVzOjEycHg7bGluZS1oZWlnaHQ6MS42O292ZXJmbG93OmF1dG99Ci5wcmFjdGljZS1jYXJke2JhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDE0NWRlZywjZjVmYmY2LCNlM2YyZTcpO2JvcmRlcjoxcHggc29saWQgI2NmZTJkNDtib3JkZXItcmFkaXVzOjE4cHg7cGFkZGluZzoyMHB4fQouY2hlY2tze2Rpc3BsYXk6Z3JpZDtnYXA6OXB4O21hcmdpbjoxNXB4IDB9LmNoZWNre3BhZGRpbmc6MTBweCAxMnB4O2JhY2tncm91bmQ6I2Y3ZmFmODtib3JkZXItcmFkaXVzOjlweH0KZm9vdGVye3RleHQtYWxpZ246Y2VudGVyO2NvbG9yOiM3MzgwNzg7cGFkZGluZzozNHB4fQpAbWVkaWEobWF4LXdpZHRoOjEwNTBweCl7LnRhYnN7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOnJlcGVhdCg0LDFmcil9LmdyaWR7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOjFmcn19CkBtZWRpYShtYXgtd2lkdGg6NjUwcHgpey50YWJze2dyaWQtdGVtcGxhdGUtY29sdW1uczpyZXBlYXQoMiwxZnIpfS5oZWFkZXJ7ZmxleC1kaXJlY3Rpb246Y29sdW1uO2FsaWduLWl0ZW1zOmZsZXgtc3RhcnR9LnN0YXRze3dpZHRoOjEwMCV9LnN0YXR7ZmxleDoxfX0KPC9zdHlsZT4KPC9oZWFkPgo8Ym9keT4KPGhlYWRlcj48ZGl2IGNsYXNzPSJoZWFkZXIiPgogPGRpdj48aDE+8J+nkeKAjfCfkrsgU1FMICsgRW5nbGlzaCBQcmFjdGljZSBMYWI8L2gxPjxkaXYgY2xhc3M9InRhZyI+TGVhcm4gU1FMLiBQcmFjdGljZSBFbmdsaXNoLiBCdWlsZCBjb25maWRlbmNlIGZvciBkYXRhIGFuYWx5c3Qgd29yay48L2Rpdj48L2Rpdj4KIDxkaXYgY2xhc3M9InN0YXRzIj48ZGl2IGNsYXNzPSJzdGF0Ij48YiBpZD0ic2NvcmUiPjA8L2I+U2NvcmU8L2Rpdj48ZGl2IGNsYXNzPSJzdGF0Ij48YiBpZD0ic3RyZWFrIj4wPC9iPlN0cmVhazwvZGl2PjxkaXYgY2xhc3M9InN0YXQiPjxiIGlkPSJjb3JyZWN0Ij4wPC9iPkNvcnJlY3Q8L2Rpdj48L2Rpdj4KPC9kaXY+PC9oZWFkZXI+Cgo8bWFpbj4KPGRpdiBjbGFzcz0idGFicyI+CiA8YnV0dG9uIGNsYXNzPSJ0YWIgYWN0aXZlIiBkYXRhLXBhbmVsPSJzcWwiPvCfl4TvuI8gU1FMICsgRW5nbGlzaDwvYnV0dG9uPgogPGJ1dHRvbiBjbGFzcz0idGFiIiBkYXRhLXBhbmVsPSJjb25uZWN0b3JzIj7wn5SXIENvbm5lY3RvcnM8L2J1dHRvbj4KIDxidXR0b24gY2xhc3M9InRhYiIgZGF0YS1wYW5lbD0idm9jYWIiPvCfk5ogU1FMIFZvY2FidWxhcnk8L2J1dHRvbj4KIDxidXR0b24gY2xhc3M9InRhYiIgZGF0YS1wYW5lbD0iaW50ZXJ2aWV3Ij7wn5K8IEludGVydmlldzwvYnV0dG9uPgogPGJ1dHRvbiBjbGFzcz0idGFiIiBkYXRhLXBhbmVsPSJ3cml0aW5nIj7inI3vuI8gVGVjaG5pY2FsIFdyaXRpbmc8L2J1dHRvbj4KIDxidXR0b24gY2xhc3M9InRhYiIgZGF0YS1wYW5lbD0iY29udmVyc2F0aW9uIj7wn5KsIFdvcmtwbGFjZSBFbmdsaXNoPC9idXR0b24+CiA8YnV0dG9uIGNsYXNzPSJ0YWIiIGRhdGEtcGFuZWw9ImRhaWx5Ij7wn5SlIERhaWx5IENoYWxsZW5nZTwvYnV0dG9uPgo8L2Rpdj4KCjxzZWN0aW9uIGlkPSJzcWwiIGNsYXNzPSJwYW5lbCBhY3RpdmUiPgogPGRpdiBjbGFzcz0iaGVybyI+PGgyPlNRTCArIEVuZ2xpc2ggaW4gT25lIEV4ZXJjaXNlPC9oMj48cD5MZWFybiBhIFNRTCBjb25jZXB0IGFuZCBwcmFjdGljZSBleHBsYWluaW5nIGl0IGluIG5hdHVyYWwgRW5nbGlzaCBhdCB0aGUgc2FtZSB0aW1lLjwvcD48L2Rpdj4KIDxkaXYgY2xhc3M9ImdyaWQiPgogIDxkaXYgY2xhc3M9ImNhcmQiPgogICA8ZGl2IGNsYXNzPSJyb3ciPjxzcGFuIGNsYXNzPSJwaWxsIiBpZD0ic3FsVG9waWMiPlNFTEVDVDwvc3Bhbj48c3BhbiBjbGFzcz0icGlsbCI+QjHigJNCMjwvc3Bhbj48L2Rpdj4KICAgPGRpdiBpZD0ic3FsUXVlc3Rpb24iIGNsYXNzPSJxdWVzdGlvbiI+PC9kaXY+PGRpdiBpZD0ic3FsT3B0aW9ucyIgY2xhc3M9Im9wdGlvbnMiPjwvZGl2PgogICA8ZGl2IGlkPSJzcWxGZWVkYmFjayIgY2xhc3M9ImZlZWRiYWNrIj48L2Rpdj48YnV0dG9uIGNsYXNzPSJwcmltYXJ5IiBpZD0ibmV4dFNRTCI+TmV4dCBFeGVyY2lzZSDihpI8L2J1dHRvbj4KICA8L2Rpdj4KICA8ZGl2IGNsYXNzPSJjYXJkIj48aDM+8J+MvyBFeHBsYWluIHRoZSBjb25jZXB0PC9oMz4KICAgPGRpdiBjbGFzcz0iYm94Ij48ZGl2IGlkPSJzcWxUZXJtIiBjbGFzcz0idGVybSI+PC9kaXY+PHAgaWQ9InNxbERlZmluaXRpb24iIGNsYXNzPSJkZWZpbml0aW9uIj48L3A+PGRpdiBpZD0ic3FsRXhhbXBsZSIgY2xhc3M9ImNvZGUiPjwvZGl2PjxkaXYgaWQ9InNxbEVuZ2xpc2giIGNsYXNzPSJ0aXAiPjwvZGl2PjwvZGl2PgogIDwvZGl2PgogPC9kaXY+Cjwvc2VjdGlvbj4KCjxzZWN0aW9uIGlkPSJjb25uZWN0b3JzIiBjbGFzcz0icGFuZWwiPgogPGRpdiBjbGFzcz0iaGVybyI+PGgyPvCflJcgQ29ubmVjdG9ycyBmb3IgU1FMIEV4cGxhbmF0aW9uczwvaDI+PHA+UHJhY3RpY2Ugd29yZHMgdGhhdCBtYWtlIHlvdXIgdGVjaG5pY2FsIGV4cGxhbmF0aW9ucyBzb3VuZCBvcmdhbml6ZWQgYW5kIHByb2Zlc3Npb25hbC48L3A+PC9kaXY+CiA8ZGl2IGNsYXNzPSJncmlkIj48ZGl2IGNsYXNzPSJjYXJkIj48c3BhbiBjbGFzcz0icGlsbCI+Q0hPT1NFIFRIRSBCRVNUIENPTk5FQ1RPUjwvc3Bhbj48ZGl2IGlkPSJjb25uUXVlc3Rpb24iIGNsYXNzPSJxdWVzdGlvbiI+PC9kaXY+PGRpdiBpZD0iY29ubk9wdGlvbnMiIGNsYXNzPSJvcHRpb25zIj48L2Rpdj48ZGl2IGlkPSJjb25uRmVlZGJhY2siIGNsYXNzPSJmZWVkYmFjayI+PC9kaXY+PGJ1dHRvbiBjbGFzcz0icHJpbWFyeSIgaWQ9Im5leHRDb25uIj5OZXh0IOKGkjwvYnV0dG9uPjwvZGl2PgogPGRpdiBjbGFzcz0iY2FyZCI+PGgzPkNvbm5lY3RvciBvZiB0aGUgbW9tZW50PC9oMz48ZGl2IGNsYXNzPSJib3giPjxkaXYgaWQ9ImNvbm5OYW1lIiBjbGFzcz0idGVybSI+PC9kaXY+PHAgaWQ9ImNvbm5EZWYiIGNsYXNzPSJkZWZpbml0aW9uIj48L3A+PGRpdiBpZD0iY29ubkV4YW1wbGUiIGNsYXNzPSJleGFtcGxlIj48L2Rpdj48ZGl2IGlkPSJjb25uVGlwIiBjbGFzcz0idGlwIj48L2Rpdj48L2Rpdj48YnI+PGJ1dHRvbiBjbGFzcz0ic2Vjb25kYXJ5IiBpZD0ibmV3Q29ubiI+QW5vdGhlciBjb25uZWN0b3I8L2J1dHRvbj48L2Rpdj48L2Rpdj4KPC9zZWN0aW9uPgoKPHNlY3Rpb24gaWQ9InZvY2FiIiBjbGFzcz0icGFuZWwiPgogPGRpdiBjbGFzcz0iaGVybyI+PGgyPvCfk5ogU1FMICYgRGF0YSBBbmFseXN0IFZvY2FidWxhcnk8L2gyPjxwPldvcmRzIHlvdSB3aWxsIGFjdHVhbGx5IGhlYXIgaW4gdGVjaG5pY2FsIG1lZXRpbmdzLCBkb2N1bWVudGF0aW9uLCBkYXNoYm9hcmRzLCBhbmQgaW50ZXJ2aWV3cy48L3A+PC9kaXY+CiA8ZGl2IGNsYXNzPSJncmlkIj48ZGl2IGNsYXNzPSJjYXJkIj48c3BhbiBjbGFzcz0icGlsbCI+VEVDSE5JQ0FMIFdPUkQ8L3NwYW4+PGRpdiBpZD0idldvcmQiIGNsYXNzPSJ0ZXJtIj48L2Rpdj48cCBpZD0idkRlZiIgY2xhc3M9ImRlZmluaXRpb24iPjwvcD48ZGl2IGNsYXNzPSJib3giPjxiPlNRTCAvIFdvcmsgZXhhbXBsZTwvYj48ZGl2IGlkPSJ2RXgiIGNsYXNzPSJleGFtcGxlIj48L2Rpdj48L2Rpdj48YnI+PGJ1dHRvbiBjbGFzcz0icHJpbWFyeSIgaWQ9Im5leHRWIj5OZXcgV29yZCDihpI8L2J1dHRvbj48L2Rpdj4KIDxkaXYgY2xhc3M9ImNhcmQiPjxoMz5Vc2UgaXQgeW91cnNlbGY8L2gzPjxwIGNsYXNzPSJtaW5pIj5Xcml0ZSBvbmUgc2VudGVuY2UgdXNpbmcgdGhlIHZvY2FidWxhcnkgd29yZC48L3A+PHRleHRhcmVhIGlkPSJ2SW5wdXQiIHJvd3M9IjciIHBsYWNlaG9sZGVyPSJFeGFtcGxlOiBUaGUgcXVlcnkgcmV0cmlldmVzLi4uIj48L3RleHRhcmVhPjxicj48YnI+PGJ1dHRvbiBjbGFzcz0ic2Vjb25kYXJ5IiBpZD0idkNoZWNrIj5DaGVjayBteSBzZW50ZW5jZTwvYnV0dG9uPjxkaXYgaWQ9InZGZWVkYmFjayIgY2xhc3M9ImZlZWRiYWNrIj48L2Rpdj48L2Rpdj48L2Rpdj4KPC9zZWN0aW9uPgoKPHNlY3Rpb24gaWQ9ImludGVydmlldyIgY2xhc3M9InBhbmVsIj4KIDxkaXYgY2xhc3M9Imhlcm8iPjxoMj7wn5K8IFNRTCBJbnRlcnZpZXcgRW5nbGlzaDwvaDI+PHA+UHJhY3RpY2UgYW5zd2VyaW5nIHRlY2huaWNhbCBxdWVzdGlvbnMgY2xlYXJseSwgbGlrZSB5b3Ugd291bGQgaW4gYSBkYXRhIGFuYWx5c3QgaW50ZXJ2aWV3LjwvcD48L2Rpdj4KIDxkaXYgY2xhc3M9ImNhcmQiPjxzcGFuIGNsYXNzPSJwaWxsIj5JTlRFUlZJRVcgUVVFU1RJT048L3NwYW4+PGRpdiBpZD0iaVF1ZXN0aW9uIiBjbGFzcz0icXVlc3Rpb24iPjwvZGl2PjxkaXYgY2xhc3M9ImJveCI+PGI+QW5zd2VyIHN0cnVjdHVyZTwvYj48cCBpZD0iaVRpcCI+PC9wPjwvZGl2Pjxicj48dGV4dGFyZWEgaWQ9ImlJbnB1dCIgcm93cz0iOCIgcGxhY2Vob2xkZXI9IkFuc3dlciBpbiBFbmdsaXNoLi4uIj48L3RleHRhcmVhPjxicj48YnI+PGJ1dHRvbiBjbGFzcz0icHJpbWFyeSIgaWQ9ImlDaGVja2xpc3QiPlJldmlldyBteSBhbnN3ZXI8L2J1dHRvbj4gPGJ1dHRvbiBjbGFzcz0ic2Vjb25kYXJ5IiBpZD0iaU5ldyI+TmV3IFF1ZXN0aW9uIOKGkjwvYnV0dG9uPjxkaXYgaWQ9ImlGZWVkYmFjayIgY2xhc3M9ImZlZWRiYWNrIj48L2Rpdj48L2Rpdj4KPC9zZWN0aW9uPgoKPHNlY3Rpb24gaWQ9IndyaXRpbmciIGNsYXNzPSJwYW5lbCI+CiA8ZGl2IGNsYXNzPSJoZXJvIj48aDI+4pyN77iPIFRlY2huaWNhbCBXcml0aW5nPC9oMj48cD5UdXJuIHlvdXIgU1FMIGtub3dsZWRnZSBpbnRvIGNsZWFyIHByb2Zlc3Npb25hbCBFbmdsaXNoLjwvcD48L2Rpdj4KIDxkaXYgY2xhc3M9ImNhcmQiPjxzcGFuIGNsYXNzPSJwaWxsIj5EQVRBIEFOQUxZU1QgVEFTSzwvc3Bhbj48ZGl2IGlkPSJ3UXVlc3Rpb24iIGNsYXNzPSJxdWVzdGlvbiI+PC9kaXY+PGRpdiBjbGFzcz0iY29kZSIgaWQ9IndDb2RlIj48L2Rpdj48YnI+PHRleHRhcmVhIGlkPSJ3SW5wdXQiIHJvd3M9IjgiIHBsYWNlaG9sZGVyPSJFeHBsYWluIHRoZSBxdWVyeSwgcmVzdWx0LCBvciBwcm9ibGVtIGluIEVuZ2xpc2guLi4iPjwvdGV4dGFyZWE+PGJyPjxicj48YnV0dG9uIGNsYXNzPSJwcmltYXJ5IiBpZD0id1JldmlldyI+UmV2aWV3IG15IHdyaXRpbmc8L2J1dHRvbj4gPGJ1dHRvbiBjbGFzcz0ic2Vjb25kYXJ5IiBpZD0id05ldyI+TmV3IFRhc2sg4oaSPC9idXR0b24+PGRpdiBpZD0id0ZlZWRiYWNrIiBjbGFzcz0iZmVlZGJhY2siPjwvZGl2PjwvZGl2Pgo8L3NlY3Rpb24+Cgo8c2VjdGlvbiBpZD0iY29udmVyc2F0aW9uIiBjbGFzcz0icGFuZWwiPgogPGRpdiBjbGFzcz0iaGVybyI+PGgyPvCfkqwgV29ya3BsYWNlIEVuZ2xpc2ggZm9yIERhdGEgQW5hbHlzdHM8L2gyPjxwPlByYWN0aWNlIGV4cGxhaW5pbmcgdGVjaG5pY2FsIHNpdHVhdGlvbnMgdG8gY293b3JrZXJzLCBtYW5hZ2VycywgYW5kIG5vbi10ZWNobmljYWwgc3Rha2Vob2xkZXJzLjwvcD48L2Rpdj4KIDxkaXYgY2xhc3M9ImNhcmQiPjxzcGFuIGNsYXNzPSJwaWxsIj5XT1JLUExBQ0UgU0NFTkFSSU88L3NwYW4+PGRpdiBpZD0iY1F1ZXN0aW9uIiBjbGFzcz0icXVlc3Rpb24iPjwvZGl2PjxkaXYgY2xhc3M9ImJveCI+PGI+VHJ5IHRoaXMgYXBwcm9hY2g8L2I+PHAgaWQ9ImNUaXAiPjwvcD48L2Rpdj48YnI+PHRleHRhcmVhIGlkPSJjSW5wdXQiIHJvd3M9IjgiIHBsYWNlaG9sZGVyPSJXcml0ZSB3aGF0IHlvdSB3b3VsZCBzYXkuLi4iPjwvdGV4dGFyZWE+PGJyPjxicj48YnV0dG9uIGNsYXNzPSJwcmltYXJ5IiBpZD0iY0NoZWNrbGlzdCI+R2l2ZSBtZSBhIHNwZWFraW5nIGNoZWNrbGlzdDwvYnV0dG9uPiA8YnV0dG9uIGNsYXNzPSJzZWNvbmRhcnkiIGlkPSJjTmV3Ij5OZXcgU2NlbmFyaW8g4oaSPC9idXR0b24+PGRpdiBpZD0iY0ZlZWRiYWNrIiBjbGFzcz0iZmVlZGJhY2siPjwvZGl2PjwvZGl2Pgo8L3NlY3Rpb24+Cgo8c2VjdGlvbiBpZD0iZGFpbHkiIGNsYXNzPSJwYW5lbCI+CiA8ZGl2IGNsYXNzPSJoZXJvIGNoYWxsZW5nZSI+PGRpdiBjbGFzcz0iYmlnIiBpZD0iZGFpbHlTY29yZSI+8J+UpSAwPC9kaXY+PGgyPkRhaWx5IFNRTCArIEVuZ2xpc2ggQ2hhbGxlbmdlPC9oMj48cD5GaXZlIG1peGVkIHF1ZXN0aW9ucyBjb3ZlcmluZyBTUUwga25vd2xlZGdlIGFuZCB0aGUgRW5nbGlzaCB5b3UgbmVlZCB0byBleHBsYWluIGl0LjwvcD48L2Rpdj4KIDxkaXYgY2xhc3M9ImNhcmQiPjxkaXYgY2xhc3M9InJvdyI+PHNwYW4gY2xhc3M9InBpbGwiIGlkPSJkQ291bnQiPlF1ZXN0aW9uIDEgb2YgNTwvc3Bhbj48c3BhbiBjbGFzcz0icGlsbCI+U1FMICsgRW5nbGlzaDwvc3Bhbj48L2Rpdj48ZGl2IGlkPSJkUXVlc3Rpb24iIGNsYXNzPSJxdWVzdGlvbiI+PC9kaXY+PGRpdiBpZD0iZE9wdGlvbnMiIGNsYXNzPSJvcHRpb25zIj48L2Rpdj48ZGl2IGlkPSJkRmVlZGJhY2siIGNsYXNzPSJmZWVkYmFjayI+PC9kaXY+PGJ1dHRvbiBjbGFzcz0icHJpbWFyeSIgaWQ9ImROZXh0Ij5OZXh0IOKGkjwvYnV0dG9uPjxkaXYgc3R5bGU9Im1hcmdpbi10b3A6MjBweCIgY2xhc3M9InByb2dyZXNzIj48c3BhbiBpZD0iZFByb2dyZXNzIj48L3NwYW4+PC9kaXY+PC9kaXY+Cjwvc2VjdGlvbj4KPC9tYWluPgo8Zm9vdGVyPkxlYXJuIHRoZSBTUUwuIEV4cGxhaW4gdGhlIFNRTC4gT3duIHRoZSBjb252ZXJzYXRpb24uIPCfjL88L2Zvb3Rlcj4KCjxzY3JpcHQ+CmNvbnN0ICQ9aWQ9PmRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGlkKSwgc2h1ZmZsZT1hPT5bLi4uYV0uc29ydCgoKT0+TWF0aC5yYW5kb20oKS0uNSk7CmxldCBzdGF0ZT17c2NvcmU6K2xvY2FsU3RvcmFnZS5zcWxFbmdTY29yZXx8MCxzdHJlYWs6K2xvY2FsU3RvcmFnZS5zcWxFbmdTdHJlYWt8fDAsY29ycmVjdDorbG9jYWxTdG9yYWdlLnNxbEVuZ0NvcnJlY3R8fDB9OwpmdW5jdGlvbiBzYXZlKCl7bG9jYWxTdG9yYWdlLnNxbEVuZ1Njb3JlPXN0YXRlLnNjb3JlO2xvY2FsU3RvcmFnZS5zcWxFbmdTdHJlYWs9c3RhdGUuc3RyZWFrO2xvY2FsU3RvcmFnZS5zcWxFbmdDb3JyZWN0PXN0YXRlLmNvcnJlY3Q7JCgic2NvcmUiKS50ZXh0Q29udGVudD1zdGF0ZS5zY29yZTskKCJzdHJlYWsiKS50ZXh0Q29udGVudD1zdGF0ZS5zdHJlYWs7JCgiY29ycmVjdCIpLnRleHRDb250ZW50PXN0YXRlLmNvcnJlY3Q7JCgiZGFpbHlTY29yZSIpLnRleHRDb250ZW50PSLwn5SlICIrc3RhdGUuc3RyZWFrfQpmdW5jdGlvbiBxdWl6KGNvbnRhaW5lcixpdGVtcyxhbnN3ZXIsZmVlZGJhY2ssZXhwbGFuYXRpb24pewogY29udGFpbmVyLmlubmVySFRNTD0iIjtzaHVmZmxlKGl0ZW1zKS5mb3JFYWNoKHg9PntsZXQgYj1kb2N1bWVudC5jcmVhdGVFbGVtZW50KCJidXR0b24iKTtiLmNsYXNzTmFtZT0ib3B0aW9uIjtiLnRleHRDb250ZW50PXg7Yi5vbmNsaWNrPSgpPT57Wy4uLmNvbnRhaW5lci5jaGlsZHJlbl0uZm9yRWFjaCh6PT56LmRpc2FibGVkPXRydWUpO2xldCBvaz14PT09YW5zd2VyO2IuY2xhc3NMaXN0LmFkZChvaz8iY29ycmVjdCI6Indyb25nIik7aWYoIW9rKVsuLi5jb250YWluZXIuY2hpbGRyZW5dLmZpbmQoej0+ei50ZXh0Q29udGVudD09PWFuc3dlcik/LmNsYXNzTGlzdC5hZGQoImNvcnJlY3QiKTtpZihvayl7c3RhdGUuc2NvcmUrPTEwO3N0YXRlLmNvcnJlY3QrKztzdGF0ZS5zdHJlYWsrKztmZWVkYmFjay5pbm5lckhUTUw9JzxzcGFuIGNsYXNzPSJnb29kIj7inJMgQ29ycmVjdCEgJytleHBsYW5hdGlvbisnPC9zcGFuPid9ZWxzZXtzdGF0ZS5zdHJlYWs9MDtmZWVkYmFjay5pbm5lckhUTUw9JzxzcGFuIGNsYXNzPSJiYWQiPuKclyBOb3QgcXVpdGUuICcrZXhwbGFuYXRpb24rJzwvc3Bhbj4nfXNhdmUoKX07Y29udGFpbmVyLmFwcGVuZENoaWxkKGIpfSkKfQoKY29uc3Qgc3FsPVsKWyJTRUxFQ1QiLCJXaGljaCBTUUwga2V5d29yZCBpcyB1c2VkIHRvIHJldHJpZXZlIGRhdGEgZnJvbSBhIHRhYmxlPyIsIlNFTEVDVCIsIldIRVJFIiwiVVBEQVRFIiwiREVMRVRFIiwiU0VMRUNUIiwiU0VMRUNUIHJldHJpZXZlcyByb3dzIGZyb20gYSB0YWJsZS4iXSwKWyJXSEVSRSIsIldoaWNoIGNsYXVzZSBmaWx0ZXJzIHJvd3MgYmFzZWQgb24gYSBjb25kaXRpb24/IiwiV0hFUkUiLCJHUk9VUCBCWSIsIk9SREVSIEJZIiwiSk9JTiIsIldIRVJFIiwiV0hFUkUgZmlsdGVycyByb3dzIGJlZm9yZSBncm91cGluZyBvciBvcmRlcmluZy4iXSwKWyJHUk9VUCBCWSIsIldoaWNoIGNsYXVzZSBpcyBjb21tb25seSB1c2VkIHdpdGggQ09VTlQgb3IgU1VNIHRvIGNyZWF0ZSBncm91cHM/IiwiR1JPVVAgQlkiLCJPUkRFUiBCWSIsIldIRVJFIiwiRElTVElOQ1QiLCJHUk9VUCBCWSIsIkdST1VQIEJZIG9yZ2FuaXplcyByb3dzIGludG8gZ3JvdXBzIGZvciBhZ2dyZWdhdGUgY2FsY3VsYXRpb25zLiJdLApbIkRJU1RJTkNUIiwiV2hpY2gga2V5d29yZCByZW1vdmVzIGR1cGxpY2F0ZSB2YWx1ZXMgZnJvbSBhIHJlc3VsdD8iLCJESVNUSU5DVCIsIlVOSVFVRSBST1dTIiwiUkVNT1ZFIiwiRklMVEVSIiwiRElTVElOQ1QiLCJESVNUSU5DVCByZW1vdmVzIGR1cGxpY2F0ZSByZXN1bHQgcm93cy4iXSwKWyJJTk5FUiBKT0lOIiwiV2hpY2ggam9pbiByZXR1cm5zIG1hdGNoaW5nIHJvd3MgZnJvbSBib3RoIHRhYmxlcz8iLCJJTk5FUiBKT0lOIiwiTEVGVCBKT0lOIiwiRlVMTCBKT0lOIiwiU0VMRiBKT0lOIiwiSU5ORVIgSk9JTiIsIklOTkVSIEpPSU4gcmV0dXJucyByb3dzIHdoZXJlIHRoZSBqb2luIGNvbmRpdGlvbiBtYXRjaGVzLiJdLApbIkxFRlQgSk9JTiIsIldoaWNoIGpvaW4ga2VlcHMgZXZlcnkgcm93IGZyb20gdGhlIGxlZnQgdGFibGU/IiwiTEVGVCBKT0lOIiwiSU5ORVIgSk9JTiIsIlJJR0hUIEpPSU4iLCJDUk9TUyBKT0lOIiwiTEVGVCBKT0lOIiwiTEVGVCBKT0lOIHByZXNlcnZlcyBhbGwgcm93cyBmcm9tIHRoZSBsZWZ0IHRhYmxlLiJdLApbIkNPVU5UIiwiV2hpY2ggZnVuY3Rpb24gY291bnRzIHJvd3Mgb3Igbm9uLW51bGwgdmFsdWVzPyIsIkNPVU5UIiwiU1VNIiwiQVZHIiwiTUFYIiwiQ09VTlQiLCJDT1VOVCBpcyB1c2VkIHRvIGNvdW50IHJvd3Mgb3IgdmFsdWVzLiJdLApbIkhBVklORyIsIldoaWNoIGNsYXVzZSBmaWx0ZXJzIGdyb3VwcyBhZnRlciBHUk9VUCBCWT8iLCJIQVZJTkciLCJXSEVSRSIsIkZJTFRFUiIsIk9SREVSIEJZIiwiSEFWSU5HIiwiSEFWSU5HIGZpbHRlcnMgYWdncmVnYXRlZCBncm91cHMuIl0sClsiUFJJTUFSWSBLRVkiLCJXaGljaCBjb25zdHJhaW50IHVuaXF1ZWx5IGlkZW50aWZpZXMgZWFjaCByb3c/IiwiUFJJTUFSWSBLRVkiLCJGT1JFSUdOIEtFWSIsIkNIRUNLIiwiSU5ERVgiLCJQUklNQVJZIEtFWSIsIkEgcHJpbWFyeSBrZXkgaWRlbnRpZmllcyBlYWNoIHJlY29yZCB1bmlxdWVseS4iXSwKWyJDVEUiLCJXaGljaCBTUUwgZmVhdHVyZSBiZWdpbnMgd2l0aCBXSVRIIGFuZCBjcmVhdGVzIGEgdGVtcG9yYXJ5IG5hbWVkIHJlc3VsdCBzZXQ/IiwiQ1RFIiwiSU5ERVgiLCJUUklHR0VSIiwiVklFVyIsIkNURSIsIkEgY29tbW9uIHRhYmxlIGV4cHJlc3Npb24gaXMgZGVmaW5lZCB3aXRoIFdJVEguIl0sClsiUk9XX05VTUJFUiIsIldoaWNoIHdpbmRvdyBmdW5jdGlvbiBhc3NpZ25zIGEgc2VxdWVudGlhbCBudW1iZXIgdG8gcm93cz8iLCJST1dfTlVNQkVSIiwiQ09VTlQiLCJHUk9VUCBCWSIsIlJBTktFRCIsIlJPV19OVU1CRVIiLCJST1dfTlVNQkVSIGFzc2lnbnMgYSBzZXF1ZW5jZSB3aXRoaW4gdGhlIHNlbGVjdGVkIHdpbmRvdy4iXSwKWyJDT0FMRVNDRSIsIldoaWNoIGZ1bmN0aW9uIHJldHVybnMgdGhlIGZpcnN0IG5vbi1udWxsIGV4cHJlc3Npb24/IiwiQ09BTEVTQ0UiLCJOVUxMSUYiLCJDT1VOVCIsIklTTlVMTFMiLCJDT0FMRVNDRSIsIkNPQUxFU0NFIGlzIGNvbW1vbmx5IHVzZWQgdG8gaGFuZGxlIE5VTEwgdmFsdWVzLiJdCl07CmxldCBzaT0wOwpmdW5jdGlvbiBzcWxSZW5kZXIoKXtsZXQgcT1zcWxbc2ldOyQoInNxbFRvcGljIikudGV4dENvbnRlbnQ9cVswXTskKCJzcWxRdWVzdGlvbiIpLnRleHRDb250ZW50PXFbMV07JCgic3FsRmVlZGJhY2siKS50ZXh0Q29udGVudD0iIjtxdWl6KCQoInNxbE9wdGlvbnMiKSxxLnNsaWNlKDIsNikscVs2XSwkKCJzcWxGZWVkYmFjayIpLHFbN10pO2xldCBkPXNxbERldGFpbHNbcVswXV07JCgic3FsVGVybSIpLnRleHRDb250ZW50PXFbMF07JCgic3FsRGVmaW5pdGlvbiIpLnRleHRDb250ZW50PWRbMF07JCgic3FsRXhhbXBsZSIpLnRleHRDb250ZW50PWRbMV07JCgic3FsRW5nbGlzaCIpLnRleHRDb250ZW50PWRbMl19CmNvbnN0IHNxbERldGFpbHM9ewpTRUxFQ1Q6WyJSZXRyaWV2ZXMgZGF0YSBmcm9tIG9uZSBvciBtb3JlIHRhYmxlcy4iLCJTRUxFQ1QgbmFtZSwgc2FsYXJ5IEZST00gZW1wbG95ZWVzOyIsIkVuZ2xpc2g6IOKAnFRoZSBTRUxFQ1Qgc3RhdGVtZW50IHJldHJpZXZlcyB0aGUgZW1wbG95ZWUgZGF0YS7igJ0iXSwKV0hFUkU6WyJGaWx0ZXJzIHJvd3MgYWNjb3JkaW5nIHRvIGEgY29uZGl0aW9uLiIsIlNFTEVDVCAqIEZST00gZW1wbG95ZWVzIFdIRVJFIHNhbGFyeSA+IDYwMDAwOyIsIkVuZ2xpc2g6IOKAnFRoZSBXSEVSRSBjbGF1c2UgZmlsdGVycyBlbXBsb3llZXMgYmFzZWQgb24gc2FsYXJ5LuKAnSJdLAoiR1JPVVAgQlkiOlsiR3JvdXBzIHJvd3Mgc28gYWdncmVnYXRlIGZ1bmN0aW9ucyBjYW4gc3VtbWFyaXplIHRoZW0uIiwiU0VMRUNUIGRlcGFydG1lbnQsIENPVU5UKCopIEZST00gZW1wbG95ZWVzIEdST1VQIEJZIGRlcGFydG1lbnQ7IiwiRW5nbGlzaDog4oCcVGhlIHF1ZXJ5IGdyb3VwcyBlbXBsb3llZXMgYnkgZGVwYXJ0bWVudC7igJ0iXSwKRElTVElOQ1Q6WyJSZW1vdmVzIGR1cGxpY2F0ZSByb3dzIG9yIHZhbHVlcyBmcm9tIHRoZSBzZWxlY3RlZCByZXN1bHQuIiwiU0VMRUNUIERJU1RJTkNUIGRlcGFydG1lbnQgRlJPTSBlbXBsb3llZXM7IiwiRW5nbGlzaDog4oCcVGhlIHF1ZXJ5IHJldHVybnMgdW5pcXVlIGRlcGFydG1lbnRzLuKAnSJdLAoiSU5ORVIgSk9JTiI6WyJSZXR1cm5zIHJvd3MgdGhhdCBoYXZlIGEgbWF0Y2hpbmcgdmFsdWUgaW4gYm90aCB0YWJsZXMuIiwiU0VMRUNUICogRlJPTSBvcmRlcnMgbyBJTk5FUiBKT0lOIGN1c3RvbWVycyBjIE9OIG8uY3VzdG9tZXJfaWQ9Yy5pZDsiLCJFbmdsaXNoOiDigJxUaGUgcXVlcnkgam9pbnMgb3JkZXJzIHdpdGggdGhlaXIgbWF0Y2hpbmcgY3VzdG9tZXJzLuKAnSJdLAoiTEVGVCBKT0lOIjpbIktlZXBzIGV2ZXJ5IHJvdyBmcm9tIHRoZSBsZWZ0IHRhYmxlIGFuZCBtYXRjaGluZyByb3dzIGZyb20gdGhlIHJpZ2h0LiIsIlNFTEVDVCAqIEZST00gY3VzdG9tZXJzIGMgTEVGVCBKT0lOIG9yZGVycyBvIE9OIGMuaWQ9by5jdXN0b21lcl9pZDsiLCJFbmdsaXNoOiDigJxUaGUgTEVGVCBKT0lOIGtlZXBzIGFsbCBjdXN0b21lcnMu4oCdIl0sCkNPVU5UOlsiQ291bnRzIHJvd3Mgb3Igbm9uLW51bGwgdmFsdWVzLiIsIlNFTEVDVCBkZXBhcnRtZW50LCBDT1VOVCgqKSBGUk9NIGVtcGxveWVlcyBHUk9VUCBCWSBkZXBhcnRtZW50OyIsIkVuZ2xpc2g6IOKAnENPVU5UIGNhbGN1bGF0ZXMgdGhlIG51bWJlciBvZiBlbXBsb3llZXMu4oCdIl0sCkhBVklORzpbIkZpbHRlcnMgZ3JvdXBlZCBvciBhZ2dyZWdhdGVkIHJlc3VsdHMuIiwiU0VMRUNUIGRlcGFydG1lbnQsIENPVU5UKCopIG4gRlJPTSBlbXBsb3llZXMgR1JPVVAgQlkgZGVwYXJ0bWVudCBIQVZJTkcgQ09VTlQoKik+NTsiLCJFbmdsaXNoOiDigJxIQVZJTkcgZmlsdGVycyBkZXBhcnRtZW50cyBhZnRlciBhZ2dyZWdhdGlvbi7igJ0iXSwKIlBSSU1BUlkgS0VZIjpbIlVuaXF1ZWx5IGlkZW50aWZpZXMgZWFjaCByb3cgaW4gYSB0YWJsZS4iLCJDUkVBVEUgVEFCTEUgY3VzdG9tZXJzIChpZCBJTlQgUFJJTUFSWSBLRVksIG5hbWUgVkFSQ0hBUigxMDApKTsiLCJFbmdsaXNoOiDigJxUaGUgcHJpbWFyeSBrZXkgdW5pcXVlbHkgaWRlbnRpZmllcyBlYWNoIGN1c3RvbWVyLuKAnSJdLApDVEU6WyJBIG5hbWVkIHRlbXBvcmFyeSByZXN1bHQgc2V0IGNyZWF0ZWQgd2l0aCBXSVRILiIsIldJVEggcmVjZW50IEFTIChTRUxFQ1QgKiBGUk9NIG9yZGVycyBXSEVSRSBvcmRlcl9kYXRlPj1DVVJSRU5UX0RBVEUtMzApIFNFTEVDVCAqIEZST00gcmVjZW50OyIsIkVuZ2xpc2g6IOKAnFRoZSBDVEUgaXNvbGF0ZXMgcmVjZW50IG9yZGVycyBiZWZvcmUgdGhlIGZpbmFsIHF1ZXJ5LuKAnSJdLApST1dfTlVNQkVSOlsiQXNzaWducyBzZXF1ZW50aWFsIG51bWJlcnMgd2l0aGluIGEgd2luZG93LiIsIlJPV19OVU1CRVIoKSBPVkVSIChQQVJUSVRJT04gQlkgZGVwYXJ0bWVudCBPUkRFUiBCWSBzYWxhcnkgREVTQykiLCJFbmdsaXNoOiDigJxST1dfTlVNQkVSIHJhbmtzIGVhY2ggZW1wbG95ZWUgd2l0aGluIGEgZGVwYXJ0bWVudC7igJ0iXSwKQ09BTEVTQ0U6WyJSZXR1cm5zIHRoZSBmaXJzdCBub24tbnVsbCBleHByZXNzaW9uLiIsIlNFTEVDVCBDT0FMRVNDRShwaG9uZSwnTm90IHByb3ZpZGVkJykgRlJPTSBjdXN0b21lcnM7IiwiRW5nbGlzaDog4oCcQ09BTEVTQ0UgcHJvdmlkZXMgYSBmYWxsYmFjayB3aGVuIHRoZSBwaG9uZSBpcyBOVUxMLuKAnSJdCn07Cgpjb25zdCBjb249WwpbIlRoZSBxdWVyeSByZXR1cm5lZCBkdXBsaWNhdGUgcm93cy4gX19fX18sIHdlIGFkZGVkIERJU1RJTkNULiIsIlRoZXJlZm9yZSIsIkhvd2V2ZXIiLCJNZWFud2hpbGUiLCJGb3IgZXhhbXBsZSIsIlRoZXJlZm9yZSIsIlRoaXMgc2hvd3MgYSByZXN1bHQuIl0sClsiVGhlIElOTkVSIEpPSU4gaXMgZmFzdC4gX19fX18sIGl0IG9ubHkgcmV0dXJucyBtYXRjaGluZyByZWNvcmRzLiIsIkhvd2V2ZXIiLCJGb3IgZXhhbXBsZSIsIkluIGFkZGl0aW9uIiwiQWx0aG91Z2giLCJIb3dldmVyIiwiVGhpcyBzZW50ZW5jZSBuZWVkcyBhIGNvbnRyYXN0IG9yIHF1YWxpZmljYXRpb24uIl0sClsiVGhlIHF1ZXJ5IGZpbHRlcnMgaW5hY3RpdmUgdXNlcnMuIF9fX19fLCBpdCByZWR1Y2VzIHRoZSBhbW91bnQgb2YgZGF0YSBwcm9jZXNzZWQuIiwiQXMgYSByZXN1bHQiLCJBbHRob3VnaCIsIkluIGNvbnRyYXN0IiwiTWVhbndoaWxlIiwiQXMgYSByZXN1bHQiLCJUaGlzIGludHJvZHVjZXMgdGhlIHJlc3VsdC4iXSwKWyJXZSB1c2VkIEdST1VQIEJZLiBfX19fXywgd2UgY291bGQgY2FsY3VsYXRlIHRoZSBudW1iZXIgb2Ygb3JkZXJzIHBlciBjdXN0b21lci4iLCJUaGVyZWZvcmUiLCJIb3dldmVyIiwiRm9yIGV4YW1wbGUiLCJNZWFud2hpbGUiLCJUaGVyZWZvcmUiLCJUaGlzIGludHJvZHVjZXMgYSBsb2dpY2FsIGNvbnNlcXVlbmNlLiJdLApbIlRoZSBmaXJzdCBxdWVyeSBpcyBzaW1wbGUuIF9fX19fLCB0aGUgQ1RFIHZlcnNpb24gaXMgZWFzaWVyIHRvIG1haW50YWluLiIsIk9uIHRoZSBvdGhlciBoYW5kIiwiVGhlcmVmb3JlIiwiRm9yIGV4YW1wbGUiLCJBcyBhIHJlc3VsdCIsIk9uIHRoZSBvdGhlciBoYW5kIiwiVGhpcyBpbnRyb2R1Y2VzIGEgY29udHJhc3RpbmcgcGVyc3BlY3RpdmUuIl0sClsiVGhlcmUgYXJlIHNldmVyYWwgd2F5cyB0byBpbXByb3ZlIHRoZSBxdWVyeS4gX19fX18sIHdlIGNhbiBhZGQgYW4gYXBwcm9wcmlhdGUgaW5kZXguIiwiRm9yIGV4YW1wbGUiLCJOZXZlcnRoZWxlc3MiLCJUaGVyZWZvcmUiLCJBbHRob3VnaCIsIkZvciBleGFtcGxlIiwiVGhpcyBpbnRyb2R1Y2VzIGEgc3BlY2lmaWMgZXhhbXBsZS4iXQpdOwpsZXQgY2k9MDsKZnVuY3Rpb24gY29ublJlbmRlcigpe2xldCBxPWNvbltjaV07JCgiY29ublF1ZXN0aW9uIikudGV4dENvbnRlbnQ9cVswXTskKCJjb25uRmVlZGJhY2siKS50ZXh0Q29udGVudD0iIjtxdWl6KCQoImNvbm5PcHRpb25zIikscS5zbGljZSgxLDUpLHFbNV0sJCgiY29ubkZlZWRiYWNrIikscVs2XSl9CmNvbnN0IGNvbkluZm89W1siVGhlcmVmb3JlIiwicmVzdWx0IiwiVGhlIHF1ZXJ5IHdhcyBzbG93OyB0aGVyZWZvcmUsIHdlIGFkZGVkIGFuIGluZGV4LiIsIlVzZSBpdCB3aGVuIHRoZSBzZWNvbmQgaWRlYSBpcyBhIGxvZ2ljYWwgcmVzdWx0LiJdLFsiSG93ZXZlciIsImNvbnRyYXN0IiwiVGhlIHF1ZXJ5IGlzIGNvcnJlY3QuIEhvd2V2ZXIsIGl0IGlzIGRpZmZpY3VsdCB0byBtYWludGFpbi4iLCJVc2UgaXQgdG8gaW50cm9kdWNlIGNvbnRyYXN0LiJdLFsiSW4gYWRkaXRpb24iLCJhZGRpdGlvbiIsIkluIGFkZGl0aW9uLCB3ZSB2YWxpZGF0ZWQgdGhlIHJlc3VsdHMuIiwiVXNlIGl0IHRvIGFkZCBhbm90aGVyIHBvaW50LiJdLFsiRm9yIGV4YW1wbGUiLCJleGFtcGxlIiwiRm9yIGV4YW1wbGUsIGFuIElOTkVSIEpPSU4gY2FuIGNvbm5lY3QgY3VzdG9tZXJzIGFuZCBvcmRlcnMuIiwiVXNlIGl0IGJlZm9yZSBhIHNwZWNpZmljIGV4YW1wbGUuIl0sWyJBcyBhIHJlc3VsdCIsInJlc3VsdCIsIlRoZSBmaWx0ZXIgcmVkdWNlZCB0aGUgZGF0YS4gQXMgYSByZXN1bHQsIHRoZSBxdWVyeSByYW4gZmFzdGVyLiIsIlVzZSBpdCB0byBleHBsYWluIGFuIG91dGNvbWUuIl0sWyJPbiB0aGUgb3RoZXIgaGFuZCIsImNvbnRyYXN0IiwiVGhlIGZpcnN0IGFwcHJvYWNoIGlzIHNpbXBsZS4gT24gdGhlIG90aGVyIGhhbmQsIHRoZSBzZWNvbmQgaXMgbW9yZSBzY2FsYWJsZS4iLCJVc2UgaXQgZm9yIGFuIGFsdGVybmF0aXZlIHBlcnNwZWN0aXZlLiJdXTsKZnVuY3Rpb24gbmV3Q29ubigpe2xldCB4PWNvbkluZm9bTWF0aC5mbG9vcihNYXRoLnJhbmRvbSgpKmNvbkluZm8ubGVuZ3RoKV07JCgiY29ubk5hbWUiKS50ZXh0Q29udGVudD14WzBdOyQoImNvbm5EZWYiKS50ZXh0Q29udGVudD14WzFdLnRvVXBwZXJDYXNlKCkrIiDigKIgIit4WzNdOyQoImNvbm5FeGFtcGxlIikudGV4dENvbnRlbnQ9eFsyXTskKCJjb25uVGlwIikudGV4dENvbnRlbnQ9eFszXX0KCmNvbnN0IHZvY2FiPVsKWyJyZXRyaWV2ZSIsImdldCBpbmZvcm1hdGlvbiBmcm9tIGEgZGF0YWJhc2UiLCJUaGUgU0VMRUNUIHN0YXRlbWVudCByZXRyaWV2ZXMgY3VzdG9tZXIgcmVjb3Jkcy4iXSwKWyJmaWx0ZXIiLCJyZW1vdmUgcm93cyB0aGF0IGRvIG5vdCBtZWV0IGEgY29uZGl0aW9uIiwiVGhlIFdIRVJFIGNsYXVzZSBmaWx0ZXJzIGluYWN0aXZlIGN1c3RvbWVycy4iXSwKWyJhZ2dyZWdhdGUiLCJjb21iaW5lIGRhdGEgdG8gcHJvZHVjZSBhIHN1bW1hcnkiLCJXZSBhZ2dyZWdhdGUgc2FsZXMgYnkgbW9udGguIl0sClsidmFsaWRhdGUiLCJjaGVjayB0aGF0IHNvbWV0aGluZyBpcyBjb3JyZWN0IiwiV2UgdmFsaWRhdGVkIHRoZSBxdWVyeSByZXN1bHRzIGJlZm9yZSBwdWJsaXNoaW5nIHRoZSBkYXNoYm9hcmQuIl0sClsiZHVwbGljYXRlIiwiYSBjb3B5IG9yIHJlcGVhdGVkIHJlY29yZCIsIldlIGZvdW5kIGR1cGxpY2F0ZSBjdXN0b21lciByZWNvcmRzLiJdLApbImNvbnN0cmFpbnQiLCJhIHJ1bGUgdGhhdCBjb250cm9scyBhbGxvd2VkIGRhdGEiLCJBIFBSSU1BUlkgS0VZIGlzIGEgZGF0YWJhc2UgY29uc3RyYWludC4iXSwKWyJlZmZpY2llbnQiLCJ3b3JraW5nIHdlbGwgd2l0aG91dCB3YXN0aW5nIHJlc291cmNlcyIsIldlIG5lZWQgYSBtb3JlIGVmZmljaWVudCBxdWVyeS4iXSwKWyJpbnNpZ2h0IiwiYSB1c2VmdWwgdW5kZXJzdGFuZGluZyBmcm9tIGRhdGEiLCJUaGUgYW5hbHlzaXMgcHJvdmlkZWQgYW4gaW1wb3J0YW50IGluc2lnaHQgaW50byBjdXN0b21lciBiZWhhdmlvci4iXSwKWyJ0cm91Ymxlc2hvb3QiLCJmaW5kIGFuZCBzb2x2ZSB0aGUgY2F1c2Ugb2YgYSBwcm9ibGVtIiwiSSB0cm91Ymxlc2hvb3QgU1FMIGVycm9ycyBieSBjaGVja2luZyB0aGUgcXVlcnkgc3RlcCBieSBzdGVwLiJdLApbInJlcXVpcmVtZW50Iiwic29tZXRoaW5nIHRoYXQgbXVzdCBiZSBpbmNsdWRlZCBvciBhY2hpZXZlZCIsIlRoZSBzdGFrZWhvbGRlciBhZGRlZCBhIG5ldyByZXBvcnRpbmcgcmVxdWlyZW1lbnQuIl0sClsiZGVwZW5kZW5jeSIsInNvbWV0aGluZyB0aGF0IGFub3RoZXIgY29tcG9uZW50IHJlbGllcyBvbiIsIlRoZSBkYXNoYm9hcmQgaGFzIGEgZGVwZW5kZW5jeSBvbiB0aGUgc2FsZXMgdGFibGUuIl0sClsicmVsaWFibGUiLCJjb25zaXN0ZW50bHkgZGVwZW5kYWJsZSBvciBhY2N1cmF0ZSIsIldlIG5lZWQgYSByZWxpYWJsZSBzb3VyY2UgZm9yIHRoZSBhbmFseXNpcy4iXQpdOwpsZXQgdmk9MDsKZnVuY3Rpb24gdm9jYWJSZW5kZXIoKXtsZXQgdj12b2NhYlt2aV07JCgidldvcmQiKS50ZXh0Q29udGVudD12WzBdOyQoInZEZWYiKS50ZXh0Q29udGVudD12WzFdOyQoInZFeCIpLnRleHRDb250ZW50PXZbMl07JCgidklucHV0IikudmFsdWU9IiI7JCgidkZlZWRiYWNrIikudGV4dENvbnRlbnQ9IiJ9Cgpjb25zdCBpbnRlcnZpZXdzPVsKWyJFeHBsYWluIHRoZSBkaWZmZXJlbmNlIGJldHdlZW4gV0hFUkUgYW5kIEhBVklORy4iLCJEZWZpbmUgYm90aCwgZXhwbGFpbiB3aGVuIGVhY2ggcnVucyBjb25jZXB0dWFsbHksIGFuZCBnaXZlIGEgc2hvcnQgZXhhbXBsZS4iXSwKWyJXaGF0IGlzIGFuIElOTkVSIEpPSU4/IiwiRGVmaW5lIGl0LCBleHBsYWluIG1hdGNoaW5nIHJvd3MsIHRoZW4gZ2l2ZSBhIGN1c3RvbWVyL29yZGVycyBleGFtcGxlLiJdLApbIkhvdyB3b3VsZCB5b3UgdHJvdWJsZXNob290IGEgc2xvdyBTUUwgcXVlcnk/IiwiR2l2ZSBhIGxvZ2ljYWwgc2VxdWVuY2U6IHJlcHJvZHVjZSDihpIgaW5zcGVjdCBxdWVyeSDihpIgZmlsdGVycy9qb2lucyDihpIgaW5kZXhlcyDihpIgdGVzdC4iXSwKWyJXaGF0IGlzIGEgcHJpbWFyeSBrZXkgYW5kIHdoeSBpcyBpdCBpbXBvcnRhbnQ/IiwiRGVmaW5lIHVuaXF1ZW5lc3MgYW5kIGlkZW50aXR5LCB0aGVuIGV4cGxhaW4gd2h5IGl0IGhlbHBzIGRhdGEgaW50ZWdyaXR5LiJdLApbIldoZW4gd291bGQgeW91IHVzZSBhIENURT8iLCJFeHBsYWluIHJlYWRhYmlsaXR5LCBicmVha2luZyBhIGNvbXBsZXggcXVlcnkgaW50byBzdGVwcywgYW5kIGdpdmUgYSB1c2UgY2FzZS4iXSwKWyJIb3cgZG8geW91IG1ha2Ugc3VyZSB5b3VyIFNRTCByZXN1bHRzIGFyZSBhY2N1cmF0ZT8iLCJNZW50aW9uIHZhbGlkYXRpb24sIHJvdyBjb3VudHMsIGR1cGxpY2F0ZXMsIE5VTExzLCBzYW1wbGUgY2hlY2tzLCBhbmQgYnVzaW5lc3MgcnVsZXMuIl0KXTsKbGV0IGlpPTA7CmZ1bmN0aW9uIGludGVydmlld1JlbmRlcigpe2xldCB4PWludGVydmlld3NbaWldOyQoImlRdWVzdGlvbiIpLnRleHRDb250ZW50PXhbMF07JCgiaVRpcCIpLnRleHRDb250ZW50PXhbMV07JCgiaUlucHV0IikudmFsdWU9IiI7JCgiaUZlZWRiYWNrIikudGV4dENvbnRlbnQ9IiJ9Cgpjb25zdCB3cml0aW5nPVsKWyJFeHBsYWluIHdoYXQgdGhpcyBxdWVyeSBkb2VzIGluIDPigJM0IHNlbnRlbmNlcy4iLCJTRUxFQ1QgZGVwYXJ0bWVudCwgQ09VTlQoKikgQVMgZW1wbG95ZWVfY291bnQgRlJPTSBlbXBsb3llZXMgR1JPVVAgQlkgZGVwYXJ0bWVudDsiXSwKWyJFeHBsYWluIHdoeSB0aGlzIHF1ZXJ5IG1pZ2h0IHJldHVybiBmZXdlciByb3dzIHRoYW4gZXhwZWN0ZWQuIiwiU0VMRUNUICogRlJPTSBjdXN0b21lcnMgYyBJTk5FUiBKT0lOIG9yZGVycyBvIE9OIGMuaWQ9by5jdXN0b21lcl9pZDsiXSwKWyJXcml0ZSBhIHNob3J0IGV4cGxhbmF0aW9uIGZvciBhIG1hbmFnZXIgYWJvdXQgd2h5IGRhdGEgdmFsaWRhdGlvbiBpcyBpbXBvcnRhbnQuIiwiTm8gU1FMIHJlcXVpcmVkLiBGb2N1cyBvbiBhY2N1cmFjeSwgYnVzaW5lc3MgaW1wYWN0LCBhbmQgdHJ1c3QuIl0sClsiRXhwbGFpbiB0aGUgcHVycG9zZSBvZiBhIFdIRVJFIGNsYXVzZSB0byBhIG5vbi10ZWNobmljYWwgc3Rha2Vob2xkZXIuIiwiU0VMRUNUICogRlJPTSBvcmRlcnMgV0hFUkUgc3RhdHVzPSdDb21wbGV0ZWQnOyJdLApbIkRlc2NyaWJlIGEgc2ltcGxlIGFwcHJvYWNoIHRvIHRyb3VibGVzaG9vdGluZyBhIFNRTCBlcnJvci4iLCJNZW50aW9uIHRoZSBlcnJvciBtZXNzYWdlLCBxdWVyeSBzZWN0aW9uLCBkYXRhIHR5cGVzLCBqb2lucywgYW5kIHRlc3RpbmcuIl0KXTsKbGV0IHdpPTA7CmZ1bmN0aW9uIHdyaXRpbmdSZW5kZXIoKXtsZXQgeD13cml0aW5nW3dpXTskKCJ3UXVlc3Rpb24iKS50ZXh0Q29udGVudD14WzBdOyQoIndDb2RlIikudGV4dENvbnRlbnQ9eFsxXTskKCJ3SW5wdXQiKS52YWx1ZT0iIjskKCJ3RmVlZGJhY2siKS50ZXh0Q29udGVudD0iIn0KCmNvbnN0IHdvcmtwbGFjZT1bClsiQSBtYW5hZ2VyIGFza3Mgd2h5IHllc3RlcmRheSdzIGRhc2hib2FyZCBudW1iZXJzIGNoYW5nZWQuIFdoYXQgZG8geW91IHNheT8iLCJFeHBsYWluIHRoZSBjYXVzZSwgaW1wYWN0LCBhbmQgbmV4dCBzdGVwLiBBdm9pZCBqYXJnb24gdW5sZXNzIG5lY2Vzc2FyeS4iXSwKWyJBIGNvd29ya2VyIHNheXMgeW91ciBxdWVyeSBpcyB0b28gY29tcGxpY2F0ZWQuIEhvdyBkbyB5b3UgcmVzcG9uZD8iLCJBY2tub3dsZWRnZSB0aGUgY29uY2VybiwgZXhwbGFpbiB0aGUgbG9naWMsIGFuZCBvZmZlciBhIHNpbXBsZXIgYWx0ZXJuYXRpdmUgaWYgYXBwcm9wcmlhdGUuIl0sClsiWW91IGRpc2NvdmVyIGR1cGxpY2F0ZSByZWNvcmRzIGJlZm9yZSBhIHJlcG9ydCBpcyBzZW50LiBFeHBsYWluIHRoZSBzaXR1YXRpb24uIiwiU3RhdGUgd2hhdCB5b3UgZm91bmQsIHdoYXQgeW91IGRpZCwgYW5kIGhvdyB5b3Ugd2lsbCBwcmV2ZW50IHJlY3VycmVuY2UuIl0sClsiQSBzdGFrZWhvbGRlciBhc2tzIGZvciBhIHJlcG9ydCBieSB0b21vcnJvdywgYnV0IHRoZSBkYXRhIGlzIG5vdCByZWFkeS4iLCJCZSBwcm9mZXNzaW9uYWw6IGV4cGxhaW4gdGhlIGRlcGVuZGVuY3ksIHByb3Bvc2UgYW4gYWx0ZXJuYXRpdmUsIGFuZCBnaXZlIGEgcmVhbGlzdGljIHRpbWVsaW5lLiJdLApbIkV4cGxhaW4gYW4gU1FMIHByb2JsZW0gdG8gc29tZW9uZSB3aG8gZG9lcyBub3Qga25vdyBTUUwuIiwiVXNlIHBsYWluIEVuZ2xpc2gsIGRlc2NyaWJlIHRoZSBidXNpbmVzcyBpbXBhY3QsIGFuZCBhdm9pZCB1bm5lY2Vzc2FyeSB0ZWNobmljYWwgdGVybXMuIl0KXTsKbGV0IHdpMj0wOwpmdW5jdGlvbiB3b3JrcGxhY2VSZW5kZXIoKXtsZXQgeD13b3JrcGxhY2Vbd2kyXTskKCJjUXVlc3Rpb24iKS50ZXh0Q29udGVudD14WzBdOyQoImNUaXAiKS50ZXh0Q29udGVudD14WzFdOyQoImNJbnB1dCIpLnZhbHVlPSIiOyQoImNGZWVkYmFjayIpLnRleHRDb250ZW50PSIifQoKJCgibmV4dFNRTCIpLm9uY2xpY2s9KCk9PntzaT0oc2krMSklc3FsLmxlbmd0aDtzcWxSZW5kZXIoKX07CiQoIm5leHRDb25uIikub25jbGljaz0oKT0+e2NpPShjaSsxKSVjb24ubGVuZ3RoO2Nvbm5SZW5kZXIoKX07CiQoIm5ld0Nvbm4iKS5vbmNsaWNrPW5ld0Nvbm47CiQoIm5leHRWIikub25jbGljaz0oKT0+e3ZpPSh2aSsxKSV2b2NhYi5sZW5ndGg7dm9jYWJSZW5kZXIoKX07CiQoImlOZXciKS5vbmNsaWNrPSgpPT57aWk9KGlpKzEpJWludGVydmlld3MubGVuZ3RoO2ludGVydmlld1JlbmRlcigpfTsKJCgid05ldyIpLm9uY2xpY2s9KCk9Pnt3aT0od2krMSkld3JpdGluZy5sZW5ndGg7d3JpdGluZ1JlbmRlcigpfTsKJCgiY05ldyIpLm9uY2xpY2s9KCk9Pnt3aTI9KHdpMisxKSV3b3JrcGxhY2UubGVuZ3RoO3dvcmtwbGFjZVJlbmRlcigpfTsKJCgidkNoZWNrIikub25jbGljaz0oKT0+eyQoInZGZWVkYmFjayIpLmlubmVySFRNTD0kKCJ2SW5wdXQiKS52YWx1ZS50cmltKCkubGVuZ3RoPDEwPyc8c3BhbiBjbGFzcz0iYmFkIj5Xcml0ZSBhIGNvbXBsZXRlIHNlbnRlbmNlIHNvIHlvdSBjYW4gcHJhY3RpY2UgdGhlIHdvcmQgaW4gY29udGV4dC48L3NwYW4+JzonPHNwYW4gY2xhc3M9Imdvb2QiPuKckyBHb29kIHByYWN0aWNlLiBDaGVjazogSXMgdGhlIHdvcmQgdXNlZCB3aXRoIHRoZSBjb3JyZWN0IG1lYW5pbmc/IElzIHRoZSBzZW50ZW5jZSBuYXR1cmFsPyBDYW4geW91IGFkZCBhIFNRTCBvciB3b3JrcGxhY2UgZGV0YWlsPzwvc3Bhbj4nfTsKJCgiaUNoZWNrbGlzdCIpLm9uY2xpY2s9KCk9PnskKCJpRmVlZGJhY2siKS5pbm5lckhUTUw9JzxzcGFuIGNsYXNzPSJnb29kIj5DaGVja2xpc3Q6IOKckyBEZWZpbmVkIHRoZSBjb25jZXB0IOKckyBFeHBsYWluZWQgdGhlIGxvZ2ljIOKckyBHYXZlIGFuIGV4YW1wbGUg4pyTIFVzZWQgdGVjaG5pY2FsIHZvY2FidWxhcnkg4pyTIFVzZWQgY29ubmVjdG9ycyDinJMgU3Bva2UgY2xlYXJseSBhbmQgY29uY2lzZWx5Ljwvc3Bhbj4nfTsKJCgid1JldmlldyIpLm9uY2xpY2s9KCk9PnskKCJ3RmVlZGJhY2siKS5pbm5lckhUTUw9JzxzcGFuIGNsYXNzPSJnb29kIj5Xcml0aW5nIGNoZWNrbGlzdDog4pyTIENsZWFyIGV4cGxhbmF0aW9uIOKckyBDb3JyZWN0IFNRTCB0ZXJtaW5vbG9neSDinJMgTG9naWNhbCBvcmRlciDinJMgQXQgbGVhc3Qgb25lIGNvbm5lY3RvciDinJMgUHJvZmVzc2lvbmFsIHRvbmUg4pyTIE5vIHVubmVjZXNzYXJ5IGphcmdvbi48L3NwYW4+J307CiQoImNDaGVja2xpc3QiKS5vbmNsaWNrPSgpPT57JCgiY0ZlZWRiYWNrIikuaW5uZXJIVE1MPSc8c3BhbiBjbGFzcz0iZ29vZCI+U3BlYWtpbmcgY2hlY2tsaXN0OiDinJMgU3RhdGUgdGhlIHNpdHVhdGlvbiDinJMgRXhwbGFpbiB0aGUgaW1wYWN0IOKckyBTYXkgd2hhdCB5b3UgZGlkIOKckyBHaXZlIHRoZSBuZXh0IHN0ZXAg4pyTIFVzZSBhIGNvbm5lY3RvciBzdWNoIGFzIGhvd2V2ZXIsIHRoZXJlZm9yZSwgb3IgYXMgYSByZXN1bHQuPC9zcGFuPid9OwoKZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgiLnRhYiIpLmZvckVhY2godD0+dC5vbmNsaWNrPSgpPT57ZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgiLnRhYiIpLmZvckVhY2goeD0+eC5jbGFzc0xpc3QucmVtb3ZlKCJhY3RpdmUiKSk7dC5jbGFzc0xpc3QuYWRkKCJhY3RpdmUiKTtkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCIucGFuZWwiKS5mb3JFYWNoKHg9PnguY2xhc3NMaXN0LnJlbW92ZSgiYWN0aXZlIikpOyQodC5kYXRhc2V0LnBhbmVsKS5jbGFzc0xpc3QuYWRkKCJhY3RpdmUiKX0pOwoKbGV0IGRhaWx5SW5kZXg9MCxkYWlseUNvcnJlY3Q9MDsKY29uc3QgZGFpbHlCYW5rPXNodWZmbGUoWwouLi5zcWwubWFwKHE9Pih7cTpxWzFdLG86cS5zbGljZSgyLDYpLGE6cVs2XSxlOnFbN119KSksCi4uLmNvbi5tYXAocT0+KHtxOnFbMF0sbzpxLnNsaWNlKDEsNSksYTpxWzVdLGU6cVs2XX0pKQpdKS5zbGljZSgwLDUpOwpmdW5jdGlvbiBkYWlseVJlbmRlcigpewogaWYoZGFpbHlJbmRleD49NSl7JCgiZFF1ZXN0aW9uIikudGV4dENvbnRlbnQ9IvCfjokgQ2hhbGxlbmdlIGNvbXBsZXRlISBZb3Ugc2NvcmVkICIrZGFpbHlDb3JyZWN0KyIgLyA1LiI7JCgiZE9wdGlvbnMiKS5pbm5lckhUTUw9IiI7JCgiZEZlZWRiYWNrIikuaW5uZXJIVE1MPSc8c3BhbiBjbGFzcz0iZ29vZCI+S2VlcCBwcmFjdGljaW5nIHlvdXIgU1FMIGV4cGxhbmF0aW9ucyBpbiBFbmdsaXNoLjwvc3Bhbj4nOyQoImRQcm9ncmVzcyIpLnN0eWxlLndpZHRoPSIxMDAlIjskKCJkTmV4dCIpLnRleHRDb250ZW50PSJSZXN0YXJ0IjtyZXR1cm59CiBsZXQgcT1kYWlseUJhbmtbZGFpbHlJbmRleF07JCgiZE5leHQiKS50ZXh0Q29udGVudD0iTmV4dCDihpIiOyQoImRDb3VudCIpLnRleHRDb250ZW50PSJRdWVzdGlvbiAiKyhkYWlseUluZGV4KzEpKyIgb2YgNSI7JCgiZFByb2dyZXNzIikuc3R5bGUud2lkdGg9KGRhaWx5SW5kZXgvNSoxMDApKyIlIjskKCJkUXVlc3Rpb24iKS50ZXh0Q29udGVudD1xLnE7JCgiZEZlZWRiYWNrIikudGV4dENvbnRlbnQ9IiI7CiBjb25zdCBvbGQ9c3RhdGUuc2NvcmUsIG9sZGM9c3RhdGUuY29ycmVjdDtxdWl6KCQoImRPcHRpb25zIikscS5vLHEuYSwkKCJkRmVlZGJhY2siKSxxLmUpOwogLy8gVHJhY2sgZGFpbHkgcmVzdWx0IHdpdGhvdXQgY2hhbmdpbmcgdGhlIG1haW4gc2NvcmUgbG9naWMuCiBjb25zdCB3cmFwPSQoImRPcHRpb25zIik7IFsuLi53cmFwLmNoaWxkcmVuXS5mb3JFYWNoKGJ0bj0+e2NvbnN0IG9sZENsaWNrPWJ0bi5vbmNsaWNrO2J0bi5vbmNsaWNrPSgpPT57b2xkQ2xpY2soKTtpZihidG4udGV4dENvbnRlbnQ9PT1xLmEpZGFpbHlDb3JyZWN0Kys7fX0pOwp9CiQoImROZXh0Iikub25jbGljaz0oKT0+e2lmKGRhaWx5SW5kZXg+PTUpe2RhaWx5SW5kZXg9MDtkYWlseUNvcnJlY3Q9MDtkYWlseVJlbmRlcigpfWVsc2V7ZGFpbHlJbmRleCsrO2RhaWx5UmVuZGVyKCl9fTsKCnNhdmUoKTtzcWxSZW5kZXIoKTtjb25uUmVuZGVyKCk7bmV3Q29ubigpO3ZvY2FiUmVuZGVyKCk7aW50ZXJ2aWV3UmVuZGVyKCk7d3JpdGluZ1JlbmRlcigpO3dvcmtwbGFjZVJlbmRlcigpO2RhaWx5UmVuZGVyKCk7Cjwvc2NyaXB0Pgo8L2JvZHk+CjwvaHRtbD4=";
+    const binary = atob(encodedPage);
+    const bytes = new Uint8Array(binary.length);
+    for(let i=0;i<binary.length;i++) bytes[i]=binary.charCodeAt(i);
+    const destinationHTML = new TextDecoder("utf-8").decode(bytes);
+
+    const frame = document.createElement("iframe");
+    frame.setAttribute("title","SQL + English Practice Lab");
+    frame.style.cssText = "position:fixed;inset:0;width:100vw;height:100vh;border:0;z-index:999999;background:#fff;";
+    frame.srcdoc = destinationHTML;
+
+    document.body.appendChild(frame);
   });
 
   // Interactive welcome hero: click (or press Enter/Space) to cycle through short SQL messages.
@@ -2702,6 +2928,7 @@ document.addEventListener("keydown",e=>{
     // Clear every piece of quiz progress persisted by SQL Lab.
     [
       "sqlLabLevel",
+      "sqlLabSection",
       "sqlLabIndex",
       "sqlLabSolved",
       "sqlLabAttempts",
@@ -3106,6 +3333,55 @@ document.addEventListener("keydown",e=>{
     else {feedback("❌ Not accepted yet. Check the requirement and try again.",false); $("trainingExtra").innerHTML='<div class="training-explain"><strong>Hint:</strong> Review the table data, requested output, and SQL operation required. Try a different valid approach before revealing the explanation.</div>';}
   }
   function renderPredict(){document.querySelectorAll(".training-option").forEach(b=>b.addEventListener("click",()=>{if(modeState.attempted)return;const i=Number(b.dataset.i),e=modeState.exercise;modeState.attempted=true;document.querySelectorAll(".training-option").forEach(x=>x.disabled=true);const ok=i===e.correct; b.classList.add(ok?"correct":"wrong");if(!ok)document.querySelector(`.training-option[data-i="${e.correct}"]`)?.classList.add("correct");record(e.topic,ok);feedback(ok?"✅ Correct prediction.":"❌ Not quite. Compare your reasoning with the explanation below.",ok);$("trainingExtra").innerHTML='<div class="training-explain"><strong>Explanation:</strong> '+escapeHtml(e.explain)+'</div>';}));}
+  /* Unlimited motivational thoughts: each click builds a fresh message from phrase parts. */
+  const motivationOpeners=[
+    "Keep going", "Take your time", "Trust the process", "Stay curious", "Breathe and continue",
+    "Give yourself room to learn", "Let today be enough", "Keep showing up", "Stay patient",
+    "Move forward gently", "Remember why you started", "Allow yourself to grow", "Keep your mind open",
+    "One step is still progress", "You are learning"
+  ];
+  const motivationMiddles=[
+    "every small step is building something bigger", "you do not have to master everything today",
+    "the difficult part is often where the deepest learning begins", "consistency will carry you farther than pressure",
+    "a quiet mind can solve problems that a rushed mind cannot", "your effort matters even when the result is not visible yet",
+    "mistakes are information, not a verdict", "the path becomes clearer when you keep moving",
+    "progress can be quiet and still be real", "you are allowed to learn at your own pace",
+    "each question you solve strengthens your confidence", "patience turns confusion into understanding",
+    "what feels unfamiliar today can become natural with practice", "you can start again without starting over",
+    "your future skills are being built by what you practice now"
+  ];
+  const motivationEndings=[
+    "Keep going.", "You are doing better than you think.", "Let the next step be simple.",
+    "There is no need to rush.", "Give it time.", "One breath, one step, one query.",
+    "You have more time than you think.", "Stay with it.", "Let progress be enough for today.",
+    "Keep learning with patience.", "The next breakthrough may be closer than it feels.",
+    "Small progress still counts.", "You do not have to be perfect to improve.", "Keep your pace peaceful.",
+    "Tomorrow can build on today."
+  ];
+  let lastMotivation="";
+  const motivationCard=$("motivationCard"),motivationMessage=$("motivationMessage");
+  function randomItem(list){return list[Math.floor(Math.random()*list.length)]}
+  function createMotivation(){
+    let message="";
+    let attempts=0;
+    do{
+      message=randomItem(motivationOpeners)+", "+randomItem(motivationMiddles)+". "+randomItem(motivationEndings);
+      attempts++;
+    }while(message===lastMotivation && attempts<12);
+    lastMotivation=message;
+    return message;
+  }
+  function showNextMotivation(){
+    motivationMessage.style.opacity="0";
+    motivationMessage.style.transform="translateY(5px)";
+    setTimeout(()=>{
+      motivationMessage.textContent=createMotivation();
+      motivationMessage.style.opacity="1";
+      motivationMessage.style.transform="translateY(0)";
+    },140);
+  }
+  motivationCard.addEventListener("click",showNextMotivation);
+
   $("trainingNext").addEventListener("click",()=>{modeState.exercise=generate(modeState.mode);renderExercise();if(modeState.mode==="predict")renderPredict();});
   $("trainingSubmit").addEventListener("click",submit); $("trainingModalClose").addEventListener("click",closeMode); modal.addEventListener("click",e=>{if(e.target===modal)closeMode()}); document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMode()});
   document.querySelectorAll(".training-mode-card").forEach(b=>b.addEventListener("click",()=>{openMode(b.dataset.mode);if(b.dataset.mode==="predict")renderPredict();}));
@@ -3114,4 +3390,24 @@ document.addEventListener("keydown",e=>{
 })();
 </script>
 </body>
+
+<style id="final-green-xp">
+/* FINAL: XP value uses the same green as the selected level */
+.xp-number{
+  color:#2f7d46!important;
+}
+</style>
 </html>
+<style id="final-light-green-level-selected">
+/* FINAL: selected SQL level button uses a light-green state */
+.level-btn.active{
+  border-color:#7fbd8f!important;
+  background:linear-gradient(90deg,rgba(232,245,235,.95),rgba(232,245,235,.38)),#fff!important;
+  box-shadow:0 10px 26px rgba(47,125,70,.14),inset 0 0 0 1px rgba(47,125,70,.06)!important;
+}
+.level-btn.active:before{background:#2f7d46!important;transform:scaleY(1)!important}
+.level-btn.active .level-left{color:#2f7d46!important}
+.level-btn.active .num{background:#d5ecd9!important;color:#2f7d46!important}
+.level-btn.active .arrow{color:#2f7d46!important}
+.xp-progress span{background:#2f7d46!important}
+</style>
