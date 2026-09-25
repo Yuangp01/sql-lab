@@ -53,6 +53,7 @@ main{padding:31px 30px 70px;min-width:0}
 .target{color:#ff375f;font-size:23px}
 .title-row h2{margin:0;font-size:22px;letter-spacing:-.5px}
 .question{font-size:19px;font-weight:720;margin-bottom:5px}
+.concept-focus{margin-top:8px;color:#526078;font-size:14px;line-height:1.4}.job-question{display:grid;margin-top:12px;font-weight:500}.job-question-label{display:block;margin-bottom:3px;color:#728096;font-size:10px;font-weight:850;letter-spacing:.09em;text-transform:uppercase}.job-question-task{font-size:18px;line-height:1.55;color:#172033;font-weight:720}.job-question-task code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#eef3f8;border:1px solid #dfe6ee;border-radius:5px;padding:1px 5px;font-size:.88em;color:#174a7c}
 .instruction{margin:0;color:var(--muted);font-size:14px}
 .question-count{white-space:nowrap;background:var(--blueSoft);border:1px solid #d8e8ff;color:#1268d6;border-radius:11px;padding:10px 14px;font-size:13px;font-weight:700;height:max-content}
 
@@ -77,11 +78,13 @@ main{padding:31px 30px 70px;min-width:0}
 .data-table{min-width:max-content}
 .data-table th{position:static}
 .editor-card{margin-top:18px;border:1px solid var(--line);border-radius:15px;overflow:hidden}
-.editor-head{height:52px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.editor-head{min-height:52px;padding:9px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line)}
+.editor-title-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.attempt-indicator{display:inline-flex;align-items:center;padding:5px 9px;border-radius:999px;background:#edf5ff;color:#1769aa;font-size:11px;font-weight:800}.attempt-indicator.warning{background:#fff4e5;color:#9a5b00}.attempt-indicator.final{background:#fff0f1;color:#b42336}
 .editor-tools{display:flex;gap:8px}
 .tool{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 11px;color:#4b5563;font-size:12px}
-.editor{position:relative}
+.editor{position:relative;background:#fff}
 .line{position:absolute;top:18px;left:16px;color:#a1a8b4;font:13px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace}
+.sql-editor-shell{position:relative;height:220px;min-height:160px;resize:vertical;overflow:hidden}.sql-highlight,.sql-input{position:absolute;inset:0;width:100%;height:100%;margin:0;border:0;padding:18px 20px 18px 48px;overflow:auto;white-space:pre-wrap;overflow-wrap:normal;tab-size:2;font:14px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace}.sql-highlight{z-index:1;pointer-events:none;color:#172033;background:#fff}.sql-input{z-index:2;resize:none;outline:0;background:#fff;color:#172033;caret-color:#172033;-webkit-text-fill-color:#172033}.sql-editor-shell.highlight-active #sql.sql-input{background:transparent!important;color:transparent!important;-webkit-text-fill-color:transparent!important;border-color:transparent!important}.sql-input::placeholder{color:#7b9b83;-webkit-text-fill-color:#7b9b83}.sql-input::selection{background:rgba(22,119,255,.22)}.sql-highlight .sql-keyword{color:#005cc5;font-weight:800}.sql-highlight .sql-function{color:#8a2be2;font-weight:750}.sql-highlight .sql-string{color:#087f5b}.sql-highlight .sql-number{color:#b35c00}.sql-highlight .sql-comment{color:#7b8794;font-style:italic}.sql-autocomplete{position:absolute;z-index:8;left:48px;top:54px;width:min(290px,calc(100% - 68px));max-height:220px;overflow:auto;background:#fff;border:1px solid #d9e1ea;border-radius:11px;box-shadow:0 16px 38px rgba(15,23,42,.16);padding:5px;display:none}.sql-autocomplete.show{display:block}.sql-suggestion{display:flex;justify-content:space-between;gap:10px;width:100%;border:0;background:#fff;border-radius:7px;padding:8px 10px;text-align:left;color:#26364a;font:12px ui-monospace,SFMono-Regular,Consolas,monospace}.sql-suggestion:hover,.sql-suggestion.active{background:#edf5ff;color:#075fb5}.sql-suggestion small{color:#8491a2;font:10px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.editor-assist{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 14px;border-top:1px solid #eef1f5;background:#fbfcfe;color:#667085;font-size:11px}.sql-balance{font-weight:750}.sql-balance.good{color:#187344}.sql-balance.bad{color:#b42336}
 textarea{width:100%;height:180px;resize:vertical;border:0;outline:0;padding:18px 20px 18px 48px;font:14px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;color:#172033}
 textarea::placeholder{color:#7b9b83}
 .actions{padding:13px 14px;border-top:1px solid #f0f2f5;display:flex;justify-content:space-between;gap:12px}
@@ -1297,16 +1300,7 @@ body.learn-open{overflow:hidden}
 
   <div class="levels">
     <div class="unlimited-note">∞ Unlimited randomized exercises</div>
-    <button class="level-btn active" data-section="1" data-level="1"><span class="level-left"><span class="num">01</span>Basic</span><span class="arrow">›</span></button>
-    <button class="level-btn" data-section="2" data-level="1"><span class="level-left"><span class="num">02</span>Queries</span><span class="arrow">›</span></button>
-    <button class="level-btn" data-section="3" data-level="2"><span class="level-left"><span class="num">03</span>Functions</span><span class="arrow">›</span></button>
-    <button class="level-btn" data-section="4" data-level="3"><span class="level-left"><span class="num">04</span>Joins</span><span class="arrow">›</span></button>
-    <button class="level-btn" data-section="5" data-level="4"><span class="level-left"><span class="num">05</span>Subqueries</span><span class="arrow">›</span></button>
-    <button class="level-btn" data-section="6" data-level="3"><span class="level-left"><span class="num">06</span>Constraints</span><span class="arrow">›</span></button>
-    <button class="level-btn" data-section="7" data-level="4"><span class="level-left"><span class="num">07</span>Indexes &amp; Views</span><span class="arrow">›</span></button>
-    <button class="level-btn" data-section="8" data-level="4"><span class="level-left"><span class="num">08</span>Normalization</span><span class="arrow">›</span></button>
-    <button class="level-btn" data-section="9" data-level="5"><span class="level-left"><span class="num">09</span>Transactions</span><span class="arrow">›</span></button>
-    <button class="level-btn" data-section="10" data-level="5"><span class="level-left"><span class="num">10</span>Advanced</span><span class="arrow">›</span></button>
+    <div id="curriculumDropdowns" class="curriculum-dropdowns" aria-label="SQL curriculum levels"></div>
   </div>
 
   <div class="progress-card">
@@ -1347,7 +1341,7 @@ body.learn-open{overflow:hidden}
 
   <div class="feature-card">
     <h3>Interview Questions</h3>
-    <p>Practice 30 SQL interview questions per level. Think first, then reveal the model answer.</p>
+    <p>Choose a topic and practice its 25 interview-style SQL questions. Think first, then reveal the model answer.</p>
     <button class="feature-button" id="interviewBtn" type="button">Start Interview <span aria-hidden="true">→</span></button>
   </div>
 </section>
@@ -1413,8 +1407,7 @@ body.learn-open{overflow:hidden}
     <div>
       <div class="title-row"><span class="target">◎</span><h2>SQL Practice Lab</h2></div>
       <div class="question" id="questionTitle"></div>
-      <p class="instruction">Write a SQL query. Equivalent SQL approaches are accepted when they produce the requested result.</p>
-      <div class="question-meta"><span class="topic-badge" id="questionTopic">Topic</span><span class="accepted-badge" id="acceptedForms">Multiple valid SQL forms accepted.</span></div>
+      <div class="concept-focus" id="conceptFocus" aria-live="polite"></div>
     </div>
     <div class="question-count">Exercise <span id="questionNumber">∞</span> · Unlimited</div>
   </div>
@@ -1430,10 +1423,10 @@ body.learn-open{overflow:hidden}
 
   <div class="editor-card">
     <div class="editor-head">
-      <strong>Your SQL Solution</strong>
+      <div class="editor-title-group"><strong>Your SQL Solution</strong><span class="attempt-indicator" id="attemptIndicator">Attempt 1 of 3</span></div>
       <div class="editor-tools"><button class="tool" id="format">Format</button><button class="tool" id="clear">Clear</button></div>
     </div>
-    <div class="editor"><span class="line">1</span><textarea id="sql" spellcheck="false" placeholder="-- Write your SQL query here"></textarea></div>
+    <div class="editor"><span class="line">1</span><div class="sql-editor-shell"><pre class="sql-highlight" id="sqlHighlight" aria-hidden="true"></pre><textarea class="sql-input" id="sql" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="SQL query editor" placeholder="-- Write your SQL query here"></textarea><div class="sql-autocomplete" id="sqlAutocomplete" role="listbox" aria-label="SQL suggestions"></div></div><div class="editor-assist"><span>Enter submits · Shift+Enter adds a new line · Tab completes</span><span class="sql-balance good" id="sqlBalance">Parentheses and quotes balanced</span></div></div>
     <div class="actions"><button class="run" id="run">Run Query</button><button class="submit" id="submit">Submit Solution</button></div>
   </div>
 
@@ -1450,7 +1443,7 @@ body.learn-open{overflow:hidden}
   <div class="hint-step" id="hint3" style="display:none"></div>
 </div>
 
-<div class="status" id="status"></div>
+<div class="status" id="status" role="status" aria-live="polite"></div>
 <div class="attempts-status" id="attemptsStatus" aria-live="polite"></div>
 <div class="correct-solution-box" id="correctSolutionBox" hidden>
   <div class="correct-solution-header">💡 Correct Solution:</div>
@@ -1686,7 +1679,7 @@ const DB = {
 
 /* ============================================================
    HEALTHCARE SQL QUESTION ENGINE
-   10 sections × 50 question types = 500 core exercise types.
+   6 career-focused levels × 30 question types = 180 exercises.
    All executable reference SQL targets the healthcare practice database.
 ============================================================ */
 const rand=(n)=>Math.floor(Math.random()*n);
@@ -1753,11 +1746,115 @@ function formatQuestionPrompt(prompt,sql){
   }
   return p+'.';
 }
-function q(prompt,topic,sql,table,note,key){
-  const formattedPrompt=formatQuestionPrompt(prompt,sql);
-  return{id:hashQuestion(key+'|'+formattedPrompt+'|'+sql),prompt:formattedPrompt,topic,accepted:[sql],table,acceptedNote:note||'Equivalent SQL forms are accepted when they return the requested result.',logicKey:key};
+
+function splitTopLevelSqlList(value){
+  const parts=[];let current='',depth=0,quote=null;
+  for(let i=0;i<String(value||'').length;i++){
+    const ch=String(value)[i],next=String(value)[i+1];
+    if(quote){current+=ch;if(ch===quote){if(next===quote){current+=next;i++;}else quote=null;}continue;}
+    if(ch==="'"||ch==='"'){quote=ch;current+=ch;continue;}
+    if(ch==='(')depth++;
+    if(ch===')')depth=Math.max(0,depth-1);
+    if(ch===','&&depth===0){parts.push(current.trim());current='';}else current+=ch;
+  }
+  if(current.trim())parts.push(current.trim());
+  return parts;
 }
-const sectionTopics={1:'SQL Fundamentals & CRUD',2:'SELECT, Filtering & Sorting',3:'Functions & Aggregation',4:'JOINs',5:'Subqueries',6:'Constraints',7:'Indexes & Views',8:'Normalization',9:'Transactions & ACID',10:'Advanced SQL'};
+
+function topLevelClause(sql,startKeyword,endKeywords){
+  const text=String(sql||'');let depth=0,quote=null,start=-1;
+  const upper=text.toUpperCase();
+  const isBoundary=index=>index<0||index>=text.length||!/[A-Z0-9_]/i.test(text[index]);
+  for(let i=0;i<text.length;i++){
+    const ch=text[i],next=text[i+1];
+    if(quote){if(ch===quote){if(next===quote)i++;else quote=null;}continue;}
+    if(ch==="'"||ch==='"'){quote=ch;continue;}
+    if(ch==='('){depth++;continue;}if(ch===')'){depth=Math.max(0,depth-1);continue;}
+    if(depth!==0)continue;
+    if(start<0&&upper.startsWith(startKeyword,i)&&isBoundary(i-1)&&isBoundary(i+startKeyword.length)){start=i+startKeyword.length;i=start-1;continue;}
+    if(start>=0){
+      const end=endKeywords.find(keyword=>upper.startsWith(keyword,i)&&isBoundary(i-1)&&isBoundary(i+keyword.length));
+      if(end)return text.slice(start,i).trim();
+    }
+  }
+  return start>=0?text.slice(start).replace(/;\s*$/,'').trim():'';
+}
+
+function assessmentColumns(sql){
+  const list=topLevelClause(sql,'SELECT',['FROM']).replace(/^\s*(?:DISTINCT\s+)?(?:TOP\s+\d+\s+)?/i,'');
+  if(!list)return [];
+  return splitTopLevelSqlList(list).map(expression=>{
+    if(expression==='*'||/\.\*$/.test(expression))return '*';
+    const alias=expression.match(/\bAS\s+([A-Za-z_][A-Za-z0-9_]*)\s*$/i);
+    if(alias)return alias[1];
+    const simple=expression.match(/(?:^|\.)([A-Za-z_][A-Za-z0-9_]*)\s*$/);
+    return simple?simple[1]:expression.replace(/\s+/g,' ');
+  });
+}
+
+function cleanGeneratedPrompt(prompt){
+  return String(prompt||'')
+    .replace(/\s*\(variant\s+\d+\)/gi,'')
+    .replace(/\s+variant\s+\d+/gi,'')
+    .replace(/\s+using healthcare data\.?$/i,'.')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function improveAssessmentPrompt(prompt,sql){
+  let improved=cleanGeneratedPrompt(prompt).replace(/[.\s]*$/,'.');
+  const statement=String(sql||'').trim();
+  if(!/^(?:SELECT|WITH)\b/i.test(statement))return improved;
+  const additions=[];
+  const columns=assessmentColumns(statement);
+  if(columns.length&&columns[0]!=='*'){
+    const missing=columns.filter(column=>!new RegExp('`?'+String(column).replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'`?','i').test(improved));
+    if(missing.length)additions.push(`Return these columns: ${columns.map(column=>'`'+column+'`').join(', ')}`);
+  }
+  const selectList=topLevelClause(statement,'SELECT',['FROM']);
+  const aliases=[...selectList.matchAll(/\bAS\s+([A-Za-z_][A-Za-z0-9_]*)/gi)].map(match=>match[1]);
+  const missingAliases=aliases.filter(alias=>!improved.toLowerCase().includes(alias.toLowerCase()));
+  if(missingAliases.length)additions.push(`Use ${missingAliases.length===1?'the alias':'these aliases'} ${missingAliases.map(alias=>'`'+alias+'`').join(', ')}`);
+  const ordering=topLevelClause(statement,'ORDER BY',['LIMIT','OFFSET','FETCH']);
+  if(ordering&&!/sort|order/i.test(improved))additions.push(`Sort by ${ordering.replace(/\s+/g,' ')}`);
+  if(/\bSELECT\s+DISTINCT\b/i.test(statement)&&!/duplicate|distinct/i.test(improved))additions.push('Remove duplicate rows');
+  if(/\bUNION\s+ALL\b/i.test(statement)&&!/duplicate/i.test(improved))additions.push('Keep duplicate rows');
+  if(/\bIS\s+NULL\b/i.test(statement)&&!/null/i.test(improved))additions.push('Include only rows where the requested value is NULL');
+  if(/\bIS\s+NOT\s+NULL\b/i.test(statement)&&!/null/i.test(improved))additions.push('Exclude rows where the requested value is NULL');
+  if(/\bCOALESCE\s*\(/i.test(statement)&&!/null|missing/i.test(improved))additions.push('Replace missing values using the requested fallback');
+  if(additions.length)improved=improved.replace(/\.$/,'')+'. '+additions.join('. ')+'.';
+  return improved;
+}
+
+function questionCoaching(sql,topic){
+  const text=String(sql||'').toUpperCase();
+  if(/\bJOIN\b/.test(text))return {commonMistake:'Joining on the wrong key or creating duplicate rows.',hints:['Identify every table and the key shared by each pair.','Check whether INNER or LEFT JOIN matches the requested population.','Verify every ON condition and inspect one-to-many relationships.']};
+  if(/\bGROUP BY\b/.test(text))return {commonMistake:'Selecting a non-aggregated column that is not grouped.',hints:['Identify the dimension and the metric requested.','Place every non-aggregated selected column in GROUP BY.','Use HAVING only when filtering an aggregated result.']};
+  if(/\bOVER\s*\(/.test(text))return {commonMistake:'Using the wrong PARTITION BY or ORDER BY inside the window.',hints:['Keep the original row detail and choose the required window function.','Decide where the calculation should restart with PARTITION BY.','Check the ordering inside OVER(...), not only the final result order.']};
+  if(/\bEXISTS\b|\bSELECT\b[\s\S]*\(\s*SELECT\b/.test(text))return {commonMistake:'Writing an uncorrelated subquery or comparing incompatible values.',hints:['Solve the inner query first and identify what value it returns.','Check whether the inner query must reference the outer row.','Use EXISTS for presence checks and a scalar subquery for one comparison value.']};
+  if(/\bORDER BY\b/.test(text))return {commonMistake:'Using ASC when DESC is required, or sorting the wrong column.',hints:['Identify the exact column that controls the order.','Choose ASC for lowest-to-highest or DESC for highest-to-lowest.','Confirm that the final rows appear in the order requested.']};
+  if(/\bWHERE\b/.test(text))return {commonMistake:'Using the wrong comparison operator or combining filters incorrectly.',hints:['Translate each business condition into one SQL predicate.','Check AND versus OR and add parentheses when conditions mix.','Verify inclusive conditions such as BETWEEN, >=, and <=.']};
+  if(/^(INSERT|UPDATE|DELETE)/.test(text))return {commonMistake:'Changing more rows than intended.',hints:['Identify the target table and required values.','Match columns and values carefully.','For UPDATE or DELETE, verify the WHERE condition before submitting.']};
+  return {commonMistake:'Returning the wrong columns or result shape.',hints:['List the exact fields requested before writing SQL.','Choose the SQL operation that matches the task.','Compare the final columns and rows with every requirement.']};
+}
+
+function q(prompt,topic,sql,table,note,key){
+  let formattedPrompt=improveAssessmentPrompt(formatQuestionPrompt(prompt,sql),sql);
+  // If the wording explicitly names an alias used by the reference query,
+  // format it as an exact requirement so validation can enforce it.
+  const aliases=[...topLevelClause(String(sql||''),'SELECT',['FROM']).matchAll(/\bAS\s+([A-Za-z_][A-Za-z0-9_]*)/gi)].map(m=>m[1]);
+  for(const alias of aliases){
+    const re=new RegExp('(?<![\\`A-Za-z0-9_])'+alias+'(?![\\`A-Za-z0-9_])','gi');
+    formattedPrompt=formattedPrompt.replace(re,'`'+alias+'`');
+  }
+  const coaching=questionCoaching(sql,topic);
+  return{id:hashQuestion(key+'|'+formattedPrompt+'|'+sql),prompt:formattedPrompt,topic,accepted:[sql],table,acceptedNote:note||'Equivalent SQL forms are accepted when they return the requested result.',logicKey:key,commonMistake:coaching.commonMistake,hints:coaching.hints};
+}
+
+function renderInlineSql(text){
+  return escapeHtml(String(text||'')).replace(/`([^`]+)`/g,'<code>$1</code>');
+}
+const sectionTopics={1:'SQL Fundamentals',2:'Aggregation',3:'JOINs & Set Operations',4:'Subqueries & CTEs',5:'Functions & Data Cleaning',6:'Advanced Analytics'};
 
 function build50(section){
   const out=[];
@@ -2093,12 +2190,297 @@ function build50(section){
   return out;
 }
 
-const SECTION_BANKS={};
-for(let s=1;s<=10;s++) SECTION_BANKS[s]=build50(s);
+function sqlPatternKey(sql){
+  return String(sql||'').toLowerCase()
+    .replace(/--.*$/gm,'')
+    .replace(/'(?:''|[^'])*'/g,"'?'")
+    .replace(/\b\d+(?:\.\d+)?\b/g,'#')
+    .replace(/\s+/g,' ')
+    .replace(/\s*([(),=<>+*\/;-])\s*/g,'$1')
+    .trim();
+}
+
+function curateQuestionBank(bank,section){
+  const groups=new Map();
+  bank.forEach(factory=>{
+    try{
+      const sample=factory();
+      const pattern=sqlPatternKey(sample?.accepted?.[0]);
+      if(!pattern)return;
+      if(!groups.has(pattern))groups.set(pattern,[]);
+      groups.get(pattern).push(factory);
+    }catch(error){}
+  });
+  const groupList=[...groups.entries()];
+  const curated=[];
+  const labels=['Easy','Medium','Hard'];
+  // Round-robin selection keeps concept breadth before adding difficulty
+  // variations. A section contains no more than 30 high-value exercises.
+  for(let tier=0;tier<3&&curated.length<30;tier++){
+    for(const [pattern,factories] of groupList){
+      if(curated.length>=30)break;
+      if(!factories[tier])continue;
+      const original=factories[tier];
+      curated.push(()=>{
+        const question=original();
+        question.difficulty=labels[tier];
+        question.conceptId=`section-${section}-${hashQuestion(pattern)}`;
+        return question;
+      });
+    }
+  }
+  return curated.length?curated:bank.slice(0,30);
+}
+
+function supplementalQuestionFactories(section){
+  const items=[];
+  const add=(key,topic,prompt,sql,table)=>items.push(()=>q(prompt,topic,sql,table,null,key));
+  if(section===2){
+    add('S2_DISTINCT_PLAN','Filtering & Sorting','Return each distinct member plan type.','SELECT DISTINCT plan_type FROM members;','members');
+    add('S2_MULTI_FILTER','Filtering & Sorting','Return `member_id`, `member_name`, `age`, and `risk_score` for members older than 65 with a risk score of at least 0.75. Sort by risk score descending.','SELECT member_id,member_name,age,risk_score FROM members WHERE age>65 AND risk_score>=0.75 ORDER BY risk_score DESC;','members');
+    add('S2_NOT_IN','Filtering & Sorting','Return `claim_id`, `claim_status`, and `billed_amount` for claims whose status is neither Paid nor Pending.','SELECT claim_id,claim_status,billed_amount FROM claims WHERE claim_status NOT IN (\'Paid\',\'Pending\');','claims');
+    add('S2_DATE_RANGE','Filtering & Sorting','Return `claim_id`, `claim_date`, and `paid_amount` for claims dated from 2026-03-01 through 2026-05-31. Sort by claim date ascending.','SELECT claim_id,claim_date,paid_amount FROM claims WHERE claim_date BETWEEN \'2026-03-01\' AND \'2026-05-31\' ORDER BY claim_date ASC;','claims');
+    add('S2_PROVIDER_LIKE','Filtering & Sorting','Return `provider_id`, `provider_name`, and `specialty` for providers whose name contains Miami. Sort by provider name.','SELECT provider_id,provider_name,specialty FROM providers WHERE provider_name LIKE \'%Miami%\' ORDER BY provider_name ASC;','providers');
+    add('S2_TOP_RISK','Filtering & Sorting','Return the five members with the highest risk scores. Include `member_id`, `member_name`, and `risk_score`.','SELECT member_id,member_name,risk_score FROM members ORDER BY risk_score DESC LIMIT 5;','members');
+    add('S2_OR_CONDITION','Filtering & Sorting','Return `claim_id`, `claim_status`, and `billed_amount` for denied claims or claims billed above 7000. Sort by billed amount descending.','SELECT claim_id,claim_status,billed_amount FROM claims WHERE claim_status=\'Denied\' OR billed_amount>7000 ORDER BY billed_amount DESC;','claims');
+  }
+  if(section===5){
+    add('S5_CORRELATED_MAX','Subqueries','Return the highest-paid claim within each claim type. Include `claim_id`, `claim_type`, and `paid_amount`.','SELECT c.claim_id,c.claim_type,c.paid_amount FROM claims c WHERE c.paid_amount=(SELECT MAX(c2.paid_amount) FROM claims c2 WHERE c2.claim_type=c.claim_type);','claims');
+    add('S5_NOT_EXISTS_CLAIMS','Subqueries','Return `member_id` and `member_name` for members who do not have any claims.','SELECT m.member_id,m.member_name FROM members m WHERE NOT EXISTS (SELECT 1 FROM claims c WHERE c.member_id=m.member_id);',['members','claims']);
+    add('S5_IN_PAID_MEMBERS','Subqueries','Return `member_id` and `member_name` for members who have at least one paid claim.','SELECT member_id,member_name FROM members WHERE member_id IN (SELECT member_id FROM claims WHERE claim_status=\'Paid\');',['members','claims']);
+    add('S5_ABOVE_PLAN_AVG','Subqueries','Return members whose risk score is above the average risk score for their own plan type. Include `member_id`, `member_name`, `plan_type`, and `risk_score`.','SELECT m.member_id,m.member_name,m.plan_type,m.risk_score FROM members m WHERE m.risk_score>(SELECT AVG(m2.risk_score) FROM members m2 WHERE m2.plan_type=m.plan_type);','members');
+    add('S5_DERIVED_TOTALS','Subqueries','Return provider IDs whose total paid claim amount is greater than 5000. Name the total `total_paid`.','SELECT provider_id,total_paid FROM (SELECT provider_id,SUM(paid_amount) AS total_paid FROM claims GROUP BY provider_id) totals WHERE total_paid>5000;','claims');
+    add('S5_MIN_PHARMACY','Subqueries','Return pharmacy claims whose paid amount equals the minimum pharmacy paid amount.','SELECT * FROM pharmacy_claims WHERE paid_amount=(SELECT MIN(paid_amount) FROM pharmacy_claims);','pharmacy_claims');
+    add('S5_EXISTS_CLINICAL','Subqueries','Return `provider_id` and `provider_name` for providers with at least one inpatient clinical encounter.','SELECT p.provider_id,p.provider_name FROM providers p WHERE EXISTS (SELECT 1 FROM clinical_records c WHERE c.provider_id=p.provider_id AND c.encounter_type=\'Inpatient\');',['providers','clinical_records']);
+  }
+  return items;
+}
+
+function buildCareerCurriculum(){
+  const banks={1:[],2:[],3:[],4:[],5:[],6:[]};
+  const easyStarter=(topic,sql)=>{
+    const text=String(sql||'').toUpperCase();
+    if(/ROW_NUMBER|RANK\(|DENSE_RANK|LAG\(|LEAD\(|OVER\s*\(/.test(text)) return `Use ${topic} with the OVER(...) clause shown by the topic. Decide only which columns belong in PARTITION BY and ORDER BY.`;
+    if(/^WITH\b/.test(text)) return `Start with the named CTE, test the query inside it, and then select from that CTE.`;
+    if(/\bEXISTS\b|\bNOT EXISTS\b/.test(text)) return `Use ${topic}. The inner query should check whether a related row exists for the current outer row.`;
+    if(/\bSELECT\b[\s\S]*\(\s*SELECT\b/.test(text)) return `Use ${topic}. Write and test the inner SELECT first, then place it inside the outer query.`;
+    if(/\bJOIN\b/.test(text)) return `Use ${topic} and match the tables with their shared ID column before adding filters or sorting.`;
+    if(/\bGROUP BY\b/.test(text)) return `Use ${topic}. Select the category first, add the requested aggregate, and group by the category.`;
+    if(/\bWHERE\b/.test(text)) return `Use ${topic}. Start with the requested columns, then translate each condition into one WHERE predicate.`;
+    return `This is an Easy exercise focused on ${topic}. Start with the exact columns requested in the task.`;
+  };
+  const add=(level,topic,prompt,sql,table)=>{
+    const key=`L${level}_Q${String(banks[level].length+1).padStart(2,'0')}`;
+    banks[level].push(()=>{
+      const item=q(prompt,topic,sql,table,null,key);
+      item.curriculumVersion='SIX_LEVELS_EASY_V2';
+      item.difficulty=1;
+      item.difficultyLabel='Easy';
+      item.hints=[easyStarter(topic,sql),...item.hints.slice(0,2)];
+      return item;
+    });
+  };
+
+  /* Level 1 — SQL Fundamentals */
+  add(1,'SELECT','Return claim_id, claim_date, and billed_amount for every claim. Keep duplicate rows and do not sort the result.','SELECT claim_id,claim_date,billed_amount FROM claims;','claims');
+  add(1,'SELECT','Return member_id, member_name, and plan_type for every member. Keep duplicate rows and do not sort the result.','SELECT member_id,member_name,plan_type FROM members;','members');
+  add(1,'Column aliases','Return provider_id and provider_name. Name provider_name as provider.','SELECT provider_id,provider_name AS provider FROM providers;','providers');
+  add(1,'Column aliases','Return claim_id and paid_amount. Name paid_amount as payment.','SELECT claim_id,paid_amount AS payment FROM claims;','claims');
+  add(1,'DISTINCT','Return the unique claim_status values from claims. Remove duplicate rows and sort claim_status alphabetically.','SELECT DISTINCT claim_status FROM claims ORDER BY claim_status ASC;','claims');
+  add(1,'DISTINCT','Return the unique combinations of specialty and network_status from providers. Remove duplicates and sort by specialty, then network_status.','SELECT DISTINCT specialty,network_status FROM providers ORDER BY specialty ASC,network_status ASC;','providers');
+  add(1,'WHERE','Return claim_id, claim_status, and billed_amount for claims with billed_amount greater than 5000. Sort by billed_amount from highest to lowest.','SELECT claim_id,claim_status,billed_amount FROM claims WHERE billed_amount>5000 ORDER BY billed_amount DESC;','claims');
+  add(1,'WHERE','Return member_id, member_name, and risk_score for members with risk_score at least 0.75. Sort by risk_score descending.','SELECT member_id,member_name,risk_score FROM members WHERE risk_score>=0.75 ORDER BY risk_score DESC;','members');
+  add(1,'LIKE','Return provider_id, provider_name, and specialty for providers whose name contains Miami. Sort by provider_name ascending.','SELECT provider_id,provider_name,specialty FROM providers WHERE provider_name LIKE \'%Miami%\' ORDER BY provider_name ASC;','providers');
+  add(1,'LIKE','Return member_id and member_name for members whose name begins with M. Sort by member_name ascending.','SELECT member_id,member_name FROM members WHERE member_name LIKE \'M%\' ORDER BY member_name ASC;','members');
+  add(1,'ORDER BY','Return claim_id, claim_date, and paid_amount for all claims. Sort by claim_date ascending and claim_id ascending.','SELECT claim_id,claim_date,paid_amount FROM claims ORDER BY claim_date ASC,claim_id ASC;','claims');
+  add(1,'ORDER BY','Return pharmacy_claim_id, medication, and paid_amount for all pharmacy claims. Sort by paid_amount descending, then pharmacy_claim_id ascending.','SELECT pharmacy_claim_id,medication,paid_amount FROM pharmacy_claims ORDER BY paid_amount DESC,pharmacy_claim_id ASC;','pharmacy_claims');
+  add(1,'LIMIT','Return the five claims with the highest billed_amount. Include claim_id, claim_date, and billed_amount and sort highest to lowest.','SELECT claim_id,claim_date,billed_amount FROM claims ORDER BY billed_amount DESC LIMIT 5;','claims');
+  add(1,'LIMIT','Return the three members with the lowest risk_score. Include member_id, member_name, and risk_score and sort lowest to highest.','SELECT member_id,member_name,risk_score FROM members ORDER BY risk_score ASC LIMIT 3;','members');
+  add(1,'AND','Return claim_id, claim_status, and billed_amount for Paid claims with billed_amount above 1000. Sort by billed_amount descending.','SELECT claim_id,claim_status,billed_amount FROM claims WHERE claim_status=\'Paid\' AND billed_amount>1000 ORDER BY billed_amount DESC;','claims');
+  add(1,'OR','Return claim_id, claim_status, and billed_amount for Denied claims or claims billed above 7000. Sort by billed_amount descending.','SELECT claim_id,claim_status,billed_amount FROM claims WHERE claim_status=\'Denied\' OR billed_amount>7000 ORDER BY billed_amount DESC;','claims');
+  add(1,'NOT','Return provider_id, provider_name, and network_status for providers that are not Out of Network. Sort by provider_name ascending.','SELECT provider_id,provider_name,network_status FROM providers WHERE NOT network_status=\'Out of Network\' ORDER BY provider_name ASC;','providers');
+  add(1,'Boolean logic','Return member_id, member_name, age, and plan_type for members in Medicare Advantage who are at least 70, or any member with risk_score above 0.90. Sort by risk_score descending.','SELECT member_id,member_name,age,plan_type FROM members WHERE (plan_type=\'Medicare Advantage\' AND age>=70) OR risk_score>0.90 ORDER BY risk_score DESC;','members');
+  add(1,'BETWEEN','Return claim_id, claim_date, and paid_amount for claims dated from 2026-03-01 through 2026-05-31 inclusive. Sort by claim_date ascending.','SELECT claim_id,claim_date,paid_amount FROM claims WHERE claim_date BETWEEN \'2026-03-01\' AND \'2026-05-31\' ORDER BY claim_date ASC;','claims');
+  add(1,'BETWEEN','Return member_id, member_name, and age for members whose age is between 40 and 65 inclusive. Sort by age ascending, then member_id.','SELECT member_id,member_name,age FROM members WHERE age BETWEEN 40 AND 65 ORDER BY age ASC,member_id ASC;','members');
+  add(1,'IN','Return claim_id, claim_status, and billed_amount for claims whose status is Pending or Denied. Sort by claim_status, then claim_id.','SELECT claim_id,claim_status,billed_amount FROM claims WHERE claim_status IN (\'Pending\',\'Denied\') ORDER BY claim_status ASC,claim_id ASC;','claims');
+  add(1,'NOT IN','Return pharmacy_claim_id, medication, and paid_amount for medications other than Lisinopril and Metformin. Sort by medication, then pharmacy_claim_id.','SELECT pharmacy_claim_id,medication,paid_amount FROM pharmacy_claims WHERE medication NOT IN (\'Lisinopril\',\'Metformin\') ORDER BY medication ASC,pharmacy_claim_id ASC;','pharmacy_claims');
+  add(1,'IS NULL','Return claim_id, allowed_amount, and claim_status for claims where allowed_amount is NULL. Keep duplicates and do not sort.','SELECT claim_id,allowed_amount,claim_status FROM claims WHERE allowed_amount IS NULL;','claims');
+  add(1,'IS NOT NULL','Return claim_id, paid_amount, and claim_status for claims where paid_amount is not NULL. Sort by claim_id ascending.','SELECT claim_id,paid_amount,claim_status FROM claims WHERE paid_amount IS NOT NULL ORDER BY claim_id ASC;','claims');
+  add(1,'Date filtering','Return financial_id, transaction_date, transaction_type, and amount for transactions on or after 2026-05-01. Sort by transaction_date ascending.','SELECT financial_id,transaction_date,transaction_type,amount FROM financial_data WHERE transaction_date>=\'2026-05-01\' ORDER BY transaction_date ASC;','financial_data');
+  add(1,'Date filtering','Return pharmacy_claim_id, fill_date, medication, and paid_amount for prescriptions filled before 2026-04-01. Sort by fill_date descending.','SELECT pharmacy_claim_id,fill_date,medication,paid_amount FROM pharmacy_claims WHERE fill_date<\'2026-04-01\' ORDER BY fill_date DESC;','pharmacy_claims');
+  add(1,'Boolean logic','Return claim_id, claim_type, claim_status, and billed_amount for Facility claims that are Paid and billed between 4000 and 8000 inclusive. Sort by billed_amount descending.','SELECT claim_id,claim_type,claim_status,billed_amount FROM claims WHERE claim_type=\'Facility\' AND claim_status=\'Paid\' AND billed_amount BETWEEN 4000 AND 8000 ORDER BY billed_amount DESC;','claims');
+  add(1,'LIKE and NOT','Return clinical_id, diagnosis, and outcome for clinical records whose diagnosis does not contain Hypertension. Sort by diagnosis and clinical_id.','SELECT clinical_id,diagnosis,outcome FROM clinical_records WHERE diagnosis NOT LIKE \'%Hypertension%\' ORDER BY diagnosis ASC,clinical_id ASC;','clinical_records');
+  add(1,'Aliases and sorting','Return member_name as member, enrollment_date as enrolled_on, and plan_type. Sort by enrollment_date from newest to oldest.','SELECT member_name AS member,enrollment_date AS enrolled_on,plan_type FROM members ORDER BY enrollment_date DESC;','members');
+  add(1,'TOP and LIMIT','Return the four most recent claims. Include claim_id, claim_date, member_id, and claim_status; sort newest to oldest. Use LIMIT 4, or the equivalent TOP syntax.','SELECT claim_id,claim_date,member_id,claim_status FROM claims ORDER BY claim_date DESC LIMIT 4;','claims');
+
+  /* Level 2 — Aggregation */
+  add(2,'COUNT','Return the total number of claims as total_claims.','SELECT COUNT(*) AS total_claims FROM claims;','claims');
+  add(2,'COUNT','Return the number of Paid claims as paid_claims.','SELECT COUNT(*) AS paid_claims FROM claims WHERE claim_status=\'Paid\';','claims');
+  add(2,'COUNT DISTINCT','Return the number of distinct members with at least one claim as members_with_claims.','SELECT COUNT(DISTINCT member_id) AS members_with_claims FROM claims;','claims');
+  add(2,'COUNT DISTINCT','Return the number of distinct medications as medication_count.','SELECT COUNT(DISTINCT medication) AS medication_count FROM pharmacy_claims;','pharmacy_claims');
+  add(2,'SUM','Return the total billed_amount across all claims as total_billed.','SELECT SUM(billed_amount) AS total_billed FROM claims;','claims');
+  add(2,'SUM','Return total processed financial amount as processed_amount. Filter rows before calculating the sum.','SELECT SUM(amount) AS processed_amount FROM financial_data WHERE payment_status=\'Processed\';','financial_data');
+  add(2,'AVG','Return the average paid_amount for Paid claims as avg_paid.','SELECT AVG(paid_amount) AS avg_paid FROM claims WHERE claim_status=\'Paid\';','claims');
+  add(2,'AVG','Return the average member risk_score as avg_risk_score.','SELECT AVG(risk_score) AS avg_risk_score FROM members;','members');
+  add(2,'MIN and MAX','Return the smallest billed_amount as min_billed and the largest billed_amount as max_billed.','SELECT MIN(billed_amount) AS min_billed,MAX(billed_amount) AS max_billed FROM claims;','claims');
+  add(2,'MIN and MAX','Return the earliest claim_date as first_claim_date and latest claim_date as last_claim_date.','SELECT MIN(claim_date) AS first_claim_date,MAX(claim_date) AS last_claim_date FROM claims;','claims');
+  add(2,'GROUP BY','Return claim_status and the number of claims as claim_count for each status. Sort by claim_count descending.','SELECT claim_status,COUNT(*) AS claim_count FROM claims GROUP BY claim_status ORDER BY claim_count DESC;','claims');
+  add(2,'GROUP BY','Return medication and total paid_amount as total_paid for each medication. Sort by total_paid descending.','SELECT medication,SUM(paid_amount) AS total_paid FROM pharmacy_claims GROUP BY medication ORDER BY total_paid DESC;','pharmacy_claims');
+  add(2,'GROUP BY','Return plan_type and average risk_score as avg_risk_score for each plan. Sort by avg_risk_score descending.','SELECT plan_type,AVG(risk_score) AS avg_risk_score FROM members GROUP BY plan_type ORDER BY avg_risk_score DESC;','members');
+  add(2,'Multiple-column grouping','Return claim_type, claim_status, and the number of claims as claim_count for each combination. Sort by claim_type and claim_status.','SELECT claim_type,claim_status,COUNT(*) AS claim_count FROM claims GROUP BY claim_type,claim_status ORDER BY claim_type ASC,claim_status ASC;','claims');
+  add(2,'Multiple-column grouping','Return encounter_type, outcome, and the number of encounters as encounter_count for each combination. Sort by encounter_type and outcome.','SELECT encounter_type,outcome,COUNT(*) AS encounter_count FROM clinical_records GROUP BY encounter_type,outcome ORDER BY encounter_type ASC,outcome ASC;','clinical_records');
+  add(2,'HAVING','Return provider_id and total billed_amount as total_billed for providers whose total exceeds 5000. Sort by total_billed descending.','SELECT provider_id,SUM(billed_amount) AS total_billed FROM claims GROUP BY provider_id HAVING SUM(billed_amount)>5000 ORDER BY total_billed DESC;','claims');
+  add(2,'HAVING','Return medication and prescription count as fill_count for medications filled more than once. Sort by fill_count descending, then medication.','SELECT medication,COUNT(*) AS fill_count FROM pharmacy_claims GROUP BY medication HAVING COUNT(*)>1 ORDER BY fill_count DESC,medication ASC;','pharmacy_claims');
+  add(2,'WHERE versus HAVING','Using only Paid claims, return provider_id and average paid_amount as avg_paid for providers whose average exceeds 1000. Sort by avg_paid descending.','SELECT provider_id,AVG(paid_amount) AS avg_paid FROM claims WHERE claim_status=\'Paid\' GROUP BY provider_id HAVING AVG(paid_amount)>1000 ORDER BY avg_paid DESC;','claims');
+  add(2,'WHERE versus HAVING','Using transactions dated on or after 2026-04-01, return transaction_type and total amount as total_amount where the total is positive. Sort by total_amount descending.','SELECT transaction_type,SUM(amount) AS total_amount FROM financial_data WHERE transaction_date>=\'2026-04-01\' GROUP BY transaction_type HAVING SUM(amount)>0 ORDER BY total_amount DESC;','financial_data');
+  add(2,'Conditional aggregation','Return total claims as total_claims, Paid claims as paid_claims, Pending claims as pending_claims, and Denied claims as denied_claims in one row.','SELECT COUNT(*) AS total_claims,SUM(CASE WHEN claim_status=\'Paid\' THEN 1 ELSE 0 END) AS paid_claims,SUM(CASE WHEN claim_status=\'Pending\' THEN 1 ELSE 0 END) AS pending_claims,SUM(CASE WHEN claim_status=\'Denied\' THEN 1 ELSE 0 END) AS denied_claims FROM claims;','claims');
+  add(2,'Conditional aggregation','Return claim_type, total billed as total_billed, and paid billed amount as paid_billed for each claim type. Sort by claim_type.','SELECT claim_type,SUM(billed_amount) AS total_billed,SUM(CASE WHEN claim_status=\'Paid\' THEN billed_amount ELSE 0 END) AS paid_billed FROM claims GROUP BY claim_type ORDER BY claim_type ASC;','claims');
+  add(2,'Percentage calculations','Return the percentage of claims that are Paid as paid_percentage, rounded to two decimals.','SELECT ROUND(100.0*SUM(CASE WHEN claim_status=\'Paid\' THEN 1 ELSE 0 END)/COUNT(*),2) AS paid_percentage FROM claims;','claims');
+  add(2,'Percentage calculations','Return claim_status, claim_count, and each status percentage of all claims as status_percentage, rounded to two decimals. Sort by claim_status.','SELECT claim_status,COUNT(*) AS claim_count,ROUND(100.0*COUNT(*)/(SELECT COUNT(*) FROM claims),2) AS status_percentage FROM claims GROUP BY claim_status ORDER BY claim_status ASC;','claims');
+  add(2,'Date aggregation','Return claim month as claim_month and total billed_amount as total_billed for each month. Use YYYY-MM format and sort chronologically.','SELECT strftime(\'%Y-%m\',claim_date) AS claim_month,SUM(billed_amount) AS total_billed FROM claims GROUP BY strftime(\'%Y-%m\',claim_date) ORDER BY claim_month ASC;','claims');
+  add(2,'Date aggregation','Return fill month as fill_month and prescription count as fill_count for each month. Use YYYY-MM format and sort chronologically.','SELECT strftime(\'%Y-%m\',fill_date) AS fill_month,COUNT(*) AS fill_count FROM pharmacy_claims GROUP BY strftime(\'%Y-%m\',fill_date) ORDER BY fill_month ASC;','pharmacy_claims');
+  add(2,'Aggregation','Return provider_id, claim_count, total_billed, and average billed amount as avg_billed for each provider. Sort by total_billed descending.','SELECT provider_id,COUNT(*) AS claim_count,SUM(billed_amount) AS total_billed,AVG(billed_amount) AS avg_billed FROM claims GROUP BY provider_id ORDER BY total_billed DESC;','claims');
+  add(2,'Aggregation','Return member_id and total pharmacy paid amount as pharmacy_total for members whose total exceeds 20. Sort by pharmacy_total descending.','SELECT member_id,SUM(paid_amount) AS pharmacy_total FROM pharmacy_claims GROUP BY member_id HAVING SUM(paid_amount)>20 ORDER BY pharmacy_total DESC;','pharmacy_claims');
+  add(2,'Conditional aggregation','Return provider_id, Paid claim count as paid_count, and unpaid claim count as unpaid_count for every provider represented in claims. Sort by provider_id.','SELECT provider_id,SUM(CASE WHEN claim_status=\'Paid\' THEN 1 ELSE 0 END) AS paid_count,SUM(CASE WHEN claim_status<>\'Paid\' THEN 1 ELSE 0 END) AS unpaid_count FROM claims GROUP BY provider_id ORDER BY provider_id ASC;','claims');
+  add(2,'Percentage calculations','Return plan_type and the percentage of all members in each plan as member_percentage, rounded to one decimal. Sort by member_percentage descending.','SELECT plan_type,ROUND(100.0*COUNT(*)/(SELECT COUNT(*) FROM members),1) AS member_percentage FROM members GROUP BY plan_type ORDER BY member_percentage DESC;','members');
+  add(2,'Date aggregation','Return transaction month as transaction_month, total amount as net_amount, and transaction count as transaction_count. Sort chronologically.','SELECT strftime(\'%Y-%m\',transaction_date) AS transaction_month,SUM(amount) AS net_amount,COUNT(*) AS transaction_count FROM financial_data GROUP BY strftime(\'%Y-%m\',transaction_date) ORDER BY transaction_month ASC;','financial_data');
+
+  /* Level 3 — JOINs and set operations */
+  add(3,'INNER JOIN','Return claim_id, claim_date, member_name, and billed_amount for every claim with a matching member. Sort by claim_date and claim_id.','SELECT c.claim_id,c.claim_date,m.member_name,c.billed_amount FROM claims c INNER JOIN members m ON c.member_id=m.member_id ORDER BY c.claim_date ASC,c.claim_id ASC;',['claims','members']);
+  add(3,'INNER JOIN','Return claim_id, provider_name, specialty, and claim_status for claims with a matching provider. Sort by claim_id.','SELECT c.claim_id,p.provider_name,p.specialty,c.claim_status FROM claims c INNER JOIN providers p ON c.provider_id=p.provider_id ORDER BY c.claim_id ASC;',['claims','providers']);
+  add(3,'INNER JOIN','Return pharmacy_claim_id, member_name, medication, and paid_amount for pharmacy claims with matching members. Sort by pharmacy_claim_id.','SELECT pc.pharmacy_claim_id,m.member_name,pc.medication,pc.paid_amount FROM pharmacy_claims pc INNER JOIN members m ON pc.member_id=m.member_id ORDER BY pc.pharmacy_claim_id ASC;',['pharmacy_claims','members']);
+  add(3,'INNER JOIN','Return financial_id, claim_id, claim_status, transaction_type, and amount by joining financial_data to claims. Sort by financial_id.','SELECT f.financial_id,f.claim_id,c.claim_status,f.transaction_type,f.amount FROM financial_data f INNER JOIN claims c ON f.claim_id=c.claim_id ORDER BY f.financial_id ASC;',['financial_data','claims']);
+  add(3,'LEFT JOIN','Return every member with member_id, member_name, and claim_id, including members without claims. Sort by member_id and claim_id.','SELECT m.member_id,m.member_name,c.claim_id FROM members m LEFT JOIN claims c ON m.member_id=c.member_id ORDER BY m.member_id ASC,c.claim_id ASC;',['members','claims']);
+  add(3,'LEFT JOIN','Return every provider with provider_id, provider_name, and claim_id, including providers without claims. Sort by provider_id and claim_id.','SELECT p.provider_id,p.provider_name,c.claim_id FROM providers p LEFT JOIN claims c ON p.provider_id=c.provider_id ORDER BY p.provider_id ASC,c.claim_id ASC;',['providers','claims']);
+  add(3,'LEFT JOIN','Return every member with member_name and medication, including members without pharmacy claims. Sort by member_id and medication.','SELECT m.member_id,m.member_name,pc.medication FROM members m LEFT JOIN pharmacy_claims pc ON m.member_id=pc.member_id ORDER BY m.member_id ASC,pc.medication ASC;',['members','pharmacy_claims']);
+  add(3,'Unmatched records','Return provider_id and provider_name for providers with no claims. Use a LEFT JOIN and sort by provider_id.','SELECT p.provider_id,p.provider_name FROM providers p LEFT JOIN claims c ON p.provider_id=c.provider_id WHERE c.claim_id IS NULL ORDER BY p.provider_id ASC;',['providers','claims']);
+  add(3,'Unmatched records','Return member_id and member_name for members with no clinical record. Use a LEFT JOIN and sort by member_id.','SELECT m.member_id,m.member_name FROM members m LEFT JOIN clinical_records cr ON m.member_id=cr.member_id WHERE cr.clinical_id IS NULL ORDER BY m.member_id ASC;',['members','clinical_records']);
+  add(3,'RIGHT JOIN','Return every provider with provider_id, provider_name, and claim_id, including providers without claims, using RIGHT JOIN. Sort by provider_id and claim_id.','SELECT p.provider_id,p.provider_name,c.claim_id FROM claims c RIGHT JOIN providers p ON c.provider_id=p.provider_id ORDER BY p.provider_id ASC,c.claim_id ASC;',['claims','providers']);
+  add(3,'RIGHT JOIN','Return every member with member_id, member_name, and pharmacy_claim_id using RIGHT JOIN so members without pharmacy claims remain. Sort by member_id.','SELECT m.member_id,m.member_name,pc.pharmacy_claim_id FROM pharmacy_claims pc RIGHT JOIN members m ON pc.member_id=m.member_id ORDER BY m.member_id ASC,pc.pharmacy_claim_id ASC;',['pharmacy_claims','members']);
+  add(3,'FULL OUTER JOIN','Return member_id, member_name, and claim_id from a FULL OUTER JOIN between members and claims. Keep unmatched rows from either side and sort by member_id and claim_id.','SELECT COALESCE(m.member_id,c.member_id) AS member_id,m.member_name,c.claim_id FROM members m FULL OUTER JOIN claims c ON m.member_id=c.member_id ORDER BY member_id ASC,c.claim_id ASC;',['members','claims']);
+  add(3,'Multiple joins','Return claim_id, claim_date, member_name, provider_name, and billed_amount for every matched claim. Sort by claim_date and claim_id.','SELECT c.claim_id,c.claim_date,m.member_name,p.provider_name,c.billed_amount FROM claims c INNER JOIN members m ON c.member_id=m.member_id INNER JOIN providers p ON c.provider_id=p.provider_id ORDER BY c.claim_date ASC,c.claim_id ASC;',['claims','members','providers']);
+  add(3,'Multiple joins','Return clinical_id, encounter_date, member_name, provider_name, diagnosis, and outcome for matched clinical records. Sort by encounter_date.','SELECT cr.clinical_id,cr.encounter_date,m.member_name,p.provider_name,cr.diagnosis,cr.outcome FROM clinical_records cr INNER JOIN members m ON cr.member_id=m.member_id INNER JOIN providers p ON cr.provider_id=p.provider_id ORDER BY cr.encounter_date ASC,cr.clinical_id ASC;',['clinical_records','members','providers']);
+  add(3,'Join aggregation','Return provider_id, provider_name, claim count as claim_count, and total billed as total_billed for every provider, including providers with no claims. Sort by total_billed descending.','SELECT p.provider_id,p.provider_name,COUNT(c.claim_id) AS claim_count,COALESCE(SUM(c.billed_amount),0) AS total_billed FROM providers p LEFT JOIN claims c ON p.provider_id=c.provider_id GROUP BY p.provider_id,p.provider_name ORDER BY total_billed DESC;',['providers','claims']);
+  add(3,'Join aggregation','Return member_id, member_name, and total paid claims as total_paid for every member. Include members with no claims as zero and sort descending.','SELECT m.member_id,m.member_name,COALESCE(SUM(c.paid_amount),0) AS total_paid FROM members m LEFT JOIN claims c ON m.member_id=c.member_id GROUP BY m.member_id,m.member_name ORDER BY total_paid DESC;',['members','claims']);
+  add(3,'Join filters','Return claim_id, member_name, plan_type, and billed_amount for Paid claims belonging to Medicare Advantage members. Sort by billed_amount descending.','SELECT c.claim_id,m.member_name,m.plan_type,c.billed_amount FROM claims c INNER JOIN members m ON c.member_id=m.member_id WHERE c.claim_status=\'Paid\' AND m.plan_type=\'Medicare Advantage\' ORDER BY c.billed_amount DESC;',['claims','members']);
+  add(3,'Join filters','Return pharmacy_claim_id, medication, provider_name, and network_status for prescriptions from In Network providers. Sort by medication and pharmacy_claim_id.','SELECT pc.pharmacy_claim_id,pc.medication,p.provider_name,p.network_status FROM pharmacy_claims pc INNER JOIN providers p ON pc.provider_id=p.provider_id WHERE p.network_status=\'In Network\' ORDER BY pc.medication ASC,pc.pharmacy_claim_id ASC;',['pharmacy_claims','providers']);
+  add(3,'Duplicate control','Return each unique member_id and member_name for members who have at least one Paid claim. Remove duplicates and sort by member_id.','SELECT DISTINCT m.member_id,m.member_name FROM members m INNER JOIN claims c ON m.member_id=c.member_id WHERE c.claim_status=\'Paid\' ORDER BY m.member_id ASC;',['members','claims']);
+  add(3,'Join dates','Return claim_id, claim_date, transaction_date, and the number of days between them as processing_days. Sort by processing_days descending.','SELECT c.claim_id,c.claim_date,f.transaction_date,CAST(julianday(f.transaction_date)-julianday(c.claim_date) AS INTEGER) AS processing_days FROM claims c INNER JOIN financial_data f ON c.claim_id=f.claim_id ORDER BY processing_days DESC,c.claim_id ASC;',['claims','financial_data']);
+  add(3,'UNION','Return one unique alphabetical list named activity_type containing claim_type values and transaction_type values. Remove duplicates.','SELECT claim_type AS activity_type FROM claims UNION SELECT transaction_type AS activity_type FROM financial_data ORDER BY activity_type ASC;',['claims','financial_data']);
+  add(3,'UNION ALL','Return one list with event_date, event_type, and source for every claim and financial transaction. Keep duplicate rows and sort by event_date.','SELECT claim_date AS event_date,claim_type AS event_type,\'Claim\' AS source FROM claims UNION ALL SELECT transaction_date AS event_date,transaction_type AS event_type,\'Financial\' AS source FROM financial_data ORDER BY event_date ASC;',['claims','financial_data']);
+  add(3,'UNION','Return a unique alphabetical list named care_item containing diagnoses and medications. Remove duplicates.','SELECT diagnosis AS care_item FROM clinical_records UNION SELECT medication AS care_item FROM pharmacy_claims ORDER BY care_item ASC;',['clinical_records','pharmacy_claims']);
+  add(3,'UNION ALL','Return member_id, event_date, and source for every clinical encounter and pharmacy fill. Keep duplicate rows and sort by event_date and member_id.','SELECT member_id,encounter_date AS event_date,\'Clinical\' AS source FROM clinical_records UNION ALL SELECT member_id,fill_date AS event_date,\'Pharmacy\' AS source FROM pharmacy_claims ORDER BY event_date ASC,member_id ASC;',['clinical_records','pharmacy_claims']);
+  add(3,'JOIN comparison','Return claim_id, billed_amount, transaction amount, and billed minus transaction amount as amount_difference. Sort by absolute difference descending.','SELECT c.claim_id,c.billed_amount,f.amount,c.billed_amount-f.amount AS amount_difference FROM claims c INNER JOIN financial_data f ON c.claim_id=f.claim_id ORDER BY ABS(amount_difference) DESC;',['claims','financial_data']);
+  add(3,'Self join','Return pairs of different members in the same plan. Name the people member_one and member_two, and return plan_type. Keep each pair once.','SELECT m1.member_name AS member_one,m2.member_name AS member_two,m1.plan_type FROM members m1 INNER JOIN members m2 ON m1.plan_type=m2.plan_type AND m1.member_id<m2.member_id ORDER BY m1.plan_type,member_one,member_two;','members');
+  add(3,'Multiple joins','Return financial_id, member_name, provider_name, transaction_date, and amount by joining financial_data through claims. Sort by transaction_date.','SELECT f.financial_id,m.member_name,p.provider_name,f.transaction_date,f.amount FROM financial_data f INNER JOIN claims c ON f.claim_id=c.claim_id INNER JOIN members m ON c.member_id=m.member_id INNER JOIN providers p ON c.provider_id=p.provider_id ORDER BY f.transaction_date ASC,f.financial_id ASC;',['financial_data','claims','members','providers']);
+  add(3,'Join aggregation','Return plan_type and total billed_amount as total_billed for claims joined to members. Sort by total_billed descending.','SELECT m.plan_type,SUM(c.billed_amount) AS total_billed FROM members m INNER JOIN claims c ON m.member_id=c.member_id GROUP BY m.plan_type ORDER BY total_billed DESC;',['members','claims']);
+  add(3,'Join aggregation','Return specialty, claim count as claim_count, and average paid amount as avg_paid for provider specialties with claims. Sort by avg_paid descending.','SELECT p.specialty,COUNT(*) AS claim_count,AVG(c.paid_amount) AS avg_paid FROM providers p INNER JOIN claims c ON p.provider_id=c.provider_id GROUP BY p.specialty ORDER BY avg_paid DESC;',['providers','claims']);
+  add(3,'Unmatched records','Return claim_id and claim_date for claims without a matching financial transaction. Use a LEFT JOIN and sort by claim_id.','SELECT c.claim_id,c.claim_date FROM claims c LEFT JOIN financial_data f ON c.claim_id=f.claim_id WHERE f.financial_id IS NULL ORDER BY c.claim_id ASC;',['claims','financial_data']);
+
+  /* Level 4 — Subqueries and CTEs */
+  add(4,'Scalar subquery','Return claim_id and billed_amount for claims billed above the overall average billed amount. Sort by billed_amount descending.','SELECT claim_id,billed_amount FROM claims WHERE billed_amount>(SELECT AVG(billed_amount) FROM claims) ORDER BY billed_amount DESC;','claims');
+  add(4,'Scalar subquery','Return member_id, member_name, and risk_score for members with the maximum risk_score.','SELECT member_id,member_name,risk_score FROM members WHERE risk_score=(SELECT MAX(risk_score) FROM members);','members');
+  add(4,'Subquery in WHERE','Return pharmacy_claim_id, medication, and paid_amount for pharmacy claims above the average pharmacy paid amount. Sort descending.','SELECT pharmacy_claim_id,medication,paid_amount FROM pharmacy_claims WHERE paid_amount>(SELECT AVG(paid_amount) FROM pharmacy_claims) ORDER BY paid_amount DESC;','pharmacy_claims');
+  add(4,'Subquery in WHERE','Return financial_id, transaction_date, and amount for transactions whose amount is below the average processed transaction amount. Sort by amount.','SELECT financial_id,transaction_date,amount FROM financial_data WHERE amount<(SELECT AVG(amount) FROM financial_data WHERE payment_status=\'Processed\') ORDER BY amount ASC;','financial_data');
+  add(4,'IN','Return member_id and member_name for members with at least one Paid claim, using IN. Sort by member_id.','SELECT member_id,member_name FROM members WHERE member_id IN (SELECT member_id FROM claims WHERE claim_status=\'Paid\') ORDER BY member_id ASC;','members');
+  add(4,'NOT IN','Return provider_id and provider_name for providers whose provider_id is not present in claims, using NOT IN and excluding NULLs in the subquery.','SELECT provider_id,provider_name FROM providers WHERE provider_id NOT IN (SELECT provider_id FROM claims WHERE provider_id IS NOT NULL) ORDER BY provider_id ASC;','providers');
+  add(4,'EXISTS','Return provider_id and provider_name for providers with at least one inpatient clinical encounter. Sort by provider_id.','SELECT p.provider_id,p.provider_name FROM providers p WHERE EXISTS (SELECT 1 FROM clinical_records cr WHERE cr.provider_id=p.provider_id AND cr.encounter_type=\'Inpatient\') ORDER BY p.provider_id ASC;',['providers','clinical_records']);
+  add(4,'NOT EXISTS','Return member_id and member_name for members with no pharmacy claim. Sort by member_id.','SELECT m.member_id,m.member_name FROM members m WHERE NOT EXISTS (SELECT 1 FROM pharmacy_claims pc WHERE pc.member_id=m.member_id) ORDER BY m.member_id ASC;',['members','pharmacy_claims']);
+  add(4,'Correlated subquery','Return the highest-paid claim within each claim_type. Include claim_id, claim_type, and paid_amount; sort by claim_type.','SELECT c.claim_id,c.claim_type,c.paid_amount FROM claims c WHERE c.paid_amount=(SELECT MAX(c2.paid_amount) FROM claims c2 WHERE c2.claim_type=c.claim_type) ORDER BY c.claim_type ASC,c.claim_id ASC;','claims');
+  add(4,'Correlated subquery','Return members whose risk_score is above the average for their own plan_type. Include member_id, member_name, plan_type, and risk_score.','SELECT m.member_id,m.member_name,m.plan_type,m.risk_score FROM members m WHERE m.risk_score>(SELECT AVG(m2.risk_score) FROM members m2 WHERE m2.plan_type=m.plan_type) ORDER BY m.plan_type,m.risk_score DESC;','members');
+  add(4,'Derived table','Return provider_id and total_paid from a derived table, keeping providers whose total paid claims exceed 5000. Sort descending.','SELECT provider_id,total_paid FROM (SELECT provider_id,SUM(paid_amount) AS total_paid FROM claims GROUP BY provider_id) totals WHERE total_paid>5000 ORDER BY total_paid DESC;','claims');
+  add(4,'Derived table','Return claim_month and monthly_claims from a derived table, keeping months with at least three claims. Sort chronologically.','SELECT claim_month,monthly_claims FROM (SELECT strftime(\'%Y-%m\',claim_date) AS claim_month,COUNT(*) AS monthly_claims FROM claims GROUP BY strftime(\'%Y-%m\',claim_date)) monthly WHERE monthly_claims>=3 ORDER BY claim_month ASC;','claims');
+  add(4,'Subquery in FROM','Return the average of provider claim totals as avg_provider_total. First calculate total billed by provider in a subquery.','SELECT AVG(total_billed) AS avg_provider_total FROM (SELECT provider_id,SUM(billed_amount) AS total_billed FROM claims GROUP BY provider_id) provider_totals;','claims');
+  add(4,'Nested subquery','Return claim_id and billed_amount for claims above the average billed amount of Paid claims. Sort descending.','SELECT claim_id,billed_amount FROM claims WHERE billed_amount>(SELECT AVG(billed_amount) FROM claims WHERE claim_status=\'Paid\') ORDER BY billed_amount DESC;','claims');
+  add(4,'CTE','Use a CTE named paid_claims to return claim_id, member_id, and paid_amount for Paid claims above 1000. Sort descending.','WITH paid_claims AS (SELECT claim_id,member_id,paid_amount FROM claims WHERE claim_status=\'Paid\') SELECT claim_id,member_id,paid_amount FROM paid_claims WHERE paid_amount>1000 ORDER BY paid_amount DESC;','claims');
+  add(4,'CTE','Use a CTE named provider_totals to return provider_id and total_billed for totals above 5000. Sort descending.','WITH provider_totals AS (SELECT provider_id,SUM(billed_amount) AS total_billed FROM claims GROUP BY provider_id) SELECT provider_id,total_billed FROM provider_totals WHERE total_billed>5000 ORDER BY total_billed DESC;','claims');
+  add(4,'Multiple CTEs','Use one CTE for member claim totals and a second for the overall average. Return members whose total_paid exceeds the average member total.','WITH member_totals AS (SELECT member_id,SUM(paid_amount) AS total_paid FROM claims GROUP BY member_id), average_total AS (SELECT AVG(total_paid) AS avg_paid FROM member_totals) SELECT member_id,total_paid FROM member_totals WHERE total_paid>(SELECT avg_paid FROM average_total) ORDER BY total_paid DESC;','claims');
+  add(4,'CTE with join','Use a CTE named recent_claims for claims on or after 2026-05-01. Join it to members and return claim_id, claim_date, and member_name.','WITH recent_claims AS (SELECT claim_id,member_id,claim_date FROM claims WHERE claim_date>=\'2026-05-01\') SELECT rc.claim_id,rc.claim_date,m.member_name FROM recent_claims rc INNER JOIN members m ON rc.member_id=m.member_id ORDER BY rc.claim_date ASC;',['claims','members']);
+  add(4,'EXISTS','Return member_id and member_name for members with a claim dated after 2026-06-01, using EXISTS. Sort by member_id.','SELECT m.member_id,m.member_name FROM members m WHERE EXISTS (SELECT 1 FROM claims c WHERE c.member_id=m.member_id AND c.claim_date>\'2026-06-01\') ORDER BY m.member_id ASC;',['members','claims']);
+  add(4,'NOT EXISTS','Return claim_id and claim_date for claims that have no matching financial transaction, using NOT EXISTS. Sort by claim_id.','SELECT c.claim_id,c.claim_date FROM claims c WHERE NOT EXISTS (SELECT 1 FROM financial_data f WHERE f.claim_id=c.claim_id) ORDER BY c.claim_id ASC;',['claims','financial_data']);
+  add(4,'Correlated subquery','Return pharmacy claims whose paid_amount is the highest for their own medication. Include pharmacy_claim_id, medication, and paid_amount.','SELECT pc.pharmacy_claim_id,pc.medication,pc.paid_amount FROM pharmacy_claims pc WHERE pc.paid_amount=(SELECT MAX(pc2.paid_amount) FROM pharmacy_claims pc2 WHERE pc2.medication=pc.medication) ORDER BY pc.medication,pc.pharmacy_claim_id;','pharmacy_claims');
+  add(4,'Scalar subquery','Return every claim with claim_id, billed_amount, and the overall average as overall_avg_billed. Sort by claim_id.','SELECT claim_id,billed_amount,(SELECT AVG(billed_amount) FROM claims) AS overall_avg_billed FROM claims ORDER BY claim_id ASC;','claims');
+  add(4,'Derived table','Return plan_type and avg_risk_score from a derived table, keeping plans with average risk above 0.50. Sort descending.','SELECT plan_type,avg_risk_score FROM (SELECT plan_type,AVG(risk_score) AS avg_risk_score FROM members GROUP BY plan_type) plan_risk WHERE avg_risk_score>0.50 ORDER BY avg_risk_score DESC;','members');
+  add(4,'CTE date analysis','Use a CTE named monthly_claims to calculate claim_count by YYYY-MM claim_month. Return months with at least three claims.','WITH monthly_claims AS (SELECT strftime(\'%Y-%m\',claim_date) AS claim_month,COUNT(*) AS claim_count FROM claims GROUP BY strftime(\'%Y-%m\',claim_date)) SELECT claim_month,claim_count FROM monthly_claims WHERE claim_count>=3 ORDER BY claim_month ASC;','claims');
+  add(4,'CTE aggregation','Use a CTE named medication_totals to calculate total paid by medication. Return medication and total_paid above 20.','WITH medication_totals AS (SELECT medication,SUM(paid_amount) AS total_paid FROM pharmacy_claims GROUP BY medication) SELECT medication,total_paid FROM medication_totals WHERE total_paid>20 ORDER BY total_paid DESC;','pharmacy_claims');
+  add(4,'Subquery comparison','Return providers whose claim count is greater than the average claim count per provider. Include provider_id and claim_count.','SELECT provider_id,COUNT(*) AS claim_count FROM claims GROUP BY provider_id HAVING COUNT(*)>(SELECT AVG(provider_count) FROM (SELECT COUNT(*) AS provider_count FROM claims GROUP BY provider_id)) ORDER BY claim_count DESC;','claims');
+  add(4,'IN with aggregation','Return provider_id and provider_name for providers whose total billed claims exceed 5000, using IN. Sort by provider_id.','SELECT provider_id,provider_name FROM providers WHERE provider_id IN (SELECT provider_id FROM claims GROUP BY provider_id HAVING SUM(billed_amount)>5000) ORDER BY provider_id ASC;',['providers','claims']);
+  add(4,'Correlated date subquery','Return the most recent claim for each member. Include member_id, claim_id, claim_date, and billed_amount; sort by member_id.','SELECT c.member_id,c.claim_id,c.claim_date,c.billed_amount FROM claims c WHERE c.claim_date=(SELECT MAX(c2.claim_date) FROM claims c2 WHERE c2.member_id=c.member_id) ORDER BY c.member_id ASC,c.claim_id ASC;','claims');
+  add(4,'CTE and percentage','Use a CTE named status_counts to count claims by status. Return claim_status, claim_count, and percentage_of_total rounded to two decimals.','WITH status_counts AS (SELECT claim_status,COUNT(*) AS claim_count FROM claims GROUP BY claim_status) SELECT claim_status,claim_count,ROUND(100.0*claim_count/(SELECT SUM(claim_count) FROM status_counts),2) AS percentage_of_total FROM status_counts ORDER BY claim_status ASC;','claims');
+  add(4,'Multiple CTEs','Use CTEs named billed and paid to total billed_amount and paid_amount by claim_type. Return claim_type, total_billed, and total_paid.','WITH billed AS (SELECT claim_type,SUM(billed_amount) AS total_billed FROM claims GROUP BY claim_type), paid AS (SELECT claim_type,SUM(paid_amount) AS total_paid FROM claims GROUP BY claim_type) SELECT b.claim_type,b.total_billed,p.total_paid FROM billed b INNER JOIN paid p ON b.claim_type=p.claim_type ORDER BY b.claim_type ASC;','claims');
+
+  /* Level 5 — Functions and data cleaning */
+  add(5,'UPPER and LOWER','Return member_id, member_name in uppercase as member_upper, and plan_type in lowercase as plan_lower. Sort by member_id.','SELECT member_id,UPPER(member_name) AS member_upper,LOWER(plan_type) AS plan_lower FROM members ORDER BY member_id ASC;','members');
+  add(5,'TRIM','Return provider_id and provider_name with surrounding spaces removed as clean_provider_name. Sort by provider_id.','SELECT provider_id,TRIM(provider_name) AS clean_provider_name FROM providers ORDER BY provider_id ASC;','providers');
+  add(5,'LENGTH','Return provider_id, provider_name, and the number of characters in provider_name as name_length. Sort longest first.','SELECT provider_id,provider_name,LENGTH(provider_name) AS name_length FROM providers ORDER BY name_length DESC,provider_id ASC;','providers');
+  add(5,'SUBSTRING','Return pharmacy_claim_id, ndc_code, and the first five characters of ndc_code as ndc_prefix. Use SUBSTR or equivalent and sort by pharmacy_claim_id.','SELECT pharmacy_claim_id,ndc_code,SUBSTR(ndc_code,1,5) AS ndc_prefix FROM pharmacy_claims ORDER BY pharmacy_claim_id ASC;','pharmacy_claims');
+  add(5,'Concatenation','Return provider_id and a label combining provider_name, a separator, and specialty as provider_label. Sort by provider_id.','SELECT provider_id,provider_name||\' - \'||specialty AS provider_label FROM providers ORDER BY provider_id ASC;','providers');
+  add(5,'Concatenation','Return member_id and a label combining member_name and plan_type in parentheses as member_plan. Sort by member_id.','SELECT member_id,member_name||\' (\'||plan_type||\')\' AS member_plan FROM members ORDER BY member_id ASC;','members');
+  add(5,'ROUND','Return claim_id and allowed_amount divided by billed_amount as allowed_ratio, rounded to two decimals. Exclude zero billed amounts.','SELECT claim_id,ROUND(allowed_amount/billed_amount,2) AS allowed_ratio FROM claims WHERE billed_amount<>0 ORDER BY claim_id ASC;','claims');
+  add(5,'ROUND','Return plan_type and average risk_score as avg_risk_score rounded to two decimals. Sort descending.','SELECT plan_type,ROUND(AVG(risk_score),2) AS avg_risk_score FROM members GROUP BY plan_type ORDER BY avg_risk_score DESC;','members');
+  add(5,'Arithmetic','Return claim_id, billed_amount, paid_amount, and the unpaid amount as unpaid_amount. Sort by unpaid_amount descending.','SELECT claim_id,billed_amount,paid_amount,billed_amount-paid_amount AS unpaid_amount FROM claims ORDER BY unpaid_amount DESC;','claims');
+  add(5,'Arithmetic','Return pharmacy_claim_id, quantity, days_supply, and quantity per day as daily_quantity rounded to two decimals. Exclude zero-day supplies.','SELECT pharmacy_claim_id,quantity,days_supply,ROUND(1.0*quantity/days_supply,2) AS daily_quantity FROM pharmacy_claims WHERE days_supply<>0 ORDER BY pharmacy_claim_id ASC;','pharmacy_claims');
+  add(5,'Date functions','Return claim_id, claim_date, and claim year as claim_year. Sort by claim_date.','SELECT claim_id,claim_date,strftime(\'%Y\',claim_date) AS claim_year FROM claims ORDER BY claim_date ASC;','claims');
+  add(5,'Date functions','Return claim_id, claim_date, and claim month as claim_month in YYYY-MM format. Sort chronologically.','SELECT claim_id,claim_date,strftime(\'%Y-%m\',claim_date) AS claim_month FROM claims ORDER BY claim_date ASC;','claims');
+  add(5,'Date functions','Return member_id, enrollment_date, and enrollment year as enrollment_year. Sort by enrollment_date.','SELECT member_id,enrollment_date,strftime(\'%Y\',enrollment_date) AS enrollment_year FROM members ORDER BY enrollment_date ASC;','members');
+  add(5,'Date arithmetic','Return claim_id, claim_date, transaction_date, and days_to_transaction as an integer. Join claims to financial_data and sort descending.','SELECT c.claim_id,c.claim_date,f.transaction_date,CAST(julianday(f.transaction_date)-julianday(c.claim_date) AS INTEGER) AS days_to_transaction FROM claims c INNER JOIN financial_data f ON c.claim_id=f.claim_id ORDER BY days_to_transaction DESC,c.claim_id ASC;',['claims','financial_data']);
+  add(5,'Date functions','Return claim_id, claim_date, and a follow_up_date 30 days after the claim. Sort by claim_date.','SELECT claim_id,claim_date,date(claim_date,\'+30 days\') AS follow_up_date FROM claims ORDER BY claim_date ASC;','claims');
+  add(5,'CAST','Return financial_id, amount, and amount converted to INTEGER as whole_amount. Sort by financial_id.','SELECT financial_id,amount,CAST(amount AS INTEGER) AS whole_amount FROM financial_data ORDER BY financial_id ASC;','financial_data');
+  add(5,'CAST','Return claim_id and claim_id converted to text as claim_id_text. Sort by claim_id.','SELECT claim_id,CAST(claim_id AS TEXT) AS claim_id_text FROM claims ORDER BY claim_id ASC;','claims');
+  add(5,'COALESCE','Return claim_id and allowed_amount, replacing NULL with 0 as allowed_amount_clean. Sort by claim_id.','SELECT claim_id,COALESCE(allowed_amount,0) AS allowed_amount_clean FROM claims ORDER BY claim_id ASC;','claims');
+  add(5,'COALESCE','Return provider_id, provider_name, and claim_id for every provider, replacing a missing claim_id with 0 as claim_id_clean.','SELECT p.provider_id,p.provider_name,COALESCE(c.claim_id,0) AS claim_id_clean FROM providers p LEFT JOIN claims c ON p.provider_id=c.provider_id ORDER BY p.provider_id,c.claim_id;',['providers','claims']);
+  add(5,'NULLIF','Return claim_id and paid_amount divided by allowed_amount as payment_ratio, using NULLIF to prevent division by zero. Round to two decimals.','SELECT claim_id,ROUND(paid_amount/NULLIF(allowed_amount,0),2) AS payment_ratio FROM claims ORDER BY claim_id ASC;','claims');
+  add(5,'NULLIF','Return pharmacy_claim_id and quantity divided by days_supply as daily_quantity, using NULLIF to prevent division by zero.','SELECT pharmacy_claim_id,ROUND(1.0*quantity/NULLIF(days_supply,0),2) AS daily_quantity FROM pharmacy_claims ORDER BY pharmacy_claim_id ASC;','pharmacy_claims');
+  add(5,'CASE','Return claim_id, billed_amount, and a cost_band: High for 5000 or more, Medium for 1000 or more, otherwise Low.','SELECT claim_id,billed_amount,CASE WHEN billed_amount>=5000 THEN \'High\' WHEN billed_amount>=1000 THEN \'Medium\' ELSE \'Low\' END AS cost_band FROM claims ORDER BY billed_amount DESC;','claims');
+  add(5,'CASE','Return member_id, risk_score, and risk_band: High at 0.75 or more, Medium at 0.50 or more, otherwise Low.','SELECT member_id,risk_score,CASE WHEN risk_score>=0.75 THEN \'High\' WHEN risk_score>=0.50 THEN \'Medium\' ELSE \'Low\' END AS risk_band FROM members ORDER BY risk_score DESC;','members');
+  add(5,'CASE','Return claim_id, claim_status, and is_paid as 1 for Paid claims and 0 otherwise. Sort by claim_id.','SELECT claim_id,claim_status,CASE WHEN claim_status=\'Paid\' THEN 1 ELSE 0 END AS is_paid FROM claims ORDER BY claim_id ASC;','claims');
+  add(5,'Text cleaning','Return provider_id and a standardized provider name as provider_standardized by trimming spaces and converting to uppercase.','SELECT provider_id,UPPER(TRIM(provider_name)) AS provider_standardized FROM providers ORDER BY provider_id ASC;','providers');
+  add(5,'Text functions','Return member_id, member_name, and the first name as first_name by taking the text before the first space.','SELECT member_id,member_name,SUBSTR(member_name,1,INSTR(member_name,\' \')-1) AS first_name FROM members ORDER BY member_id ASC;','members');
+  add(5,'Date and CASE','Return claim_id, claim_date, and period: H1 for January through June and H2 otherwise. Sort by claim_date.','SELECT claim_id,claim_date,CASE WHEN CAST(strftime(\'%m\',claim_date) AS INTEGER)<=6 THEN \'H1\' ELSE \'H2\' END AS period FROM claims ORDER BY claim_date ASC;','claims');
+  add(5,'Date aggregation','Return claim month as claim_month and total paid as total_paid, rounded to two decimals. Use YYYY-MM and sort chronologically.','SELECT strftime(\'%Y-%m\',claim_date) AS claim_month,ROUND(SUM(paid_amount),2) AS total_paid FROM claims GROUP BY strftime(\'%Y-%m\',claim_date) ORDER BY claim_month ASC;','claims');
+  add(5,'COALESCE and arithmetic','Return claim_id and outstanding_amount as billed_amount minus paid_amount, treating a NULL paid_amount as zero. Sort descending.','SELECT claim_id,billed_amount-COALESCE(paid_amount,0) AS outstanding_amount FROM claims ORDER BY outstanding_amount DESC;','claims');
+  add(5,'CASE and aggregation','Return claim_type, claim_count, and payment_rate: percentage of claims with Paid status, rounded to one decimal.','SELECT claim_type,COUNT(*) AS claim_count,ROUND(100.0*SUM(CASE WHEN claim_status=\'Paid\' THEN 1 ELSE 0 END)/COUNT(*),1) AS payment_rate FROM claims GROUP BY claim_type ORDER BY claim_type ASC;','claims');
+
+  /* Level 6 — Advanced analytics */
+  add(6,'OVER','Return claim_id, billed_amount, and overall average billed amount as avg_billed using OVER(). Sort by claim_id.','SELECT claim_id,billed_amount,AVG(billed_amount) OVER () AS avg_billed FROM claims ORDER BY claim_id ASC;','claims');
+  add(6,'PARTITION BY','Return claim_id, claim_type, billed_amount, and average billed within claim_type as type_avg_billed.','SELECT claim_id,claim_type,billed_amount,AVG(billed_amount) OVER (PARTITION BY claim_type) AS type_avg_billed FROM claims ORDER BY claim_type,claim_id;','claims');
+  add(6,'Window ORDER BY','Return claim_id, claim_date, paid_amount, and cumulative paid amount as running_paid ordered by claim_date and claim_id.','SELECT claim_id,claim_date,paid_amount,SUM(paid_amount) OVER (ORDER BY claim_date,claim_id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_paid FROM claims ORDER BY claim_date,claim_id;','claims');
+  add(6,'ROW_NUMBER','Return claim_id, claim_type, paid_amount, and row_number ranking claims within each claim_type from highest paid to lowest as row_num.','SELECT claim_id,claim_type,paid_amount,ROW_NUMBER() OVER (PARTITION BY claim_type ORDER BY paid_amount DESC,claim_id ASC) AS row_num FROM claims ORDER BY claim_type,row_num;','claims');
+  add(6,'ROW_NUMBER','Return member_id, claim_id, claim_date, and row number from newest to oldest within each member as recency_num.','SELECT member_id,claim_id,claim_date,ROW_NUMBER() OVER (PARTITION BY member_id ORDER BY claim_date DESC,claim_id DESC) AS recency_num FROM claims ORDER BY member_id,recency_num;','claims');
+  add(6,'RANK','Return claim_id, billed_amount, and rank by billed_amount from highest to lowest as billed_rank.','SELECT claim_id,billed_amount,RANK() OVER (ORDER BY billed_amount DESC) AS billed_rank FROM claims ORDER BY billed_rank,claim_id;','claims');
+  add(6,'RANK','Return provider_id, total_billed, and provider rank as provider_rank after totaling billed claims by provider.','WITH provider_totals AS (SELECT provider_id,SUM(billed_amount) AS total_billed FROM claims GROUP BY provider_id) SELECT provider_id,total_billed,RANK() OVER (ORDER BY total_billed DESC) AS provider_rank FROM provider_totals ORDER BY provider_rank,provider_id;','claims');
+  add(6,'DENSE_RANK','Return member_id, plan_type, risk_score, and dense rank within each plan from highest risk to lowest as risk_rank.','SELECT member_id,plan_type,risk_score,DENSE_RANK() OVER (PARTITION BY plan_type ORDER BY risk_score DESC) AS risk_rank FROM members ORDER BY plan_type,risk_rank,member_id;','members');
+  add(6,'DENSE_RANK','Return medication, total_paid, and dense rank by total paid as medication_rank.','WITH medication_totals AS (SELECT medication,SUM(paid_amount) AS total_paid FROM pharmacy_claims GROUP BY medication) SELECT medication,total_paid,DENSE_RANK() OVER (ORDER BY total_paid DESC) AS medication_rank FROM medication_totals ORDER BY medication_rank,medication;','pharmacy_claims');
+  add(6,'LAG','Return claim_id, claim_date, paid_amount, and previous paid amount as previous_paid ordered by claim_date.','SELECT claim_id,claim_date,paid_amount,LAG(paid_amount) OVER (ORDER BY claim_date,claim_id) AS previous_paid FROM claims ORDER BY claim_date,claim_id;','claims');
+  add(6,'LAG','Return transaction_date, amount, previous amount as previous_amount, and change from previous as amount_change.','SELECT transaction_date,amount,LAG(amount) OVER (ORDER BY transaction_date,financial_id) AS previous_amount,amount-LAG(amount) OVER (ORDER BY transaction_date,financial_id) AS amount_change FROM financial_data ORDER BY transaction_date,financial_id;','financial_data');
+  add(6,'LEAD','Return pharmacy_claim_id, fill_date, medication, and next fill date as next_fill_date within each medication.','SELECT pharmacy_claim_id,fill_date,medication,LEAD(fill_date) OVER (PARTITION BY medication ORDER BY fill_date,pharmacy_claim_id) AS next_fill_date FROM pharmacy_claims ORDER BY medication,fill_date;','pharmacy_claims');
+  add(6,'LEAD','Return member_id, claim_id, claim_date, and next claim date as next_claim_date within each member.','SELECT member_id,claim_id,claim_date,LEAD(claim_date) OVER (PARTITION BY member_id ORDER BY claim_date,claim_id) AS next_claim_date FROM claims ORDER BY member_id,claim_date;','claims');
+  add(6,'Running totals','Return transaction_date, amount, and running amount as running_amount ordered chronologically.','SELECT transaction_date,amount,SUM(amount) OVER (ORDER BY transaction_date,financial_id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_amount FROM financial_data ORDER BY transaction_date,financial_id;','financial_data');
+  add(6,'Running totals','Return claim_id, provider_id, claim_date, paid_amount, and cumulative provider payment as provider_running_paid.','SELECT claim_id,provider_id,claim_date,paid_amount,SUM(paid_amount) OVER (PARTITION BY provider_id ORDER BY claim_date,claim_id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS provider_running_paid FROM claims ORDER BY provider_id,claim_date,claim_id;','claims');
+  add(6,'Moving average','Return claim_id, claim_date, paid_amount, and three-claim moving average as moving_avg_paid ordered chronologically.','SELECT claim_id,claim_date,paid_amount,AVG(paid_amount) OVER (ORDER BY claim_date,claim_id ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg_paid FROM claims ORDER BY claim_date,claim_id;','claims');
+  add(6,'Moving average','Return transaction_date, amount, and two-transaction moving average as moving_avg_amount.','SELECT transaction_date,amount,AVG(amount) OVER (ORDER BY transaction_date,financial_id ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS moving_avg_amount FROM financial_data ORDER BY transaction_date,financial_id;','financial_data');
+  add(6,'Top N per group','Return the two highest billed claims within each claim_type. Include claim_id, claim_type, billed_amount, and row_num.','WITH ranked AS (SELECT claim_id,claim_type,billed_amount,ROW_NUMBER() OVER (PARTITION BY claim_type ORDER BY billed_amount DESC,claim_id) AS row_num FROM claims) SELECT claim_id,claim_type,billed_amount,row_num FROM ranked WHERE row_num<=2 ORDER BY claim_type,row_num;','claims');
+  add(6,'Top N per group','Return the highest-risk member within each plan_type. Include member_id, plan_type, risk_score, and row_num.','WITH ranked AS (SELECT member_id,plan_type,risk_score,ROW_NUMBER() OVER (PARTITION BY plan_type ORDER BY risk_score DESC,member_id) AS row_num FROM members) SELECT member_id,plan_type,risk_score,row_num FROM ranked WHERE row_num=1 ORDER BY plan_type;','members');
+  add(6,'Latest record','Return the latest claim for each member using ROW_NUMBER. Include member_id, claim_id, claim_date, and billed_amount.','WITH ranked AS (SELECT member_id,claim_id,claim_date,billed_amount,ROW_NUMBER() OVER (PARTITION BY member_id ORDER BY claim_date DESC,claim_id DESC) AS row_num FROM claims) SELECT member_id,claim_id,claim_date,billed_amount FROM ranked WHERE row_num=1 ORDER BY member_id;','claims');
+  add(6,'Deduplication','Return one row for the latest pharmacy fill for each member and medication. Include member_id, medication, fill_date, and pharmacy_claim_id.','WITH ranked AS (SELECT member_id,medication,fill_date,pharmacy_claim_id,ROW_NUMBER() OVER (PARTITION BY member_id,medication ORDER BY fill_date DESC,pharmacy_claim_id DESC) AS row_num FROM pharmacy_claims) SELECT member_id,medication,fill_date,pharmacy_claim_id FROM ranked WHERE row_num=1 ORDER BY member_id,medication;','pharmacy_claims');
+  add(6,'Month-over-month','Return claim_month, total_paid, previous_total_paid, and month_over_month_change. Use LAG on monthly totals.','WITH monthly AS (SELECT strftime(\'%Y-%m\',claim_date) AS claim_month,SUM(paid_amount) AS total_paid FROM claims GROUP BY strftime(\'%Y-%m\',claim_date)) SELECT claim_month,total_paid,LAG(total_paid) OVER (ORDER BY claim_month) AS previous_total_paid,total_paid-LAG(total_paid) OVER (ORDER BY claim_month) AS month_over_month_change FROM monthly ORDER BY claim_month;','claims');
+  add(6,'Month-over-month','Return transaction_month, net_amount, and percentage change from the prior month as pct_change, rounded to two decimals.','WITH monthly AS (SELECT strftime(\'%Y-%m\',transaction_date) AS transaction_month,SUM(amount) AS net_amount FROM financial_data GROUP BY strftime(\'%Y-%m\',transaction_date)), lagged AS (SELECT transaction_month,net_amount,LAG(net_amount) OVER (ORDER BY transaction_month) AS prior_amount FROM monthly) SELECT transaction_month,net_amount,ROUND(100.0*(net_amount-prior_amount)/NULLIF(prior_amount,0),2) AS pct_change FROM lagged ORDER BY transaction_month;','financial_data');
+  add(6,'Window percentages','Return claim_id, claim_type, billed_amount, and percentage of its claim-type total as type_percentage, rounded to two decimals.','SELECT claim_id,claim_type,billed_amount,ROUND(100.0*billed_amount/SUM(billed_amount) OVER (PARTITION BY claim_type),2) AS type_percentage FROM claims ORDER BY claim_type,claim_id;','claims');
+  add(6,'Window comparison','Return claim_id, provider_id, billed_amount, provider average as provider_avg, and difference from that average as difference_from_avg.','SELECT claim_id,provider_id,billed_amount,AVG(billed_amount) OVER (PARTITION BY provider_id) AS provider_avg,billed_amount-AVG(billed_amount) OVER (PARTITION BY provider_id) AS difference_from_avg FROM claims ORDER BY provider_id,claim_id;','claims');
+  add(6,'Cumulative percentage','Return claim_id, billed_amount, running billed amount as running_billed, and cumulative percentage of all billed amount as cumulative_percentage, highest billed first.','SELECT claim_id,billed_amount,SUM(billed_amount) OVER (ORDER BY billed_amount DESC,claim_id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_billed,ROUND(100.0*SUM(billed_amount) OVER (ORDER BY billed_amount DESC,claim_id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)/SUM(billed_amount) OVER (),2) AS cumulative_percentage FROM claims ORDER BY billed_amount DESC,claim_id;','claims');
+  add(6,'NTILE','Divide members into four risk groups using NTILE(4). Return member_id, risk_score, and risk_quartile with highest risk first.','SELECT member_id,risk_score,NTILE(4) OVER (ORDER BY risk_score DESC) AS risk_quartile FROM members ORDER BY risk_score DESC,member_id;','members');
+  add(6,'Window counts','Return each claim with claim_id, member_id, and total number of claims for that member as member_claim_count.','SELECT claim_id,member_id,COUNT(*) OVER (PARTITION BY member_id) AS member_claim_count FROM claims ORDER BY member_id,claim_id;','claims');
+  add(6,'Gap analysis','Return member_id, claim_id, claim_date, previous claim date as previous_claim_date, and days_since_previous within each member.','SELECT member_id,claim_id,claim_date,LAG(claim_date) OVER (PARTITION BY member_id ORDER BY claim_date,claim_id) AS previous_claim_date,CAST(julianday(claim_date)-julianday(LAG(claim_date) OVER (PARTITION BY member_id ORDER BY claim_date,claim_id)) AS INTEGER) AS days_since_previous FROM claims ORDER BY member_id,claim_date;','claims');
+  add(6,'Ranked aggregation','Return claim_month, total_billed, and dense rank of months from highest total billed to lowest as revenue_rank.','WITH monthly AS (SELECT strftime(\'%Y-%m\',claim_date) AS claim_month,SUM(billed_amount) AS total_billed FROM claims GROUP BY strftime(\'%Y-%m\',claim_date)) SELECT claim_month,total_billed,DENSE_RANK() OVER (ORDER BY total_billed DESC) AS revenue_rank FROM monthly ORDER BY revenue_rank,claim_month;','claims');
+
+  return Object.fromEntries(Object.entries(banks).map(([level,items])=>[level,Object.freeze(items)]));
+}
+
+const SECTION_BANKS=buildCareerCurriculum();
 const SECTION_TYPE_COUNTS=Object.fromEntries(Object.entries(SECTION_BANKS).map(([s,b])=>[s,b.length]));
 
 function makeGeneratedQuestion(section,targetTopic=null){
-  const bank=SECTION_BANKS[Math.min(10,Math.max(1,Number(section)||1))]||SECTION_BANKS[1];
+  const bank=SECTION_BANKS[Math.min(6,Math.max(1,Number(section)||1))]||SECTION_BANKS[1];
   let pool=bank;
   if(targetTopic){const same=bank.filter(fn=>{try{return fn().topic===targetTopic;}catch(e){return false;}});if(same.length)pool=same;}
   return pick(pool)();
@@ -2106,13 +2488,15 @@ function makeGeneratedQuestion(section,targetTopic=null){
 
 function makeReinforcementQuestion(previous){
   if(!previous)return null;
-  const section=Math.min(10,Math.max(1,Number(previous.section)||Number(state.section)||1));
+  const section=Math.min(6,Math.max(1,Number(previous.section)||Number(state.section)||1));
   const bank=SECTION_BANKS[section]||SECTION_BANKS[1];
-  const same=bank.filter(fn=>{try{return fn().logicKey===previous.logicKey;}catch(e){return false;}});
-  const sameTopic=bank.filter(fn=>{try{return fn().topic===previous.topic;}catch(e){return false;}});
-  const pool=same.length?same:(sameTopic.length?sameTopic:bank);
-  for(let i=0;i<80;i++){const x=pick(pool)();if(x.prompt!==previous.prompt||pool.length===1){x.section=section;x.reinforcement=true;x.logicKey=previous.logicKey;return x;}}
-  return null;
+  const pool=bank.map(fn=>fn()).filter(x=>x && x.id!==previous.id && !questionSeen[x.id] && x.topic===previous.topic);
+  if(!pool.length)return null;
+  const x=pick(pool);
+  questionSeen[x.id]={seenAt:Date.now(),section,topic:x.topic};
+  localStorage.setItem('sqlLabSeenQuestions',JSON.stringify(questionSeen));
+  x.section=section;x.reinforcement=true;
+  return x;
 }
 
 
@@ -2127,40 +2511,24 @@ function rememberTopic(topic){
 }
 
 function generateUniqueQuestion(section,targetTopic=null){
-  const selectedSection=Math.min(10,Math.max(1,Number(section)||1));
-  const pool=[];
-
-  // Build a large candidate pool before choosing. This prevents a random
-  // pick from serving the same SQL question type repeatedly.
-  for(let i=0;i<150;i++){
-    const candidate=makeGeneratedQuestion(selectedSection,targetTopic);
-    if(!candidate || !candidate.id) continue;
-    if(questionSeen[candidate.id]) continue;
-    pool.push(candidate);
+  if(typeof window.__curriculumQuestionProvider==='function'){
+    const curriculumQuestion=window.__curriculumQuestionProvider(section,targetTopic);
+    if(curriculumQuestion) return curriculumQuestion;
   }
-
-  if(!pool.length){
-    const candidate=makeGeneratedQuestion(selectedSection,targetTopic);
-    if(!candidate) return null;
-    candidate.id=(candidate.id||hashQuestion(candidate.topic+"|"+candidate.prompt))+"-"+Date.now()+"-"+Math.random().toString(36).slice(2,8);
-    questionSeen[candidate.id]={seenAt:Date.now(),section:selectedSection,topic:candidate.topic};
-    localStorage.setItem("sqlLabSeenQuestions",JSON.stringify(questionSeen));
-    rememberTopic(candidate.topic);
-    return candidate;
-  }
-
-  // Normal practice: avoid any topic used during the previous five questions.
-  // This is what stops INSERT, WHERE, GROUP BY, etc. from appearing in long streaks.
-  let choices=targetTopic ? pool : pool.filter(q=>!recentTopics.includes(q.topic));
-  if(!choices.length && !targetTopic){
-    const lastTopic=recentTopics[recentTopics.length-1];
-    choices=pool.filter(q=>q.topic!==lastTopic);
-  }
-  if(!choices.length) choices=pool;
-
-  const candidate=pick(choices);
+  const selectedSection=Math.min(6,Math.max(1,Number(section)||1));
+  const bank=SECTION_BANKS[selectedSection]||[];
+  // A finite bank cannot guarantee unlimited distinct questions. Never disguise
+  // a repeated exercise with a fresh ID.
+  const candidates=bank.map(factory=>factory()).filter(q=>q && !questionSeen[q.id]);
+  const matching=targetTopic?candidates.filter(q=>q.topic===targetTopic):candidates;
+  const available=matching.length?matching:(targetTopic?[]:candidates);
+  if(!available.length) return null;
+  const freshTopics=available.filter(q=>!recentTopics.includes(q.topic));
+  const choices=freshTopics.length?freshTopics:available;
+  const leastSeen=Math.min(...choices.map(q=>Object.values(questionSeen).filter(x=>x.topic===q.topic).length));
+  const candidate=pick(choices.filter(q=>Object.values(questionSeen).filter(x=>x.topic===q.topic).length===leastSeen));
   questionSeen[candidate.id]={seenAt:Date.now(),section:selectedSection,topic:candidate.topic};
-  localStorage.setItem("sqlLabSeenQuestions",JSON.stringify(questionSeen));
+  localStorage.setItem('sqlLabSeenQuestions',JSON.stringify(questionSeen));
   rememberTopic(candidate.topic);
   return candidate;
 }
@@ -2172,31 +2540,14 @@ function questionIntegrityCheck(q){
 }
 
 function currentGeneratedQuestion(){
-  const selectedSection=Math.min(10,Math.max(1,Number(state.section)||1));
+  const selectedSection=Math.min(6,Math.max(1,Number(state.section)||1));
   const invalidSavedQuestion=state.currentQuestion && !questionIntegrityCheck(state.currentQuestion);
   const wrongSection=state.currentQuestion && Number(state.currentQuestion.section)!==selectedSection;
+  const supportedCurriculumVersions=['SIX_LEVELS_EASY_V2','FIVE_LEVEL_TOPIC_V1','FIVE_LEVEL_PRO_V2'];
+  const outdatedSavedQuestion=state.currentQuestion && (!Array.isArray(state.currentQuestion.hints)||!supportedCurriculumVersions.includes(state.currentQuestion.curriculumVersion)||/\bvariant\s+\d+/i.test(state.currentQuestion.prompt||''));
 
-  if(!state.currentQuestion || wrongSection || invalidSavedQuestion){
+  if(!state.currentQuestion || wrongSection || invalidSavedQuestion || outdatedSavedQuestion){
     let next=generateUniqueQuestion(selectedSection);
-
-    // Never let a failed generator leave the question card blank. The bank is
-    // the source of truth, so retry a few times before using its first valid
-    // question as a guaranteed fallback.
-    for(let i=0;(!next || !questionIntegrityCheck(next)) && i<10;i++){
-      next=generateUniqueQuestion(selectedSection);
-    }
-    if(!next || !questionIntegrityCheck(next)){
-      const bank=SECTION_BANKS[selectedSection]||[];
-      for(const factory of bank){
-        try{
-          const candidate=factory();
-          if(candidate && candidate.prompt && Array.isArray(candidate.accepted) && candidate.accepted.length){
-            next=candidate;
-            break;
-          }
-        }catch(e){}
-      }
-    }
 
     if(!next){
       console.error('SQL Lab could not generate a question for section',selectedSection);
@@ -2220,7 +2571,7 @@ function currentGeneratedQuestion(){
 // different section. This deliberately does NOT alter XP, solved count,
 // attempts, or completed-question history.
 function changePracticeSection(section,level){
-  const selectedSection=Math.min(10,Math.max(1,Number(section)||1));
+  const selectedSection=Math.min(6,Math.max(1,Number(section)||1));
   state.section=selectedSection;
   state.level=Number(level)||state.level||1;
   state.index=0;
@@ -2286,11 +2637,11 @@ if(localStorage.getItem("sqlLabScoreSystemVersion") !== SCORE_SYSTEM_VERSION){
 
 const savedLevel=Number(localStorage.getItem("sqlLabLevel")||1);
 const savedSection=Number(localStorage.getItem("sqlLabSection")||0);
-const defaultSectionByLevel={1:1,2:3,3:4,4:5,5:9};
+const defaultSectionByLevel={1:1,2:2,3:3,4:4,5:5,6:6};
 
 const state = window.__sqlLabState = {
-  level:savedLevel,
-  section:savedSection || defaultSectionByLevel[savedLevel] || 1,
+  level:Math.min(6,Math.max(1,savedLevel||1)),
+  section:Math.min(6,Math.max(1,savedSection || defaultSectionByLevel[savedLevel] || 1)),
   index:Number(localStorage.getItem("sqlLabIndex")||0),
   solved:Number(localStorage.getItem("sqlLabSolved")||0),
   attempts:Number(localStorage.getItem("sqlLabAttempts")||0),
@@ -2422,6 +2773,26 @@ function enableAttemptSubmission(){
   submitBtn.style.cursor="pointer";
 }
 
+function conciseTask(prompt){
+  return String(prompt||'').replace(/\bWrite a query to (?:return|find|show)\b/i,'Return')
+    .replace(/\bWrite a query to (?:insert|update|delete|count|calculate|rank)\b/i,(_,verb)=>verb[0].toUpperCase()+verb.slice(1).toLowerCase())
+    .replace(/\bKeep duplicate rows and do not sort the result\.?/gi,'')
+    .replace(/\s+/g,' ').replace(/\s+\./g,'.').trim();
+}
+function conceptSummary(q){
+  const sql=String(q.accepted?.[0]||'').toUpperCase();
+  if(/^INSERT/.test(sql))return 'INSERT adds a row; match each value to its column.';
+  if(/^UPDATE/.test(sql))return 'UPDATE changes rows; WHERE selects which rows change.';
+  if(/^DELETE/.test(sql))return 'DELETE removes rows; check the WHERE condition.';
+  if(/\bOVER\s*\(/.test(sql))return 'A window function calculates across rows without collapsing them.';
+  if(/\bJOIN\b/.test(sql))return 'JOIN connects tables using matching keys.';
+  if(/\bHAVING\b/.test(sql))return 'HAVING filters groups after aggregation.';
+  if(/\bGROUP BY\b/.test(sql))return 'GROUP BY summarizes rows for each category.';
+  if(/\bDISTINCT\b/.test(sql))return 'DISTINCT removes duplicate result rows.';
+  if(/\bWHERE\b/.test(sql))return 'WHERE filters rows before they are returned.';
+  if(/^WITH/.test(sql))return 'A CTE names a temporary result for this query.';
+  return 'SELECT chooses the columns to return.';
+}
 function renderQuestion(){
   const title=document.getElementById("questionTitle");
   if(title) title.textContent="Loading SQL exercise…";
@@ -2438,18 +2809,22 @@ function renderQuestion(){
   }
   enableAttemptSubmission();
   document.getElementById("questionNumber").textContent="∞";
-  document.getElementById("questionTitle").textContent=q.prompt;
+  document.getElementById("questionTitle").innerHTML=`<div class="job-question"><div class="job-question-task"><span class="job-question-label">Your task</span>${renderInlineSql(conciseTask(q.prompt))}</div></div>`;
   // Preserve the learner's submitted SQL when a wrong answer triggers a reinforcement question.
   // A brand-new question starts with an empty editor because currentAnswerDraft is cleared first.
   document.getElementById("sql").value=state.currentAnswerDraft||"";
+  if(window.syncSqlEditor) window.syncSqlEditor();
   clearStatus();
   resetAttemptUI();
   if(window.resetSqlLabHints) window.resetSqlLabHints();
   const topicEl=document.getElementById("questionTopic");
   const acceptedEl=document.getElementById("acceptedForms");
-  if(topicEl) topicEl.textContent=q.topic;
-  if(acceptedEl) acceptedEl.textContent=q.acceptedNote;
-  renderTableForQuestion(q.table);
+  if(topicEl) topicEl.textContent=(q.difficultyLabel||'Easy')+' • '+q.topic;
+  if(acceptedEl) acceptedEl.hidden=true;
+  const conceptEl=document.getElementById('conceptFocus');
+  if(conceptEl) conceptEl.textContent='Concept: '+q.topic+' — '+conceptSummary(q);
+  renderTableForQuestion(q.table,q);
+  updateAttemptIndicator();
   saveState();
 }
 function nextGeneratedQuestion(){
@@ -2458,19 +2833,7 @@ function nextGeneratedQuestion(){
     console.error("SQL Lab next-question generation error:",error);
   }
   if(!next){
-    const bank=SECTION_BANKS[state.section]||SECTION_BANKS[1]||[];
-    for(const factory of bank){
-      try{
-        const candidate=factory();
-        if(candidate && candidate.prompt && Array.isArray(candidate.accepted) && candidate.accepted.length){
-          next=candidate;
-          break;
-        }
-      }catch(error){}
-    }
-  }
-  if(!next){
-    showStatus("⚠️ Unable to generate the next SQL exercise. Please select a section again.","error");
+    showStatus("⚠️ You completed every distinct question in this section. Choose another section to keep practicing.","error");
     return false;
   }
   state.currentQuestion=next;
@@ -2500,7 +2863,26 @@ function resolveQuestionTables(tableRef){
   return found;
 }
 
-function renderTableForQuestion(tableRef){
+function previewColumnIndexes(data,question,maxColumns=10){
+  const all=data.columns.map((_,index)=>index);
+  if(all.length<=maxColumns) return all;
+
+  // Keep every column referenced by the current task or its reference SQL,
+  // then fill the remaining slots in the table's natural schema order.
+  const questionText=[question?.prompt,...(question?.accepted||[])].join(' ').toLowerCase();
+  const required=all.filter(index=>{
+    const name=String(data.columns[index][0]||'').toLowerCase();
+    return new RegExp('(^|[^a-z0-9_])'+name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^a-z0-9_]|$)','i').test(questionText);
+  });
+  const selected=[...required];
+  for(const index of all){
+    if(selected.length>=maxColumns) break;
+    if(!selected.includes(index)) selected.push(index);
+  }
+  return selected.slice(0,maxColumns).sort((a,b)=>a-b);
+}
+
+function renderTableForQuestion(tableRef,question=null){
   // The separate schema/related-table card has been removed.
   // The challenge now uses the full-width Data Preview as the single
   // source of table structure and sample data.
@@ -2520,12 +2902,13 @@ function renderTableForQuestion(tableRef){
   if(preview){
     preview.innerHTML=tables.map(tableName=>{
       const data=DB[tableName];
+      const columnIndexes=previewColumnIndexes(data,question,10);
       return `<div class="data-preview-block">
         <div class="data-preview-block-title">▣ ${tableName} <span>${data.rows.length} rows</span></div>
         <div class="data-preview-scroll">
           <table class="data-table">
-            <thead><tr>${data.columns.map(c=>`<th>${c[0]}</th>`).join("")}</tr></thead>
-            <tbody>${data.rows.map(r=>`<tr>${r.map(v=>`<td>${v}</td>`).join("")}</tr>`).join("")}</tbody>
+            <thead><tr>${columnIndexes.map(index=>`<th>${data.columns[index][0]}</th>`).join("")}</tr></thead>
+            <tbody>${data.rows.map(r=>`<tr>${columnIndexes.map(index=>`<td>${r[index]}</td>`).join("")}</tr>`).join("")}</tbody>
           </table>
         </div>
       </div>`;
@@ -2593,6 +2976,7 @@ function resetAttemptUI(){
   if(resultBox) resultBox.hidden=true;
   if(resultNote) resultNote.textContent="";
   if(resultTable) resultTable.innerHTML="";
+  updateAttemptIndicator();
 }
 
 function showAttemptMessage(remaining){
@@ -2600,6 +2984,22 @@ function showAttemptMessage(remaining){
   if(!el) return;
   el.textContent=`You have ${remaining} ${remaining===1?"attempt":"attempts"} left`;
   el.className="attempts-status attempts-error";
+  updateAttemptIndicator();
+}
+
+function updateAttemptIndicator(){
+  const indicator=document.getElementById('attemptIndicator');
+  if(!indicator||!window.__sqlLabState)return;
+  const used=Math.max(0,Number(window.__sqlLabState.currentQuestionAttempts)||0);
+  const submitBtn=document.getElementById('submit');
+  if(used>=3 && submitBtn?.disabled){
+    indicator.textContent='3 attempts used';
+    indicator.className='attempt-indicator final';
+    return;
+  }
+  const next=Math.min(3,used+1);
+  indicator.textContent=`Attempt ${next} of 3`;
+  indicator.className='attempt-indicator'+(next===2?' warning':next===3?' final':'');
 }
 
 function escapeHtml(value){return String(value==null?"":value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
@@ -2786,10 +3186,37 @@ function validateSqlAnswer(userSql,q){
   let correct=false;
   if(['select','with','pragma'].includes(kind)){
     correct=resultSetsEqual(userResult.results,acceptedExecutable.results, /\border\s+by\b/i.test(accepted[0]||''));
+    // Enforce an alias only when the exercise explicitly names it in backticks.
+    if(correct){
+      const referenceAliases=[...String(accepted[0]||'').matchAll(/\bAS\s+([A-Za-z_][A-Za-z0-9_]*)/gi)].map(m=>m[1]);
+      const requiredAliases=referenceAliases.filter(alias=>String(q.prompt||'').includes('`'+alias+'`'));
+      if(requiredAliases.length){
+        const returnedColumns=(userResult.results||[]).flatMap(r=>r.columns||[]).map(c=>String(c).toLowerCase());
+        const missing=requiredAliases.filter(alias=>!returnedColumns.includes(alias.toLowerCase()));
+        if(missing.length) return {correct:false,userResult,acceptedResult:acceptedExecutable,error:`Use the required column alias${missing.length>1?'es':''}: ${missing.join(', ')}.`};
+      }
+    }
   }else{
     correct=snapshotsEqual(userResult.snapshot,acceptedExecutable.snapshot);
   }
   return {correct,userResult,acceptedResult:acceptedExecutable};
+}
+
+function attemptHint(q,attempt,validation){
+  const text=String(q?.prompt||'').toLowerCase();
+  if(validation?.error) return validation.error;
+  if(Array.isArray(q?.hints)&&q.hints.length)return q.hints[Math.min(q.hints.length-1,Math.max(0,attempt-1))];
+  if(attempt===1){
+    if(/join|provider.*member|member.*provider/.test(text)) return 'Hint: identify the tables involved and the key that connects each pair.';
+    if(/count|total|average|sum|each| by | per /.test(text)) return 'Hint: identify the grouping column and the aggregate calculation requested.';
+    if(/rank|running|previous|next/.test(text)) return 'Hint: this likely needs a window function with the correct ORDER BY or PARTITION BY.';
+    if(/older|greater|less|between|starts with|status|whose/.test(text)) return 'Hint: review the filtering condition and the exact comparison operator.';
+    return 'Hint: compare the requested columns, rows, filters, and ordering with the query you wrote.';
+  }
+  if(/sorted|order|highest|lowest|descending|ascending/.test(text)) return 'Specific hint: verify ORDER BY, ASC/DESC, and whether the requested order changes which rows appear first.';
+  if(/count|total|average|sum|each| by | per /.test(text)) return 'Specific hint: verify GROUP BY and make sure every selected non-aggregated column belongs to the grouping level.';
+  if(/join|provider.*member|member.*provider/.test(text)) return 'Specific hint: verify every ON condition and check whether the join type preserves the rows requested.';
+  return 'Specific hint: run the query and compare its number of columns and rows with what the prompt requests.';
 }
 
 function renderResultSets(results,wrap,note){
@@ -2827,7 +3254,7 @@ function renderResultSets(results,wrap,note){
   });
 }
 
-function showAnswerReveal(answerText,q){
+function showAnswerReveal(answerText,q,validation){
   const solutionBox=document.getElementById('correctSolutionBox');
   const solutionCode=document.getElementById('correctSolutionCode');
   const continueBtn=document.getElementById('continueQuestionBtn');
@@ -2839,10 +3266,13 @@ function showAnswerReveal(answerText,q){
     solutionCode.textContent=answerText||((q?.accepted||[]).join('\nOR\n'))||'No reference SQL is available.';
   }
   if(continueBtn) continueBtn.disabled=false;
+  const submitBtn=document.getElementById('submit');
+  if(submitBtn){submitBtn.disabled=true;submitBtn.style.opacity='.55';submitBtn.style.cursor='not-allowed';}
+  updateAttemptIndicator();
 
   // Always reveal the expected result for the ORIGINAL question that reached
   // the 3-attempt limit. Do not use the current reinforcement question.
-  renderExpectedResult(q);
+  renderExpectedResult(q,validation?.userResult);
 
   // Keep the reveal visible even when the page has a long exercise preview.
   requestAnimationFrame(()=>{
@@ -2850,7 +3280,7 @@ function showAnswerReveal(answerText,q){
   });
 }
 
-function renderExpectedResult(q){
+function renderExpectedResult(q,userResult=null){
   const box=document.getElementById('expectedResultBox');
   const note=document.getElementById('expectedResultNote');
   const wrap=document.getElementById('expectedResultTableWrap');
@@ -2865,7 +3295,42 @@ function renderExpectedResult(q){
     wrap.innerHTML='<div class="expected-result-empty">The answer can still be reviewed above, but this dialect-specific statement is not executable by the browser engine.</div>';
     return;
   }
+  if(userResult && !userResult.error && !userResult.unsupported){
+    const yourHeading=document.createElement('div');
+    yourHeading.className='data-preview-block-title';
+    yourHeading.textContent='Your last result';
+    wrap.appendChild(yourHeading);
+    const yourWrap=document.createElement('div');
+    wrap.appendChild(yourWrap);
+    const yourNote=document.createElement('div');
+    renderResultSets(userResult.results,yourWrap,yourNote);
+    const expectedHeading=document.createElement('div');
+    expectedHeading.className='data-preview-block-title';
+    expectedHeading.style.marginTop='14px';
+    expectedHeading.textContent='Expected result';
+    wrap.appendChild(expectedHeading);
+    const expectedWrap=document.createElement('div');
+    wrap.appendChild(expectedWrap);
+    renderResultSets(result.results,expectedWrap,note);
+    note.textContent='Compare your last output with the expected rows, columns, values, and order below.';
+    return;
+  }
   renderResultSets(result.results,wrap,note);
+}
+
+function friendlySqlError(sql,rawError){
+  const text=String(sql||'').trim();
+  const error=String(rawError||'').replace(/^SQL error:\s*/i,'');
+  const structure=sqlStructureStatus(text);
+  if(!structure.ok) return `Syntax issue: ${structure.message}. Fix it and submit again. No attempt was used.`;
+  if(!/^(SELECT|WITH|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|PRAGMA)\b/i.test(text)){
+    return 'Your answer is not a complete SQL statement. Start with a command such as SELECT, INSERT, UPDATE, or DELETE. No attempt was used.';
+  }
+  if(/^SELECT\b/i.test(text)&&!/^SELECT\s+.+/is.test(text)) return 'Your SELECT statement is incomplete. Add the columns or expressions you want to return. No attempt was used.';
+  if(/\bFROM\s*$/i.test(text)) return 'Your query ends after FROM. Add the table name and submit again. No attempt was used.';
+  if(/no such column/i.test(error)) return `Syntax issue: ${error}. Check the column names shown in the data preview. No attempt was used.`;
+  if(/no such table/i.test(error)) return `Syntax issue: ${error}. Check the table name shown above the preview. No attempt was used.`;
+  return `Syntax issue: ${error}. Review the SQL structure and try again. No attempt was used.`;
 }
 
 async function runSqlQuery(){
@@ -2875,7 +3340,7 @@ async function runSqlQuery(){
   try{
     await ensureSqlEngine();
     const result=executeAgainstFreshDatabase(sql);
-    if(result.error){showStatus(`SQL error: ${result.error}`,'error');return;}
+    if(result.error){showStatus(friendlySqlError(sql,result.error),'error');return;}
     if(result.unsupported){showStatus(result.reason,'info');return;}
     const box=document.getElementById('expectedResultBox');
     const note=document.getElementById('expectedResultNote');
@@ -2889,6 +3354,7 @@ async function runSqlQuery(){
 }
 
 async function submitAnswer(){
+  if(document.getElementById('submit')?.disabled)return;
   const input=document.getElementById('sql');
   const user=(input?.value||'').trim();
   const current=currentGeneratedQuestion();
@@ -2900,13 +3366,25 @@ async function submitAnswer(){
     return;
   }
 
+  // Empty submissions and SQL syntax/runtime errors are coaching moments, not
+  // consumed attempts. Only executable but incorrect SQL advances the chain.
+  if(!user){
+    showStatus('⚠️ Write a SQL query before submitting. No attempt was used.','error');
+    return;
+  }
+
+  const validation=validateSqlAnswer(user,current);
+  if(validation.error && /^SQL error:/i.test(validation.error)){
+    showStatus(friendlySqlError(user,validation.error),'error');
+    return;
+  }
+
   // Only consume an attempt after the SQL engine is ready. A CDN/network
   // failure must never punish the learner or advance the 3-attempt chain.
   state.attempts=(Number(state.attempts)||0)+1;
   state.currentQuestionAttempts=(Number(state.currentQuestionAttempts)||0)+1;
   state.failedAttempts=state.currentQuestionAttempts;
 
-  const validation=validateSqlAnswer(user,current);
   const isCorrect=!!validation.correct;
   if(window.recordSqlTopic) window.recordSqlTopic(current.topic,isCorrect);
 
@@ -2936,12 +3414,10 @@ async function submitAnswer(){
     return;
   }
 
-  if(!state.chainOriginalQuestion){
-    state.chainOriginalQuestion=JSON.parse(JSON.stringify(current));
-  }
+  if(!state.chainOriginalQuestion) state.chainOriginalQuestion=JSON.parse(JSON.stringify(current));
   state.streak=0;
-  state.wrongStreak=(Number(state.wrongStreak)||0)+1;
-  const chainAttempt=state.wrongStreak;
+  state.wrongStreak=state.currentQuestionAttempts;
+  const chainAttempt=state.currentQuestionAttempts;
   const originalQuestion=state.chainOriginalQuestion;
 
   if(!questionIntegrityCheck(originalQuestion)){
@@ -2962,53 +3438,185 @@ async function submitAnswer(){
   saveState();
   renderMetrics();
 
-  if(!user){
-    showStatus('⚠️ No SQL was entered. This counts as an incorrect submission for the 3-attempt limit.','error');
-  }else if(validation.error){
-    showStatus(`❌ Incorrect. ${validation.error}`,'error');
+  if(validation.error){
+    showStatus(`Incorrect result: ${validation.error}`,'error');
   }else{
-    showStatus('❌ Incorrect. The query executed, but its result/state did not match the requested solution.','error');
+    showStatus('Incorrect result: your SQL ran successfully, but the returned rows, columns, values, or order did not match the request.','error');
   }
 
   if(chainAttempt>=3){
     const answerText=(originalQuestion.accepted||[]).join('\nOR\n');
-    showStatus('❌ 3 submissions used. The correct SQL and the expected result are shown below.','error');
-    showAnswerReveal(answerText,originalQuestion);
+    showStatus('Incorrect result: all 3 attempts were used. The correct SQL and expected result are shown below.','error');
+    showAnswerReveal(answerText,originalQuestion,validation);
     return;
   }
 
-  const previous=current;
-  let reinforcement=makeReinforcementQuestion(previous);
-  if(!reinforcement) reinforcement=generateUniqueQuestion(state.section,previous.topic);
-  reinforcement.section=state.section;
-  reinforcement.level=state.level;
-  reinforcement.reinforcement=true;
-  reinforcement.parentQuestionId=previous.id;
-  reinforcement.id=(reinforcement.id||hashQuestion(reinforcement.topic+'|'+reinforcement.prompt))+'-reinforce-'+Date.now();
-  questionSeen[reinforcement.id]={seenAt:Date.now(),section:state.section,reinforcement:true,basedOn:previous.id,topic:previous.topic};
-  localStorage.setItem('sqlLabSeenQuestions',JSON.stringify(questionSeen));
-  state.currentQuestion=reinforcement;
-  state.currentQuestionAttempts=0;
-  state.failedAttempts=0;
-  state.hintsUsed=0;
-  saveState();
-  renderQuestion();
+  // Keep the exact same exercise for all three attempts and coach progressively.
   const remaining=3-chainAttempt;
-  showStatus(`❌ Incorrect. Here's a similar ${previous.topic} exercise using the same logic. Attempt ${chainAttempt} of 3. ${remaining} submission${remaining===1?'':'s'} left before the answer is revealed.`,'error');
+  showAttemptMessage(remaining);
+  showStatus(`Incorrect result — attempt ${chainAttempt} of 3. ${attemptHint(current,chainAttempt,validation)} ${remaining} attempt${remaining===1?'':'s'} remaining.`, 'error');
 }
+
+/* ============================================================
+   BEGINNER-FRIENDLY SQL EDITOR
+============================================================ */
+const SQL_KEYWORDS=['SELECT','FROM','WHERE','DISTINCT','AS','AND','OR','NOT','IN','BETWEEN','LIKE','IS','NULL','ORDER BY','ASC','DESC','GROUP BY','HAVING','LIMIT','TOP','JOIN','INNER JOIN','LEFT JOIN','RIGHT JOIN','FULL JOIN','ON','UNION','UNION ALL','CASE','WHEN','THEN','ELSE','END','WITH','INSERT INTO','VALUES','UPDATE','SET','DELETE FROM','CREATE TABLE','CREATE VIEW','CREATE INDEX','ALTER TABLE','DROP','BEGIN','COMMIT','ROLLBACK','OVER','PARTITION BY','ROWS BETWEEN'];
+const SQL_FUNCTIONS=['COUNT','SUM','AVG','MIN','MAX','COALESCE','ROUND','CAST','DATE','ROW_NUMBER','RANK','DENSE_RANK','LAG','LEAD','UPPER','LOWER','LENGTH','SUBSTR'];
+
+function sqlEditorVocabulary(){
+  const schema=[];
+  Object.entries(DB).forEach(([table,data])=>{
+    schema.push({value:table,type:'table'});
+    data.columns.forEach(column=>schema.push({value:column[0],type:'column'}));
+  });
+  const unique=new Map();
+  [...SQL_KEYWORDS.map(value=>({value,type:'keyword'})),...SQL_FUNCTIONS.map(value=>({value,type:'function'})),...schema]
+    .forEach(item=>unique.set(item.value.toLowerCase(),item));
+  return [...unique.values()];
+}
+
+function highlightSqlSource(sql){
+  const keywords=new Set(SQL_KEYWORDS.flatMap(x=>x.split(' ')).map(x=>x.toUpperCase()));
+  const functions=new Set(SQL_FUNCTIONS.map(x=>x.toUpperCase()));
+  const token=/--[^\n]*|\/\*[\s\S]*?\*\/|'(?:''|[^'])*'|"(?:""|[^"])*"|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[\s\S]/g;
+  return (String(sql||'').match(token)||[]).map(part=>{
+    const escaped=escapeHtml(part);
+    if(/^--|^\/\*/.test(part))return `<span class="sql-comment">${escaped}</span>`;
+    if(/^['"]/.test(part))return `<span class="sql-string">${escaped}</span>`;
+    if(/^\d/.test(part))return `<span class="sql-number">${escaped}</span>`;
+    if(functions.has(part.toUpperCase()))return `<span class="sql-function">${escaped}</span>`;
+    if(keywords.has(part.toUpperCase()))return `<span class="sql-keyword">${escaped}</span>`;
+    return escaped;
+  }).join('')+'\n';
+}
+
+function sqlStructureStatus(sql){
+  let parens=0,quote=null,inLineComment=false,inBlockComment=false;
+  const text=String(sql||'');
+  for(let i=0;i<text.length;i++){
+    const ch=text[i],next=text[i+1];
+    if(inLineComment){if(ch==='\n')inLineComment=false;continue;}
+    if(inBlockComment){if(ch==='*'&&next==='/'){inBlockComment=false;i++;}continue;}
+    if(!quote&&ch==='-'&&next==='-'){inLineComment=true;i++;continue;}
+    if(!quote&&ch==='/'&&next==='*'){inBlockComment=true;i++;continue;}
+    if(quote){
+      if(ch===quote){if(next===quote){i++;continue;}quote=null;}
+      continue;
+    }
+    if(ch==="'"||ch==='"'){quote=ch;continue;}
+    if(ch==='(')parens++;
+    if(ch===')')parens--;
+    if(parens<0)return {ok:false,message:'Extra closing parenthesis'};
+  }
+  if(quote)return {ok:false,message:'Unclosed quote'};
+  if(parens>0)return {ok:false,message:`${parens} unclosed parenthesis${parens===1?'':'es'}`};
+  return {ok:true,message:'Parentheses and quotes balanced'};
+}
+
+(function setupSqlEditor(){
+  const input=document.getElementById('sql');
+  const highlight=document.getElementById('sqlHighlight');
+  const balance=document.getElementById('sqlBalance');
+  const menu=document.getElementById('sqlAutocomplete');
+  const shell=input?.closest('.sql-editor-shell');
+  if(!input||!highlight||!balance||!menu||!shell)return;
+  const vocabulary=sqlEditorVocabulary();
+  let suggestions=[],activeIndex=0,wordStart=0;
+
+  function closeMenu(){menu.classList.remove('show');menu.innerHTML='';suggestions=[];activeIndex=0;}
+  function currentPrefix(){
+    const before=input.value.slice(0,input.selectionStart);
+    const match=before.match(/[A-Za-z_][A-Za-z0-9_]*$/);
+    wordStart=match?input.selectionStart-match[0].length:input.selectionStart;
+    return match?match[0]:'';
+  }
+  function renderMenu(){
+    if(!suggestions.length){closeMenu();return;}
+    menu.innerHTML=suggestions.map((item,index)=>`<button class="sql-suggestion${index===activeIndex?' active':''}" type="button" role="option" data-index="${index}"><span>${escapeHtml(item.value)}</span><small>${item.type}</small></button>`).join('');
+    menu.classList.add('show');
+    menu.querySelectorAll('.sql-suggestion').forEach(button=>button.addEventListener('mousedown',event=>{event.preventDefault();applySuggestion(Number(button.dataset.index));}));
+  }
+  function updateSuggestions(){
+    const prefix=currentPrefix();
+    if(prefix.length<1){closeMenu();return;}
+    suggestions=vocabulary.filter(item=>item.value.toLowerCase().startsWith(prefix.toLowerCase())&&item.value.toLowerCase()!==prefix.toLowerCase()).slice(0,8);
+    activeIndex=0;renderMenu();
+  }
+  function applySuggestion(index=activeIndex){
+    const item=suggestions[index];if(!item)return;
+    const end=input.selectionStart;
+    input.setRangeText(item.value,wordStart,end,'end');
+    closeMenu();sync();input.focus();
+  }
+  function sync(){
+    try{
+      highlight.innerHTML=highlightSqlSource(input.value);
+      highlight.scrollTop=input.scrollTop;highlight.scrollLeft=input.scrollLeft;
+      shell.classList.add('highlight-active');
+    }catch(error){
+      // Safe fallback: reveal the native textarea text if highlighting ever fails.
+      shell.classList.remove('highlight-active');
+      highlight.textContent='';
+    }
+    const structure=sqlStructureStatus(input.value);
+    balance.textContent=structure.message;
+    balance.className='sql-balance '+(structure.ok?'good':'bad');
+  }
+  function insertText(text){
+    input.setRangeText(text,input.selectionStart,input.selectionEnd,'end');
+    sync();
+  }
+  window.syncSqlEditor=sync;
+  input.addEventListener('input',()=>{sync();updateSuggestions();});
+  input.addEventListener('scroll',()=>{highlight.scrollTop=input.scrollTop;highlight.scrollLeft=input.scrollLeft;});
+  input.addEventListener('blur',()=>setTimeout(closeMenu,120));
+  input.addEventListener('keydown',event=>{
+    if(menu.classList.contains('show')&&['ArrowDown','ArrowUp'].includes(event.key)){
+      event.preventDefault();activeIndex=(activeIndex+(event.key==='ArrowDown'?1:-1)+suggestions.length)%suggestions.length;renderMenu();return;
+    }
+    if(menu.classList.contains('show')&&(event.key==='Tab'||(event.key==='Enter'&&!event.shiftKey))){event.preventDefault();applySuggestion();return;}
+    if(event.key==='Escape'){closeMenu();return;}
+    if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();closeMenu();submitAnswer();return;}
+    if(event.key==='Enter'&&event.shiftKey){
+      event.preventDefault();
+      const before=input.value.slice(0,input.selectionStart);const line=before.split('\n').pop()||'';
+      const base=(line.match(/^\s*/)||[''])[0];const extra=/(?:\(|\bBEGIN\b|\bTHEN\b)\s*$/i.test(line)?'  ':'';
+      insertText('\n'+base+extra);return;
+    }
+    if(event.key==='Tab'){event.preventDefault();insertText('  ');return;}
+    if(['(',"'",'"'].includes(event.key)&&input.selectionStart===input.selectionEnd){
+      const pairs={'(':')',"'":"'",'"':'"'};const next=input.value[input.selectionStart];
+      if(next===event.key&&event.key!=='('){event.preventDefault();input.selectionStart++;input.selectionEnd=input.selectionStart;return;}
+      event.preventDefault();const start=input.selectionStart;insertText(event.key+pairs[event.key]);input.selectionStart=input.selectionEnd=start+1;return;
+    }
+  });
+  sync();
+})();
 
 /* ============================================================
    BUTTONS
 ============================================================ */
 document.getElementById("submit").addEventListener("click",submitAnswer);
 document.getElementById("continueQuestionBtn").addEventListener("click",()=>{
+  const previous=state.chainOriginalQuestion || state.currentQuestion;
+  let reinforcement=makeReinforcementQuestion(previous);
+  if(!reinforcement) reinforcement=generateUniqueQuestion(state.section);
+  if(reinforcement){
+    reinforcement.section=state.section;
+    reinforcement.level=state.level;
+    reinforcement.reinforcement=true;
+    reinforcement.parentQuestionId=previous?.id;
+    state.currentQuestion=reinforcement;
+  }
+  if(!reinforcement){showStatus("You completed every distinct question in this section. Choose another section.","info");return;}
   state.wrongStreak=0;
   state.currentQuestionAttempts=0;
   state.chainOriginalQuestion=null;
   state.currentAnswerDraft="";
   saveState();
-  nextGeneratedQuestion();
-  showStatus("New randomized exercise generated.","info");
+  resetAttemptUI();
+  renderQuestion();
+  showStatus("New exercise ready. Check the concept above if you need a refresher.","info");
 });
 
 
@@ -3016,6 +3624,7 @@ document.getElementById("run").addEventListener("click",runSqlQuery);
 
 document.getElementById("clear").addEventListener("click",()=>{
   document.getElementById("sql").value="";
+  if(window.syncSqlEditor) window.syncSqlEditor();
   document.getElementById("sql").focus();
   clearStatus();
 });
@@ -3032,6 +3641,7 @@ document.getElementById("format").addEventListener("click",()=>{
     .replace(/\bLIMIT\b/gi,"\nLIMIT")
     .replace(/\bJOIN\b/gi,"\nJOIN");
   document.getElementById("sql").value=sql.trim();
+  if(window.syncSqlEditor) window.syncSqlEditor();
 });
 
 function showStatus(msg,type){
@@ -3056,7 +3666,7 @@ renderQuestion();
     <div class="apply-modal-header">
       <div>
         <h2 class="apply-modal-title" id="applyModalTitle">💼 Data Job Search</h2>
-        <div class="apply-hero-sub" id="applyModalSubtitle">Find current Data Analyst &amp; Data Engineering opportunities and open the actual job posting.</div>
+        <div class="apply-hero-sub" id="applyModalSubtitle">Build a focused search, review saved leads, and open a current search on the job source you choose.</div>
       </div>
       <div style="display:flex;align-items:center;gap:12px">
         <button class="apply-close" id="applyCloseBtn" type="button" aria-label="Close">×</button>
@@ -3072,6 +3682,11 @@ renderQuestion();
         </div>
         <input id="jobCategory" type="hidden" value="All Data Roles">
         <div class="job-category-hint">Both tracks are included. Select either track to focus the results.</div>
+      </div>
+
+      <div class="apply-field apply-keyword-field">
+        <label for="jobKeyword">Keywords</label>
+        <input id="jobKeyword" type="search" placeholder="SQL, AWS, Power BI…" autocomplete="off">
       </div>
 
       <div class="apply-field">
@@ -3116,6 +3731,15 @@ renderQuestion();
           </select>
         </div>
 
+        <div class="apply-field">
+          <label for="experienceLevel">Experience</label>
+          <select id="experienceLevel">
+            <option value="early" selected>Entry &amp; early career</option>
+            <option value="entry">Entry-level tagged only</option>
+            <option value="all">All experience levels</option>
+          </select>
+        </div>
+
       </div>
     </div>
 
@@ -3123,12 +3747,12 @@ renderQuestion();
       <main>
         <div class="apply-results-head">
           <div>
-            <div class="apply-results-count" id="jobResultsCount">Current job listings</div>
-            <div class="apply-results-meta" id="jobResultsMeta">Showing verified postings with direct Apply links.</div>
+            <div class="apply-results-count" id="jobResultsCount">Curated job leads</div>
+            <div class="apply-results-meta" id="jobResultsMeta">Saved leads are a snapshot; always recheck availability on the source.</div>
           </div>
           <div class="apply-results-tools">
-            <label class="sr-only" for="liveSource">Live job source</label>
-            <select class="apply-sort" id="liveSource" aria-label="Live job source">
+            <label class="sr-only" for="liveSource">Current-search source</label>
+            <select class="apply-sort" id="liveSource" aria-label="Current-search source">
               <option value="dice" selected>Dice</option>
               <option value="builtin">Built In</option>
               <option value="wellfound">Wellfound</option>
@@ -3137,12 +3761,13 @@ renderQuestion();
               <option value="linkedin">LinkedIn</option>
               <option value="indeed">Indeed</option>
             </select>
-            <a class="apply-live-source-btn" id="liveSearchBtn" href="#" target="_blank" rel="noopener noreferrer">Search live ↗</a>
+            <a class="apply-live-source-btn" id="liveSearchBtn" href="#" target="_blank" rel="noopener noreferrer">Open current search ↗</a>
             <label class="sr-only" for="jobSort">Sort results</label>
             <select class="apply-sort" id="jobSort" aria-label="Sort results">
               <option value="recent">Most recent</option>
               <option value="relevant">Most relevant</option>
             </select>
+            <button class="apply-reset-btn" id="resetJobFilters" type="button">Reset</button>
           </div>
         </div>
         <div class="apply-job-list" id="jobResults"></div>
@@ -3150,7 +3775,7 @@ renderQuestion();
     </div>
 
     <div class="apply-note">
-      Direct cards come from company career pages and established job platforms, including Dice, ClearanceJobs, Appcast, LinkedIn, and Indeed. Use the integrated live-source control for current searches. Every available card remains accessible in one continuous scroll.
+      Saved leads can expire or change after they are added. “Open current search” builds a new search from your active criteria; freshness is passed where the selected source supports it. A card’s “Check posting” button only opens its saved URL and does not guarantee that the role is still available.
     </div>
   </div>
 </div>
@@ -3165,6 +3790,8 @@ renderQuestion();
   const mode=document.getElementById('workMode');
   const timeRange=document.getElementById('timeRange');
   const jobType=document.getElementById('jobType');
+  const keyword=document.getElementById('jobKeyword');
+  const experience=document.getElementById('experienceLevel');
   const results=document.getElementById('jobResults');
   const meta=document.getElementById('jobResultsMeta');
   const count=document.getElementById('jobResultsCount');
@@ -3172,13 +3799,13 @@ renderQuestion();
   const categoryButtons=[...document.querySelectorAll('[data-job-category]')];
   const liveSource=document.getElementById('liveSource');
   const liveSearchBtn=document.getElementById('liveSearchBtn');
+  const resetFilters=document.getElementById('resetJobFilters');
 
   if(!modal||!openBtn||!closeBtn) return;
 
   /*
-    These are real job postings captured from recent job searches.
-    Each card keeps the provider's specific apply_url, so clicking Apply opens
-    the actual posting instead of a generic search page.
+    This is a curated snapshot, not a live feed. A saved URL may expire.
+    The current-search button below builds a fresh query from the active filters.
   */
   const LIVE_JOBS=[
     {
@@ -3763,11 +4390,26 @@ renderQuestion();
     },
   ];
 
-  let saved=new Set(JSON.parse(localStorage.getItem('sqlLabSavedJobs')||'[]'));
-  let applied=new Set(JSON.parse(localStorage.getItem('sqlLabAppliedJobIds')||'[]'));
+  function readStoredSet(key){
+    try{
+      const value=JSON.parse(localStorage.getItem(key)||'[]');
+      return new Set(Array.isArray(value)?value:[]);
+    }catch(_error){
+      return new Set();
+    }
+  }
+
+  let saved=readStoredSet('sqlLabSavedJobs');
+  let applied=readStoredSet('sqlLabAppliedJobIds');
 
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const days=()=>({'24h':1,'72h':3,'1w':7,'2w':14})[timeRange.value]||7;
+  const SENIOR_TITLE=/\b(?:senior|sr\.?|lead|principal|manager|director|head|staff|architect|iii|iv|v)\b/i;
+  const ENTRY_TITLE=/\b(?:entry(?:[- ]level)?|junior|jr\.?|associate|graduate|new grad|intern|analyst i|engineer i)\b/i;
+
+  function jobSearchText(j){
+    return [j.title,j.company,j.location,j.source,j.desc,...(j.categories||[]),...(j.tags||[])]
+      .filter(Boolean).join(' ').toLowerCase();
+  }
 
   function roleMatches(j){
     const selected=category.value;
@@ -3832,12 +4474,39 @@ renderQuestion();
     return j.type===jobType.value;
   }
 
+  function keywordMatches(j){
+    const terms=String(keyword?.value||'').toLowerCase().trim().split(/\s+/).filter(Boolean);
+    if(!terms.length) return true;
+    const haystack=jobSearchText(j);
+    return terms.every(term=>haystack.includes(term));
+  }
+
+  function experienceMatches(j){
+    const selected=experience?.value||'early';
+    if(selected==='all') return true;
+    const title=String(j.title||'');
+    if(selected==='entry') return j.level==='entry' || ENTRY_TITLE.test(title);
+    return !['mid','senior'].includes(String(j.level||'').toLowerCase()) && !SENIOR_TITLE.test(title);
+  }
+
   function dateMatches(j){
     if(timeRange.value==='any') return true;
     const limit=({'24h':1,'72h':3,'1w':7,'2w':14})[timeRange.value]||7;
     // A freshness filter is strict. Unknown posting dates are excluded unless
     // the user explicitly chooses "Any date".
     return typeof j.postedDays==='number' && j.postedDays>=0 && j.postedDays<=limit;
+  }
+
+  function dedupeJobs(list){
+    const seen=new Set();
+    return list.filter(j=>{
+      const key=[j.title,j.company,j.location]
+        .map(value=>String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,''))
+        .join('|');
+      if(seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
   }
 
   function sortJobs(list){
@@ -3847,11 +4516,14 @@ renderQuestion();
         const score=(j)=>{
           const title=String(j.title||'').toLowerCase();
           const cats=(j.categories||[]).map(x=>String(x).toLowerCase());
+          const terms=String(keyword?.value||'').toLowerCase().trim().split(/\s+/).filter(Boolean);
           let score=0;
           if(title===selected) score+=5;
           if(title.startsWith(selected+' ')) score+=4;
           if(cats.includes(selected)) score+=3;
           if(title.includes(selected)) score+=2;
+          if(j.level==='entry') score+=1;
+          terms.forEach(term=>{if(title.includes(term)) score+=2;});
           return score;
         };
         const diff=score(b)-score(a);
@@ -3893,12 +4565,12 @@ renderQuestion();
     const appliedNow=applied.has(j.id);
     const sourceLabel=j.source==='LinkedIn'?'in LinkedIn':j.source;
     const freshnessLabel=typeof j.postedDays==='number'
-      ? (j.postedDays===0?'Posted today':j.postedDays===1?'Posted 1 day ago':`Posted ${j.postedDays} days ago`)
-      : 'Posting date unavailable';
+      ? (j.postedDays===0?'New when saved':j.postedDays===1?'1 day old when saved':`${j.postedDays} days old when saved`)
+      : 'Age not recorded in snapshot';
     return `<article class="apply-job-card">
       <div class="apply-job-logo">${logo}</div>
       <div class="apply-job-main">
-        <div class="apply-job-time">${appliedNow?'Applied':freshnessLabel}</div>
+        <div class="apply-job-time">${appliedNow?'Posting opened · recheck status':freshnessLabel}</div>
         <h3>${esc(j.title)}</h3>
         <div class="apply-job-company">${esc(j.company)} · ${esc(j.location)} · ${esc(sourceLabel)}</div>
         <div class="apply-tags">
@@ -3908,58 +4580,75 @@ renderQuestion();
       </div>
       <div class="apply-job-actions">
         <button class="apply-save-btn ${savedNow?'saved':''}" data-save="${esc(j.id)}" type="button">${savedNow?'✓ Saved':'☆ Save'}</button>
-        <button class="apply-apply-btn" data-open="${esc(j.id)}" type="button">${appliedNow?'Open Job ↗':'Apply ↗'}</button>
+        <button class="apply-apply-btn" data-open="${esc(j.id)}" type="button">${appliedNow?'Open again ↗':'Check posting ↗'}</button>
       </div>
     </article>`;
   }
 
   function buildLiveSearchLinks(){
     const roleQuery=category.value==='All Data Roles'
-      ? 'Data Analyst OR Data Engineer OR Analytics Engineer'
-      : category.value;
-    const q=encodeURIComponent(roleQuery);
+      ? '("Data Analyst" OR "Data Engineer" OR "Analytics Engineer")'
+      : `"${category.value}"`;
+    const keywordQuery=String(keyword?.value||'').trim();
+    const experienceQuery=experience?.value==='entry'
+      ? '("entry level" OR junior OR associate OR internship)'
+      : experience?.value==='early'
+        ? '("entry level" OR junior OR associate OR "new grad")'
+        : '';
+    const modeQuery=mode.value==='any'?'':mode.options[mode.selectedIndex]?.text;
+    const typeQuery=jobType.value==='any'?'':jobType.options[jobType.selectedIndex]?.text;
+    const query=[roleQuery,keywordQuery,experienceQuery,modeQuery,typeQuery].filter(Boolean).join(' ');
+    const q=encodeURIComponent(query);
     const selectedLocation=locationEl.value;
     const liveLocation={miami:'Miami, FL',florida:'Florida','united-states':'United States',remote:'Remote'}[selectedLocation] || 'United States';
     const loc=encodeURIComponent(liveLocation);
-    const slug=roleQuery.toLowerCase().replace(/\b(or|and)\b/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-    const roleSlug=slug || 'data-analyst';
+    const ageDays=({any:'','24h':'1','72h':'3','1w':'7','2w':'14'})[timeRange.value]||'';
+    const linkedInSeconds=({'24h':'86400','72h':'259200','1w':'604800','2w':'1209600'})[timeRange.value]||'';
+    const indeedAge=ageDays?`&fromage=${ageDays}`:'';
+    const linkedInAge=linkedInSeconds?`&f_TPR=r${linkedInSeconds}`:'';
     return {
-      indeed:`https://www.indeed.com/jobs?q=${q}&l=${loc}`,
-      linkedin:`https://www.linkedin.com/jobs/search/?keywords=${q}&location=${loc}`,
+      indeed:`https://www.indeed.com/jobs?q=${q}&l=${loc}${indeedAge}`,
+      linkedin:`https://www.linkedin.com/jobs/search/?keywords=${q}&location=${loc}${linkedInAge}`,
       dice:`https://www.dice.com/jobs?q=${q}&location=${loc}`,
-      builtin:`https://builtin.com/jobs/data-analytics/search/${roleSlug}`,
-      wellfound:`https://wellfound.com/role/l/${roleSlug}/united-states`,
-      clearance:`https://www.clearancejobs.com/q-${roleSlug}`,
-      ladders:`https://www.theladders.com/jobs/${roleSlug}-jobs`,
-      usajobs:`https://www.usajobs.gov/Search/Results?k=${q}`,
-      flexjobs:`https://www.flexjobs.com/search?search=${q}`,
-      remoteok:`https://remoteok.com/remote-${roleSlug}-jobs`
+      builtin:`https://builtin.com/jobs?search=${q}&location=${loc}`,
+      wellfound:`https://wellfound.com/jobs?keywords=${q}&location=${loc}`,
+      clearance:`https://www.clearancejobs.com/jobs?keywords=${q}`,
+      usajobs:`https://www.usajobs.gov/Search/Results?k=${q}&l=${loc}`
     };
   }
 
   function renderResults(){
-    let list=LIVE_JOBS.filter(j=>roleMatches(j)&&locationMatches(j)&&modeMatches(j)&&typeMatches(j)&&dateMatches(j));
+    let list=dedupeJobs(LIVE_JOBS).filter(j=>
+      roleMatches(j) &&
+      keywordMatches(j) &&
+      locationMatches(j) &&
+      modeMatches(j) &&
+      typeMatches(j) &&
+      experienceMatches(j) &&
+      dateMatches(j)
+    );
     list=sortJobs(list);
 
     const liveLinks=buildLiveSearchLinks();
     if(liveSearchBtn && liveSource){
       liveSearchBtn.href=liveLinks[liveSource.value] || liveLinks.dice;
       const sourceName=liveSource.options[liveSource.selectedIndex]?.text || 'selected source';
-      liveSearchBtn.setAttribute('aria-label',`Search live ${category.value} jobs on ${sourceName}`);
+      liveSearchBtn.setAttribute('aria-label',`Open a current ${category.value} search on ${sourceName}`);
     }
 
-    count.textContent=`${list.length} ${list.length===1?'job':'jobs'} found`;
-    const freshnessLabel=({'any':'Any date','24h':'Last 24 hours','72h':'Last 3 days','1w':'Last 7 days','2w':'Last 14 days'})[timeRange.value]||'Recent';
+    count.textContent=`${list.length} curated ${list.length===1?'lead':'leads'}`;
+    const freshnessLabel=({'any':'Any saved age','24h':'≤ 1 day old when saved','72h':'≤ 3 days old when saved','1w':'≤ 7 days old when saved','2w':'≤ 14 days old when saved'})[timeRange.value]||'Saved snapshot';
     const roleLabel=category.value==='All Data Roles'?'Data Analyst + Data Engineer':category.value==='Data Engineer'?'Data Engineer + related title variations':category.value;
     const locationLabels={miami:'Miami',florida:'Florida', 'united-states':'United States',remote:'Remote'};
     const locationLabel=locationLabels[locationEl.value] || 'United States';
-    meta.textContent=`${roleLabel} • ${locationLabel} • ${freshnessLabel} • Verified results from multiple sources`;
+    const experienceLabel={early:'Entry & early career',entry:'Entry-level tagged',all:'All experience levels'}[experience?.value]||'Entry & early career';
+    meta.textContent=`Saved snapshot • ${roleLabel} • ${locationLabel} • ${experienceLabel} • ${freshnessLabel}`;
 
     if(!list.length){
       results.innerHTML=`<div class="apply-empty-state">
         <div class="apply-empty-icon">🔎</div>
-        <h3>No matching verified cards in the current snapshot</h3>
-        <p>There are no verified cards matching every selected filter right now. Use the broader source searches below to check additional current listings across multiple job boards.</p>
+        <h3>No saved leads match every filter</h3>
+        <p>Reset one or more filters, or use “Open current search” to look for newly available roles on the selected source.</p>
       </div>`;
       return;
     }
@@ -4001,12 +4690,33 @@ renderQuestion();
     document.body.style.overflow='';
   }
 
-  [category,locationEl,mode,timeRange,jobType].forEach(el=>{
+  [category,locationEl,mode,timeRange,jobType,experience].forEach(el=>{
     if(el) el.addEventListener('change',renderResults);
   });
 
+  if(keyword) keyword.addEventListener('input',renderResults);
+
   sortEl.addEventListener('change',renderResults);
   if(liveSource) liveSource.addEventListener('change',renderResults);
+
+  if(resetFilters){
+    resetFilters.addEventListener('click',()=>{
+      categoryButtons.forEach(item=>{
+        item.classList.add('active');
+        item.setAttribute('aria-pressed','true');
+      });
+      category.value='All Data Roles';
+      if(keyword) keyword.value='';
+      locationEl.value='united-states';
+      mode.value='any';
+      timeRange.value='any';
+      jobType.value='any';
+      if(experience) experience.value='early';
+      sortEl.value='recent';
+      renderResults();
+      if(keyword) keyword.focus();
+    });
+  }
 
   categoryButtons.forEach(button=>{
     button.addEventListener('click',()=>{
@@ -4118,7 +4828,7 @@ renderQuestion();
   }
 
   function difficultyName(level){
-    return ["Beginner","Easy","Medium","Hard","Expert"][level-1];
+    return ["Fundamentals","Aggregation","JOINs","Subqueries","Functions","Advanced Analytics"][level-1] || "SQL Practice";
   }
 
   function getHints(questionText, level){
@@ -4163,7 +4873,7 @@ renderQuestion();
   function showHints(){
     const q=currentQuestion();
     if(!q) return;
-    const hints=getHints(q.prompt || "",stateRef.level);
+    const hints=Array.isArray(q.hints)&&q.hints.length?q.hints:getHints(q.prompt || "",stateRef.level);
     hintPanel.classList.add("show");
     hint1.textContent="Hint 1: "+hints[0];
     hint2.textContent="Hint 2: "+hints[1];
@@ -4206,13 +4916,13 @@ renderQuestion();
   explainBtn.addEventListener("click",()=>{
     const q=currentQuestion();
     if(!q) return;
-    const hints=getHints(q.prompt || "",stateRef.level);
+    const hints=Array.isArray(q.hints)&&q.hints.length?q.hints:getHints(q.prompt || "",stateRef.level);
     hintPanel.classList.add("show");
     hint1.style.display="block"; hint2.style.display="block"; hint3.style.display="block";
     hint1.textContent="Why it may be wrong: "+hints[0];
     hint2.textContent="Check this next: "+hints[1];
     hint3.textContent="Final check: "+hints[2];
-    coachIntro.textContent="The coach explains the reasoning to review without exposing the answer.";
+    coachIntro.textContent=q.commonMistake?"Common mistake: "+q.commonMistake:"The coach explains the reasoning to review without exposing the answer.";
     stateRef.hintsUsed=(stateRef.hintsUsed||0)+1;
     saveState();
     renderFeatureMetrics();
@@ -5121,7 +5831,7 @@ renderQuestion();
 
     interviewLevelBadge.textContent=`LEVEL ${String(level).padStart(2,"0")} · ${name.toUpperCase()}`;
     interviewTitle.textContent="SQL Interview Mode";
-    interviewSubtitle.textContent=`30 healthcare SQL interview questions matched to ${name}. Think first, then reveal the answer.`;
+    interviewSubtitle.textContent=`25 healthcare SQL interview questions matched to ${name}. Think first, then reveal the answer.`;
     interviewStreak.textContent=interviewStreakValue;
 
     interviewProgressBar.style.width=(((interviewIndex+1)/interviewSet.length)*100)+"%";
@@ -5475,7 +6185,7 @@ document.addEventListener("keydown",e=>{
 (function(){
   const $=id=>document.getElementById(id);
   const modal=$("trainingModal"); if(!modal) return;
-  const levelNames=["Fundamental","Core SQL","Intermediate","Advanced","Expert"];
+  const levelNames=["Fundamentals","Aggregation","Combining Data","Analytical Queries","Professional SQL"];
   // Training-mode topic map. The previous build referenced `levelTopics`, but
   // that variable was never defined in this page, so this script stopped before
   // registering the Debugging and Predict buttons.
@@ -5534,9 +6244,9 @@ document.addEventListener("keydown",e=>{
   }
 
   function makePredict(){
-    // Predict the Output is an unlimited adaptive drill. It starts at Fundamental
-    // and advances one difficulty level after every correct prediction.
-    const lvl=Math.min(5,Math.max(1,Number(modeState.predictDifficulty||1)));
+    // Predict the Output always follows the learner's active curriculum level.
+    // It never resets to Level 1 or advances into another level on its own.
+    const lvl=Math.min(5,Math.max(1,Number(state.level||1)));
     const progressKey=`sqlLabPredictProgress_${lvl}`;
     const progress=Number(localStorage.getItem(progressKey)||0);
     const makeOptions=(correct,distractors)=>{
@@ -5558,7 +6268,10 @@ document.addEventListener("keydown",e=>{
       3:[
         ()=>{const claims=[["1001","1"],["1002","2"],["1003","1"]],providers=[["1","Miami Primary Care"],["2","Coral Gables Cardiology"]],o=makeOptions("3",["2","1","4"]);return {topic:"INNER JOIN",tables:[table("claims",["claim_id","provider_id"],claims),table("providers",["provider_id","provider_name"],providers)],sql:"SELECT c.claim_id,p.provider_name FROM claims c INNER JOIN providers p ON c.provider_id=p.provider_id;",...o,explain:"All three claims have matching provider IDs, so the INNER JOIN returns 3 rows."}},
         ()=>{const rows=[["1","1001"],["2","1002"],["3","1003"]],o=makeOptions("6",["3","4","9"]);return {topic:"UNION ALL",tables:[table("claims",["member_id","claim_id"],rows)],sql:"SELECT member_id FROM claims WHERE member_id<=3 UNION ALL SELECT member_id FROM claims WHERE member_id<=3;",...o,explain:"Each SELECT returns three rows and UNION ALL preserves duplicates, so the result contains 6 rows."}},
-        ()=>{const rows=[["1001","99213"],["1002","99214"],["1003","80053"]],o=makeOptions("3",["1","2","4"]);return {topic:"DISTINCT",tables:[table("claims",["claim_id","diagnosis_code"],rows)],sql:"SELECT COUNT(DISTINCT diagnosis_code) FROM claims;",...o,explain:"There are three distinct diagnosis codes in the supplied rows, so the count is 3."}}
+        ()=>{const members=[["1","Maria Lopez"],["2","James Carter"],["3","Sofia Martinez"]],claims=[["1001","1"],["1002","1"]],o=makeOptions("3",["1","2","4"]);return {topic:"LEFT JOIN",tables:[table("members",["member_id","member_name"],members),table("claims",["claim_id","member_id"],claims)],sql:"SELECT m.member_id,c.claim_id FROM members m LEFT JOIN claims c ON m.member_id=c.member_id;",...o,explain:"Member 1 matches two claims, while members 2 and 3 each remain once with NULL claim values. The LEFT JOIN returns 4 rows."}},
+        ()=>{const providers=[["1","Miami Primary Care"],["2","Coral Gables Cardiology"],["3","South Florida Clinic"]],claims=[["1001","1"],["1002","2"]],o=makeOptions("1",["0","2","3"]);return {topic:"Unmatched records",tables:[table("providers",["provider_id","provider_name"],providers),table("claims",["claim_id","provider_id"],claims)],sql:"SELECT COUNT(*) FROM providers p LEFT JOIN claims c ON p.provider_id=c.provider_id WHERE c.claim_id IS NULL;",...o,explain:"Provider 3 has no matching claim, so the anti-join pattern returns 1 unmatched provider."}},
+        ()=>{const a=[["1"],["2"],["3"]],b=[["2"],["3"],["4"]],o=makeOptions("4",["3","5","6"]);return {topic:"UNION",tables:[table("active_members",["member_id"],a),table("review_members",["member_id"],b)],sql:"SELECT member_id FROM active_members UNION SELECT member_id FROM review_members;",...o,explain:"UNION removes duplicates. The combined unique IDs are 1, 2, 3, and 4, so the result contains 4 rows."}},
+        ()=>{const members=[["1","Maria"],["2","James"]],claims=[["1001","1","10"],["1002","2","20"]],providers=[["10","Primary Care"],["20","Cardiology"]],o=makeOptions("2",["1","3","4"]);return {topic:"Three-table JOIN",tables:[table("members",["member_id","member_name"],members),table("claims",["claim_id","member_id","provider_id"],claims),table("providers",["provider_id","provider_name"],providers)],sql:"SELECT m.member_name,c.claim_id,p.provider_name FROM claims c JOIN members m ON c.member_id=m.member_id JOIN providers p ON c.provider_id=p.provider_id;",...o,explain:"Both claims match one member and one provider, so the three-table join returns 2 rows."}}
       ],
       4:[
         ()=>{const rows=[["1","0.82"],["2","0.61"],["3","0.24"],["4","0.91"]],o=makeOptions("2",["1","3","4"]);return {topic:"Subqueries",tables:[table("members",["member_id","risk_score"],rows)],sql:"SELECT COUNT(*) FROM members WHERE risk_score > (SELECT AVG(risk_score) FROM members);",...o,explain:"The average risk is 0.645, so members 1 and 4 are above it. COUNT(*) returns 2."}},
@@ -5566,9 +6279,10 @@ document.addEventListener("keydown",e=>{
         ()=>{const rows=[["1","Paid"],["2","Pending"],["3","Paid"],["4","Denied"]],o=makeOptions("2",["1","3","4"]);return {topic:"EXISTS",tables:[table("members",["member_id"],[["1"],["2"],["3"],["4"]]),table("claims",["member_id","claim_status"],rows)],sql:"SELECT COUNT(*) FROM members m WHERE EXISTS (SELECT 1 FROM claims c WHERE c.member_id=m.member_id AND c.claim_status='Paid');",...o,explain:"Members 1 and 3 have Paid claims, so EXISTS is true for 2 members."}}
       ],
       5:[
-        ()=>{const rows=[["1001","1","108"],["1002","1","156"],["1003","2","2560"],["1004","2","4080"]],o=makeOptions("4080",["2560","156","108"]);return {topic:"ROW_NUMBER",tables:[table("claims",["claim_id","provider_id","paid_amount"],rows)],sql:"SELECT claim_id, ROW_NUMBER() OVER (PARTITION BY provider_id ORDER BY paid_amount DESC) AS rn FROM claims;",...o,explain:"Within provider 2, 4,080 is higher than 2,560, so the claim with 4,080 receives row number 1."}},
-        ()=>{const rows=[["1","2026-01-05","108"],["2","2026-01-12","156"],["3","2026-02-03","114"]],o=makeOptions("156",["108","114","NULL"]);return {topic:"LAG",tables:[table("claims",["claim_id","claim_date","paid_amount"],rows)],sql:"SELECT claim_id, paid_amount, LAG(paid_amount) OVER (ORDER BY claim_date) AS previous_paid FROM claims;",...o,explain:"For claim 3, the previous claim by date is claim 2, whose paid amount is 156."}},
-        ()=>{const rows=[["1","0.82","Commercial PPO"],["2","0.61","Commercial PPO"],["3","0.24","Commercial HMO"],["4","0.91","Medicare Advantage"]],o=makeOptions("1",["2","3","4"]);return {topic:"DENSE_RANK",tables:[table("members",["member_id","risk_score","plan_type"],rows)],sql:"SELECT member_id, DENSE_RANK() OVER (PARTITION BY plan_type ORDER BY risk_score DESC) AS rnk FROM members;",...o,explain:"Within the Commercial PPO partition, member 1 has the highest risk score, so it receives rank 1."}}
+        ()=>{const rows=[["1","NULL"],["2","100"],["2","100"],["3","200"]],o=makeOptions("3",["2","4","5"]);return {topic:"Data-quality validation",tables:[table("staging_claims",["claim_id","paid_amount"],rows)],sql:"SELECT COUNT(*) FROM (SELECT claim_id FROM staging_claims GROUP BY claim_id HAVING COUNT(*)>1 OR MAX(paid_amount) IS NULL);",...o,explain:"Claim 1 has a missing amount and claim 2 is duplicated. Claim 3 is valid, so the validation query returns 2 problematic claim groups."}},
+        ()=>{const rows=[["1","2026-01-01","100"],["1","2026-02-01","120"],["2","2026-01-10","80"]],o=makeOptions("2",["1","3","4"]);return {topic:"Deduplication",tables:[table("customer_updates",["customer_id","updated_at","amount"],rows)],sql:"WITH ranked AS (SELECT *,ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY updated_at DESC) AS rn FROM customer_updates) SELECT COUNT(*) FROM ranked WHERE rn=1;",...o,explain:"ROW_NUMBER keeps the latest row for each customer. There are two customers, so 2 rows remain."}},
+        ()=>{const rows=[["2026-01","100"],["2026-02","200"],["2026-03","300"]],o=makeOptions("250",["100","150","300"]);return {topic:"Moving average",tables:[table("monthly_sales",["sales_month","revenue"],rows)],sql:"WITH averages AS (SELECT sales_month,AVG(revenue) OVER (ORDER BY sales_month ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS moving_avg FROM monthly_sales) SELECT moving_avg FROM averages ORDER BY sales_month DESC LIMIT 1;",...o,explain:"The final two-row window contains February and March: (200 + 300) / 2 = 250."}},
+        ()=>{const rows=[["1","NULL"],["2","1"],["3","2"],["4","2"]],o=makeOptions("4",["2","3","5"]);return {topic:"Recursive hierarchy",tables:[table("departments",["department_id","parent_id"],rows)],sql:"WITH RECURSIVE tree AS (SELECT department_id,parent_id FROM departments WHERE parent_id IS NULL UNION ALL SELECT d.department_id,d.parent_id FROM departments d JOIN tree t ON d.parent_id=t.department_id) SELECT COUNT(*) FROM tree;",...o,explain:"The recursive CTE starts at department 1 and reaches departments 2, 3, and 4, so it returns all 4 rows."}}
       ]
     };
     const pool=factories[lvl]||factories[1];
@@ -5649,7 +6363,7 @@ document.addEventListener("keydown",e=>{
   }
   function openMode(mode){
     modeState.mode=mode;
-    if(mode==="predict") modeState.predictDifficulty=1;
+    if(mode==="predict") modeState.predictDifficulty=Math.min(5,Math.max(1,Number(state.level||1)));
     modeState.exercise=generate(mode);
     renderExercise();
     modal.classList.add("open");
@@ -5680,10 +6394,10 @@ document.addEventListener("keydown",e=>{
       b.classList.add(ok?"correct":"wrong");
       if(!ok)document.querySelector(`.training-option[data-i="${e.correct}"]`)?.classList.add("correct");
       record(e.topic,ok);
-      if(ok) modeState.predictDifficulty=Math.min(5,modeState.predictDifficulty+1);
+      modeState.predictDifficulty=Math.min(5,Math.max(1,Number(state.level||1)));
       const nextBtn=$("trainingNext");
       nextBtn.disabled=false;
-      feedback(ok?`✅ Correct prediction. Next question: Level ${modeState.predictDifficulty} ${levelNames[modeState.predictDifficulty-1]}.`:`❌ Not quite. Stay at Level ${modeState.predictDifficulty} ${levelNames[modeState.predictDifficulty-1]} and try again.`,ok);
+      feedback(ok?`✅ Correct prediction. The next question will stay in Level ${modeState.predictDifficulty} — ${levelNames[modeState.predictDifficulty-1]}.`:`❌ Not quite. Review the explanation; the next question will remain in Level ${modeState.predictDifficulty} — ${levelNames[modeState.predictDifficulty-1]}.`,ok);
       $("trainingExtra").innerHTML='<div class="training-explain"><strong>Explanation:</strong> '+escapeHtml(e.explain)+'</div>';
     }));
   }
@@ -5908,6 +6622,23 @@ document.addEventListener("keydown",e=>{
 </script>
 <style id="final-light-green-level-selected">
 /* FINAL: selected SQL level button uses a light-green state */
+.level-btn{
+  text-align:left!important;
+}
+.level-btn .level-left{
+  flex:1 1 auto!important;
+  min-width:0!important;
+  justify-content:flex-start!important;
+  text-align:left!important;
+  line-height:1.25!important;
+}
+.level-btn .num{
+  flex:0 0 35px!important;
+}
+.level-btn .arrow{
+  flex:0 0 auto!important;
+  margin-left:10px!important;
+}
 .level-btn.active{
   border-color:#7fbd8f!important;
   background:linear-gradient(90deg,rgba(232,245,235,.95),rgba(232,245,235,.38)),#fff!important;
@@ -6279,6 +7010,344 @@ main{padding:32px 36px 64px!important;background:#f6f7f9!important}
   .welcome{grid-template-columns:1fr!important;min-height:0!important;padding:24px 20px!important}
   .welcome-code-card{display:none}
   .welcome h1{font-size:32px!important;letter-spacing:-1.2px!important}
+}
+</style>
+<style id="five-level-curriculum-styles">
+.curriculum-dropdowns{display:flex;flex-direction:column;gap:8px}
+.curriculum-level{border:1px solid transparent;border-radius:11px;overflow:hidden;background:transparent}
+.curriculum-level.open{border-color:#d9e4dd;background:#fbfdfb}
+.curriculum-level-toggle{width:100%;min-height:58px;padding:9px 12px;border:0;border-radius:10px;background:transparent;display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;color:#111827}
+.curriculum-level-toggle:hover{background:#f7f8fa}
+.curriculum-level.open>.curriculum-level-toggle{background:#eef7f1;color:#166a40}
+.curriculum-level-name{display:flex;align-items:center;gap:11px;min-width:0;font-size:14px;font-weight:760;line-height:1.25}
+.curriculum-level-number{width:32px;height:32px;flex:0 0 32px;border-radius:8px;background:#f0f2f5;color:#607089;display:grid;place-items:center;font-size:11px}
+.curriculum-level.open .curriculum-level-number{background:#d5ecd9;color:#166a40}
+.curriculum-chevron{font-size:16px;color:#8b95a5;transition:transform .18s ease}
+.curriculum-level.open .curriculum-chevron{transform:rotate(90deg);color:#166a40}
+.curriculum-topic-list{display:none;padding:4px 8px 10px}
+.curriculum-level.open .curriculum-topic-list{display:grid;gap:4px}
+.curriculum-topic{width:100%;padding:9px 10px;border:1px solid transparent;border-radius:8px;background:transparent;text-align:left;color:#475467;line-height:1.3}
+.curriculum-topic:hover{background:#f3f6f4;color:#1d2939}
+.curriculum-topic.active{border-color:#c8e4d1;background:#eaf5ed;color:#166a40}
+.curriculum-topic-title{display:block;font-size:12px;font-weight:720}
+.curriculum-topic-count{display:block;margin-top:3px;color:#8a94a4;font-size:10px;font-weight:650}
+.curriculum-topic.active .curriculum-topic-count{color:#4f8062}
+@media(max-width:760px){.curriculum-topic-list{grid-template-columns:1fr 1fr}.curriculum-level-toggle{min-height:54px}}
+@media(max-width:480px){.curriculum-topic-list{grid-template-columns:1fr}}
+</style>
+
+<script id="five-level-curriculum-script">
+(function(){
+  const curriculum=[
+    {title:'Fundamentals',topics:[
+      'Tables, rows, columns, keys & data types','SELECT & selecting columns','WHERE & comparison operators','AND, OR, NOT & parentheses','IN, BETWEEN & LIKE','NULL, IS NULL, IS NOT NULL & COALESCE','Aliases with AS','DISTINCT','ORDER BY with ASC & DESC','TOP & LIMIT','Basic calculations & CASE'
+    ]},
+    {title:'Aggregation',topics:[
+      'COUNT, SUM, AVG, MIN & MAX','COUNT variations','GROUP BY: one or multiple columns','WHERE vs. HAVING','Conditional aggregation','Percentages, rates & group averages','NULL values & division by zero','Grouping by day, month & year'
+    ]},
+    {title:'Combining Data',topics:[
+      'Keys & one-to-many relationships','INNER JOIN','LEFT JOIN & unmatched records','RIGHT JOIN & FULL OUTER JOIN','JOIN across three or more tables','Self joins','Join duplicates & diagnosis','UNION, UNION ALL, INTERSECT & EXCEPT'
+    ]},
+    {title:'Intermediate Queries',topics:[
+      'Scalar, WHERE & FROM subqueries','EXISTS & NOT EXISTS','CTEs using WITH','ROW_NUMBER, RANK & DENSE_RANK','Aggregates with OVER & PARTITION BY','Running totals, LAG & LEAD','Date extraction, differences & grouping','Strings, CAST & TRY_CAST','Views & temporary tables','INSERT, UPDATE, DELETE & transactions'
+    ]},
+    {title:'Advanced & Professional SQL',topics:[
+      'Recursive CTEs & hierarchies','Window frames, moving averages & percentiles','PIVOT & UNPIVOT','Normalization, fact & dimension tables','Indexes','Execution plans & query optimization','Statistics, filtering & sargability','Isolation levels & locking','Stored procedures, functions & dynamic SQL','TRY...CATCH error handling','Incremental loads, MERGE & ETL/ELT','Data-quality validation','Permissions & SQL injection prevention'
+    ]}
+  ];
+
+  const sourceLevels={1:[1],2:[2],3:[3],4:[4,5,6],5:[6,5,4]};
+  const root=document.getElementById('curriculumDropdowns');
+  if(!root || typeof SECTION_BANKS==='undefined' || typeof state==='undefined') return;
+
+  sectionTopics[1]='Fundamentals';
+  sectionTopics[2]='Aggregation';
+  sectionTopics[3]='Combining Data';
+  sectionTopics[4]='Intermediate Queries';
+  sectionTopics[5]='Advanced & Professional SQL';
+  delete sectionTopics[6];
+
+  const normalizeTopic=value=>String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+  const stop=new Set(['and','or','with','the','a','an','by','of','to','in','using','one','multiple','basic','data','sql']);
+  const tokens=value=>normalizeTopic(value).split(' ').filter(word=>word.length>2&&!stop.has(word));
+  const topicKey=(level,title)=>`L${level}:${normalizeTopic(title).replace(/ /g,'-')}`;
+
+  function candidates(level,topicTitle){
+    const wanted=tokens(topicTitle);
+    const all=[];
+    (sourceLevels[level]||[level]).forEach(source=>{
+      (SECTION_BANKS[source]||[]).forEach(factory=>{
+        try{
+          const item=factory();
+          const haystack=normalizeTopic(`${item.topic} ${item.prompt} ${(item.accepted||[]).join(' ')}`);
+          const score=wanted.reduce((total,word)=>total+(haystack.includes(word)?1:0),0);
+          all.push({item,score});
+        }catch(error){}
+      });
+    });
+    const unique=[];
+    const ids=new Set();
+    all.sort((a,b)=>b.score-a.score).forEach(entry=>{
+      if(!ids.has(entry.item.id)){ids.add(entry.item.id);unique.push(entry);}
+    });
+    return unique.slice(0,25).map(entry=>entry.item);
+  }
+
+  function nextTopicQuestion(level,topicTitle){
+    const pool=candidates(level,topicTitle);
+    if(!pool.length) return null;
+    const key=topicKey(level,topicTitle);
+    const seen=JSON.parse(localStorage.getItem('sqlLabTopicQuestionHistory')||'{}');
+    const used=new Set(seen[key]||[]);
+    let next=pool.find(item=>!used.has(item.id));
+    if(!next){used.clear();next=pool[0];}
+    used.add(next.id);
+    seen[key]=Array.from(used);
+    localStorage.setItem('sqlLabTopicQuestionHistory',JSON.stringify(seen));
+    return {...next,section:level,level,curriculumTopic:topicTitle,curriculumVersion:'FIVE_LEVEL_TOPIC_V1',curriculumQuestionNumber:used.size,curriculumQuestionTotal:25};
+  }
+
+  window.__curriculumQuestionProvider=function(section){
+    let selected=null;
+    try{selected=JSON.parse(localStorage.getItem('sqlLabSelectedCurriculumTopic')||'null');}catch(error){}
+    const level=Number(section)||1;
+    if(!selected || Number(selected.level)!==level || !selected.topic) return null;
+    return nextTopicQuestion(level,selected.topic);
+  };
+
+  function selectTopic(level,topicTitle){
+    const next=nextTopicQuestion(level,topicTitle);
+    if(!next){showStatus('No exercises are available for this topic yet.','error');return;}
+    localStorage.setItem('sqlLabSelectedCurriculumTopic',JSON.stringify({level,topic:topicTitle}));
+
+    state.level=level;
+    state.section=level;
+    state.index=0;
+    state.currentQuestion=next;
+    state.currentAnswerDraft='';
+    state.currentQuestionAttempts=0;
+    state.failedAttempts=0;
+    state.wrongStreak=0;
+    state.chainOriginalQuestion=null;
+    saveState();
+    renderCurriculum(level,topicTitle);
+    renderQuestion();
+    showStatus(`${topicTitle} selected — question ${next.curriculumQuestionNumber} of 25 is ready.`,'info');
+    const challenge=document.querySelector('.challenge');
+    if(challenge) window.scrollTo({top:challenge.offsetTop-20,behavior:'smooth'});
+  }
+
+  function renderCurriculum(openLevel,activeTopic){
+    root.innerHTML=curriculum.map((level,index)=>{
+      const number=index+1;
+      const open=number===openLevel;
+      return `<section class="curriculum-level${open?' open':''}" data-level="${number}">
+        <button class="curriculum-level-toggle" type="button" aria-expanded="${open}">
+          <span class="curriculum-level-name"><span class="curriculum-level-number">${String(number).padStart(2,'0')}</span><span>Level ${number} — ${level.title}</span></span>
+          <span class="curriculum-chevron">›</span>
+        </button>
+        <div class="curriculum-topic-list">${level.topics.map(topic=>`<button class="curriculum-topic${open&&topic===activeTopic?' active':''}" type="button" data-topic="${escapeHtml(topic)}"><span class="curriculum-topic-title">${escapeHtml(topic)}</span><span class="curriculum-topic-count">25 questions</span></button>`).join('')}</div>
+      </section>`;
+    }).join('');
+
+    root.querySelectorAll('.curriculum-level-toggle').forEach(button=>button.addEventListener('click',()=>{
+      const wrapper=button.closest('.curriculum-level');
+      const shouldOpen=!wrapper.classList.contains('open');
+      root.querySelectorAll('.curriculum-level').forEach(level=>level.classList.remove('open'));
+      if(shouldOpen) wrapper.classList.add('open');
+      root.querySelectorAll('.curriculum-level-toggle').forEach(toggle=>toggle.setAttribute('aria-expanded',String(toggle.closest('.curriculum-level').classList.contains('open'))));
+    }));
+    root.querySelectorAll('.curriculum-topic').forEach(button=>button.addEventListener('click',()=>{
+      const level=Number(button.closest('.curriculum-level').dataset.level);
+      selectTopic(level,button.dataset.topic);
+    }));
+  }
+
+  let saved=null;
+  try{saved=JSON.parse(localStorage.getItem('sqlLabSelectedCurriculumTopic')||'null');}catch(error){}
+  const initialLevel=Math.min(5,Math.max(1,Number(saved?.level)||Number(state.level)||1));
+  renderCurriculum(initialLevel,saved?.topic||null);
+})();
+</script>
+<style id="professional-curriculum-v2-styles">
+@media(min-width:761px){
+  .app{grid-template-columns:350px minmax(0,1fr)!important}
+  .sidebar{padding:28px 18px!important}
+}
+.sidebar h2{margin:0 4px 5px!important;font-size:20px!important;letter-spacing:-.45px!important}
+.curriculum-intro{margin:0 4px 18px;color:#7b8493;font-size:12px;line-height:1.5}
+.curriculum-dropdowns{gap:10px!important}
+.curriculum-level{
+  --level-accent:#2563eb;--level-soft:#eff6ff;
+  position:relative;border:1px solid #e4e8ee!important;border-radius:14px!important;background:#fff!important;
+  box-shadow:0 1px 2px rgba(16,24,40,.03);overflow:hidden;transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease
+}
+.curriculum-level:nth-child(2){--level-accent:#7c3aed;--level-soft:#f5f3ff}
+.curriculum-level:nth-child(3){--level-accent:#0f766e;--level-soft:#f0fdfa}
+.curriculum-level:nth-child(4){--level-accent:#b45309;--level-soft:#fffbeb}
+.curriculum-level:nth-child(5){--level-accent:#be123c;--level-soft:#fff1f2}
+.curriculum-level:hover{border-color:#cfd6df!important;box-shadow:0 8px 22px rgba(16,24,40,.065)}
+.curriculum-level.open{border-color:color-mix(in srgb,var(--level-accent) 34%,#e4e8ee)!important;box-shadow:0 9px 24px rgba(16,24,40,.07)}
+.curriculum-level:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--level-accent);opacity:0;transition:opacity .18s ease}
+.curriculum-level.open:before{opacity:1}
+.curriculum-level-toggle{min-height:78px!important;padding:13px 14px!important;border-radius:0!important;background:#fff!important;align-items:flex-start!important}
+.curriculum-level-toggle:hover{background:#fafbfc!important}
+.curriculum-level.open>.curriculum-level-toggle{background:linear-gradient(90deg,var(--level-soft),#fff 68%)!important;color:#101828!important}
+.curriculum-level-main{display:flex;align-items:flex-start;gap:12px;min-width:0}
+.curriculum-level-number{
+  width:38px!important;height:38px!important;flex:0 0 38px!important;border:1px solid #e4e8ee;border-radius:10px!important;
+  background:#f7f8fa!important;color:#667085!important;font-size:11px!important;font-weight:850;letter-spacing:.04em
+}
+.curriculum-level.open .curriculum-level-number{border-color:transparent;background:var(--level-accent)!important;color:#fff!important;box-shadow:0 5px 12px color-mix(in srgb,var(--level-accent) 22%,transparent)}
+.curriculum-level-copy{min-width:0;padding-top:1px}
+.curriculum-level-title{display:block;color:#101828;font-size:14px;font-weight:800;line-height:1.3;letter-spacing:-.12px}
+.curriculum-level-subtitle{display:block;margin-top:3px;color:#7b8493;font-size:10.5px;font-weight:570;line-height:1.35}
+.curriculum-level-meta{display:flex;align-items:center;gap:6px;margin-top:7px;flex-wrap:wrap}
+.curriculum-meta-pill{padding:3px 6px;border:1px solid #e5e9ef;border-radius:999px;background:#fff;color:#667085;font-size:9px;font-weight:760;line-height:1}
+.curriculum-chevron{margin-top:8px!important;font-size:17px!important;color:#98a2b3!important}
+.curriculum-level.open .curriculum-chevron{color:var(--level-accent)!important}
+.curriculum-topic-list{padding:3px 10px 11px 50px!important;border-top:1px solid #eef1f4;background:#fcfcfd}
+.curriculum-group-label{margin:12px 8px 6px;color:#98a2b3;font-size:9px;font-weight:850;letter-spacing:.11em;text-transform:uppercase}
+.curriculum-topic{position:relative;padding:9px 9px!important;border-radius:9px!important}
+.curriculum-topic:before{content:"";position:absolute;left:-16px;top:15px;width:6px;height:6px;border:1.5px solid #b7c0cc;border-radius:50%;background:#fff}
+.curriculum-topic:hover{background:#f3f5f7!important}
+.curriculum-topic.active{border-color:color-mix(in srgb,var(--level-accent) 30%,#e6e9ee)!important;background:var(--level-soft)!important;color:var(--level-accent)!important}
+.curriculum-topic.active:before{border-color:var(--level-accent);background:var(--level-accent);box-shadow:0 0 0 3px var(--level-soft)}
+.curriculum-topic-title{font-size:11.5px!important;font-weight:730!important;line-height:1.35}
+.curriculum-topic-details{display:flex;align-items:center;gap:6px;margin-top:5px;flex-wrap:wrap}
+.curriculum-topic-count,.curriculum-topic-format,.curriculum-topic-dialect{display:inline-flex!important;margin:0!important;font-size:9px!important;font-weight:720!important;line-height:1}
+.curriculum-topic-count{color:#667085!important}
+.curriculum-topic-format{padding:3px 5px;border-radius:999px;background:#eef2f6;color:#596579}
+.curriculum-topic-dialect{color:#98a2b3}
+.curriculum-level-summary{padding:9px 12px;border-top:1px solid #edf0f3;background:#f9fafb;color:#667085;font-size:10px;line-height:1.4}
+.curriculum-level-summary strong{color:#344054}
+.curriculum-dialect-note{margin:12px 2px 0;padding:10px 11px;border:1px solid #dfe6ee;border-radius:10px;background:#f8fafc;color:#667085;font-size:10px;line-height:1.45}
+.curriculum-dialect-note strong{color:#344054}
+@media(max-width:760px){
+  .curriculum-topic-list{grid-template-columns:1fr!important;padding-left:48px!important}
+  .curriculum-level-toggle{min-height:72px!important}
+}
+</style>
+
+<script id="professional-curriculum-v2-script">
+(function(){
+  const topic=(title,count=15,format='SQL practice',dialect='SQLite')=>({title,count,format,dialect});
+  const curriculum=[
+    {title:'Fundamentals',subtitle:'Query basics, filtering and clean output',groups:[{name:'Core foundations',topics:[
+      topic('Database structure & data types',10,'Concept'),topic('SELECT & selecting columns',15),topic('Aliases with AS',10),topic('WHERE & comparison operators',25),topic('AND, OR, NOT & parentheses',20),topic('IN, BETWEEN & LIKE',20),topic('NULL handling & COALESCE',15),topic('DISTINCT',10),topic('ORDER BY with ASC & DESC',15),topic('LIMIT with SQL Server TOP notes',10,'SQL practice','SQLite + T-SQL'),topic('Calculations & basic CASE',20),topic('Fundamentals review',25,'Mixed review')
+    ]}]},
+    {title:'Aggregation',subtitle:'Turn detailed rows into business metrics',groups:[{name:'Summaries and KPIs',topics:[
+      topic('COUNT, SUM, AVG, MIN & MAX',20),topic('COUNT variations',15),topic('GROUP BY',25),topic('Multiple-column grouping',15),topic('WHERE vs. HAVING',20),topic('Conditional aggregation',25),topic('Percentages, rates & averages',20),topic('Safe division with NULLIF',15),topic('Grouping by day, month & year',20),topic('Aggregation review',25,'Mixed review')
+    ]}]},
+    {title:'Combining Data',subtitle:'Connect related tables without losing accuracy',groups:[{name:'Relationships and joins',topics:[
+      topic('Keys, cardinality & relationships',10,'Concept'),topic('INNER JOIN',25),topic('LEFT JOIN',25),topic('Finding unmatched records',15),topic('Joins across three or more tables',25),topic('Self joins',15),topic('Diagnosing duplicate rows',20,'Debug query'),topic('UNION & UNION ALL',20),topic('INTERSECT & EXCEPT',10),topic('RIGHT & FULL OUTER JOIN',10,'Concept','SQL Server note'),topic('Combining data review',25,'Mixed review')
+    ]}]},
+    {title:'Analytical Queries',subtitle:'Build multi-step and time-aware analysis',groups:[{name:'Intermediate analytics',topics:[
+      topic('Scalar, WHERE & FROM subqueries',25),topic('EXISTS & NOT EXISTS',20),topic('CTEs using WITH',25),topic('ROW_NUMBER',20),topic('RANK & DENSE_RANK',15),topic('Aggregates with OVER & PARTITION BY',25),topic('Running totals',20),topic('LAG & LEAD',25),topic('Date functions & time grouping',25),topic('String manipulation',20),topic('CAST & safe conversion',15),topic('Analytical queries review',25,'Mixed review')
+    ]}]},
+    {title:'Professional SQL',subtitle:'Performance, engineering and production safety',groups:[
+      {name:'Advanced querying',topics:[topic('Recursive CTEs & hierarchies',15),topic('Window frames & moving averages',25),topic('Pivoting & unpivoting',15,'Design scenario','SQL Server note')]},
+      {name:'Database programming',topics:[topic('Views',15),topic('Temporary tables',15),topic('Stored procedures & functions',15,'Code review','SQL Server'),topic('Dynamic SQL',10,'Security review','SQL Server'),topic('Error handling with TRY...CATCH',10,'Debug query','SQL Server')]},
+      {name:'Performance',topics:[topic('Indexes',15,'Design scenario'),topic('Execution plans',15,'Plan analysis'),topic('Statistics & sargability',15,'Performance review'),topic('Query optimization scenarios',20,'Performance review')]},
+      {name:'Data engineering',topics:[topic('Incremental loads',20,'Pipeline scenario'),topic('MERGE patterns',15,'Code review','SQL Server'),topic('ETL & ELT patterns',15,'Design scenario'),topic('Data-quality validation',25,'SQL practice'),topic('Deduplication patterns',25,'SQL practice')]},
+      {name:'Architecture and safety',topics:[topic('Normalization',15,'Design scenario'),topic('Fact & dimension tables',20,'Modeling scenario'),topic('Transactions',15,'Code review'),topic('Isolation levels & locking',15,'Scenario'),topic('Permissions & least privilege',15,'Security review'),topic('SQL injection prevention',10,'Security review'),topic('Professional SQL review',25,'Mixed review')]}
+    ]}
+  ];
+
+  const sourceLevels={1:[1],2:[2],3:[3],4:[4,5,6],5:[6,5,4]};
+  const root=document.getElementById('curriculumDropdowns');
+  if(!root || typeof SECTION_BANKS==='undefined' || typeof state==='undefined') return;
+  const heading=root.closest('.sidebar')?.querySelector('h2');
+  if(heading && !heading.nextElementSibling?.classList.contains('curriculum-intro')) heading.insertAdjacentHTML('afterend','<p class="curriculum-intro">Choose a level, then focus on one skill at a time.</p>');
+
+  sectionTopics[1]='Fundamentals';sectionTopics[2]='Aggregation';sectionTopics[3]='Combining Data';sectionTopics[4]='Analytical Queries';sectionTopics[5]='Professional SQL';delete sectionTopics[6];
+  const normalize=value=>String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+  const stop=new Set(['and','or','with','the','a','an','by','of','to','in','using','one','multiple','basic','data','sql','review']);
+  const tokens=value=>normalize(value).split(' ').filter(word=>word.length>2&&!stop.has(word));
+  const topicKey=(level,title)=>`L${level}:${normalize(title).replace(/ /g,'-')}`;
+  const allTopics=level=>curriculum[level-1].groups.flatMap(group=>group.topics);
+  const getTopic=(level,title)=>allTopics(level).find(item=>item.title===title);
+
+  function candidates(level,topicData){
+    const wanted=tokens(topicData.title);const all=[];
+    (sourceLevels[level]||[level]).forEach(source=>(SECTION_BANKS[source]||[]).forEach(factory=>{
+      try{const item=factory();const haystack=normalize(`${item.topic} ${item.prompt} ${(item.accepted||[]).join(' ')}`);const score=wanted.reduce((sum,word)=>sum+(haystack.includes(word)?1:0),0);all.push({item,score});}catch(error){}
+    }));
+    const unique=[];const ids=new Set();
+    all.sort((a,b)=>b.score-a.score).forEach(entry=>{if(!ids.has(entry.item.id)){ids.add(entry.item.id);unique.push(entry.item);}});
+    return unique.slice(0,topicData.count);
+  }
+
+  function nextTopicQuestion(level,topicData){
+    const pool=candidates(level,topicData);if(!pool.length)return null;
+    const key=topicKey(level,topicData.title);const histories=JSON.parse(localStorage.getItem('sqlLabTopicQuestionHistoryV2')||'{}');const used=new Set(histories[key]||[]);
+    let next=pool.find(item=>!used.has(item.id));if(!next){used.clear();next=pool[0];}used.add(next.id);histories[key]=Array.from(used);localStorage.setItem('sqlLabTopicQuestionHistoryV2',JSON.stringify(histories));
+    return {...next,section:level,level,curriculumTopic:topicData.title,curriculumVersion:'FIVE_LEVEL_PRO_V2',curriculumQuestionNumber:used.size,curriculumQuestionTotal:topicData.count,questionType:topicData.format,dialect:topicData.dialect};
+  }
+
+  window.__curriculumQuestionProvider=function(section){
+    let selected=null;try{selected=JSON.parse(localStorage.getItem('sqlLabSelectedCurriculumTopic')||'null');}catch(error){}
+    const level=Number(section)||1;if(!selected||Number(selected.level)!==level||!selected.topic)return null;
+    const topicData=getTopic(level,selected.topic);return topicData?nextTopicQuestion(level,topicData):null;
+  };
+
+  function selectTopic(level,topicTitle){
+    const topicData=getTopic(level,topicTitle);if(!topicData)return;
+    const next=nextTopicQuestion(level,topicData);if(!next){showStatus('No exercises are available for this topic yet.','error');return;}
+    localStorage.setItem('sqlLabSelectedCurriculumTopic',JSON.stringify({level,topic:topicTitle}));
+    state.level=level;state.section=level;state.index=0;state.currentQuestion=next;state.currentAnswerDraft='';state.currentQuestionAttempts=0;state.failedAttempts=0;state.wrongStreak=0;state.chainOriginalQuestion=null;saveState();
+    renderCurriculum(level,topicTitle);renderQuestion();showStatus(`${topicTitle} · ${topicData.format} · Question ${next.curriculumQuestionNumber} of ${topicData.count}`,'info');
+    const challenge=document.querySelector('.challenge');if(challenge)window.scrollTo({top:challenge.offsetTop-20,behavior:'smooth'});
+  }
+
+  function renderCurriculum(openLevel,activeTopic){
+    root.innerHTML=curriculum.map((level,index)=>{
+      const number=index+1,open=number===openLevel,topics=level.groups.flatMap(group=>group.topics),total=topics.reduce((sum,item)=>sum+item.count,0);
+      const groups=level.groups.map(group=>`${level.groups.length>1?`<div class="curriculum-group-label">${escapeHtml(group.name)}</div>`:''}${group.topics.map(item=>`<button class="curriculum-topic${open&&item.title===activeTopic?' active':''}" type="button" data-topic="${escapeHtml(item.title)}"><span class="curriculum-topic-title">${escapeHtml(item.title)}</span><span class="curriculum-topic-details"><span class="curriculum-topic-count">${item.count} questions</span><span class="curriculum-topic-format">${escapeHtml(item.format)}</span><span class="curriculum-topic-dialect">${escapeHtml(item.dialect)}</span></span></button>`).join('')}`).join('');
+      return `<section class="curriculum-level${open?' open':''}" data-level="${number}"><button class="curriculum-level-toggle" type="button" aria-expanded="${open}"><span class="curriculum-level-main"><span class="curriculum-level-number">${String(number).padStart(2,'0')}</span><span class="curriculum-level-copy"><span class="curriculum-level-title">${escapeHtml(level.title)}</span><span class="curriculum-level-subtitle">${escapeHtml(level.subtitle)}</span><span class="curriculum-level-meta"><span class="curriculum-meta-pill">${topics.length} topics</span><span class="curriculum-meta-pill">${total} questions</span></span></span></span><span class="curriculum-chevron">›</span></button><div class="curriculum-topic-list">${groups}</div>${open?`<div class="curriculum-level-summary"><strong>Practice plan:</strong> complete focused topics first, then finish the level review.</div>`:''}</section>`;
+    }).join('')+'<div class="curriculum-dialect-note"><strong>Practice dialect:</strong> executable exercises use SQLite. SQL Server-specific features are clearly labeled as notes or professional scenarios.</div>';
+    root.querySelectorAll('.curriculum-level-toggle').forEach(button=>button.addEventListener('click',()=>{const wrapper=button.closest('.curriculum-level');const shouldOpen=!wrapper.classList.contains('open');renderCurriculum(shouldOpen?Number(wrapper.dataset.level):0,shouldOpen?activeTopic:null);}));
+    root.querySelectorAll('.curriculum-topic').forEach(button=>button.addEventListener('click',()=>selectTopic(Number(button.closest('.curriculum-level').dataset.level),button.dataset.topic)));
+  }
+
+  let saved=null;try{saved=JSON.parse(localStorage.getItem('sqlLabSelectedCurriculumTopic')||'null');}catch(error){}
+  const initialLevel=Math.min(5,Math.max(1,Number(saved?.level)||Number(state.level)||1));
+  const validSaved=saved&&getTopic(initialLevel,saved.topic)?saved.topic:null;renderCurriculum(initialLevel,validSaved);
+})();
+</script>
+<style id="job-search-logic-v2">
+.apply-filters{
+  grid-template-columns:minmax(250px,1.2fr) minmax(190px,.95fr) repeat(5,minmax(125px,.68fr))!important;
+}
+.apply-field input{
+  min-height:48px!important;padding:0 13px!important;border:1px solid #d6e0eb!important;
+  border-radius:12px!important;background:#f9fbfd!important;color:#17243b!important;font-size:14px!important;
+  box-shadow:none!important;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease!important;
+}
+.apply-field input:hover{background:#fff!important;border-color:#9caec2!important}
+.apply-field input:focus{background:#fff!important;border-color:#2d7bf0!important;box-shadow:0 0 0 4px rgba(45,123,240,.12)!important}
+.apply-field input::placeholder{color:#8b98aa}
+.apply-results-tools{display:flex!important;align-items:center!important;justify-content:flex-end!important;flex-wrap:wrap!important}
+.apply-reset-btn{
+  min-height:40px;padding:8px 12px;border:1px solid #d6e0eb;border-radius:10px;background:#fff;
+  color:#42536b;font:inherit;font-size:12px;font-weight:800;cursor:pointer;
+}
+.apply-reset-btn:hover{background:#f6f8fb;border-color:#aebdcd}
+.apply-live-source-btn{white-space:nowrap!important}
+.apply-job-time{max-width:220px}
+@media(max-width:1280px){
+  .apply-filters{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .apply-role-field{grid-column:span 2!important}
+}
+@media(max-width:850px){
+  .apply-filters{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .apply-role-field{grid-column:1/-1!important}
+}
+@media(max-width:700px){
+  .apply-filters{grid-template-columns:1fr!important}
+  .apply-role-field{grid-column:auto!important}
+  .apply-results-tools{justify-content:stretch!important}
+  .apply-reset-btn{flex:1 1 90px}
 }
 </style>
 </body>
